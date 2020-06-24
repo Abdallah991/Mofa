@@ -1,4 +1,4 @@
-package com.fathom.mofa;
+package com.fathom.mofa.DataModels;
 
 public class NotificationDataModel {
 }
