@@ -3,4 +3,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout">Logout</string>
+    <string name="vehicle_record">Vehicle Record</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="driver_set_up">Driver Set Up</string>
+    <string name="vehicle_set_up">Vehicle Set Up</string>
+    <string name="arabic">Arabic</string>
+    <string name="notifications">Notifications</string>
+    <string name="vehicle_dashboard">Vehicle Dashboard</string>
+    <string name="vehicle_record_details">Vehicle Record Details</string>
 </resources>

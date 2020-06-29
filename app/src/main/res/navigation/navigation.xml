@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/home">
 
+    <fragment
+        android:id="@+id/home"
+        android:name="com.fathom.mofa.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.fathom.mofa.Dashboard"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/driverSetUp"
+        android:name="com.fathom.mofa.DriverSetUp"
+        android:label="fragment_driver_set_up"
+        tools:layout="@layout/fragment_driver_set_up" />
+    <fragment
+        android:id="@+id/notifications"
+        android:name="com.fathom.mofa.Notifications"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/vehicleRecord"
+        android:name="com.fathom.mofa.VehicleRecord"
+        android:label="fragment_vehicle_record"
+        tools:layout="@layout/fragment_vehicle_record" />
+    <fragment
+        android:id="@+id/signUpUser"
+        android:name="com.fathom.mofa.SignUpUser"
+        android:label="fragment_sign_up_user"
+        tools:layout="@layout/fragment_sign_up_user" />
+    <fragment
+        android:id="@+id/vehicleSetUp"
+        android:name="com.fathom.mofa.VehicleSetUp"
+        android:label="fragment_vehicle_set_up"
+        tools:layout="@layout/fragment_vehicle_set_up" />
 </navigation>

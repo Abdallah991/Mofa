@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_bar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorBackground"
+    android:theme="@style/CustomToolbarStyle"
+    android:elevation="10dp"
+    app:contentInsetEnd="0dp"
+    app:contentInsetStart="0dp"
+    app:contentInsetStartWithNavigation="0dp"
+    app:navigationIcon="@drawable/hamburger_icon">
+
+    <ImageView
+        android:id="@+id/cartIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:scaleType="centerInside"
+        android:src="@drawable/notification_icon" />
+
+    <ImageView
+        android:id="@+id/appTitle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/admin_icon"/>
+
+</androidx.appcompat.widget.Toolbar>
+
+
