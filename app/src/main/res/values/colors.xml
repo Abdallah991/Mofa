@@ -3,5 +3,6 @@
     <color name="colorPrimary">#C12D2D</color>
     <color name="colorPrimaryDark">#949496</color>
     <color name="colorBackground">#FFFFFF</color>
+    <color name="appGrey">#707070</color>
     <color name="black">#000</color>
 </resources>

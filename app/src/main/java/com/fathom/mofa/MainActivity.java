@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -27,12 +28,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavController navController;
     private NavigationView navigationView;
     private Button logOut;
+    private ImageView signUp;
+    private ImageView notification;
+    private int actionNavigateToNotification = R.id.action_home_to_notifications;
+    private int actionNavigateToSignUp = R.id.action_home_to_signUpUser;
+    private int actionNavigateToHomeFromSignUp = R.id.action_signUpUser_to_home;
+    private int actionNavigateToNotificationFromSignUp = R.id.action_signUpUser_to_notifications;
+
+    public static String FRAGMENT = "home";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.app_bar);
-        View view = findViewById(R.id.app_bar);
+//        View view = findViewById(R.id.app_bar);
+        signUp = toolbar.findViewById(R.id.signUpUserIcon);
+        notification = toolbar.findViewById(R.id.notificationIcon);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -47,6 +58,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar.getChildAt(i).setScaleY(0.75f);
             }
         }
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switch (FRAGMENT) {
+                    case "home":
+                        navController.navigate(actionNavigateToNotification);
+                        break;
+
+                    case "signUpUser":
+                        navController.navigate(actionNavigateToNotificationFromSignUp);
+                        break;
+
+                }
+
+            }
+        });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switch (FRAGMENT) {
+                    case "home":
+                        navController.navigate(actionNavigateToSignUp);
+                        break;
+
+                    case "signUpUser":
+                        navController.navigate(actionNavigateToHomeFromSignUp);
+                        break;
+
+                }
+
+            }
+        });
 
 
         setSupportActionBar(toolbar);
@@ -109,9 +156,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
 
             case R.id.dashboard:
-//                NavOptions navOptions = new NavOptions.Builder()
-//                        .setPopUpTo(R.id.appointmentsFragment, true)
-//                        .build();
                 navController.navigate(R.id.dashboard);
                 break;
 
@@ -126,11 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.vehicleSetUp:
                 navController.navigate(R.id.vehicleSetUp);
                 break;
-
-
-//            case R.id.appointmentsFragment:
-//                navController.navigate(R.id.appointmentsFragment);
-//                break;
 
 
         }

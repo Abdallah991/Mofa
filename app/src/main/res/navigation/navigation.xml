@@ -9,7 +9,26 @@
         android:id="@+id/home"
         android:name="com.fathom.mofa.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_driverSetUp"
+            app:destination="@id/driverSetUp" />
+        <action
+            android:id="@+id/action_home_to_dashboard"
+            app:destination="@id/dashboard" />
+        <action
+            android:id="@+id/action_home_to_vehicleRecord"
+            app:destination="@id/vehicleRecord" />
+        <action
+            android:id="@+id/action_home_to_vehicleSetUp"
+            app:destination="@id/vehicleSetUp" />
+        <action
+            android:id="@+id/action_home_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_home_to_signUpUser"
+            app:destination="@id/signUpUser" />
+    </fragment>
     <fragment
         android:id="@+id/dashboard"
         android:name="com.fathom.mofa.Dashboard"
@@ -34,7 +53,14 @@
         android:id="@+id/signUpUser"
         android:name="com.fathom.mofa.SignUpUser"
         android:label="fragment_sign_up_user"
-        tools:layout="@layout/fragment_sign_up_user" />
+        tools:layout="@layout/fragment_sign_up_user" >
+        <action
+            android:id="@+id/action_signUpUser_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_signUpUser_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
     <fragment
         android:id="@+id/vehicleSetUp"
         android:name="com.fathom.mofa.VehicleSetUp"

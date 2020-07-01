@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "688719898183",
+    "firebase_url": "https://mofa-ab228.firebaseio.com",
+    "project_id": "mofa-ab228",
+    "storage_bucket": "mofa-ab228.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688719898183:android:9b08d3e32a13887c8e3362",
+        "android_client_info": {
+          "package_name": "com.fathom.mofa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688719898183-i8tolnf25mv2cooae92lp7k36ism6cfo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBriSgbyN9mjNxpTorBvJCgdB45oY8Rv8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688719898183-i8tolnf25mv2cooae92lp7k36ism6cfo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
