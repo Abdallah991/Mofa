@@ -3,5 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/hamburger_icon"
-        android:top="50dp" android:left="50dp" />
+        android:top="50dp" android:left="50dp"
+        android:elevation="20dp"/>
 </layer-list>

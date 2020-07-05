@@ -66,10 +66,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (FRAGMENT) {
                     case "home":
                         navController.navigate(actionNavigateToNotification);
+                        notification.setImageResource(R.drawable.home_icon);
                         break;
 
                     case "signUpUser":
                         navController.navigate(actionNavigateToNotificationFromSignUp);
+                        notification.setImageResource(R.drawable.notification_icon);
                         break;
 
                 }
