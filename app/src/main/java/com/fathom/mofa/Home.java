@@ -20,10 +20,10 @@ import static com.fathom.mofa.MainActivity.FRAGMENT;
  */
 public class Home extends Fragment {
 
-    ImageView dashboard;
-    ImageView vehicleSetUp;
-    ImageView driverSetUp;
-    ImageView vehicleRecord;
+    private ImageView dashboard;
+    private ImageView vehicleSetUp;
+    private ImageView driverSetUp;
+    private ImageView vehicleRecord;
     private NavController mNavController;
 
 

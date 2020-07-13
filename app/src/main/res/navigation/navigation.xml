@@ -43,7 +43,11 @@
         android:id="@+id/notifications"
         android:name="com.fathom.mofa.Notifications"
         android:label="fragment_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_notifications_to_home"
+            app:destination="@id/home" />
+    </fragment>
     <fragment
         android:id="@+id/vehicleRecord"
         android:name="com.fathom.mofa.VehicleRecord"
@@ -65,5 +69,80 @@
         android:id="@+id/vehicleSetUp"
         android:name="com.fathom.mofa.VehicleSetUp"
         android:label="fragment_vehicle_set_up"
-        tools:layout="@layout/fragment_vehicle_set_up" />
+        tools:layout="@layout/fragment_vehicle_set_up" >
+        <action
+            android:id="@+id/action_vehicleSetUp_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleSetUp_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleSetUp_to_vehicleRegistration"
+            app:destination="@id/vehicleRegistration" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleRegistration"
+        android:name="com.fathom.mofa.VehicleRegistration"
+        android:label="fragment_vehicle_registration"
+        tools:layout="@layout/fragment_vehicle_registration" >
+        <action
+            android:id="@+id/action_vehicleRegistration_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleRegistration_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleRegistration_to_vehicleSetUpDamageReport"
+            app:destination="@id/vehicleSetUpDamageReport" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleSetUpDamageReport"
+        android:name="com.fathom.mofa.VehicleSetUpDamageReport"
+        android:label="fragment_vehicle_set_up_damage_report"
+        tools:layout="@layout/fragment_vehicle_set_up_damage_report" >
+        <action
+            android:id="@+id/action_vehicleSetUpDamageReport_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleSetUpDamageReport_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleSetUpDamageReport_to_vehicleSetUpRentalInfo"
+            app:destination="@id/vehicleSetUpRentalInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleSetUpRentalInfo"
+        android:name="com.fathom.mofa.VehicleSetUpRentalInfo"
+        android:label="fragment_vehicle_set_up_rental_info"
+        tools:layout="@layout/fragment_vehicle_set_up_rental_info" >
+        <action
+            android:id="@+id/action_vehicleSetUpRentalInfo_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleSetUpRentalInfo_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleSetUpRentalInfo_to_vehicleSetUpConfirmation"
+            app:destination="@id/vehicleSetUpConfirmation" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleSetUpConfirmation"
+        android:name="com.fathom.mofa.VehicleSetUpConfirmation"
+        android:label="fragment_vehicle_set_up_confirmation"
+        tools:layout="@layout/fragment_vehicle_set_up_confirmation" >
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleSetUpSignature"
+            app:destination="@id/vehicleSetUpSignature" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleSetUpSignature"
+        android:name="com.fathom.mofa.VehicleSetUpSignature"
+        android:label="fragment_vehicle_set_up_signature"
+        tools:layout="@layout/fragment_vehicle_set_up_signature" />
 </navigation>

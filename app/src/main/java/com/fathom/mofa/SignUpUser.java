@@ -2,7 +2,6 @@ package com.fathom.mofa;
 
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,13 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.concurrent.Executor;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SignUpUser extends Fragment {
 
     private NavController navController;
@@ -54,6 +48,7 @@ public class SignUpUser extends Fragment {
     public SignUpUser() {
         // Required empty public constructor
     }
+
 
 
     @Override

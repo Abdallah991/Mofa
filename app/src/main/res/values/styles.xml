@@ -41,7 +41,15 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:paddingTop">20dp</item>
         <item name="listPreferredItemHeight">100dp</item>
+    </style>
 
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
 
     <dimen name="design_navigation_separator_vertical_padding" tools:override="true">30dp</dimen>

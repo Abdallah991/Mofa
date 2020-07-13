@@ -22,4 +22,89 @@
     <string name="phone_number">Phone Number</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="vehicle_information">VEHICLE INFORMATION</string>
+    <string name="vehicle_information_small">Vehicle Information</string>
+    <string name="plate_number">Plate Number</string>
+    <string name="model">Model</string>
+    <string name="color">Color</string>
+    <string name="make">Make</string>
+    <string name="car_type">Car Type</string>
+    <string name="next">Next</string>
+    <string name="registration">Registration</string>
+    <string name="damage_report">Damage Report</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="registration_end">Registration End</string>
+    <string name="registration_start">Registration Start</string>
+    <string name="registration_type">Registration Type</string>
+    <string name="back">Back</string>
+    <string name="rental_information">Rental Information</string>
+    <string name="provider">Provider</string>
+    <string name="provider_phone_number">Provider Phone Number</string>
+    <string name="edit">Edit</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="type">Type</string>
+    <string name="additional_notes">Additional Notes</string>
+    <string name="lease_from">Lease From</string>
+    <string name="lease_to">Lease To</string>
+    <string name="additional_notes_here">Write any additional notes here ...</string>
+    <string name="done">Done</string>
+    <string name="rental_company_signature">Rental Company Signature</string>
+    <string name="ministry_signature">Ministry Signature</string>
+    <string name="sign_here">Sign Here</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="manufacturers">
+        <item>BMW</item>
+        <item>Toyota</item>
+        <item>Nissan</item>
+        <item>Audi</item>
+        <item>Volkswagen</item>
+        <item>Ford</item>
+        <item>Dodge</item>
+        <item>Chevrolet</item>
+        <item>Jeep</item>
+        <item>Cadillac</item>
+        <item>Honda</item>
+        <item>Lexus</item>
+        <item>Infiniti</item>
+        <item>Mitsubishi</item>
+        <item>Mazda</item>
+        <item>Hyundai</item>
+        <item>Kia</item>
+    </string-array>
+    <string-array name="make">
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+    </string-array>
+    <string-array name="color">
+        <item>Blue</item>
+        <item>White</item>
+        <item>Black</item>
+        <item>Red</item>
+        <item>Maroon</item>
+        <item>Brown</item>
+        <item>Silver</item>
+        <item>Grey</item>
+        <item>Green</item>
+        <item>Navy</item>
+        <item>Light Blue</item>
+        <item>Yellow</item>
+    </string-array>
+    <string-array name="type">
+        <item>Saloon</item>
+        <item>SUV</item>
+        <item>Pick Up</item>
+    </string-array>
 </resources>

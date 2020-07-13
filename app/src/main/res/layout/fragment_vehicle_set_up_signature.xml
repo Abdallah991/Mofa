@@ -1,168 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VehicleSetUp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VehicleSetUpSignature">
 
     <TextView
-        android:id="@+id/vehicleInformationTitle"
+        android:id="@+id/signatureTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vehicle_information"
+        android:text="@string/confirmation"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="50sp"
         app:fontFamily="@font/roboto_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline39" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/signatureSubTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/plate_number"
-        android:inputType="text"
+        android:text="Signature"
+        android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:theme="@style/TextLabel"
+        android:textSize="33sp"
+        app:fontFamily="@font/roboto_regular"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline8">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/plateNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/rentalSignatureTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/model"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:theme="@style/TextLabel"
+        android:text="@string/rental_company_signature"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/appGrey"
+        android:textSize="16sp"
+        app:fontFamily="@font/roboto_light"
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <TextView
+        android:id="@+id/mofaSignatureTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/ministry_signature"
+        android:textAllCaps="false"
+        android:textColor="@color/appGrey"
+        android:textSize="16sp"
+        app:fontFamily="@font/roboto_light"
+        app:layout_constraintStart_toStartOf="@+id/guideline38"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <LinearLayout
+        android:id="@+id/signatureLayout"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline10">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/model"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.AppCompat.PopupMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="Manufacturer"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline10">
-
-        <AutoCompleteTextView
-            android:id="@+id/manufacturer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/color"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline17">
-        <AutoCompleteTextView
-            android:id="@+id/color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/make"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline17">
-
-        <AutoCompleteTextView
-            android:id="@+id/make"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/car_type"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline20"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline19">
-        <AutoCompleteTextView
-            android:id="@+id/carType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/signature"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+    </LinearLayout>
 
 
     <Button
-        android:id="@+id/nextVehicleInformation"
+        android:id="@+id/rentalSignature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_signature"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+        app:layout_constraintEnd_toStartOf="@+id/guideline37"
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
+
+    <Button
+        android:id="@+id/mofaSignature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_signature"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline38"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
+
+    <Button
+        android:id="@+id/doneVehicleSetUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/button_shadow"
         android:fontFamily="@font/roboto_regular"
-        android:text="@string/next"
+        android:text="@string/done"
         android:textAllCaps="false"
         android:textColor="@color/colorBackground"
         android:textSize="20sp"
@@ -176,7 +129,7 @@
         android:id="@+id/vehicleInformationMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone"
+        android:background="@drawable/milestone_checked"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -185,7 +138,7 @@
     <LinearLayout
         android:id="@+id/linkInfoToRegistration"
         android:layout_width="0dp"
-        android:background="@color/mileStone"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_height="5dp"
         android:layout_marginEnd="40dp"
@@ -198,7 +151,7 @@
         android:id="@+id/registrationMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone"
+        android:background="@drawable/milestone_checked"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
@@ -207,7 +160,7 @@
     <LinearLayout
         android:id="@+id/linkRegistrationToDamage"
         android:layout_width="0dp"
-        android:background="@color/mileStone"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_height="5dp"
         android:layout_marginEnd="40dp"
@@ -220,7 +173,7 @@
         android:id="@+id/damageMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone"
+        android:background="@drawable/milestone_checked"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
@@ -229,7 +182,7 @@
     <LinearLayout
         android:id="@+id/linkDamageToRental"
         android:layout_width="0dp"
-        android:background="@color/mileStone"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_height="5dp"
         android:layout_marginEnd="40dp"
@@ -242,7 +195,7 @@
         android:id="@+id/rentalMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone"
+        android:background="@drawable/milestone_checked"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
@@ -251,7 +204,7 @@
     <LinearLayout
         android:id="@+id/linkRentalToConfirmation"
         android:layout_width="0dp"
-        android:background="@color/mileStone"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:layout_height="5dp"
         android:layout_marginEnd="40dp"
@@ -264,7 +217,7 @@
         android:id="@+id/confirmationMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone"
+        android:background="@drawable/milestone_checked"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline30"
@@ -379,11 +332,25 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.49" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.53" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -405,6 +372,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="-0.02" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -446,7 +420,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.59" />
+        app:layout_constraintGuide_percent="0.58" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
@@ -467,14 +441,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.865" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.915" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

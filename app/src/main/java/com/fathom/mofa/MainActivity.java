@@ -10,6 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -34,6 +35,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int actionNavigateToSignUp = R.id.action_home_to_signUpUser;
     private int actionNavigateToHomeFromSignUp = R.id.action_signUpUser_to_home;
     private int actionNavigateToNotificationFromSignUp = R.id.action_signUpUser_to_notifications;
+    private int actionNavigateToHomeFromNotification = R.id.action_notifications_to_home;
+    private int actionNavigateToSignUpFromVehicleSetUp = R.id.action_vehicleSetUp_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleSetUp = R.id.action_vehicleSetUp_to_notifications;
+    private int actionNavigateToNotificationFromVehicleSetUpRegistration = R.id.action_vehicleRegistration_to_notifications;
+    private int actionNavigateToSignUpFromVehicleSetUpRegistration = R.id.action_vehicleRegistration_to_signUpUser;
+    private int actionNavigateToSignUpFromVehicleSetUpDamage = R.id.action_vehicleSetUpDamageReport_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleSetUpDamage = R.id.action_vehicleSetUpDamageReport_to_notifications;
+    private int actionNavigateToNotificationFromVehicleRentalInfo = R.id.action_vehicleSetUpRentalInfo_to_notifications;
+    private int actionNavigateToSignUpFromVehicleSetUpRentalInfo = R.id.action_vehicleSetUpRentalInfo_to_signUpUser;
+    private int actionNavigateToSignUpFromVehicleSetUpConfirmation = R.id.action_vehicleSetUpConfirmation_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleConfirmation = R.id.action_vehicleSetUpConfirmation_to_notifications;
+
+
 
     public static String FRAGMENT = "home";
     @Override
@@ -52,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        View slider = inflater.from(getApplicationContext()).inflate(R.layout.drawer_header, null);
         ViewGroup viewRoot = (ViewGroup) inflater.inflate(R.layout.drawer_header,null);
 
+
         for (int i = 0; i < toolbar.getChildCount(); i++) {
             if(toolbar.getChildAt(i) instanceof ImageButton){
                 toolbar.getChildAt(i).setScaleX(0.75f);
@@ -67,12 +82,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case "home":
                         navController.navigate(actionNavigateToNotification);
                         notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
                         break;
 
                     case "signUpUser":
-                        navController.navigate(actionNavigateToNotificationFromSignUp);
+                        navController.navigate(actionNavigateToHomeFromNotification);
                         notification.setImageResource(R.drawable.notification_icon);
+                        signUp.setVisibility(View.VISIBLE);
                         break;
+
+                    case "vehicleSetUp":
+                        navController.navigate(actionNavigateToNotificationFromVehicleSetUp);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpRegistration":
+                        navController.navigate(actionNavigateToNotificationFromVehicleSetUpRegistration);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpDamageReport":
+                        navController.navigate(actionNavigateToNotificationFromVehicleSetUpDamage);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpRentalInfo":
+                        navController.navigate(actionNavigateToNotificationFromVehicleRentalInfo);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpConfirmation":
+                        navController.navigate(actionNavigateToNotificationFromVehicleConfirmation);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+
 
                 }
 
@@ -86,10 +135,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (FRAGMENT) {
                     case "home":
                         navController.navigate(actionNavigateToSignUp);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
                         break;
 
                     case "signUpUser":
                         navController.navigate(actionNavigateToHomeFromSignUp);
+                        signUp.setImageResource(R.drawable.admin_icon);
+                        notification.setVisibility(View.VISIBLE);
+                        break;
+
+                    case "vehicleSetUp":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUp);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpRegistration":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUpRegistration);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpDamageReport":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUpDamage);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpRentalInfo":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUpRentalInfo);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleSetUpConfirmation":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUpConfirmation);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
                         break;
 
                 }
@@ -111,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Setting Up One Time Navigation
     private void setupNavigation() {
 
-
         // Setting up the drawer navigation
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
@@ -129,8 +211,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onSupportNavigateUp() {
         // reference the navigation controller when you want to navigate up
         navController.popBackStack(R.id.home, false);
-
-
+        signUp.setVisibility(View.VISIBLE);
+        notification.setVisibility(View.VISIBLE);
+        signUp.setImageResource(R.drawable.admin_icon);
+        notification.setImageResource(R.drawable.notification_icon);
 
         return NavigationUI.navigateUp(navController, drawerLayout);
     }
@@ -143,6 +227,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            signUp.setVisibility(View.VISIBLE);
+            notification.setVisibility(View.VISIBLE);
+            signUp.setImageResource(R.drawable.admin_icon);
+            notification.setImageResource(R.drawable.notification_icon);
         }
     }
 
@@ -188,6 +276,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onPostCreate(savedInstanceState);
 
     }
+
+    public void hideIcon() {
+        signUp.setVisibility(View.GONE);
+        notification.setVisibility(View.GONE);
+
+    }
+
+
 
 
 }

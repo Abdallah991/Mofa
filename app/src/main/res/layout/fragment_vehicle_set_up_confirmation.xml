@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VehicleSetUpConfirmation">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline40">
+
+        <TextView
+            android:id="@+id/confirmationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/confirmation"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            app:fontFamily="@font/roboto_medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scrollInfoLayout"
+        android:layout_width="500dp"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.6"
+                        android:text="@string/vehicle_information"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+
+                    <Button
+                        android:id="@+id/vehicleInformationEdit"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="-40dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/colorBackground"
+                        android:padding="1dp"
+                        android:text="@string/edit"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/plateNumberConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/plate_number"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/plateNumberValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="879334"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/manufacturerConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manufacturer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/manufacturerValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMW"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/modelConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/model"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/modelValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Series 1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/colorConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/colorValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Black"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/makeConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/make"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/makeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2016"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/typeConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/typeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Saloon"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:layout_marginTop="60dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.8"
+                        android:text="@string/registration"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+
+                    <Button
+                        android:id="@+id/registrationEdit"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="-40dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/colorBackground"
+                        android:padding="1dp"
+                        android:text="@string/edit"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/registrationTypeConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/registration_type"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/registrationTypeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Third Party"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/registrationStartConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/registration_start"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/registrationStartValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="May 18th 2020"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/registrationEndConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/registration_end"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/registrationEndValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18th May 2021"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.0"
+                        android:text="@string/damage_report"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+
+                    <Button
+                        android:id="@+id/damageReportEdit"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="-40dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/colorBackground"
+                        android:padding="1dp"
+                        android:text="@string/edit"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:text="@string/rental_information"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+
+                    <Button
+                        android:id="@+id/rentalInfoEdit"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="-40dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/colorBackground"
+                        android:padding="1dp"
+                        android:text="@string/edit"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/providerConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/provider"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/providerValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bahrain Cars"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/providerPhoneNumberConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/provider_phone_number"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/providerPhoneValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33224001"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/leaseFromConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lease_from"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/leaseFromValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25th May 2020"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/leaseToConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lease_to"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/leaseToValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25th May 2024"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.2"
+                        android:text="@string/additional_notes"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:padding="10dp"
+                    android:paddingTop="-80dp"
+                    android:gravity="start"
+                    android:hint="@string/additional_notes_here"
+                    android:layout_gravity="top"
+                    android:inputType="textPhonetic"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:background="@color/editTextBackground"
+                    android:theme="@style/TextLabel">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/additionalNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/photoGalleryLayout"
+        android:layout_width="500dp"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <ImageView
+            android:id="@+id/vehicleImages"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:src="@drawable/vehicle_left_side" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+            <ImageView
+                android:id="@+id/firstImage"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/red_dot"
+                android:scaleType="fitCenter"
+                android:layout_weight="0.5"/>
+            <ImageView
+                android:id="@+id/secondImage"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/grey_dot"
+                android:scaleType="fitCenter"
+                android:layout_weight="0.5"/>
+            <ImageView
+                android:id="@+id/thirdImage"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/grey_dot"
+                android:scaleType="fitCenter"
+                android:layout_weight="0.5"/>
+            <ImageView
+                android:id="@+id/fourthImage"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/grey_dot"
+                android:scaleType="fitCenter"
+                android:layout_weight="0.5"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <Button
+        android:id="@+id/nextVehicleConfirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBackground"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
+
+
+    <Button
+        android:id="@+id/backVehicleConfirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow_grey"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBackground"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
+    <ImageView
+        android:id="@+id/vehicleInformationMilestone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/milestone_checked"
+        android:elevation="0.1dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <LinearLayout
+        android:id="@+id/linkInfoToRegistration"
+        android:layout_width="0dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_height="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+    <ImageView
+        android:id="@+id/registrationMilestone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/milestone_checked"
+        android:elevation="0.1dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <LinearLayout
+        android:id="@+id/linkRegistrationToDamage"
+        android:layout_width="0dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_height="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+    <ImageView
+        android:id="@+id/damageMilestone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/milestone_checked"
+        android:elevation="0.1dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <LinearLayout
+        android:id="@+id/linkDamageToRental"
+        android:layout_width="0dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_height="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline16"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+    <ImageView
+        android:id="@+id/rentalMilestone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/milestone_checked"
+        android:elevation="0.1dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toStartOf="@+id/guideline29"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <LinearLayout
+        android:id="@+id/linkRentalToConfirmation"
+        android:layout_width="0dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:layout_height="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+    <ImageView
+        android:id="@+id/confirmationMilestone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/milestone"
+        android:elevation="0.1dp"
+        android:scaleType="fitEnd"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/vehicle_information_small"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        app:fontFamily="@font/roboto_regular"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/registration"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        app:fontFamily="@font/roboto_regular"
+        app:layout_constraintEnd_toStartOf="@+id/guideline27"
+        app:layout_constraintTop_toTopOf="@+id/guideline26" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/damage_report"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        app:fontFamily="@font/roboto_regular"
+        app:layout_constraintTop_toTopOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline28"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/rental_information"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        app:fontFamily="@font/roboto_regular"
+        app:layout_constraintTop_toTopOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline29"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmation"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        app:fontFamily="@font/roboto_regular"
+        app:layout_constraintTop_toTopOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.72" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="-0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.41" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.46" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.54" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.865" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.915" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

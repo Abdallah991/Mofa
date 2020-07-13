@@ -5,4 +5,7 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="appGrey">#707070</color>
     <color name="black">#000</color>
+    <color name="mileStone">#E3E3E3</color>
+    <color name="editTextBackground">#F5F5F5</color>
+    <color name="signatureBackground">#F5F5F5</color>
 </resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="650dp"
+    android:layout_height="500dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/signHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/sign_here"
+        android:textColor="@color/appGrey"
+        android:textSize="28sp"
+        app:fontFamily="@font/roboto_medium">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/signature2"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:background="@drawable/button_shadow"
+            android:textColor="@color/signatureBackground"
+            android:text="@string/save" />
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textAllCaps="true"
+            android:layout_weight="1"
+            android:background="@drawable/button_shadow"
+            android:textColor="@color/signatureBackground"
+            android:text="@string/clear" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:background="@drawable/button_shadow"
+            android:textColor="@color/signatureBackground"
+            android:text="@string/cancel" />
+    </LinearLayout>
+</LinearLayout>
