@@ -26,7 +26,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.fathom.mofa.DataModels.CarPhotosDataModel;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -39,6 +45,7 @@ import static com.fathom.mofa.VehicleSetUp.vehicle;
  */
 public class VehicleRegistration extends Fragment {
 
+    public static CarPhotosDataModel carPhotos = new CarPhotosDataModel();
     private NavController mNavController;
     private AutoCompleteTextView registrationType;
     private AutoCompleteTextView registrationStart;
@@ -50,6 +57,8 @@ public class VehicleRegistration extends Fragment {
     private Button next;
     private Button back;
     private String selector;
+    private Date start;
+    private Date end;
     private int actionNavigateToDamageFromRegistration = R.id.action_vehicleRegistration_to_vehicleSetUpDamageReport;
 
     public VehicleRegistration() {
@@ -82,6 +91,7 @@ public class VehicleRegistration extends Fragment {
         final DatePickerDialog[] picker = new DatePickerDialog[1];
 
 
+
         registrationStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +105,14 @@ public class VehicleRegistration extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 registrationStart.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    start = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), start.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }, year, month, day);
                 picker[0].show();
@@ -114,6 +132,14 @@ public class VehicleRegistration extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 registrationEnd.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    end = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), start.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }, year, month, day);
                 picker[0].show();
@@ -127,7 +153,7 @@ public class VehicleRegistration extends Fragment {
                 selectImage(getContext());
                 selector= "vehicleLeftSide";
 
-                
+
             }
         });
 
@@ -167,8 +193,9 @@ public class VehicleRegistration extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mNavController.navigate(actionNavigateToDamageFromRegistration);
+                if(getCarInfo()) {
+                    mNavController.navigate(actionNavigateToDamageFromRegistration);
+                }
 
             }
         });
@@ -188,7 +215,7 @@ public class VehicleRegistration extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "vehicleSetUpRegistration";
-        Toast.makeText(getContext(), vehicle.getModel(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), vehicle.getModel(), Toast.LENGTH_SHORT).show();
     }
 
     private void selectImage(Context context) {
@@ -228,19 +255,23 @@ public class VehicleRegistration extends Fragment {
                         switch (selector) {
                             case "vehicleRightSide":
                                 vehicleRightSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoRightSide(selectedImage);
+                                vehicle.setPhotoRightSide(selectedImage.toString());
+                                carPhotos.setPhotoRightSide(selectedImage);
                             break;
                             case "vehicleLeftSide":
                                 vehicleLeftSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoLeftSide(selectedImage);
+                                vehicle.setPhotoLeftSide(selectedImage.toString());
+                                carPhotos.setPhotoLeftSide(selectedImage);
                                 break;
                             case "vehicleFrontSide":
                                 vehicleFrontSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoFrontSide(selectedImage);
+                                vehicle.setPhotoFrontSide(selectedImage.toString());
+                                carPhotos.setPhotoFrontSide(selectedImage);
                                 break;
                             case "vehicleBackSide":
                                 vehicleBackSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoBackSide(selectedImage);
+                                vehicle.setPhotoBackSide(selectedImage.toString());
+                                carPhotos.setPhotoBackSide(selectedImage);
                                 break;
 
                         }
@@ -269,19 +300,23 @@ public class VehicleRegistration extends Fragment {
                                 switch (selector) {
                                     case "vehicleRightSide":
                                         vehicleRightSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
+                                        vehicle.setPhotoRightSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        carPhotos.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleLeftSide":
                                         vehicleLeftSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
+                                        vehicle.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        carPhotos.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleFrontSide":
                                         vehicleFrontSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
+                                        vehicle.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        carPhotos.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleBackSide":
                                         vehicleBackSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
+                                        vehicle.setPhotoBackSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        carPhotos.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
                                         break;
 
                                 }
@@ -294,5 +329,39 @@ public class VehicleRegistration extends Fragment {
             }
         }
     }
+
+    private boolean getCarInfo() {
+
+        String registration = registrationType.getText().toString();
+        String startR = registrationStart.getText().toString();
+        String endR = registrationEnd.getText().toString();
+        String leftSide = vehicle.getPhotoLeftSide();
+        String rightSide = vehicle.getPhotoRightSide();
+        String frontSide = vehicle.getPhotoFrontSide();
+        String backSide = vehicle.getPhotoBackSide();
+
+        if ((!registration.isEmpty())&& (!startR.isEmpty())&&
+                (!endR.isEmpty())&& (leftSide != null)&&
+                (rightSide != null)&& (frontSide != null) &&
+                (backSide != null))  {
+
+            vehicle.setRegistrationType(registration);
+            vehicle.setRegistrationStart(start);
+            vehicle.setRegistrationEnd(end);
+            vehicle.setPhotoLeftSide(leftSide);
+            vehicle.setPhotoRightSide(rightSide);
+            vehicle.setPhotoFrontSide(frontSide);
+            vehicle.setPhotoBackSide(backSide);
+            return true;
+        }
+        else {
+            Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+
+    }
+
+
 
 }

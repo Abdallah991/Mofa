@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 
 
@@ -52,6 +53,7 @@ public class Home extends Fragment {
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
 
+        // setting up navigation from home
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

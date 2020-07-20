@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int actionNavigateToSignUpFromVehicleSetUpRentalInfo = R.id.action_vehicleSetUpRentalInfo_to_signUpUser;
     private int actionNavigateToSignUpFromVehicleSetUpConfirmation = R.id.action_vehicleSetUpConfirmation_to_signUpUser;
     private int actionNavigateToNotificationFromVehicleConfirmation = R.id.action_vehicleSetUpConfirmation_to_notifications;
+    private int actionNavigateToNotificationFromDriverSetup = R.id.action_driverSetUp_to_notifications;
+    private int actionNavigateToSignUpFromDriverSetUp = R.id.action_driverSetUp_to_signUpUser;
+
 
 
 
@@ -121,6 +124,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         signUp.setVisibility(View.GONE);
                         break;
 
+                    case "driverSetUp":
+                        navController.navigate(actionNavigateToNotificationFromDriverSetup);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
 
 
                 }
@@ -171,6 +180,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     case "vehicleSetUpConfirmation":
                         navController.navigate(actionNavigateToSignUpFromVehicleSetUpConfirmation);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "driverSetUp":
+                        navController.navigate(actionNavigateToSignUpFromDriverSetUp);
                         signUp.setImageResource(R.drawable.home_icon);
                         notification.setVisibility(View.GONE);
                         break;

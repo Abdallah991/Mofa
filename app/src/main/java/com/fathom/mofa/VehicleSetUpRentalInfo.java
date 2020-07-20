@@ -21,7 +21,10 @@ import com.fathom.mofa.DataModels.RentalInfoDataModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleSetUp.vehicle;
@@ -41,7 +44,9 @@ public class VehicleSetUpRentalInfo extends Fragment {
     private TextInputLayout leaseEndTextInput;
     private Button next;
     private Button back;
-    public static RentalInfoDataModel rentalInfo;
+    private Date start;
+    private Date end;
+    public static RentalInfoDataModel rentalInfo = new RentalInfoDataModel();
     private int actionNavigateToConfirmation = R.id.action_vehicleSetUpRentalInfo_to_vehicleSetUpConfirmation;
 
     public VehicleSetUpRentalInfo() {
@@ -86,6 +91,14 @@ public class VehicleSetUpRentalInfo extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 leaseStart.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    start = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), start.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }, year, month, day);
                 picker[0].show();
@@ -105,6 +118,14 @@ public class VehicleSetUpRentalInfo extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 leaseEnd.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    end = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), start.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }, year, month, day);
                 picker[0].show();
@@ -115,7 +136,9 @@ public class VehicleSetUpRentalInfo extends Fragment {
             @Override
             public void onClick(View v) {
 
-                mNavController.navigate(actionNavigateToConfirmation);
+                if( getCarInfo() ){
+                    mNavController.navigate(actionNavigateToConfirmation);
+                }
             }
         });
 
@@ -133,4 +156,32 @@ public class VehicleSetUpRentalInfo extends Fragment {
         super.onResume();
         FRAGMENT = "vehicleSetUpRentalInfo";
     }
+
+
+    private boolean getCarInfo() {
+
+        String provideName = provider.getText().toString();
+        String providerPhone = providerPhoneNumber.getText().toString();
+        String startL = leaseStart.getText().toString();
+        String endL = leaseEnd.getText().toString();
+
+        if ((!provideName.isEmpty())&& (!providerPhone.isEmpty())&&
+                (!startL.isEmpty())&& (!endL.isEmpty()))  {
+
+            rentalInfo.setName(provideName);
+            rentalInfo.setPhoneNumber(providerPhone);
+            rentalInfo.setLeaseFrom(start);
+            rentalInfo.setLeaseTo(end);
+            rentalInfo.setCarId(vehicle.getPlateNumber());
+            return true;
+        }
+        else {
+            Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
+
+    }
+
+
 }

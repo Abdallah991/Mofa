@@ -38,7 +38,14 @@
         android:id="@+id/driverSetUp"
         android:name="com.fathom.mofa.DriverSetUp"
         android:label="fragment_driver_set_up"
-        tools:layout="@layout/fragment_driver_set_up" />
+        tools:layout="@layout/fragment_driver_set_up" >
+        <action
+            android:id="@+id/action_driverSetUp_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_driverSetUp_to_signUpUser"
+            app:destination="@id/signUpUser" />
+    </fragment>
     <fragment
         android:id="@+id/notifications"
         android:name="com.fathom.mofa.Notifications"
@@ -139,6 +146,18 @@
         <action
             android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleSetUpSignature"
             app:destination="@id/vehicleSetUpSignature" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleSetUpRentalInfo"
+            app:destination="@id/vehicleSetUpRentalInfo" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleSetUpDamageReport"
+            app:destination="@id/vehicleSetUpDamageReport" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleRegistration"
+            app:destination="@id/vehicleRegistration" />
+        <action
+            android:id="@+id/action_vehicleSetUpConfirmation_to_vehicleSetUp"
+            app:destination="@id/vehicleSetUp" />
     </fragment>
     <fragment
         android:id="@+id/vehicleSetUpSignature"

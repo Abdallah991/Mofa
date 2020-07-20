@@ -8,6 +8,7 @@ public class RentalInfoDataModel {
     private String phoneNumber;
     private Date leaseFrom;
     private Date leaseTo;
+    private String carId;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class RentalInfoDataModel {
 
     public void setLeaseTo(Date leaseTo) {
         this.leaseTo = leaseTo;
+    }
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
     }
 }

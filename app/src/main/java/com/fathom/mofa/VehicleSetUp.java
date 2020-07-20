@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -28,8 +29,8 @@ public class VehicleSetUp extends Fragment {
     public static VehicleDataModel vehicle = new VehicleDataModel();
     private AutoCompleteTextView manufactureTextView;
     private AutoCompleteTextView colorTextView;
-    private AutoCompleteTextView typeTextView;
-    private AutoCompleteTextView yearTextView;
+    private Spinner typeTextView;
+    private AutoCompleteTextView makeTextView;
     private TextInputEditText plateNumberEditText;
     private TextInputEditText modelEditText;
     private Button next;
@@ -66,14 +67,15 @@ public class VehicleSetUp extends Fragment {
                 android.R.layout.simple_list_item_1, MANUFACTURERS);
         ArrayAdapter<String> colorAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, COLORS);
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, TYPES);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, TYPES);
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, YEARS);
+        typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
         manufactureTextView = view.findViewById(R.id.manufacturer);
         colorTextView = view.findViewById(R.id.color);
         typeTextView = view.findViewById(R.id.carType);
-        yearTextView = view.findViewById(R.id.make);
+        makeTextView = view.findViewById(R.id.make);
         plateNumberEditText = view.findViewById(R.id.plateNumber);
         modelEditText = view.findViewById(R.id.model);
         next = view.findViewById(R.id.nextVehicleInformation);
@@ -81,7 +83,7 @@ public class VehicleSetUp extends Fragment {
         manufactureTextView.setAdapter(manufactureAdapter);
         colorTextView.setAdapter(colorAdapter);
         typeTextView.setAdapter(typeAdapter);
-        yearTextView.setAdapter(yearAdapter);
+        makeTextView.setAdapter(yearAdapter);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -107,26 +109,26 @@ public class VehicleSetUp extends Fragment {
         String model = modelEditText.getText().toString();
         String manufacturer = manufactureTextView.getText().toString();
         String color = colorTextView.getText().toString();
-        String type = typeTextView.getText().toString();
-        String year = yearTextView.getText().toString();
+        String type = typeTextView.getSelectedItem().toString();
+        String make = makeTextView.getText().toString();
 
-//        if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
-//                (!manufacturer.isEmpty())&& (!color.isEmpty())&&
-//                (!type.isEmpty())&& (!year.isEmpty()))  {
+        if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
+                (!manufacturer.isEmpty())&& (!color.isEmpty())&&
+                (!type.isEmpty())&& (!make.isEmpty()))  {
 
             vehicle.setPlateNumber(plateNumber);
             vehicle.setModel(model);
             vehicle.setManufacturer(manufacturer);
             vehicle.setColorOfCar(color);
             vehicle.setCarType(type);
-            vehicle.setMake(year);
+            vehicle.setMake(make);
             return true;
-//        }
-//        else {
-//            Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
-//            return false;
-//
-//        }
+        }
+        else {
+            Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+            return false;
+
+        }
 
     }
 

@@ -17,14 +17,16 @@ public class VehicleDataModel {
     private String rentalInfo;
     private String damageReport;
     private String vehicleRecord;
-    private Bitmap photoLeftSide;
-    private Bitmap photoRightSide;
-    private Bitmap photoFrontSide;
-    private Bitmap photoBackSide;
+    private String photoLeftSide;
+    private String photoRightSide;
+    private String photoFrontSide;
+    private String photoBackSide;
     private Date registrationStart;
     private Date registrationEnd;
     private String notes;
     private boolean status;
+    private String companyReleaseSignature;
+    private String mofaRetrievalSignature;
 
     public String getPlateNumber() {
         return plateNumber;
@@ -148,35 +150,51 @@ public class VehicleDataModel {
         this.manufacturer = manufacturer;
     }
 
-    public Bitmap getPhotoLeftSide() {
+    public String getPhotoLeftSide() {
         return photoLeftSide;
     }
 
-    public void setPhotoLeftSide(Bitmap photoLeftSide) {
+    public void setPhotoLeftSide(String photoLeftSide) {
         this.photoLeftSide = photoLeftSide;
     }
 
-    public Bitmap getPhotoRightSide() {
+    public String getPhotoRightSide() {
         return photoRightSide;
     }
 
-    public void setPhotoRightSide(Bitmap photoRightSide) {
+    public void setPhotoRightSide(String photoRightSide) {
         this.photoRightSide = photoRightSide;
     }
 
-    public Bitmap getPhotoFrontSide() {
+    public String getPhotoFrontSide() {
         return photoFrontSide;
     }
 
-    public void setPhotoFrontSide(Bitmap photoFrontSide) {
+    public void setPhotoFrontSide(String photoFrontSide) {
         this.photoFrontSide = photoFrontSide;
     }
 
-    public Bitmap getPhotoBackSide() {
+    public String getPhotoBackSide() {
         return photoBackSide;
     }
 
-    public void setPhotoBackSide(Bitmap photoBackSide) {
+    public void setPhotoBackSide(String photoBackSide) {
         this.photoBackSide = photoBackSide;
+    }
+
+    public String getCompanyReleaseSignature() {
+        return companyReleaseSignature;
+    }
+
+    public void setCompanyReleaseSignature(String companyReleaseSignature) {
+        this.companyReleaseSignature = companyReleaseSignature;
+    }
+
+    public String getMofaRetrievalSignature() {
+        return mofaRetrievalSignature;
+    }
+
+    public void setMofaRetrievalSignature(String mofaRetrievalSignature) {
+        this.mofaRetrievalSignature = mofaRetrievalSignature;
     }
 }

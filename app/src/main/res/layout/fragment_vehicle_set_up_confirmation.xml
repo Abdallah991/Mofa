@@ -311,6 +311,14 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="17sp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include layout="@layout/damage_report"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

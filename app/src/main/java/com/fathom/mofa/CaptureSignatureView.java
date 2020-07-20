@@ -12,6 +12,7 @@ import android.view.View;
 
 import java.io.ByteArrayOutputStream;
 
+// class responsible to draw the signature
 public class CaptureSignatureView extends View {
 
     private Bitmap _Bitmap;

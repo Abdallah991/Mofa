@@ -7,22 +7,24 @@ public class DamageReportDataModel {
     private boolean frontLeft;
     private boolean driverDoor;
     private boolean passengerDoor;
-    private boolean hood;
     private boolean frontWindShield;
     private boolean backLeftDoor;
     private boolean backRightDoor;
     private boolean ceiling;
+    private boolean backCeiling;
     private boolean backRight;
     private boolean backLeft;
     private boolean back;
-    private boolean trunk;
     private boolean backWindShield;
     private String carId;
-    // To describe the transition of the car which is four Types
-    // 1- Getting the car from the rental company.
-    // 2- Returning the car to the rental company.
-    // 3- Hanover to the driver.
-    // 4- Retrieval from the driver
+    // To describe the transition of the car which is four Types:
+    // 1- Getting the car from the rental company. "RTM"
+    // 2- Returning the car to the rental company. "MTR"
+    // 3- Hanover to the driver."MTD"
+    // 4- Retrieval from the driver. "DTM"
+    // D: Driver
+    // M: Mofa
+    // R: Rental Company
     private String carTransaction;
 
 
@@ -34,33 +36,31 @@ public class DamageReportDataModel {
         this.frontLeft = false;
         this.driverDoor = false;
         this.passengerDoor = false;
-        this.hood = false;
         this.frontWindShield = false;
         this.backLeftDoor = false;
         this.backRightDoor = false;
         this.ceiling = false;
+        this.backCeiling = false;
         this.backRight = false;
         this.backLeft = false;
         this.back = false;
-        this.trunk = false;
         this.backWindShield = false;
     }
 
-    public DamageReportDataModel(boolean front, boolean frontRight, boolean frontLeft, boolean driverDoor, boolean passengerDoor, boolean hood, boolean frontWindShield, boolean backLeftDoor, boolean backRightDoor, boolean ceiling, boolean backRight, boolean backLeft, boolean back, boolean trunk, boolean backWindShield) {
+    public DamageReportDataModel(boolean front, boolean frontRight, boolean frontLeft, boolean driverDoor, boolean passengerDoor, boolean frontWindShield, boolean backLeftDoor, boolean backRightDoor, boolean ceiling, boolean backCeiling, boolean backRight, boolean backLeft, boolean back, boolean backWindShield) {
         this.front = front;
         this.frontRight = frontRight;
         this.frontLeft = frontLeft;
         this.driverDoor = driverDoor;
         this.passengerDoor = passengerDoor;
-        this.hood = hood;
         this.frontWindShield = frontWindShield;
         this.backLeftDoor = backLeftDoor;
         this.backRightDoor = backRightDoor;
         this.ceiling = ceiling;
+        this.backCeiling = backCeiling;
         this.backRight = backRight;
         this.backLeft = backLeft;
         this.back = back;
-        this.trunk = trunk;
         this.backWindShield = backWindShield;
     }
 
@@ -104,13 +104,6 @@ public class DamageReportDataModel {
         this.passengerDoor = passengerDoor;
     }
 
-    public boolean isHood() {
-        return hood;
-    }
-
-    public void setHood(boolean hood) {
-        this.hood = hood;
-    }
 
     public boolean isFrontWindShield() {
         return frontWindShield;
@@ -168,14 +161,6 @@ public class DamageReportDataModel {
         this.back = back;
     }
 
-    public boolean isTrunk() {
-        return this.trunk;
-    }
-
-    public void setTrunk(boolean trunk) {
-        this.trunk = trunk;
-    }
-
     public boolean isBackWindShield() {
         return backWindShield;
     }
@@ -198,5 +183,13 @@ public class DamageReportDataModel {
 
     public void setCarTransaction(String carTransaction) {
         this.carTransaction = carTransaction;
+    }
+
+    public boolean isBackCeiling() {
+        return backCeiling;
+    }
+
+    public void setBackCeiling(boolean backCeiling) {
+        this.backCeiling = backCeiling;
     }
 }

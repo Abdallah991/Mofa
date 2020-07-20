@@ -58,22 +58,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline38"
         app:layout_constraintTop_toTopOf="@+id/guideline19" />
 
-    <LinearLayout
-        android:id="@+id/signatureLayout"
-        android:layout_width="600dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline23"
-        app:layout_constraintStart_toStartOf="@+id/guideline27"
-        app:layout_constraintTop_toTopOf="@+id/guideline8"
-        android:orientation="vertical">
-
-<!--        <ImageView-->
-<!--            android:id="@+id/signature"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" />-->
-    </LinearLayout>
-
 
     <Button
         android:id="@+id/rentalSignature"
