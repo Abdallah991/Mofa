@@ -59,7 +59,17 @@
         android:id="@+id/vehicleRecord"
         android:name="com.fathom.mofa.VehicleRecord"
         android:label="fragment_vehicle_record"
-        tools:layout="@layout/fragment_vehicle_record" />
+        tools:layout="@layout/fragment_vehicle_record" >
+        <action
+            android:id="@+id/action_vehicleRecord_to_vehicleUtilities"
+            app:destination="@id/vehicleUtilities" />
+        <action
+            android:id="@+id/action_vehicleRecord_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleRecord_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
     <fragment
         android:id="@+id/signUpUser"
         android:name="com.fathom.mofa.SignUpUser"
@@ -164,4 +174,46 @@
         android:name="com.fathom.mofa.VehicleSetUpSignature"
         android:label="fragment_vehicle_set_up_signature"
         tools:layout="@layout/fragment_vehicle_set_up_signature" />
+    <fragment
+        android:id="@+id/vehicleUtilities"
+        android:name="com.fathom.mofa.VehicleUtilities"
+        android:label="fragment_vehicle_utilities"
+        tools:layout="@layout/fragment_vehicle_utilities" >
+        <action
+            android:id="@+id/action_vehicleUtilities_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleUtilities_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleUtilities_to_vehicleAccidentReport"
+            app:destination="@id/vehicleAccidentReport" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleAccidentReport"
+        android:name="com.fathom.mofa.VehicleAccidentReport"
+        android:label="fragment_vehicle_accident_report"
+        tools:layout="@layout/fragment_vehicle_accident_report" >
+        <action
+            android:id="@+id/action_vehicleAccidentReport_to_handoverConfirmation"
+            app:destination="@id/handoverConfirmation" />
+        <action
+            android:id="@+id/action_vehicleAccidentReport_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleAccidentReport_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
+    <fragment
+        android:id="@+id/handoverConfirmation"
+        android:name="com.fathom.mofa.HandoverConfirmation"
+        android:label="fragment_handover_confirmation"
+        tools:layout="@layout/fragment_handover_confirmation" >
+        <action
+            android:id="@+id/action_handoverConfirmation_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_handoverConfirmation_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
 </navigation>

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".VehicleSetUpRentalInfo">
+    tools:context=".PickVehicle">
 
     <TextView
-        android:id="@+id/rentalInfoTitle"
+        android:id="@+id/registrationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rental_information"
+        android:text="@string/vehicle_record"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="50sp"
@@ -20,96 +20,221 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
-        android:hint="@string/provider"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toStartOf="@+id/guideline29"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline8">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/provider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/provider_phone_number"
+        android:hint="@string/registration_start"
         android:inputType="text"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:theme="@style/TextLabel"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline29"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline10">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/providerPhoneNumber"
+        <AutoCompleteTextView
+            android:id="@+id/registrationStart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/leaseStartTextInput"
+        android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
-        android:hint="@string/lease_from"
+        android:hint="@string/registration_end"
         android:inputType="text"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:theme="@style/TextLabel"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline17">
 
         <AutoCompleteTextView
-            android:id="@+id/leaseStart"
+            android:id="@+id/registrationEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/leaseEndTextInput"
+        android:id="@+id/textInputLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
-        android:hint="@string/lease_to"
+        android:hint="@string/registration_type"
         android:inputType="text"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/guideline29"
-        app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline17">
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
 
         <AutoCompleteTextView
-            android:id="@+id/leaseEnd"
+            android:id="@+id/registrationType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/handoverImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/empty_check_box"
+        android:elevation="0.1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <TextView
+        android:id="@+id/handoverText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/handover"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintStart_toEndOf="@+id/handoverImage"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <ImageView
+        android:id="@+id/retrievalImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/empty_check_box"
+        android:elevation="0.1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/guideline59"
+        app:layout_constraintStart_toStartOf="@+id/guideline57"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <TextView
+        android:id="@+id/retrievalText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/retrieval"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintStart_toEndOf="@+id/retrievalImage"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <ImageView
+        android:id="@+id/releaseImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/empty_check_box"
+        android:elevation="0.1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/guideline27"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <TextView
+        android:id="@+id/releaseText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/release"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintStart_toEndOf="@+id/releaseImage"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+
+    <LinearLayout
+        android:id="@+id/photoGalleryLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline60"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <ImageView
+            android:id="@+id/vehicleImagesHandover"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.7"
+            android:layout_gravity="center"
+            android:src="@drawable/vehicle_left_side" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+
+            <ImageView
+                android:id="@+id/firstImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/red_dot" />
+
+            <ImageView
+                android:id="@+id/secondImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:id="@+id/thirdImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:id="@+id/fourthImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/nextVehicleRental"
+        android:id="@+id/nextVehicleRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shadow"
@@ -120,35 +245,16 @@
         android:textAllCaps="false"
         android:textColor="@color/colorBackground"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline20"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline19" />
-
-
-    <Button
-        android:id="@+id/backVehicleRental"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_shadow_grey"
-        android:fontFamily="@font/roboto_regular"
-        android:paddingStart="80dp"
-        android:paddingEnd="80dp"
-        android:text="@string/back"
-        android:textAllCaps="false"
-        android:textColor="@color/colorBackground"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline27"
-        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+        app:layout_constraintStart_toStartOf="@+id/guideline24"
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
 
     <ImageView
         android:id="@+id/vehicleInformationMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone_checked"
+        android:background="@drawable/milestone"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
@@ -157,7 +263,7 @@
     <LinearLayout
         android:id="@+id/linkInfoToRegistration"
         android:layout_width="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/mileStone"
         android:orientation="vertical"
         android:layout_height="5dp"
         android:layout_marginEnd="40dp"
@@ -170,7 +276,7 @@
         android:id="@+id/registrationMilestone"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/milestone_checked"
+        android:background="@drawable/milestone"
         android:elevation="0.1dp"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
@@ -179,35 +285,13 @@
     <LinearLayout
         android:id="@+id/linkRegistrationToDamage"
         android:layout_width="0dp"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
         android:layout_height="5dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginStart="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline26" />
-
-    <ImageView
-        android:id="@+id/damageMilestone"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/milestone_checked"
-        android:elevation="0.1dp"
-        android:scaleType="fitEnd"
-        app:layout_constraintEnd_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toTopOf="@+id/guideline25" />
-
-    <LinearLayout
-        android:id="@+id/linkDamageToRental"
-        android:layout_width="0dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginEnd="40dp"
+        android:background="@color/mileStone"
         android:orientation="vertical"
-        android:layout_height="5dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
     <ImageView
@@ -247,7 +331,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/vehicle_information_small"
+        android:text="@string/vehicle_record"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
@@ -260,28 +344,18 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/registration"
+        android:text="@string/car_utilities"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
         app:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@string/damage_report"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="14sp"
-        android:layout_marginTop="30dp"
-        app:fontFamily="@font/roboto_regular"
-        app:layout_constraintTop_toTopOf="@+id/guideline26"
-        app:layout_constraintEnd_toStartOf="@+id/guideline28"/>
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="@string/rental_information"
+        android:text="@string/accident_report"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
@@ -306,14 +380,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.36667" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.32" />
+        app:layout_constraintGuide_percent="0.38667" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline22"
@@ -328,6 +402,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2533" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
@@ -362,14 +450,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.63333" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.72" />
+        app:layout_constraintGuide_percent="0.65333" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -435,6 +523,13 @@
         app:layout_constraintGuide_percent="0.73" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -447,6 +542,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

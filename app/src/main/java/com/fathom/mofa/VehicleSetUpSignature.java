@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -60,6 +61,8 @@ public class VehicleSetUpSignature extends Fragment {
     private StorageReference rightImageRef;
     private final String TAG = "VEHICLE SET UP";
     private ProgressDialog progressDialog;
+    private VehicleRepository mVehicleRepository;
+    public static boolean doneUploading = false;
 
     public VehicleSetUpSignature() {
         // Required empty public constructor
@@ -187,6 +190,7 @@ public class VehicleSetUpSignature extends Fragment {
         progressDialog.show();
         db.collection("Vehicles")
                 .document(vehicle.getPlateNumber()).set(vehicle);
+//        mVehicleRepository.uploadVehicle(vehicle);
     }
 
     private void uploadRentalInfoOfVehicle() {
@@ -202,6 +206,7 @@ public class VehicleSetUpSignature extends Fragment {
     }
 
     private void uploadVehicleRightSide() {
+//        mVehicleRepository.uploadVehicleRightSide(vehicle.getPhotoRightSide(), carPhotos.getPhotoRightSide());
         rightImageRef = storageRef.child(vehicle.getPhotoRightSide());
 //        frontLicense.setDrawingCacheEnabled(true);
 //        frontLicense.buildDrawingCache();

@@ -1,5 +1,6 @@
 package com.fathom.mofa;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -67,7 +69,33 @@ public class VehicleSetUp extends Fragment {
                 android.R.layout.simple_list_item_1, MANUFACTURERS);
         ArrayAdapter<String> colorAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, COLORS);
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, TYPES);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, TYPES) {
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.appGrey));
+                }
+                else {
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                }
+                return view;
+            }
+        };
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, YEARS);
         typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -114,7 +142,8 @@ public class VehicleSetUp extends Fragment {
 
         if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
                 (!manufacturer.isEmpty())&& (!color.isEmpty())&&
-                (!type.isEmpty())&& (!make.isEmpty()))  {
+                (!type.equals("Car type") )
+                && (!make.isEmpty()))  {
 
             vehicle.setPlateNumber(plateNumber);
             vehicle.setModel(model);
@@ -125,12 +154,19 @@ public class VehicleSetUp extends Fragment {
             return true;
         }
         else {
-            Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+            if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
+                    (!manufacturer.isEmpty())&& (!color.isEmpty())
+                    && (!make.isEmpty())&& (type.equals("Car type"))) {
+                Toast.makeText(getContext(), "You didn't select the car type" , Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+            }
             return false;
 
         }
 
     }
+
 
 
 

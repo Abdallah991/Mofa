@@ -6,5 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:textSize="24sp"
     android:gravity="start"
-    app:fontFamily="@font/roboto_light"
+    app:fontFamily="@font/roboto_regular"
+    style="@style/spinnerItemStyle"
     android:textColor="@color/appGrey" />

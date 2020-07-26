@@ -488,7 +488,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline8">
 
         <ImageView
-            android:id="@+id/vehicleImages"
+            android:id="@+id/vehicleImagesHandover"
             android:layout_width="350dp"
             android:layout_height="350dp"
             android:layout_gravity="center"
@@ -503,28 +503,28 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"/>
             <ImageView
-                android:id="@+id/firstImage"
+                android:id="@+id/firstImageHandover"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:src="@drawable/red_dot"
                 android:scaleType="fitCenter"
                 android:layout_weight="0.5"/>
             <ImageView
-                android:id="@+id/secondImage"
+                android:id="@+id/secondImageHandover"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:src="@drawable/grey_dot"
                 android:scaleType="fitCenter"
                 android:layout_weight="0.5"/>
             <ImageView
-                android:id="@+id/thirdImage"
+                android:id="@+id/thirdImageHandover"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:src="@drawable/grey_dot"
                 android:scaleType="fitCenter"
                 android:layout_weight="0.5"/>
             <ImageView
-                android:id="@+id/fourthImage"
+                android:id="@+id/fourthImageHandover"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:src="@drawable/grey_dot"

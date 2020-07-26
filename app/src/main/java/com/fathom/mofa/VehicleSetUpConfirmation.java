@@ -96,11 +96,11 @@ public class VehicleSetUpConfirmation extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        vehicleImage = view.findViewById(R.id.vehicleImages);
-        firstCircle = view.findViewById(R.id.firstImage);
-        secondCircle = view.findViewById(R.id.secondImage);
-        thirdCircle = view.findViewById(R.id.thirdImage);
-        fourthCircle = view.findViewById(R.id.fourthImage);
+        vehicleImage = view.findViewById(R.id.vehicleImagesHandover);
+        firstCircle = view.findViewById(R.id.firstImageHandover);
+        secondCircle = view.findViewById(R.id.secondImageHandover);
+        thirdCircle = view.findViewById(R.id.thirdImageHandover);
+        fourthCircle = view.findViewById(R.id.fourthImageHandover);
         plateNumber = view.findViewById(R.id.plateNumberValue);
         manufacturer = view.findViewById(R.id.manufacturerValue);
         make = view.findViewById(R.id.makeValue);

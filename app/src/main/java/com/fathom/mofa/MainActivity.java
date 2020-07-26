@@ -9,8 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -48,6 +46,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int actionNavigateToNotificationFromVehicleConfirmation = R.id.action_vehicleSetUpConfirmation_to_notifications;
     private int actionNavigateToNotificationFromDriverSetup = R.id.action_driverSetUp_to_notifications;
     private int actionNavigateToSignUpFromDriverSetUp = R.id.action_driverSetUp_to_signUpUser;
+    private int actionNavigateToSignUpFromVehicleRecord = R.id.action_vehicleRecord_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleRecord = R.id.action_vehicleRecord_to_notifications;
+    private int actionNavigateToNotificationFromVehicleUtilities = R.id.action_vehicleUtilities_to_notifications;
+    private int actionNavigateToSignUpFromVehicleUtilities = R.id.action_vehicleUtilities_to_signUpUser;
+    private int actionNavigateToSignUpFromAccidentReport = R.id.action_vehicleAccidentReport_to_signUpUser;
+    private int actionNavigateToNotificationFromAccidentReport = R.id.action_vehicleAccidentReport_to_notifications;
+    private int actionNavigateToNotificationFromRecordConfirmation = R.id.action_handoverConfirmation_to_notifications;
+    private int actionNavigateToSignUpFromRecordConfirmation = R.id.action_handoverConfirmation_to_signUpUser;
+
+
 
 
 
@@ -130,6 +138,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         signUp.setVisibility(View.GONE);
                         break;
 
+                    case "vehicleRecord":
+                        navController.navigate(actionNavigateToNotificationFromVehicleRecord);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleUtilities":
+                        navController.navigate(actionNavigateToNotificationFromVehicleUtilities);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "vehicleAccidentReport":
+                        navController.navigate(actionNavigateToNotificationFromAccidentReport);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "RecordConfirmation":
+                        navController.navigate(actionNavigateToNotificationFromRecordConfirmation);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
 
 
                 }
@@ -186,6 +216,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     case "driverSetUp":
                         navController.navigate(actionNavigateToSignUpFromDriverSetUp);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleRecord":
+                        navController.navigate(actionNavigateToSignUpFromVehicleRecord);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
+                    case "vehicleUtilities":
+                        navController.navigate(actionNavigateToSignUpFromVehicleUtilities);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "vehicleAccidentReport":
+                        navController.navigate(actionNavigateToSignUpFromAccidentReport);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "RecordConfirmation":
+                        navController.navigate(actionNavigateToSignUpFromRecordConfirmation);
                         signUp.setImageResource(R.drawable.home_icon);
                         notification.setVisibility(View.GONE);
                         break;

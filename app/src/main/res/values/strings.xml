@@ -61,6 +61,22 @@
     <string name="nationality">Nationality</string>
     <string name="issue_date">Issue Date</string>
     <string name="expiry_date">Expiry Date</string>
+    <string name="car_utilities">Car Utilities</string>
+    <string name="accident_report">Accident Report</string>
+    <string name="handover">Handover</string>
+    <string name="retrieval">Retrieval</string>
+    <string name="release">Release</string>
+    <string name="vehicle_utilities">Vehicle Utilities</string>
+    <string name="milage">Milage</string>
+    <string name="fuel_available">Fuel Available</string>
+    <string name="car_items">Car Items</string>
+    <string name="jack">Jack</string>
+    <string name="tools">Tools</string>
+    <string name="spare_tire">Spare tire</string>
+    <string name="c_lighter">C. Lighter</string>
+    <string name="floor_mat">Floor mat</string>
+    <string name="car_has_damage">Car has damage</string>
+    <string name="car_is_useable">Car is useable</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -110,6 +126,7 @@
         <item>Yellow</item>
     </string-array>
     <string-array name="type">
+        <item>Car type</item>
         <item>Saloon</item>
         <item>SUV</item>
         <item>Pick Up</item>
