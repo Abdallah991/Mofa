@@ -35,8 +35,6 @@ import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
-import static com.fathom.mofa.VehicleRegistration.carPhotos;
-import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
 /**
