@@ -1,6 +1,5 @@
 package com.fathom.mofa.DataModels;
 
-import android.graphics.Bitmap;
 
 import java.util.Date;
 
@@ -24,7 +23,7 @@ public class VehicleDataModel {
     private Date registrationStart;
     private Date registrationEnd;
     private String notes;
-    private boolean status;
+    private String status;
     private String companyReleaseSignature;
     private String mofaRetrievalSignature;
 
@@ -118,11 +117,11 @@ public class VehicleDataModel {
         this.notes = notes;
     }
 
-    public boolean isStatus() {
+    public String isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

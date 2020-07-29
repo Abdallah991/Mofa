@@ -17,6 +17,7 @@ public class DamageReportDataModel {
     private boolean back;
     private boolean backWindShield;
     private String carId;
+    private String damageReportName;
     // To describe the transition of the car which is four Types:
     // 1- Getting the car from the rental company. "RTM"
     // 2- Returning the car to the rental company. "MTR"
@@ -191,5 +192,13 @@ public class DamageReportDataModel {
 
     public void setBackCeiling(boolean backCeiling) {
         this.backCeiling = backCeiling;
+    }
+
+    public String getDamageReportName() {
+        return damageReportName;
+    }
+
+    public void setDamageReportName(String damageReportName) {
+        this.damageReportName = damageReportName;
     }
 }

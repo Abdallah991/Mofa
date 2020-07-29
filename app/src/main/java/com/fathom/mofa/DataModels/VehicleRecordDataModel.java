@@ -13,18 +13,24 @@ public class VehicleRecordDataModel {
     private String photoFrontSide;
     private String photoBackSide;
     private String notes;
+    // Vehicle will have
+    // 1- Busy
+    // 2- Free
+    // 3- Returned
     private String status;
     private String milage;
     private int fuelLevel;
     private String damageReport;
     private String time;
     private Date date;
-    private boolean jackStatus;
-    private boolean toolsStatus;
-    private boolean spareTireStatus;
-    private boolean CLighterStatus;
-    private boolean wheelCapStatus;
-    private boolean floorMatStatus;
+    private boolean jackStatus = false;
+    private boolean toolsStatus = false;
+    private boolean spareTireStatus = false;
+    private boolean CLighterStatus = false;
+    private boolean wheelCapStatus = false;
+    private boolean floorMatStatus = false;
+    private boolean carHasDamage = false;
+    private boolean carIsUseable = false;
     // Status will mention what kind of record the car is:
     // 1- Getting the car from the rental company. "RTM"
     // 2- Returning the car to the rental company. "MTR"
@@ -34,6 +40,7 @@ public class VehicleRecordDataModel {
     // M: Mofa
     // R: Rental Company
     private String carTransaction;
+
 
     public String getReleasePersonName() {
         return releasePersonName;
@@ -209,5 +216,21 @@ public class VehicleRecordDataModel {
 
     public void setFloorMatStatus(boolean floorMatStatus) {
         this.floorMatStatus = floorMatStatus;
+    }
+
+    public boolean isCarHasDamage() {
+        return carHasDamage;
+    }
+
+    public void setCarHasDamage(boolean carHasDamage) {
+        this.carHasDamage = carHasDamage;
+    }
+
+    public boolean isCarIsUseable() {
+        return carIsUseable;
+    }
+
+    public void setCarIsUseable(boolean carIsUseable) {
+        this.carIsUseable = carIsUseable;
     }
 }

@@ -32,6 +32,7 @@ import com.google.type.Date;
 
 import java.io.ByteArrayOutputStream;
 
+import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRegistration.carPhotos;
 import static com.fathom.mofa.VehicleSetUp.vehicle;
 import static com.fathom.mofa.VehicleSetUpDamageReport.damageReport;
@@ -316,6 +317,12 @@ public class VehicleSetUpSignature extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        FRAGMENT = "vehicleSetUpSignature";
     }
 
 

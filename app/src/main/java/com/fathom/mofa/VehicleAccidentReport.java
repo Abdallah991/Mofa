@@ -31,13 +31,12 @@ import com.fathom.mofa.DataModels.DamageReportDataModel;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
+import static com.fathom.mofa.VehicleRecord.damageReportRecord;
+import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
 import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class VehicleAccidentReport extends Fragment {
 
     private NavController mNavController;
@@ -64,7 +63,6 @@ public class VehicleAccidentReport extends Fragment {
     private Button next;
     private Button backButton;
     // Damage Report
-    public static DamageReportDataModel damageReportRecord = new DamageReportDataModel();
     // Photos
     public static CarPhotosDataModel carPhotosRecord = new CarPhotosDataModel();
     private String selector;
@@ -126,10 +124,9 @@ public class VehicleAccidentReport extends Fragment {
                     carUseStatus = false;
                 } else {
                     carUseStatus = true;
-                    carDamageStatus = false;
                     carIsUseable.setImageResource(R.drawable.checked_check_box);
-                    carHasDamage.setImageResource(R.drawable.empty_check_box);
                 }
+                vehicleRecord.setCarIsUseable(carUseStatus);
             }
         });
 
@@ -141,10 +138,10 @@ public class VehicleAccidentReport extends Fragment {
                     carDamageStatus = false;
                 } else {
                     carDamageStatus = true;
-                    carUseStatus = false;
                     carHasDamage.setImageResource(R.drawable.checked_check_box);
-                    carIsUseable.setImageResource(R.drawable.empty_check_box);
                 }
+                vehicleRecord.setCarHasDamage(carDamageStatus);
+
             }
         });
 
@@ -395,7 +392,9 @@ public class VehicleAccidentReport extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNavController.navigate(actionToRecordConfirmation);
+                if(getVehicleRecordInfo()) {
+                    mNavController.navigate(actionToRecordConfirmation);
+                }
             }
         });
 
@@ -447,22 +446,22 @@ public class VehicleAccidentReport extends Fragment {
                         switch (selector) {
                             case "vehicleRightSide":
                                 vehicleRightSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoRightSide(selectedImage.toString());
+                                vehicleRecord.setPhotoRightSide(selectedImage.toString());
                                 carPhotosRecord.setPhotoRightSide(selectedImage);
                                 break;
                             case "vehicleLeftSide":
                                 vehicleLeftSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoLeftSide(selectedImage.toString());
+                                vehicleRecord.setPhotoLeftSide(selectedImage.toString());
                                 carPhotosRecord.setPhotoLeftSide(selectedImage);
                                 break;
                             case "vehicleFrontSide":
                                 vehicleFrontSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoFrontSide(selectedImage.toString());
+                                vehicleRecord.setPhotoFrontSide(selectedImage.toString());
                                 carPhotosRecord.setPhotoFrontSide(selectedImage);
                                 break;
                             case "vehicleBackSide":
                                 vehicleBackSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoBackSide(selectedImage.toString());
+                                vehicleRecord.setPhotoBackSide(selectedImage.toString());
                                 carPhotosRecord.setPhotoBackSide(selectedImage);
                                 break;
 
@@ -525,6 +524,8 @@ public class VehicleAccidentReport extends Fragment {
     private boolean getVehicleRecordInfo() {
 
         if (carUseStatus) {
+            vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber());
+            damageReportRecord.setCarId(vehicleInRecord.getPlateNumber());
 
 
             return true;

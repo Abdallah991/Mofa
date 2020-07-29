@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int actionNavigateToNotificationFromAccidentReport = R.id.action_vehicleAccidentReport_to_notifications;
     private int actionNavigateToNotificationFromRecordConfirmation = R.id.action_handoverConfirmation_to_notifications;
     private int actionNavigateToSignUpFromRecordConfirmation = R.id.action_handoverConfirmation_to_signUpUser;
+    private int actionNavigateToSignUpFromVehicleSetUpSignature = R.id.action_vehicleSetUpSignature_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleSetUpSignature = R.id.action_vehicleSetUpSignature_to_notifications;
+    private int actionNavigateToSignUpFromVehicleRecordSignature = R.id.action_vehicleRecordSignature_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleRecordSignature = R.id.action_vehicleRecordSignature_to_notifications;
+
 
 
 
@@ -159,6 +164,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         notification.setImageResource(R.drawable.home_icon);
                         signUp.setVisibility(View.GONE);
                         break;
+                    case "vehicleSetUpSignature":
+                        navController.navigate(actionNavigateToNotificationFromVehicleSetUpSignature);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "vehicleRecordSignature":
+                        navController.navigate(actionNavigateToNotificationFromVehicleRecordSignature);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+
 
 
 
@@ -241,6 +257,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         signUp.setImageResource(R.drawable.home_icon);
                         notification.setVisibility(View.GONE);
                         break;
+                    case "vehicleSetUpSignature":
+                        navController.navigate(actionNavigateToSignUpFromVehicleSetUpSignature);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "vehicleRecordSignature":
+                        navController.navigate(actionNavigateToSignUpFromVehicleRecordSignature);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+
 
                 }
 

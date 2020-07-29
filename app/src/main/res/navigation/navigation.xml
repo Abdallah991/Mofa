@@ -173,7 +173,14 @@
         android:id="@+id/vehicleSetUpSignature"
         android:name="com.fathom.mofa.VehicleSetUpSignature"
         android:label="fragment_vehicle_set_up_signature"
-        tools:layout="@layout/fragment_vehicle_set_up_signature" />
+        tools:layout="@layout/fragment_vehicle_set_up_signature" >
+        <action
+            android:id="@+id/action_vehicleSetUpSignature_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleSetUpSignature_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
     <fragment
         android:id="@+id/vehicleUtilities"
         android:name="com.fathom.mofa.VehicleUtilities"
@@ -214,6 +221,30 @@
             app:destination="@id/signUpUser" />
         <action
             android:id="@+id/action_handoverConfirmation_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_handoverConfirmation_to_vehicleRecord"
+            app:destination="@id/vehicleRecord" />
+        <action
+            android:id="@+id/action_handoverConfirmation_to_vehicleUtilities"
+            app:destination="@id/vehicleUtilities" />
+        <action
+            android:id="@+id/action_handoverConfirmation_to_vehicleAccidentReport"
+            app:destination="@id/vehicleAccidentReport" />
+        <action
+            android:id="@+id/action_handoverConfirmation_to_vehicleRecordSignature"
+            app:destination="@id/vehicleRecordSignature" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleRecordSignature"
+        android:name="com.fathom.mofa.VehicleRecordSignature"
+        android:label="fragment_vehicle_record_signature"
+        tools:layout="@layout/fragment_vehicle_record_signature" >
+        <action
+            android:id="@+id/action_vehicleRecordSignature_to_signUpUser"
+            app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_vehicleRecordSignature_to_notifications"
             app:destination="@id/notifications" />
     </fragment>
 </navigation>

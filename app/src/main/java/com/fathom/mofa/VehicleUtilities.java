@@ -177,9 +177,9 @@ public class VehicleUtilities extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                if (getVehicleRecord()) {
+                if (getVehicleRecord()) {
                     mNavController.navigate(actionToAccidentReport);
-//                }
+                }
             }
         });
     }

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
+import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.fathom.mofa.DataModels.DriverDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -49,6 +50,9 @@ public class VehicleRecord extends Fragment {
     private static final String TAG2 = "DRIVERS";
     private static final String TAG3 = "USERS";
     public static VehicleRecordDataModel vehicleRecord = new VehicleRecordDataModel();
+    public static DamageReportDataModel damageReportRecord = new DamageReportDataModel();
+    public static VehicleDataModel vehicleInRecord = new VehicleDataModel();
+    public static DriverDataModel driverInRecord = new DriverDataModel();
     private NavController mNavController;
     private Spinner vehicleName;
     private Spinner userName;
@@ -66,12 +70,14 @@ public class VehicleRecord extends Fragment {
     private int actionToVehicleUtilities = R.id.action_vehicleRecord_to_vehicleUtilities;
     // Vehicle Name
     private ArrayList<VehicleDataModel> mVehicles = new ArrayList<>();
+    private int positionOfVehicle;
     private VehicleViewModel mVehicleViewModel;
     private ArrayList<String> vehicleNames = new ArrayList<>();
     private ArrayAdapter<String> vehicleAdapter;
 
     // Driver Names
     private ArrayList<DriverDataModel> mDrivers = new ArrayList<>();
+    private int positionOfDriver;
     private DriverViewModel mDriverViewModel;
     private ArrayList<String> driverNames = new ArrayList<>();
     private ArrayAdapter<String> driverAdapter;
@@ -217,6 +223,7 @@ public class VehicleRecord extends Fragment {
                     retrieval.setImageResource(R.drawable.empty_check_box);
                     release.setImageResource(R.drawable.empty_check_box);
                     vehicleRecord.setCarTransaction("MTD");
+                    damageReportRecord.setCarTransaction("MTD");
                 }
             }
         });
@@ -235,6 +242,7 @@ public class VehicleRecord extends Fragment {
                     handover.setImageResource(R.drawable.empty_check_box);
                     release.setImageResource(R.drawable.empty_check_box);
                     vehicleRecord.setCarTransaction("DTM");
+                    damageReportRecord.setCarTransaction("DTM");
                 }
             }
         });
@@ -253,6 +261,7 @@ public class VehicleRecord extends Fragment {
                     handover.setImageResource(R.drawable.empty_check_box);
                     retrieval.setImageResource(R.drawable.empty_check_box);
                     vehicleRecord.setCarTransaction("MTR");
+                    damageReportRecord.setCarTransaction("MTR");
                 }
             }
         });
@@ -261,9 +270,9 @@ public class VehicleRecord extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                if (getVehicleRecordInfo()) {
+                if (getVehicleRecordInfo()) {
                     mNavController.navigate(actionToVehicleUtilities);
-//                }
+                }
             }
         });
 
@@ -324,6 +333,9 @@ public class VehicleRecord extends Fragment {
                         String selectedItemText = (String) parent.getItemAtPosition(position);
 
                         if(position > 0){
+                            // This code is to get the object of the selected Vehicle
+                            positionOfVehicle = position - 1;
+                            vehicleInRecord = mVehicles.get(positionOfVehicle);
                             // Notify the selected item text
                             vehicleRecord.setVehicleName(selectedItemText);
                             final VehicleRepository repo = new VehicleRepository();
@@ -408,25 +420,10 @@ public class VehicleRecord extends Fragment {
                         String selectedItemText = (String) parent.getItemAtPosition(position);
 
                         if (position > 0) {
-//                            Toast.makeText(getContext(), selectedItemText, Toast.LENGTH_SHORT).show();
+                            // This code is to get the object of the selected Vehicle
+                            positionOfDriver = position - 1;
+                            driverInRecord = mDrivers.get(positionOfDriver);
                             vehicleRecord.setDriverName(selectedItemText);
-                            // Notify the selected item text
-//                            final VehicleRepository repo = new VehicleRepository();
-//                            Handler myHandler;
-//                            int SPLASH_TIME_OUT = 4000;
-//                            myHandler = new Handler();
-//                            progressDialog.show();
-//                            carPhotos = repo.getImage(mVehicles.get(position-1).getPlateNumber());
-//                            myHandler.postDelayed(new Runnable() {
-//                                public void run() {
-//                                    Toast.makeText(getContext(), "Name of left Vehicle Image " + carPhotos.getPhotoLeftSide(), Toast.LENGTH_SHORT).show();
-////                                    Log.d(TAG, carPhotos.getPhotoLeftSide().toString());
-//                                    progressDialog.dismiss();
-//                                    setVehicleImages();
-//                                }
-//
-//                            },SPLASH_TIME_OUT);
-
 
                         }
                     }
@@ -517,6 +514,7 @@ public class VehicleRecord extends Fragment {
         String user = vehicleRecord.getReleasePersonName();
         String driver = vehicleRecord.getDriverName();
         String transaction = vehicleRecord.getCarTransaction();
+        vehicleRecord.setPlateNumber(vehicleInRecord.getPlateNumber());
 
         if ((vehicle != null ) && (user != null ) &&
                 (driver != null ) && (transaction != null )) {

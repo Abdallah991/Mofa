@@ -77,6 +77,11 @@
     <string name="floor_mat">Floor mat</string>
     <string name="car_has_damage">Car has damage</string>
     <string name="car_is_useable">Car is useable</string>
+    <string name="managed_by">Managed by</string>
+    <string name="driver">Driver</string>
+    <string name="operation">Operation</string>
+    <string name="vehicle_name">Vehicle name</string>
+    <string name="wheel_cap">Wheel cap</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
