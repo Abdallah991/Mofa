@@ -112,6 +112,7 @@ public class VehicleSetUpSignature extends Fragment {
         vehicle.setPhotoRightSide(vehicle.getPlateNumber()+"right");
         vehicle.setPhotoFrontSide(vehicle.getPlateNumber()+"front");
         vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
+        vehicle.setStatus("Returned");
 
         rentalSignature.setOnClickListener(new View.OnClickListener() {
             @Override

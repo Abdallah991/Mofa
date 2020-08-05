@@ -14,6 +14,7 @@ public class VehicleDataModel {
     private String colorOfCar;
     private String registrationType;
     private String rentalInfo;
+    private String rentalInfoContent;
     private String damageReport;
     private String vehicleRecord;
     private String photoLeftSide;
@@ -26,6 +27,7 @@ public class VehicleDataModel {
     private String status;
     private String companyReleaseSignature;
     private String mofaRetrievalSignature;
+    private Date recordDate;
 
     public String getPlateNumber() {
         return plateNumber;
@@ -117,9 +119,6 @@ public class VehicleDataModel {
         this.notes = notes;
     }
 
-    public String isStatus() {
-        return status;
-    }
 
     public void setStatus(String status) {
         this.status = status;
@@ -195,5 +194,25 @@ public class VehicleDataModel {
 
     public void setMofaRetrievalSignature(String mofaRetrievalSignature) {
         this.mofaRetrievalSignature = mofaRetrievalSignature;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getRecordDate() {
+        return recordDate;
+    }
+
+    public void setRecordDate(Date recordDate) {
+        this.recordDate = recordDate;
+    }
+
+    public String getRentalInfoContent() {
+        return rentalInfoContent;
+    }
+
+    public void setRentalInfoContent(String rentalInfoContent) {
+        this.rentalInfoContent = rentalInfoContent;
     }
 }

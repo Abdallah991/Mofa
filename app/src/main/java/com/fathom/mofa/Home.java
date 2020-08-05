@@ -57,7 +57,7 @@ public class Home extends Fragment {
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNavController.navigate(R.id.dashboard);
+                mNavController.navigate(R.id.action_home_to_dashboard);
             }
         });
 
@@ -71,7 +71,7 @@ public class Home extends Fragment {
         vehicleRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNavController.navigate(R.id.vehicleRecord);
+                mNavController.navigate(R.id.action_home_to_vehicleDashboard);
             }
         });
 

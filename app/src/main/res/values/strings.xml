@@ -36,7 +36,6 @@
     <string name="registration_end">Registration End</string>
     <string name="registration_start">Registration Start</string>
     <string name="registration_type">Registration Type</string>
-    <string name="back">Back</string>
     <string name="rental_information">Rental Information</string>
     <string name="provider">Provider</string>
     <string name="provider_phone_number">Provider Phone Number</string>
@@ -54,7 +53,6 @@
     <string name="clear">Clear</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="driver_name">Driver Name</string>
     <string name="driver_id">Driver ID</string>
     <string name="address_line_1">Address Line 1</string>
     <string name="address_line_2">Address Line 2</string>
@@ -82,6 +80,14 @@
     <string name="operation">Operation</string>
     <string name="vehicle_name">Vehicle name</string>
     <string name="wheel_cap">Wheel cap</string>
+    <string name="search_vehicles">Search Vehicles</string>
+    <string name="back">Back</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="car">Car</string>
+    <string name="date">Date</string>
+    <string name="status">Status</string>
+    <string name="vehicle_details">Vehicle Details</string>
+    <string name="search_records">Search Records</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

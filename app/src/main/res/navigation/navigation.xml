@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_home_to_signUpUser"
             app:destination="@id/signUpUser" />
+        <action
+            android:id="@+id/action_home_to_vehicleDashboard"
+            app:destination="@id/vehicleDashboard" />
     </fragment>
     <fragment
         android:id="@+id/dashboard"
@@ -246,5 +249,23 @@
         <action
             android:id="@+id/action_vehicleRecordSignature_to_notifications"
             app:destination="@id/notifications" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDashboard"
+        android:name="com.fathom.mofa.VehicleDashboard"
+        android:label="fragment_vehicle_dashboard"
+        tools:layout="@layout/fragment_vehicle_dashboard" >
+        <action
+            android:id="@+id/action_vehicleDashboard_to_vehicleDetails"
+            app:destination="@id/vehicleDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetails"
+        android:name="com.fathom.mofa.VehicleDetails"
+        android:label="fragment_vehicle_details"
+        tools:layout="@layout/fragment_vehicle_details" >
+        <action
+            android:id="@+id/action_vehicleDetails_to_vehicleRecord2"
+            app:destination="@id/vehicleRecord" />
     </fragment>
 </navigation>

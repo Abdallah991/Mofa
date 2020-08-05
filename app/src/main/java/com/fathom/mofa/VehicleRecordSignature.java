@@ -11,25 +11,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
@@ -214,6 +210,9 @@ public class VehicleRecordSignature extends Fragment {
 
     private void uploadVehicleRecord() {
         vehicleRecord.setDamageReport(formatter.format(mDate)+vehicleInRecord.getPlateNumber());
+        vehicleRecord.setMake(vehicleInRecord.getMake());
+        vehicleRecord.setModel(vehicleInRecord.getModel());
+        vehicleRecord.setRentalInfo(vehicleInRecord.getRentalInfoContent());
         db.collection("VehicleRecords")
                 .document(formatter.format(mDate)+vehicleInRecord.getPlateNumber()).set(vehicleRecord);
 

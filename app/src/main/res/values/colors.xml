@@ -8,4 +8,5 @@
     <color name="mileStone">#E3E3E3</color>
     <color name="editTextBackground">#F5F5F5</color>
     <color name="signatureBackground">#F5F5F5</color>
+    <color name="dashboardBackground">#FDFCFC</color>
 </resources>

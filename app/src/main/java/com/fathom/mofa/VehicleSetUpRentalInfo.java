@@ -173,6 +173,7 @@ public class VehicleSetUpRentalInfo extends Fragment {
             rentalInfo.setLeaseFrom(start);
             rentalInfo.setLeaseTo(end);
             rentalInfo.setCarId(vehicle.getPlateNumber());
+            vehicle.setRentalInfoContent(provideName);
             return true;
         }
         else {

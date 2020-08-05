@@ -13,6 +13,9 @@ public class VehicleRecordDataModel {
     private String photoFrontSide;
     private String photoBackSide;
     private String notes;
+    private String model;
+    private String make;
+    private String rentalInfo;
     // Vehicle will have
     // 1- Busy
     // 2- Free
@@ -232,5 +235,29 @@ public class VehicleRecordDataModel {
 
     public void setCarIsUseable(boolean carIsUseable) {
         this.carIsUseable = carIsUseable;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getRentalInfo() {
+        return rentalInfo;
+    }
+
+    public void setRentalInfo(String rentalInfo) {
+        this.rentalInfo = rentalInfo;
     }
 }
