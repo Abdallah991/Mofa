@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VehicleRecordDetails">
+
+    <TextView
+        android:id="@+id/carDetailsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/car_details"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        app:fontFamily="@font/roboto_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline84" />
+
+    <LinearLayout
+        android:id="@+id/scrollInfoLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline60"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.9"
+                        android:text="@string/vehicle_information"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/plateNumberRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/vehicle_name"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/plateNumberRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="879334"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/modelRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/model"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/modelRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Accord"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/manufacturerRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/manufacturer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/manufacturerRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Honda"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/makeRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/make"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/makeRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="2011"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/colorRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/color"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/colorRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Blue"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.7"
+                        android:text="@string/registration"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/companyRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/company"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/companyRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tashilat"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/registrationTypeRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/registration_type"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/registrationTypeRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Third Party"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/registrationStartRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/registration_start"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/registrationStartRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="May 8th 2020"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/registrationEndRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/registration_end"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/registrationEndRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="May 8th 2020"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.7"
+                        android:text="@string/damage_report"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        layout="@layout/damage_report"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.7"
+                        android:text="@string/rental_information"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/providerRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/provider"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/providerRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Sameer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/providerPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/provider_phone_number"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/providerPhoneNumberValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="76436476"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/leaseFromRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/lease_from"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/leaseFromRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Something Something Something"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/leaseToRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/lease_to"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/leaseToRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Something Something Something"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.7"
+                        android:text="@string/car_status"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="33sp"
+                        app:fontFamily="@font/roboto_regular" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/driverRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/driver"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/driverRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Sameer"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/statusRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/status"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/statusRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Out"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/notesRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/notes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/notesRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Something Something Something"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/photoGalleryLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline60"
+        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="4.3"
+            android:elevation="0dp"
+            app:cardCornerRadius="18dp"
+            app:cardPreventCornerOverlap="false">
+
+            <ImageView
+                android:id="@+id/vehicleImagesHandover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/vehicle_left_side" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+
+            <ImageView
+                android:id="@+id/firstImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/red_dot" />
+
+            <ImageView
+                android:id="@+id/secondImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:id="@+id/thirdImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:id="@+id/fourthImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/backConfirmationRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBackground"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline80"
+        app:layout_constraintStart_toStartOf="@+id/guideline59"
+        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.36667" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.38667" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.52" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.63333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65333" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline84"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="-0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.41" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.46" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.54" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.73" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.865" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.915" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

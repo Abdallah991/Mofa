@@ -36,7 +36,11 @@
         android:id="@+id/dashboard"
         android:name="com.fathom.mofa.Dashboard"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_vehicleRecordDetails"
+            app:destination="@id/vehicleRecordDetails" />
+    </fragment>
     <fragment
         android:id="@+id/driverSetUp"
         android:name="com.fathom.mofa.DriverSetUp"
@@ -268,4 +272,9 @@
             android:id="@+id/action_vehicleDetails_to_vehicleRecord2"
             app:destination="@id/vehicleRecord" />
     </fragment>
+    <fragment
+        android:id="@+id/vehicleRecordDetails"
+        android:name="com.fathom.mofa.VehicleRecordDetails"
+        android:label="fragment_vehicle_record_details"
+        tools:layout="@layout/fragment_vehicle_record_details" />
 </navigation>

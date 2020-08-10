@@ -55,6 +55,7 @@ public class Dashboard extends Fragment {
     private Button backButton;
     private Button nextButton;
     private ProgressDialog progressDialog;
+    private int actionToVehicleRecordDetail = R.id.action_dashboard_to_vehicleRecordDetails;
 
 
 
@@ -116,7 +117,7 @@ public class Dashboard extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
         mVehicleRecords = (ArrayList<VehicleRecordDataModel>) mVehicleRecordViewModel.getVehicleRecords().getValue();
-        mVehicleRecordAdapter = new VehicleRecordsAdapter(mVehicleRecords, getContext(), mNavController, 0, mVehicleRecordViewModel);
+        mVehicleRecordAdapter = new VehicleRecordsAdapter(mVehicleRecords, getContext(), mNavController, actionToVehicleRecordDetail, mVehicleRecordViewModel);
         progressDialog.show();
         myHandler.postDelayed(new Runnable() {
             @Override

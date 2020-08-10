@@ -94,6 +94,9 @@
     <string name="vehicle_information2">Vehicle Information</string>
     <string name="saloon">Saloon</string>
     <string name="company">Company</string>
+    <string name="car_details">Car Details</string>
+    <string name="car_status">Car status</string>
+    <string name="notes">Notes</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
