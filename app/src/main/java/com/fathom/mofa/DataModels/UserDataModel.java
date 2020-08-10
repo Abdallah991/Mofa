@@ -7,6 +7,7 @@ public class UserDataModel {
     private String email;
     private String password;
     private String phoneNumber;
+    // Admin or normal user
     private String userType;
 
 

@@ -8,6 +8,7 @@ public class VehicleRecordDataModel {
     private String driverName;
     private String vehicleName;
     private String plateNumber;
+    // These photos will have value only when the car has damage
     private String photoLeftSide;
     private String photoRightSide;
     private String photoFrontSide;
@@ -16,15 +17,14 @@ public class VehicleRecordDataModel {
     private String model;
     private String make;
     private String rentalInfo;
-    // Vehicle will have
-    // 1- Busy
-    // 2- Free
-    // 3- Returned
+    // Vehicle will have these Statuses
+    // 1- Busy       -- out with a Driver    --orange
+    // 2- Available   -- in Mofa position    --green
+    // 3- Released   -- with Rental Company  --red
     private String status;
     private String milage;
     private int fuelLevel;
     private String damageReport;
-    private String time;
     private Date date;
     private boolean jackStatus = false;
     private boolean toolsStatus = false;
@@ -34,7 +34,7 @@ public class VehicleRecordDataModel {
     private boolean floorMatStatus = false;
     private boolean carHasDamage = false;
     private boolean carIsUseable = false;
-    // Status will mention what kind of record the car is:
+    // Car Transaction will mention what kind of record the car is:
     // 1- Getting the car from the rental company. "RTM"
     // 2- Returning the car to the rental company. "MTR"
     // 3- Hanover to the driver."MTD"
@@ -43,6 +43,11 @@ public class VehicleRecordDataModel {
     // M: Mofa
     // R: Rental Company
     private String carTransaction;
+    private String companyReleaseSignature;
+    private String mofaRetrievalSignature;
+    // the name of vehicle record will be a combination of plate number and date which will be
+    // identical to damage report name
+    private String name;
 
 
     public String getReleasePersonName() {
@@ -149,14 +154,6 @@ public class VehicleRecordDataModel {
         this.damageReport = damageReport;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -259,5 +256,29 @@ public class VehicleRecordDataModel {
 
     public void setRentalInfo(String rentalInfo) {
         this.rentalInfo = rentalInfo;
+    }
+
+    public String getCompanyReleaseSignature() {
+        return companyReleaseSignature;
+    }
+
+    public void setCompanyReleaseSignature(String companyReleaseSignature) {
+        this.companyReleaseSignature = companyReleaseSignature;
+    }
+
+    public String getMofaRetrievalSignature() {
+        return mofaRetrievalSignature;
+    }
+
+    public void setMofaRetrievalSignature(String mofaRetrievalSignature) {
+        this.mofaRetrievalSignature = mofaRetrievalSignature;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

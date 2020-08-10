@@ -38,8 +38,9 @@ import com.fathom.mofa.ViewModels.VehicleViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.VehicleRegistration.carPhotos;
+import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 
 
 /**
@@ -54,7 +55,7 @@ public class VehicleRecord extends Fragment {
     public static VehicleDataModel vehicleInRecord = new VehicleDataModel();
     public static DriverDataModel driverInRecord = new DriverDataModel();
     private NavController mNavController;
-    private Spinner vehicleName;
+    private TextView vehicleName;
     private Spinner userName;
     private Spinner driverName;
     private ImageView handover;
@@ -89,7 +90,6 @@ public class VehicleRecord extends Fragment {
     private ArrayAdapter<String> userAdapter;
 
     // Vehicle Images
-    private CarPhotosDataModel carPhotos = new CarPhotosDataModel();
     private int index = 0;
 
     // Vehicle Transaction
@@ -187,22 +187,22 @@ public class VehicleRecord extends Fragment {
                     case 0:
                         fourthDot.setImageResource(R.drawable.grey_dot);
                         firstDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotos.getPhotoLeftSide());
+                        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
                         break;
                     case 1:
                         firstDot.setImageResource(R.drawable.grey_dot);
                         secondDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotos.getPhotoRightSide());
+                        carImages.setImageBitmap(carPhotosRecord.getPhotoRightSide());
                         break;
                     case 2:
                         secondDot.setImageResource(R.drawable.grey_dot);
                         thirdDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotos.getPhotoFrontSide());
+                        carImages.setImageBitmap(carPhotosRecord.getPhotoFrontSide());
                         break;
                     case 3:
                         thirdDot.setImageResource(R.drawable.grey_dot);
                         fourthDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotos.getPhotoBackSide());
+                        carImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
                         break;
 
                 }
@@ -276,95 +276,35 @@ public class VehicleRecord extends Fragment {
             }
         });
 
+        setVehicleInfo();
+
+        switch (vehicleDashboard.getStatus()) {
+            case "Busy":
+                retrieval.setImageResource(R.drawable.checked_check_box);
+                vehicleRecord.setCarTransaction("DTM");
+                damageReportRecord.setCarTransaction("DTM");
+                break;
+            case "Returned":
+                handover.setImageResource(R.drawable.checked_check_box);
+                vehicleRecord.setCarTransaction("MTD");
+                damageReportRecord.setCarTransaction("MTD");
+                break;
+            case "Released":
+                release.setImageResource(R.drawable.checked_check_box);
+                vehicleRecord.setCarTransaction("MTR");
+                damageReportRecord.setCarTransaction("MTR");
+
+                break;
+        }
+
     }
 
 
     private void initVehicles() {
-        Handler myHandler;
-        int SPLASH_TIME_OUT = 2500;
-        myHandler = new Handler();
 
-        Log.d(TAG, "loading Recycler been called");
-        progressDialog.show();
-        // showing the Splash screen for two seconds then going to on boarding activity
-        myHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mVehicles.isEmpty()) {
-                    mVehicles = (ArrayList<VehicleDataModel>) mVehicleViewModel.getVehicles().getValue();
-                    vehicleNames.add("Vehicle Name");
-                    for (VehicleDataModel vehicle : mVehicles) {
-                        vehicleNames.add(vehicle.getCarName());
-                    }
-                }
-                vehicleAdapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, vehicleNames){
-                    @Override
-                    public boolean isEnabled(int position){
-                        if(position == 0)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            return true;
-                        }
-                    }
-                    @Override
-                    public View getDropDownView(int position, View convertView,
-                                                ViewGroup parent) {
-                        View view = super.getDropDownView(position, convertView, parent);
-                        TextView tv = (TextView) view;
-                        if(position == 0){
-                            // Set the hint text color gray
-                            tv.setTextColor(getResources().getColor(R.color.appGrey));
-                        }
-                        else {
-                            tv.setTextColor(getResources().getColor(R.color.black));
-                        }
-                        return view;
-                    }
-                };
-                vehicleAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                vehicleName.setAdapter(vehicleAdapter);
-                vehicleName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
-                        String selectedItemText = (String) parent.getItemAtPosition(position);
+        vehicleName.setText(vehicleDashboard.getCarName());
+        setVehicleImages();
 
-                        if(position > 0){
-                            // This code is to get the object of the selected Vehicle
-                            positionOfVehicle = position - 1;
-                            vehicleInRecord = mVehicles.get(positionOfVehicle);
-                            // Notify the selected item text
-                            vehicleRecord.setVehicleName(selectedItemText);
-                            final VehicleRepository repo = new VehicleRepository();
-                            Handler myHandler;
-                            int SPLASH_TIME_OUT = 5000;
-                            myHandler = new Handler();
-                            progressDialog.show();
-                            carPhotos = repo.getImage(mVehicles.get(position-1).getPlateNumber());
-                            myHandler.postDelayed(new Runnable() {
-                                public void run() {
-//                                    Toast.makeText(getContext(), "Name of left Vehicle Image " + carPhotos.getPhotoLeftSide(), Toast.LENGTH_SHORT).show();
-//                                    Log.d(TAG, carPhotos.getPhotoLeftSide().toString());
-                                    progressDialog.dismiss();
-                                    setVehicleImages();
-                                }
-
-                                                  },SPLASH_TIME_OUT);
-
-
-
-                        }
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-                progressDialog.dismiss();
-            }
-        }, SPLASH_TIME_OUT);
 
     }
 
@@ -499,24 +439,24 @@ public class VehicleRecord extends Fragment {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
-//                progressDialog.dismiss();
+                progressDialog.dismiss();
             }
         }, SPLASH_TIME_OUT);
     }
 
 
     private void setVehicleImages(){
-        carImages.setImageBitmap(carPhotos.getPhotoLeftSide());
+        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
     }
 
     private boolean getVehicleRecordInfo() {
-        String vehicle = vehicleRecord.getVehicleName();
+
         String user = vehicleRecord.getReleasePersonName();
         String driver = vehicleRecord.getDriverName();
         String transaction = vehicleRecord.getCarTransaction();
         vehicleRecord.setPlateNumber(vehicleInRecord.getPlateNumber());
 
-        if ((vehicle != null ) && (user != null ) &&
+        if ((user != null ) &&
                 (driver != null ) && (transaction != null )) {
             return true;
         } else {
@@ -526,6 +466,29 @@ public class VehicleRecord extends Fragment {
             }
 
 
+    }
+
+    private void setVehicleInfo() {
+
+        vehicleInRecord.setStatus(vehicleDashboard.getStatus());
+        vehicleInRecord.setRentalInfoContent(vehicleDashboard.getRentalInfoContent());
+        vehicleInRecord.setRentalInfo(vehicleDashboard.getRentalInfo());
+        vehicleInRecord.setPhotoBackSide(vehicleDashboard.getPhotoBackSide());
+        vehicleInRecord.setPhotoFrontSide(vehicleDashboard.getPhotoFrontSide());
+        vehicleInRecord.setPhotoRightSide(vehicleDashboard.getPhotoRightSide());
+        vehicleInRecord.setPhotoLeftSide(vehicleDashboard.getPhotoLeftSide());
+        vehicleInRecord.setCarName(vehicleDashboard.getCarName());
+        vehicleInRecord.setRegistrationEnd(vehicleDashboard.getRegistrationEnd());
+        vehicleInRecord.setRegistrationStart(vehicleDashboard.getRegistrationStart());
+        vehicleInRecord.setRegistrationType(vehicleDashboard.getRegistrationType());
+        vehicleInRecord.setMake(vehicleDashboard.getMake());
+        vehicleInRecord.setManufacturer(vehicleDashboard.getManufacturer());
+        vehicleInRecord.setModel(vehicleDashboard.getModel());
+        vehicleInRecord.setPlateNumber(vehicleDashboard.getPlateNumber());
+        vehicleInRecord.setColorOfCar(vehicleDashboard.getColorOfCar());
+        vehicleRecord.setVehicleName(vehicleDashboard.getCarName());
+
+        Toast.makeText(getContext(), vehicleInRecord.getCarName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -8,6 +8,7 @@ public class RentalInfoDataModel {
     private String phoneNumber;
     private Date leaseFrom;
     private Date leaseTo;
+    // plate number for vehicle
     private String carId;
 
     public String getName() {

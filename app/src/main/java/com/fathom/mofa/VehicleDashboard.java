@@ -1,5 +1,6 @@
 package com.fathom.mofa;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +51,8 @@ public class VehicleDashboard extends Fragment {
     private TextView numberOfPages;
     private Button backButton;
     private Button nextButton;
+    private ProgressDialog progressDialog;
+    private int actionToVehicleDetail = R.id.action_vehicleDashboard_to_vehicleDetails;
 
     public VehicleDashboard() {
         // Required empty public constructor
@@ -75,6 +79,9 @@ public class VehicleDashboard extends Fragment {
         backButton = view.findViewById(R.id.backButtonVehicles);
         nextButton = view.findViewById(R.id.nextButtonVehicles);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading...");
+
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         mVehicleViewModel = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
@@ -100,10 +107,24 @@ public class VehicleDashboard extends Fragment {
 
     private void initRecycler() {
 
+        Handler myHandler;
+        int SPLASH_TIME_OUT = 2500;
+        myHandler = new Handler();
         mVehicles = (ArrayList<VehicleDataModel>) mVehicleViewModel.getVehicles().getValue();
-        mVehiclesAdapter = new VehiclesAdapter(mVehicles, getContext(), mNavController, 0, mVehicleViewModel);
-        mVehiclesRecycler.setAdapter(mVehiclesAdapter);
-        mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mVehiclesAdapter = new VehiclesAdapter(mVehicles, getContext(), mNavController, actionToVehicleDetail, mVehicleViewModel);
+        progressDialog.show();
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mVehiclesRecycler.setAdapter(mVehiclesAdapter);
+                mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                progressDialog.dismiss();
+            }
+
+
+        },SPLASH_TIME_OUT);
+
+
 
     }
 }

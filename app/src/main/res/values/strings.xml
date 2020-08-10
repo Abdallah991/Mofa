@@ -63,6 +63,7 @@
     <string name="accident_report">Accident Report</string>
     <string name="handover">Handover</string>
     <string name="retrieval">Retrieval</string>
+    <string name="retrieve">Retrieve</string>
     <string name="release">Release</string>
     <string name="vehicle_utilities">Vehicle Utilities</string>
     <string name="milage">Milage</string>
@@ -88,6 +89,11 @@
     <string name="status">Status</string>
     <string name="vehicle_details">Vehicle Details</string>
     <string name="search_records">Search Records</string>
+    <string name="honda_accord">Honda Accord</string>
+    <string name="vehicle_history">Vehicle History</string>
+    <string name="vehicle_information2">Vehicle Information</string>
+    <string name="saloon">Saloon</string>
+    <string name="company">Company</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

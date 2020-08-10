@@ -17,6 +17,9 @@ public class DamageReportDataModel {
     private boolean back;
     private boolean backWindShield;
     private String carId;
+    // This can have Two values
+    //1- PlateNumber+Car Transaction (for Set up and Release)
+    //2- plateNumber+Date (for any Vehicle Record)
     private String damageReportName;
     // To describe the transition of the car which is four Types:
     // 1- Getting the car from the rental company. "RTM"

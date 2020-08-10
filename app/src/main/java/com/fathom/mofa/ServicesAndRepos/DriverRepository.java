@@ -4,9 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-
 import com.fathom.mofa.DataModels.DriverDataModel;
-import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +23,7 @@ public class DriverRepository {
     private ArrayList<DriverDataModel> mDrivers = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
+    // To get the driver Photos
     private StorageReference storageRef;
     private StorageReference frontImageRef;
     private StorageReference backImageRef;

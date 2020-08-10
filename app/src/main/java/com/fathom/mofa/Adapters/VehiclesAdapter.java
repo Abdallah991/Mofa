@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.VehicleHolder> {
 
     private static final String TAG = "Vehicles Adapter";
+    public static VehicleDataModel vehicleDashboard;
     // Declare variables
     private ArrayList<VehicleDataModel> mVehicles;
     private Context mContext;
@@ -56,7 +57,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VehicleHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VehicleHolder holder, final int position) {
         holder.vehicleId.setText(mVehicles.get(position).getPlateNumber());
         holder.make.setText(mVehicles.get(position).getMake());
         holder.model.setText(mVehicles.get(position).getModel());
@@ -74,6 +75,16 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
                 holder.statusColor.setImageResource(R.drawable.red_status);
                 break;
         }
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vehicleDashboard = new VehicleDataModel();
+                vehicleDashboard = mVehicles.get(position);
+                mNavController.navigate(actionId);
+
+            }
+        });
 
     }
 

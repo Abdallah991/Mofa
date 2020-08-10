@@ -1,5 +1,6 @@
 package com.fathom.mofa;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,8 @@ public class Dashboard extends Fragment {
     private TextView numberOfPages;
     private Button backButton;
     private Button nextButton;
+    private ProgressDialog progressDialog;
+
 
 
 
@@ -80,6 +84,9 @@ public class Dashboard extends Fragment {
         backButton = view.findViewById(R.id.backButton);
         nextButton = view.findViewById(R.id.nextButton);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading...");
+
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         mVehicleRecordViewModel = new ViewModelProvider(requireActivity()).get(VehicleRecordViewModel.class);
@@ -105,10 +112,24 @@ public class Dashboard extends Fragment {
 
     private void initRecycler() {
 
+        Handler myHandler;
+        int SPLASH_TIME_OUT = 2500;
+        myHandler = new Handler();
         mVehicleRecords = (ArrayList<VehicleRecordDataModel>) mVehicleRecordViewModel.getVehicleRecords().getValue();
         mVehicleRecordAdapter = new VehicleRecordsAdapter(mVehicleRecords, getContext(), mNavController, 0, mVehicleRecordViewModel);
-        mVehiclesRecycler.setAdapter(mVehicleRecordAdapter);
-        mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        progressDialog.show();
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mVehiclesRecycler.setAdapter(mVehicleRecordAdapter);
+                mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                progressDialog.dismiss();
+            }
+
+
+        },SPLASH_TIME_OUT);
+
+
 
 
     }

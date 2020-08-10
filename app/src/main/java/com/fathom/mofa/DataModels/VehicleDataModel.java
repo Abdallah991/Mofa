@@ -15,8 +15,10 @@ public class VehicleDataModel {
     private String registrationType;
     private String rentalInfo;
     private String rentalInfoContent;
+    // This will be the damage report when SETTING UP the car and when RELEASING it
     private String damageReport;
     private String vehicleRecord;
+    // These are the photos when the car get set up.
     private String photoLeftSide;
     private String photoRightSide;
     private String photoFrontSide;

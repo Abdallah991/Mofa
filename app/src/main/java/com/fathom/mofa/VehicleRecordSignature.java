@@ -176,6 +176,7 @@ public class VehicleRecordSignature extends Fragment {
 
             }
         });
+        mDate = new Date();
     }
 
     @Override
@@ -185,7 +186,6 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void updateVehicleStatus() {
-        mDate = new Date();
         progressDialog.show();
         switch (vehicleRecord.getCarTransaction()) {
             case "MTD":
@@ -193,33 +193,35 @@ public class VehicleRecordSignature extends Fragment {
                 vehicleRecord.setStatus("Busy");
                 break;
             case "DTM":
-                vehicleInRecord.setStatus("Free");
-                vehicleRecord.setStatus("Free");
-                break;
-            case "MTR":
                 vehicleInRecord.setStatus("Returned");
                 vehicleRecord.setStatus("Returned");
                 break;
+            case "MTR":
+                vehicleInRecord.setStatus("Released");
+                vehicleRecord.setStatus("Released");
+                break;
 
         }
-        vehicleInRecord.setDamageReport(formatter.format(mDate)+vehicleInRecord.getPlateNumber());
+        vehicleInRecord.setDamageReport(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         db.collection("Vehicles")
                 .document(vehicleInRecord.getPlateNumber()).set(vehicleInRecord);
 
     }
 
     private void uploadVehicleRecord() {
-        vehicleRecord.setDamageReport(formatter.format(mDate)+vehicleInRecord.getPlateNumber());
+        vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         vehicleRecord.setMake(vehicleInRecord.getMake());
         vehicleRecord.setModel(vehicleInRecord.getModel());
         vehicleRecord.setRentalInfo(vehicleInRecord.getRentalInfoContent());
+        vehicleRecord.setDate(mDate);
+        vehicleRecord.setName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         db.collection("VehicleRecords")
-                .document(formatter.format(mDate)+vehicleInRecord.getPlateNumber()).set(vehicleRecord);
+                .document().set(vehicleRecord);
 
     }
 
     private void uploadDamageReport() {
-        damageReportRecord.setDamageReportName(formatter.format(mDate)+vehicleInRecord.getPlateNumber());
+        damageReportRecord.setDamageReportName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         db.collection("Damage Reports")
                 .document().set(damageReportRecord);
 
@@ -335,5 +337,7 @@ public class VehicleRecordSignature extends Fragment {
                 }
             });
         }
+        progressDialog.dismiss();
+
     }
 }

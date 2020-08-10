@@ -185,49 +185,4 @@ public class VehicleRepository {
 
         return mCarPhotos;
     }
-
-
-
-
-    // Uploading Vehicle Data Model and Images
-    public void uploadVehicle(VehicleDataModel vehicle) {
-        db.collection("Vehicles")
-                .document(vehicle.getPlateNumber()).set(vehicle);
-    }
-
-    public void uploadVehicleLeftSide(String vehicleLeftSideName, Bitmap leftSide) {
-
-    }
-    public void uploadVehicleRightSide(String vehicleRightSideName, Bitmap rightSide) {
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
-        rightImageRef = storageRef.child(vehicle.getPhotoRightSide());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
-        Bitmap bitmap = carPhotos.getPhotoRightSide();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-
-        UploadTask uploadTask = rightImageRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.d(VEHICLE_TAG, "User right image failed to upload.");
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d(VEHICLE_TAG, "User right image uploaded.");
-            }
-        });
-
-    }
-    public void uploadVehicleFrontSide(String vehicleFrontSideName, Bitmap frontSide) {
-
-    }
-    public void uploadVehicleBackSide(String vehicleBackSideName, Bitmap backSide) {
-
-    }
 }

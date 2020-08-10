@@ -523,6 +523,29 @@ public class VehicleAccidentReport extends Fragment {
 
     private boolean getVehicleRecordInfo() {
 
+        if(carDamageStatus) {
+            String leftSide = vehicleRecord.getPhotoLeftSide();
+            String rightSide = vehicleRecord.getPhotoRightSide();
+            String frontSide = vehicleRecord.getPhotoFrontSide();
+            String backSide = vehicleRecord.getPhotoBackSide();
+            if ((leftSide != null)&&
+                    (rightSide != null)&& (frontSide != null) &&
+                    (backSide != null))  {
+                vehicleRecord.setPhotoLeftSide(leftSide);
+                vehicleRecord.setPhotoRightSide(rightSide);
+                vehicleRecord.setPhotoFrontSide(frontSide);
+                vehicleRecord.setPhotoBackSide(backSide);
+                // add this in the end
+                vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber());
+                damageReportRecord.setCarId(vehicleInRecord.getPlateNumber());
+                return true;
+            }
+            else {
+                Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
+                return false;
+
+            }
+        }
         if (carUseStatus) {
             vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber());
             damageReportRecord.setCarId(vehicleInRecord.getPlateNumber());

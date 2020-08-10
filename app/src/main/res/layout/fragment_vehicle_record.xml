@@ -48,15 +48,13 @@
             app:layout_constraintTop_toTopOf="@+id/guideline17"/>
 
 
-        <Spinner
+        <TextView
             android:id="@+id/vehicleName"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:spinnerMode="dropdown"
             app:fontFamily="@font/roboto_medium"
-            android:textColor="@color/appGrey"
+            android:textColor="@color/black"
             android:textSize="24sp"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline16"
             app:layout_constraintStart_toStartOf="@+id/guideline22"
