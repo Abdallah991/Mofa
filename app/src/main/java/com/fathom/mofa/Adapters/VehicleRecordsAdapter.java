@@ -52,7 +52,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
     public VehicleRecordHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "OnCreateViewHolder: Called.");
         // Tying the list Item
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_list_item,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_list_item,parent, false);
 
         return new VehicleRecordHolder(view);
     }
@@ -109,14 +109,14 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
             super(itemView);
 
             // binding the views with the list items
-            card = itemView.findViewById(R.id.vehicleCard);
-            driverName = itemView.findViewById(R.id.IdVehicle);
-            model = itemView.findViewById(R.id.vehicleModel);
-            make = itemView.findViewById(R.id.vehicleMake);
-            provider = itemView.findViewById(R.id.rentalInfoVehicle);
-            date = itemView.findViewById(R.id.vehicleDate);
-            status = itemView.findViewById(R.id.vehicleStatus);
-            statusColor = itemView.findViewById(R.id.status);
+            card = itemView.findViewById(R.id.dashboardCard);
+            driverName = itemView.findViewById(R.id.driverNameDashboard);
+            model = itemView.findViewById(R.id.vehicleModelDashboard);
+            make = itemView.findViewById(R.id.vehicleMakeDashboard);
+            provider = itemView.findViewById(R.id.rentalInfoDashboard);
+            date = itemView.findViewById(R.id.vehicleRecordDate);
+            status = itemView.findViewById(R.id.vehicleStatusDashboard);
+            statusColor = itemView.findViewById(R.id.statusDashboard);
         }
     }
 }

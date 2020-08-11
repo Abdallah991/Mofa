@@ -46,7 +46,6 @@ public class VehicleDashboard extends Fragment {
     private VehicleViewModel mVehicleViewModel;
     private SearchView searchVehicles;
     private ImageView searchButton;
-    private ImageView filterButton;
     private TextView numberOfRecords;
     private TextView numberOfPages;
     private Button backButton;
@@ -73,7 +72,6 @@ public class VehicleDashboard extends Fragment {
         mVehiclesRecycler = view.findViewById(R.id.vehiclesInDashboard);
         searchVehicles = view.findViewById(R.id.searchVehicle);
         searchButton = view.findViewById(R.id.searchVehicles);
-        filterButton = view.findViewById(R.id.filterVehicles);
         numberOfRecords = view.findViewById(R.id.numberOfRecordsVehicles);
         numberOfPages = view.findViewById(R.id.numberOfPagesVehicles);
         backButton = view.findViewById(R.id.backButtonVehicles);
@@ -91,7 +89,8 @@ public class VehicleDashboard extends Fragment {
             public void onChanged(List<VehicleDataModel> vehicleDataModels) {
                 Log.d(TAG, vehicleDataModels.size()+" ");
                 mVehiclesAdapter.notifyDataSetChanged();
-                initRecycler();            }
+                initRecycler();
+            }
         });
 
         initRecycler();
