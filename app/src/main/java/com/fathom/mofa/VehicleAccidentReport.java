@@ -28,6 +28,9 @@ import android.widget.Toast;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -66,6 +69,9 @@ public class VehicleAccidentReport extends Fragment {
     // Photos
     public static CarPhotosDataModel carPhotosRecord = new CarPhotosDataModel();
     private String selector;
+    private SimpleDateFormat formatter;
+    private Date mDate;
+
     // Vehicle state
     private boolean carDamageStatus =false;
     private boolean carUseStatus =false;
@@ -406,6 +412,8 @@ public class VehicleAccidentReport extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "vehicleAccidentReport";
+        formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        mDate = new Date();
 
     }
 
@@ -446,22 +454,22 @@ public class VehicleAccidentReport extends Fragment {
                         switch (selector) {
                             case "vehicleRightSide":
                                 vehicleRightSide.setImageBitmap(selectedImage);
-                                vehicleRecord.setPhotoRightSide(selectedImage.toString());
+                                vehicleRecord.setPhotoRightSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"right");
                                 carPhotosRecord.setPhotoRightSide(selectedImage);
                                 break;
                             case "vehicleLeftSide":
                                 vehicleLeftSide.setImageBitmap(selectedImage);
-                                vehicleRecord.setPhotoLeftSide(selectedImage.toString());
+                                vehicleRecord.setPhotoLeftSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"left");
                                 carPhotosRecord.setPhotoLeftSide(selectedImage);
                                 break;
                             case "vehicleFrontSide":
                                 vehicleFrontSide.setImageBitmap(selectedImage);
-                                vehicleRecord.setPhotoFrontSide(selectedImage.toString());
+                                vehicleRecord.setPhotoFrontSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"front");
                                 carPhotosRecord.setPhotoFrontSide(selectedImage);
                                 break;
                             case "vehicleBackSide":
                                 vehicleBackSide.setImageBitmap(selectedImage);
-                                vehicleRecord.setPhotoBackSide(selectedImage.toString());
+                                vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"back");
                                 carPhotosRecord.setPhotoBackSide(selectedImage);
                                 break;
 
@@ -491,22 +499,22 @@ public class VehicleAccidentReport extends Fragment {
                                 switch (selector) {
                                     case "vehicleRightSide":
                                         vehicleRightSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicleRecord.setPhotoRightSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicleRecord.setPhotoRightSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"right");
                                         carPhotosRecord.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleLeftSide":
                                         vehicleLeftSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicleRecord.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicleRecord.setPhotoLeftSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"left");
                                         carPhotosRecord.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleFrontSide":
                                         vehicleFrontSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicleRecord.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicleRecord.setPhotoFrontSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"front");
                                         carPhotosRecord.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleBackSide":
                                         vehicleBackSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicleRecord.setPhotoBackSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber()+formatter.format(mDate)+"back");
                                         carPhotosRecord.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
                                         break;
 

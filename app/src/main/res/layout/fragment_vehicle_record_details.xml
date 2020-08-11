@@ -491,7 +491,7 @@
 
 
     <LinearLayout
-        android:id="@+id/photoGalleryLayout"
+        android:id="@+id/photoGalleryRecord"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -512,7 +512,7 @@
             app:cardPreventCornerOverlap="false">
 
             <ImageView
-                android:id="@+id/vehicleImagesHandover"
+                android:id="@+id/vehicleImagesRecord"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -533,7 +533,7 @@
                 android:layout_weight="4" />
 
             <ImageView
-                android:id="@+id/firstImageHandover"
+                android:id="@+id/firstImageRecord"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_weight="0.5"
@@ -541,7 +541,7 @@
                 android:src="@drawable/red_dot" />
 
             <ImageView
-                android:id="@+id/secondImageHandover"
+                android:id="@+id/secondImageRecord"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_weight="0.5"
@@ -549,7 +549,7 @@
                 android:src="@drawable/grey_dot" />
 
             <ImageView
-                android:id="@+id/thirdImageHandover"
+                android:id="@+id/thirdImageRecord"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_weight="0.5"
@@ -557,7 +557,7 @@
                 android:src="@drawable/grey_dot" />
 
             <ImageView
-                android:id="@+id/fourthImageHandover"
+                android:id="@+id/fourthImageRecord"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_weight="0.5"

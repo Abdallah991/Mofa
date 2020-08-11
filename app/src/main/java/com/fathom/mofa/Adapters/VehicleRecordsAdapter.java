@@ -23,7 +23,6 @@ import java.util.Date;
 public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAdapter.VehicleRecordHolder> {
     private static final String TAG = "Vehicles Adapter";
     public static VehicleRecordDataModel vehicleRecordDashboard;
-
     // Declare variables
     private ArrayList<VehicleRecordDataModel> mVehicleRecords;
     private Context mContext;
