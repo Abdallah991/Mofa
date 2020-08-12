@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="800dp"
     tools:context=".VehicleDashboard">
 
     <TextView
@@ -148,7 +148,7 @@
         android:id="@+id/numberOfRecordsVehicles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12 records"
+        android:text="Vehicles"
         android:textAllCaps="false"
         android:textColor="@color/appGrey"
         android:textSize="16sp"

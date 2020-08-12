@@ -97,6 +97,7 @@
     <string name="car_details">Car Details</string>
     <string name="car_status">Car status</string>
     <string name="notes">Notes</string>
+    <string name="sort_by">Sort by:</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -150,5 +151,12 @@
         <item>Saloon</item>
         <item>SUV</item>
         <item>Pick Up</item>
+    </string-array>
+    <string-array name="sort">
+        <item>Car</item>
+        <item>Driver Name</item>
+        <item>Status</item>
+        <item>Provider</item>
+        <item>Make</item>
     </string-array>
 </resources>

@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.R;
 import com.fathom.mofa.ViewModels.VehicleRecordViewModel;
@@ -94,6 +96,13 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
     public int getItemCount() {
         return mVehicleRecords.size();
     }
+
+    public void filterDashboard(ArrayList<VehicleRecordDataModel> vehicleRecords) {
+
+        mVehicleRecords = vehicleRecords;
+        notifyDataSetChanged();
+    }
+
 
     public class VehicleRecordHolder extends RecyclerView.ViewHolder {
         CardView card;

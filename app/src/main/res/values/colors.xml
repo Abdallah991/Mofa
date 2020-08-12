@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#949496</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="appGrey">#707070</color>
+    <color name="appGrey2">#C5C5C5</color>
+    <color name="maroon">#7B1717</color>
     <color name="black">#000</color>
     <color name="mileStone">#E3E3E3</color>
     <color name="editTextBackground">#F5F5F5</color>

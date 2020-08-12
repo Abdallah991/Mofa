@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fathom.mofa.Adapters.VehiclesAdapter;
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -40,13 +41,14 @@ public class VehicleDashboard extends Fragment {
 
     private String TAG = "Vehicle Dashboard";
     private ArrayList<VehicleDataModel> mVehicles = new ArrayList<>();
+    private ArrayList<VehicleDataModel> filteredVehicles = new ArrayList<>();
     private RecyclerView mVehiclesRecycler;
     private VehiclesAdapter mVehiclesAdapter;
     private NavController mNavController;
     private VehicleViewModel mVehicleViewModel;
     private SearchView searchVehicles;
     private ImageView searchButton;
-    private TextView numberOfRecords;
+    private TextView numberOfVehicles;
     private TextView numberOfPages;
     private Button backButton;
     private Button nextButton;
@@ -72,7 +74,7 @@ public class VehicleDashboard extends Fragment {
         mVehiclesRecycler = view.findViewById(R.id.vehiclesInDashboard);
         searchVehicles = view.findViewById(R.id.searchVehicle);
         searchButton = view.findViewById(R.id.searchVehicles);
-        numberOfRecords = view.findViewById(R.id.numberOfRecordsVehicles);
+        numberOfVehicles = view.findViewById(R.id.numberOfRecordsVehicles);
         numberOfPages = view.findViewById(R.id.numberOfPagesVehicles);
         backButton = view.findViewById(R.id.backButtonVehicles);
         nextButton = view.findViewById(R.id.nextButtonVehicles);
@@ -90,6 +92,39 @@ public class VehicleDashboard extends Fragment {
                 Log.d(TAG, vehicleDataModels.size()+" ");
                 mVehiclesAdapter.notifyDataSetChanged();
                 initRecycler();
+            }
+        });
+
+        searchVehicles.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+
+                String searchText = searchVehicles.getQuery().toString();
+                filter(searchText);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                if (s.isEmpty())
+                {
+                    mVehiclesAdapter.filterRecycler(mVehicles);
+                }
+
+
+                return false;
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searchText = searchVehicles.getQuery().toString();
+                filter(searchText);
+
             }
         });
 
@@ -117,6 +152,7 @@ public class VehicleDashboard extends Fragment {
             public void run() {
                 mVehiclesRecycler.setAdapter(mVehiclesAdapter);
                 mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                numberOfVehicles.setText(mVehicles.size()+" Vehicles");
                 progressDialog.dismiss();
             }
 
@@ -126,4 +162,94 @@ public class VehicleDashboard extends Fragment {
 
 
     }
+
+    private void filter(String searchText) {
+        filteredVehicles = new ArrayList<>();
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getPlateNumber().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+        }
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+            return;
+        }
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getModel().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+
+        }
+
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+            return;
+        }
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getMake().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+
+        }
+
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+            return;
+        }
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getRentalInfoContent().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+
+        }
+
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+            return;
+        }
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getColorOfCar().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+
+        }
+
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+            return;
+        }
+
+        for (VehicleDataModel vehicle : mVehicles) {
+            if (vehicle.getStatus().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredVehicles.add(vehicle);
+            }
+
+        }
+
+        if (!filteredVehicles.isEmpty()) {
+            checkIfSearchIsValid();
+
+        } else {
+            mVehiclesAdapter.filterRecycler(mVehicles);
+            Toast.makeText(getContext(), "No Searchable match", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    private void checkIfSearchIsValid() {
+        if (!filteredVehicles.isEmpty()) {
+            mVehiclesAdapter.filterRecycler(filteredVehicles);
+        }
+        else {
+            mVehiclesAdapter.filterRecycler(mVehicles);
+            Toast.makeText(getContext(), "No Searchable match", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

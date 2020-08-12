@@ -1,5 +1,6 @@
 package com.fathom.mofa.DataModels;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class VehicleRecordDataModel {
@@ -281,4 +282,41 @@ public class VehicleRecordDataModel {
     public void setName(String name) {
         this.name = name;
     }
+
+
+    public static Comparator<VehicleRecordDataModel> statusComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc1.getStatus().compareTo(jc2.getStatus()));
+        }
+    };
+
+    public static Comparator<VehicleRecordDataModel> modelComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc1.getModel().compareTo(jc2.getModel()));
+        }
+    };
+
+    public static Comparator<VehicleRecordDataModel> rentalComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc1.getRentalInfo().compareTo(jc2.getRentalInfo()));
+        }
+    };
+
+    public static Comparator<VehicleRecordDataModel> driverComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc1.getDriverName().compareTo(jc2.getDriverName()));
+        }
+    };
+
+    public static Comparator<VehicleRecordDataModel> makeComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc1.getMake().compareTo(jc2.getMake()));
+        }
+    };
+
 }

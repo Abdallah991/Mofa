@@ -94,6 +94,13 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
     }
 
 
+    public void filterRecycler(ArrayList<VehicleDataModel> vehicles) {
+
+        mVehicles = vehicles;
+        notifyDataSetChanged();
+    }
+
+
     public class VehicleHolder extends RecyclerView.ViewHolder{
         CardView card;
         TextView vehicleId;
