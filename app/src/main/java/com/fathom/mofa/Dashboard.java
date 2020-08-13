@@ -1,5 +1,7 @@
 package com.fathom.mofa;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
@@ -21,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
@@ -36,10 +39,15 @@ import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.fathom.mofa.ViewModels.VehicleRecordViewModel;
 import com.fathom.mofa.ViewModels.VehicleViewModel;
+import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -65,12 +73,30 @@ public class Dashboard extends Fragment {
     private ProgressDialog progressDialog;
     private int actionToVehicleRecordDetail = R.id.action_dashboard_to_vehicleRecordDetails;
     // Sorting Spinner
-    private int positionOfSorter;
-    private String[] sortingBys ;
+    private String[] sortingBys;
     private ArrayAdapter<String> sortAdapter;
     private Spinner sortSpinner;
-    private boolean filter = false;
     private VehicleRecordSorter sorter;
+    // filter dialog
+    private ImageView cancelButton;
+    private Button confirmFilter;
+    private Spinner typeSpinner;
+    private Spinner providerSpinner;
+    private Spinner statusSpinner;
+    private TextInputEditText dateFrom;
+    private TextInputEditText dateTo;
+    private Date dateFromValue;
+    private Date dateToValue;
+    private String vehicleType;
+    private String status;
+    private String provider;
+    // spinner Arrays
+    private String[] types;
+    private ArrayList<String> providers;
+    private String[] statuses;
+    private ArrayAdapter<String> typeAdapter;
+    private ArrayAdapter<String> providerAdapter;
+    private ArrayAdapter<String> statusAdapter;
 
 
     public Dashboard() {
@@ -96,9 +122,27 @@ public class Dashboard extends Fragment {
         numberOfRecords = view.findViewById(R.id.numberOfRecords);
         sortSpinner = view.findViewById(R.id.sortName);
 
+        // Filter dialog
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.filter_search);
+        cancelButton = dialog.findViewById(R.id.cancelFilter);
+        confirmFilter = dialog.findViewById(R.id.confirmFilter);
+        typeSpinner = dialog.findViewById(R.id.typeSpinner);
+        providerSpinner = dialog.findViewById(R.id.providerSpinner);
+        statusSpinner = dialog.findViewById(R.id.statusSpinner);
+        dateFrom = dialog.findViewById(R.id.dateFromFilter);
+        dateTo = dialog.findViewById(R.id.dateToFilter);
+        final DatePickerDialog[] picker = new DatePickerDialog[1];
+
+        dateTo.setShowSoftInputOnFocus(false);
+        dateFrom.setShowSoftInputOnFocus(false);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+        // loading spinner Arrays
         sortingBys = getResources().getStringArray(R.array.sort);
+        types = getResources().getStringArray(R.array.types);
+        statuses = getResources().getStringArray(R.array.statuses);
 
         sortAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, sortingBys);
@@ -110,9 +154,10 @@ public class Dashboard extends Fragment {
         mVehicleRecordViewModel.getVehicleRecords().observe(getViewLifecycleOwner(), new Observer<List<VehicleRecordDataModel>>() {
             @Override
             public void onChanged(List<VehicleRecordDataModel> vehicleDataModels) {
-                Log.d(TAG, vehicleDataModels.size()+" ");
+                Log.d(TAG, vehicleDataModels.size() + " ");
                 mVehicleRecordAdapter.notifyDataSetChanged();
-                initRecycler();            }
+                initRecycler();
+            }
         });
 
         searchVehicleRecords.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -129,8 +174,7 @@ public class Dashboard extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                if (s.isEmpty())
-                {
+                if (s.isEmpty()) {
                     mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
                 }
 
@@ -151,14 +195,80 @@ public class Dashboard extends Fragment {
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!filter) {
-////                    filterLayout.setVisibility(View.VISIBLE);
-//                    filter = true;
-//                }else {
-////                    filterLayout.setVisibility(View.GONE);
-//                    filter = false;
-//                }
+                dialog.show();
+                loadSpinnerArrays();
 
+            }
+        });
+        dateFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                dateFromValue = null;
+                picker[0] = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dateFrom.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    dateFromValue = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), issueDateValue.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, year, month, day);
+                picker[0].show();
+            }
+        });
+        dateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                dateToValue = null;
+                picker[0] = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dateTo.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
+                                try {
+                                    dateToValue = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                                    Toast.makeText(getContext(), issueDateValue.toString() +" ", Toast.LENGTH_SHORT).show();
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, year, month, day);
+                picker[0].show();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        confirmFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                filteredSearch();
             }
         });
 
@@ -187,14 +297,16 @@ public class Dashboard extends Fragment {
             public void run() {
                 mVehiclesRecycler.setAdapter(mVehicleRecordAdapter);
                 mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                numberOfRecords.setText(mVehicleRecords.size()+ " Records");
+                numberOfRecords.setText(mVehicleRecords.size() + " Records");
+                filteredVehicleRecords = new ArrayList<>();
+                sorter = new VehicleRecordSorter(mVehicleRecords);
+                filteredVehicleRecords = sorter.getSortedJobCandidateByModel();
+                mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
                 progressDialog.dismiss();
             }
 
 
-        },SPLASH_TIME_OUT);
-
-
+        }, SPLASH_TIME_OUT);
 
 
     }
@@ -224,7 +336,7 @@ public class Dashboard extends Fragment {
             return;
         }
 
-        for (VehicleRecordDataModel vehicleRecord  : mVehicleRecords) {
+        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
             if (vehicleRecord.getMake().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredVehicleRecords.add(vehicleRecord);
             }
@@ -236,7 +348,7 @@ public class Dashboard extends Fragment {
             return;
         }
 
-        for (VehicleRecordDataModel vehicleRecord  : mVehicleRecords) {
+        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
             if (vehicleRecord.getRentalInfo().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredVehicleRecords.add(vehicleRecord);
             }
@@ -249,7 +361,7 @@ public class Dashboard extends Fragment {
         }
 
 
-        for (VehicleRecordDataModel vehicleRecord  : mVehicleRecords) {
+        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
             if (vehicleRecord.getStatus().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredVehicleRecords.add(vehicleRecord);
             }
@@ -270,83 +382,143 @@ public class Dashboard extends Fragment {
     private void checkIfSearchIsValid() {
         if (!filteredVehicleRecords.isEmpty()) {
             mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
-        }
-        else {
+        } else {
             mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-            Toast.makeText(getContext(), "No Searchable match", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "No Searchable match", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void initSorting() {
 
 
+        sortAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, sortingBys) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    return true;
+                } else {
+                    return true;
+                }
+            }
 
-
-
-                sortAdapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, sortingBys) {
-                    @Override
-                    public boolean isEnabled(int position) {
-                        if (position == 0) {
-                            return true;
-                        } else {
-                            return true;
-                        }
-                    }
-
-                    @Override
-                    public View getDropDownView(int position, View convertView,
-                                                ViewGroup parent) {
-                        View view = super.getDropDownView(position, convertView, parent);
-                        TextView tv = (TextView) view;
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
 //                        if (position == 0) {
 //                            // Set the hint text color gray
 //                            tv.setTextColor(getResources().getColor(R.color.appGrey));
 //                        } else {
 //                            tv.setTextColor(getResources().getColor(R.color.black));
 //                        }
-                        return view;
-                    }
-                };
-                sortAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                sortSpinner.setAdapter(sortAdapter);
-                sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
-                        String selectedItemText = (String) parent.getItemAtPosition(position);
-
-                        filteredVehicleRecords = new ArrayList<>();
-                        sorter = new VehicleRecordSorter(mVehicleRecords);
-                        switch (position) {
-                            case 0:
-                                filteredVehicleRecords = sorter.getSortedJobCandidateByModel();
-                                mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-                                break;
-                            case 1:
-                                filteredVehicleRecords = sorter.getSortedJobCandidateByDriver();
-                                mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-                                break;
-                            case 2:
-                                filteredVehicleRecords = sorter.getSortedJobCandidateByStatus();
-                                mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-                                break;
-                            case 3:
-                                filteredVehicleRecords = sorter.getSortedJobCandidateByRental();
-                                mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-                               break;
-                            case 4:
-                                filteredVehicleRecords = sorter.getSortedJobCandidateByMake();
-                                mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
-                                break;
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-//                progressDialog.dismiss();
+                return view;
             }
+        };
+        sortAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(sortAdapter);
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                filteredVehicleRecords = new ArrayList<>();
+                sorter = new VehicleRecordSorter(mVehicleRecords);
+                switch (position) {
+                    case 0:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByModel();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
+                    case 1:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByDriver();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
+                    case 2:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByStatus();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
+                    case 3:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByRental();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
+                    case 4:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByMake();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+//                progressDialog.dismiss();
+    }
+
+    private void loadSpinnerArrays() {
+
+        providers = new ArrayList<>();
+        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
+
+            if (providers.isEmpty())
+                providers.add(vehicleRecord.getRentalInfo());
+
+            for (String value : providers) {
+                if (!value.equals(vehicleRecord.getRentalInfo())) {
+                    providers.add(vehicleRecord.getRentalInfo());
+
+                }
+            }
+        }
+
+        providerAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, providers);
+        typeAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, types);
+        statusAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, statuses);
+        providerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        providerSpinner.setAdapter(providerAdapter);
+        typeSpinner.setAdapter(typeAdapter);
+        statusSpinner.setAdapter(statusAdapter);
+
+    }
+
+    private void filteredSearch() {
+
+        provider = providerSpinner.getSelectedItem().toString();
+        status = statusSpinner.getSelectedItem().toString();
+        vehicleType = typeSpinner.getSelectedItem().toString();
+        Toast.makeText(getContext(), provider+status+vehicleType, Toast.LENGTH_SHORT).show();
+        filteredVehicleRecords = new ArrayList<>();
+        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
+            if (vehicleRecord.getRentalInfo().contains(provider)&&
+                    vehicleRecord.getStatus().equals(status) &&
+                    vehicleRecord.getCarType().equals(vehicleType) &&
+                    vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue)) {
+                filteredVehicleRecords.add(vehicleRecord);
+            }
+
+        }
+
+
+        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+        dateTo.setShowSoftInputOnFocus(false);
+        dateFrom.setShowSoftInputOnFocus(false);
+
+    }
+
+
+    private void filterDates() {
+        for (VehicleRecordDataModel record: filteredVehicleRecords) {
+//            if () {
+//
+//            }
+        }
+    }
 
 
 }

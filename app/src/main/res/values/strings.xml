@@ -98,6 +98,13 @@
     <string name="car_status">Car status</string>
     <string name="notes">Notes</string>
     <string name="sort_by">Sort by:</string>
+    <string name="filtered_search">filtered Search</string>
+    <string name="type_filter">Type:</string>
+    <string name="provider_filter">Provider:</string>
+    <string name="status_filter">Status:</string>
+    <string name="date_from_filter">Date from:</string>
+    <string name="date_to_filter">Date to:</string>
+    <string name="confirm">Confirm</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -150,7 +157,8 @@
         <item>Car type</item>
         <item>Saloon</item>
         <item>SUV</item>
-        <item>Pick Up</item>
+        <item>Jeep</item>
+        <item>Family</item>
     </string-array>
     <string-array name="sort">
         <item>Car</item>
@@ -158,5 +166,16 @@
         <item>Status</item>
         <item>Provider</item>
         <item>Make</item>
+    </string-array>
+    <string-array name="types">
+        <item>Saloon</item>
+        <item>SUV</item>
+        <item>Jeep</item>
+        <item>Family</item>
+    </string-array>
+    <string-array name="statuses">
+        <item>Busy</item>
+        <item>Returned</item>
+        <item>Released</item>
     </string-array>
 </resources>

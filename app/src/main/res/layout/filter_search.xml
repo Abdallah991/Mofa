@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="400dp"
+    android:layout_height="600dp"
+    android:orientation="vertical"
+    android:background="@color/popUpBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:id="@+id/filterSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="4.5"
+            android:text="@string/filtered_search"
+            android:textColor="@color/appGrey"
+            android:textSize="28sp"
+            app:fontFamily="@font/roboto_light" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/cancel_button"
+            android:elevation="0dp"
+            android:id="@+id/cancelFilter"
+            android:layout_marginStart="80dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:id="@+id/typeFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.5"
+            android:text="@string/type_filter"
+            android:textColor="@color/appGrey"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_light" />
+
+        <Spinner
+            android:id="@+id/typeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3.5"
+            android:elevation="0dp"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:id="@+id/providerFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.5"
+            android:text="@string/provider_filter"
+            android:textColor="@color/appGrey"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_light" />
+
+        <Spinner
+            android:id="@+id/providerSpinner"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3.5"
+            android:elevation="0dp"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:id="@+id/statusFilter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.5"
+            android:text="@string/status_filter"
+            android:textColor="@color/appGrey"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_light" />
+
+        <Spinner
+            android:id="@+id/statusSpinner"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="3.5"
+            android:elevation="0dp"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.5"
+            android:text="@string/date_from_filter"
+            android:textColor="@color/appGrey"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_light" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout4"
+            android:layout_width="0dp"
+            android:layout_weight="3.5"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="start"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:theme="@style/TextLabelNoUnderline"
+            app:layout_constraintBottom_toTopOf="@+id/guideline25"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline22"
+            app:layout_constraintTop_toTopOf="@+id/guideline43">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateFromFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:windowSoftInputMode="stateHidden"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/popUpBackground">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.5"
+            android:text="@string/date_to_filter"
+            android:textColor="@color/appGrey"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_light" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout5"
+            android:layout_width="0dp"
+            android:layout_weight="3.5"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="start"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:theme="@style/TextLabelNoUnderline"
+            app:layout_constraintBottom_toTopOf="@+id/guideline25"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline22"
+            app:layout_constraintTop_toTopOf="@+id/guideline43">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateToFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:windowSoftInputMode="stateHidden"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:background="@color/popUpBackground">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/confirmFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="2"
+            android:textAllCaps="false"
+            android:background="@drawable/button_shadow"
+            android:textColor="@color/signatureBackground"
+            android:text="@string/confirm" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

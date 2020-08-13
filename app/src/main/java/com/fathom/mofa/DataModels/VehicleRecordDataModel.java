@@ -18,6 +18,7 @@ public class VehicleRecordDataModel {
     private String model;
     private String make;
     private String rentalInfo;
+    private String carType;
     // Vehicle will have these Statuses
     // 1- Busy       -- out with a Driver    --orange
     // 2- Available   -- in Mofa position    --green
@@ -283,35 +284,44 @@ public class VehicleRecordDataModel {
         this.name = name;
     }
 
+    public String getCarType() {
+        return carType;
+    }
 
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
+
+    // Classes to sort Array list depending on Alphabet order
+    // per status field
     public static Comparator<VehicleRecordDataModel> statusComparator = new Comparator<VehicleRecordDataModel>() {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
             return (int) (jc1.getStatus().compareTo(jc2.getStatus()));
         }
     };
-
+    // per model field
     public static Comparator<VehicleRecordDataModel> modelComparator = new Comparator<VehicleRecordDataModel>() {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
             return (int) (jc1.getModel().compareTo(jc2.getModel()));
         }
     };
-
+    // per rental info field
     public static Comparator<VehicleRecordDataModel> rentalComparator = new Comparator<VehicleRecordDataModel>() {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
             return (int) (jc1.getRentalInfo().compareTo(jc2.getRentalInfo()));
         }
     };
-
+    // per driver name field
     public static Comparator<VehicleRecordDataModel> driverComparator = new Comparator<VehicleRecordDataModel>() {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
             return (int) (jc1.getDriverName().compareTo(jc2.getDriverName()));
         }
     };
-
+    // per year of make field
     public static Comparator<VehicleRecordDataModel> makeComparator = new Comparator<VehicleRecordDataModel>() {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {

@@ -11,4 +11,6 @@
     <color name="editTextBackground">#F5F5F5</color>
     <color name="signatureBackground">#F5F5F5</color>
     <color name="dashboardBackground">#FDFCFC</color>
+    <color name="popUpBackground">#FBFBFB</color>
+
 </resources>
