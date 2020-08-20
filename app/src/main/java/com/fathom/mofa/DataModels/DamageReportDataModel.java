@@ -30,6 +30,7 @@ public class DamageReportDataModel {
     // M: Mofa
     // R: Rental Company
     private String carTransaction;
+    private String carType;
 
 
     // to initialize the damage report with no errors
@@ -203,5 +204,13 @@ public class DamageReportDataModel {
 
     public void setDamageReportName(String damageReportName) {
         this.damageReportName = damageReportName;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
     }
 }

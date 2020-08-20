@@ -119,7 +119,7 @@ public class VehicleSetUp extends Fragment {
             @Override
             public void onClick(View v) {
                if (getCarInfo()) {
-                   mNavController.navigate(actionNavigateToVehicleSetUpRegistration);
+                mNavController.navigate(actionNavigateToVehicleSetUpRegistration);
                }
             }
         });

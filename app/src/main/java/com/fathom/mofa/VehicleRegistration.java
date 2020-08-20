@@ -194,6 +194,7 @@ public class VehicleRegistration extends Fragment {
             @Override
             public void onClick(View v) {
                 if(getCarInfo()) {
+
                     mNavController.navigate(actionNavigateToDamageFromRegistration);
                 }
 
@@ -255,22 +256,22 @@ public class VehicleRegistration extends Fragment {
                         switch (selector) {
                             case "vehicleRightSide":
                                 vehicleRightSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoRightSide(selectedImage.toString());
+                                vehicle.setPhotoRightSide(vehicle.getPlateNumber()+"right");
                                 carPhotos.setPhotoRightSide(selectedImage);
                             break;
                             case "vehicleLeftSide":
                                 vehicleLeftSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoLeftSide(selectedImage.toString());
+                                vehicle.setPhotoLeftSide(vehicle.getPlateNumber()+"left");
                                 carPhotos.setPhotoLeftSide(selectedImage);
                                 break;
                             case "vehicleFrontSide":
                                 vehicleFrontSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoFrontSide(selectedImage.toString());
+                                vehicle.setPhotoFrontSide(vehicle.getPlateNumber()+"front");
                                 carPhotos.setPhotoFrontSide(selectedImage);
                                 break;
                             case "vehicleBackSide":
                                 vehicleBackSide.setImageBitmap(selectedImage);
-                                vehicle.setPhotoBackSide(selectedImage.toString());
+                                vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
                                 carPhotos.setPhotoBackSide(selectedImage);
                                 break;
 
@@ -300,22 +301,22 @@ public class VehicleRegistration extends Fragment {
                                 switch (selector) {
                                     case "vehicleRightSide":
                                         vehicleRightSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoRightSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicle.setPhotoRightSide(vehicle.getPlateNumber()+"right");
                                         carPhotos.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleLeftSide":
                                         vehicleLeftSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicle.setPhotoLeftSide(vehicle.getPlateNumber()+"left");
                                         carPhotos.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleFrontSide":
                                         vehicleFrontSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicle.setPhotoFrontSide(vehicle.getPlateNumber()+"front");
                                         carPhotos.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
                                         break;
                                     case "vehicleBackSide":
                                         vehicleBackSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                        vehicle.setPhotoBackSide(BitmapFactory.decodeFile(picturePath).toString());
+                                        vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
                                         carPhotos.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
                                         break;
 

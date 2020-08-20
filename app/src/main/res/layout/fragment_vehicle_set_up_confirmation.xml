@@ -40,7 +40,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -312,12 +313,29 @@
                         android:textSize="17sp" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="1000dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <include layout="@layout/damage_report"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="400dp">
+                    <ViewFlipper
+                        android:id="@+id/vehicleConfirmationViewFlipper"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginEnd="400dp"
+                        android:layout_height="wrap_content">
+                        <include
+                            android:id="@+id/vehicleConfirmationSaloon"
+                            layout="@layout/damage_report" />
+
+                        <include
+                            android:id="@+id/vehicleConfirmationJeep"
+                            layout="@layout/damage_report_jeep" />
+                        <include
+                            android:id="@+id/vehicleConfirmationFamily"
+                            layout="@layout/damage_report_family" />
+                        <include
+                            android:id="@+id/vehicleConfirmationVan"
+                            layout="@layout/damage_report_van" />
+                    </ViewFlipper>
                 </LinearLayout>
 
                 <LinearLayout

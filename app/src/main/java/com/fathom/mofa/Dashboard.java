@@ -498,7 +498,8 @@ public class Dashboard extends Fragment {
             if (vehicleRecord.getRentalInfo().contains(provider)&&
                     vehicleRecord.getStatus().equals(status) &&
                     vehicleRecord.getCarType().equals(vehicleType) &&
-                    vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue)) {
+                    vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue))
+            {
                 filteredVehicleRecords.add(vehicleRecord);
             }
 
@@ -508,17 +509,10 @@ public class Dashboard extends Fragment {
         mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
         dateTo.setShowSoftInputOnFocus(false);
         dateFrom.setShowSoftInputOnFocus(false);
+        searchVehicleRecords.clearFocus();
 
     }
 
-
-    private void filterDates() {
-        for (VehicleRecordDataModel record: filteredVehicleRecords) {
-//            if () {
-//
-//            }
-        }
-    }
 
 
 }

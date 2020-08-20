@@ -156,7 +156,7 @@
     <string-array name="type">
         <item>Car type</item>
         <item>Saloon</item>
-        <item>SUV</item>
+        <item>Van</item>
         <item>Jeep</item>
         <item>Family</item>
     </string-array>
@@ -169,9 +169,9 @@
     </string-array>
     <string-array name="types">
         <item>Saloon</item>
-        <item>SUV</item>
         <item>Jeep</item>
         <item>Family</item>
+        <item>Van</item>
     </string-array>
     <string-array name="statuses">
         <item>Busy</item>

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.google.android.material.navigation.NavigationView;
@@ -43,6 +44,7 @@ public class VehicleSetUpDamageReport extends Fragment {
     private ImageView backRight;
     private ImageView backLeft;
     private ImageView backCar;
+    private ViewFlipper mViewFlipper;
     public static DamageReportDataModel damageReport;
     private NavController navController;
     private int actionNavigateToRentalInformation = R.id.action_vehicleSetUpDamageReport_to_vehicleSetUpRentalInfo;
@@ -65,20 +67,78 @@ public class VehicleSetUpDamageReport extends Fragment {
 
         next = view.findViewById(R.id.nextVehicleDamage);
         back = view.findViewById(R.id.backVehicleDamage);
-        front = view.findViewById(R.id.front);
-        frontLeft = view.findViewById(R.id.frontLeft);
-        frontRight = view.findViewById(R.id.frontRight);
-        frontLeftDoor = view.findViewById(R.id.frontLeftDoor);
-        frontRightDoor = view.findViewById(R.id.frontRightDoor);
-        windShield = view.findViewById(R.id.windShield);
-        frontCeiling = view.findViewById(R.id.ceiling);
-        backCeiling = view.findViewById(R.id.backCeiling);
-        backRightDoor = view.findViewById(R.id.backRightDoor);
-        backLeftDoor = view.findViewById(R.id.backLeftDoor);
-        backWindShield = view.findViewById(R.id.windShieldBack);
-        backLeft = view.findViewById(R.id.backLeft);
-        backRight = view.findViewById(R.id.backRight);
-        backCar = view.findViewById(R.id.back);
+        mViewFlipper = view.findViewById(R.id.vehicleSetupViewFlipper);
+        switch (vehicle.getCarType()) {
+            case "Saloon":
+                mViewFlipper.setDisplayedChild(0);
+                front = view.findViewById(R.id.frontConfirmation);
+                frontLeft = view.findViewById(R.id.frontLeftConfirmation);
+                frontRight = view.findViewById(R.id.frontRightConfirmation);
+                frontLeftDoor = view.findViewById(R.id.frontLeftDoorConfirmation);
+                frontRightDoor = view.findViewById(R.id.frontRightDoorConfirmation);
+                windShield = view.findViewById(R.id.windShieldConfirmation);
+                frontCeiling = view.findViewById(R.id.ceilingConfirmation);
+                backCeiling = view.findViewById(R.id.backCeilingConfirmation);
+                backRightDoor = view.findViewById(R.id.backRightDoorConfirmation);
+                backLeftDoor = view.findViewById(R.id.backLeftDoorConfirmation);
+                backWindShield = view.findViewById(R.id.windShieldBackConfirmation);
+                backLeft = view.findViewById(R.id.backLeftConfirmation);
+                backRight = view.findViewById(R.id.backRightConfirmation);
+                backCar = view.findViewById(R.id.backConfirmation);
+                break;
+            case "Jeep":
+                mViewFlipper.setDisplayedChild(1);
+                front = view.findViewById(R.id.jeepFront);
+                frontLeft = view.findViewById(R.id.jeepFrontLeft);
+                frontRight = view.findViewById(R.id.jeepFrontRight);
+                frontLeftDoor = view.findViewById(R.id.jeepFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.jeepFrontRightDoor);
+                windShield = view.findViewById(R.id.jeepWindShield);
+                frontCeiling = view.findViewById(R.id.jeepCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.jeepBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.jeepBackLeftDoor);
+                backWindShield = view.findViewById(R.id.jeepBackWindShield);
+                backLeft = view.findViewById(R.id.jeepBackLeft);
+                backRight = view.findViewById(R.id.jeepBackRight);
+                backCar = view.findViewById(R.id.jeepBack);
+                break;
+            case "Family":
+                mViewFlipper.setDisplayedChild(2);
+                front = view.findViewById(R.id.familyFront);
+                frontLeft = view.findViewById(R.id.familyFrontLeft);
+                frontRight = view.findViewById(R.id.familyFrontRight);
+                frontLeftDoor = view.findViewById(R.id.familyFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.familyFrontRightDoor);
+                windShield = view.findViewById(R.id.familyWindShield);
+                frontCeiling = view.findViewById(R.id.familyCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.familyBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.familyBackLeftDoor);
+                backWindShield = view.findViewById(R.id.jeepBackWindShield);
+                backLeft = view.findViewById(R.id.familyBackLeft);
+                backRight = view.findViewById(R.id.familyBackRight);
+                backCar = view.findViewById(R.id.familyBack);
+                break;
+            case "Van":
+                mViewFlipper.setDisplayedChild(3);
+                front = view.findViewById(R.id.vanFront);
+                frontLeft = view.findViewById(R.id.vanFrontLeft);
+                frontRight = view.findViewById(R.id.vanFrontRight);
+                frontLeftDoor = view.findViewById(R.id.vanFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.vanFrontRightDoor);
+                windShield = view.findViewById(R.id.vanWindShield);
+                frontCeiling = view.findViewById(R.id.vanCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.vanBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.vanBackLeftDoor);
+//                backWindShield = view.findViewById(R.id.vanBackWindShield);
+                backLeft = view.findViewById(R.id.vanBackLeft);
+                backRight = view.findViewById(R.id.vanBackRight);
+                backCar = view.findViewById(R.id.vanBack);
+                break;
+        }
+
 
 
 
@@ -99,10 +159,33 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isFront()) {
-                    front.setImageResource(R.drawable.front_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            front.setImageResource(R.drawable.front_red);
+                            break;
+                        case "Jeep":
+                            front.setImageResource(R.drawable.jeep_front_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            front.setImageResource(R.drawable.family_front_red);
+                            break;
+                    }
                     damageReport.setFront(true);
+
                 } else if (damageReport.isFront()) {
-                    front.setImageResource(R.drawable.front);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            front.setImageResource(R.drawable.front);
+                            break;
+                        case "Jeep":
+                            front.setImageResource(R.drawable.jeep_front);
+                            break;
+                        case "Family":
+                        case "Van":
+                            front.setImageResource(R.drawable.family_front);
+                            break;
+                    }
                     damageReport.setFront(false);
                 }
             }
@@ -112,10 +195,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isFrontRight()) {
-                    frontRight.setImageResource(R.drawable.front_right_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                        frontRight.setImageResource(R.drawable.front_right_red);
+                        break;
+                        case "Jeep":
+                            frontRight.setImageResource(R.drawable.jeep_front_right_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontRight.setImageResource(R.drawable.family_front_right_red);
+                            break;
+                    }
                     damageReport.setFrontRight(true);
                 } else if (damageReport.isFrontRight()) {
-                    frontRight.setImageResource(R.drawable.front_right);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontRight.setImageResource(R.drawable.front_right);
+                            break;
+                        case "Jeep":
+                            frontRight.setImageResource(R.drawable.jeep_front_right);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontRight.setImageResource(R.drawable.family_front_right);
+                            break;
+                    }
                     damageReport.setFrontRight(false);
                 }
             }
@@ -125,10 +230,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isFrontLeft()) {
-                    frontLeft.setImageResource(R.drawable.front_left_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontLeft.setImageResource(R.drawable.front_left_red);
+                            break;
+                        case "Jeep":
+                            frontLeft.setImageResource(R.drawable.jeep_front_left_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontLeft.setImageResource(R.drawable.family_front_left_red);
+                            break;
+                    }
                     damageReport.setFrontLeft(true);
                 } else if (damageReport.isFrontLeft()) {
-                    frontLeft.setImageResource(R.drawable.front_left);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontLeft.setImageResource(R.drawable.front_left);
+                            break;
+                        case "Jeep":
+                            frontLeft.setImageResource(R.drawable.jeep_front_left);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontLeft.setImageResource(R.drawable.family_front_left);
+                            break;
+                    }
                     damageReport.setFrontLeft(false);
                 }
             }
@@ -138,10 +265,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isPassengerDoor()) {
-                    frontRightDoor.setImageResource(R.drawable.front_right_door_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontRightDoor.setImageResource(R.drawable.front_right_door_red);
+                            break;
+                        case "Jeep":
+                            frontRightDoor.setImageResource(R.drawable.jeep_front_right_door_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontRightDoor.setImageResource(R.drawable.family_front_right_door_red);
+                            break;
+                    }
                     damageReport.setPassengerDoor(true);
                 } else if (damageReport.isPassengerDoor()) {
-                    frontRightDoor.setImageResource(R.drawable.front_right_door);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontRightDoor.setImageResource(R.drawable.front_right_door);
+                            break;
+                        case "Jeep":
+                            frontRightDoor.setImageResource(R.drawable.jeep_front_right_door);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontRightDoor.setImageResource(R.drawable.family_front_right_door);
+                            break;
+                    }
                     damageReport.setPassengerDoor(false);
                 }
             }
@@ -151,10 +300,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isDriverDoor()) {
-                    frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
+                            break;
+                        case "Jeep":
+                            frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontLeftDoor.setImageResource(R.drawable.family_front_left_door_red);
+                            break;
+                    }
                     damageReport.setDriverDoor(true);
                 } else if (damageReport.isDriverDoor()) {
-                    frontLeftDoor.setImageResource(R.drawable.front_left_door);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontLeftDoor.setImageResource(R.drawable.front_left_door);
+                            break;
+                        case "Jeep":
+                            frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontLeftDoor.setImageResource(R.drawable.family_front_left_door);
+                            break;
+                    }
                     damageReport.setDriverDoor(false);
                 }
             }
@@ -164,10 +335,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isBackRightDoor()) {
-                    backRightDoor.setImageResource(R.drawable.back_door_right_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backRightDoor.setImageResource(R.drawable.back_door_right_red);
+                            break;
+                        case "Jeep":
+                            backRightDoor.setImageResource(R.drawable.jeep_back_right_door_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backRightDoor.setImageResource(R.drawable.family_back_right_door_red);
+                            break;
+                    }
                     damageReport.setBackRightDoor(true);
                 } else if (damageReport.isBackRightDoor()) {
-                    backRightDoor.setImageResource(R.drawable.back_door_right);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backRightDoor.setImageResource(R.drawable.back_door_right);
+                            break;
+                        case "Jeep":
+                            backRightDoor.setImageResource(R.drawable.jeep_back_right_door);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backRightDoor.setImageResource(R.drawable.family_back_right_door);
+                            break;
+                    }
                     damageReport.setBackRightDoor(false);
                 }
             }
@@ -177,10 +370,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isBackLeftDoor()) {
-                    backLeftDoor.setImageResource(R.drawable.back_door_left_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backLeftDoor.setImageResource(R.drawable.back_door_left_red);
+                            break;
+                        case "Jeep":
+                            backLeftDoor.setImageResource(R.drawable.jeep_back_left_door_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backLeftDoor.setImageResource(R.drawable.family_back_left_door_red);
+                            break;
+                    }
                     damageReport.setBackLeftDoor(true);
                 } else if (damageReport.isBackLeftDoor()) {
-                    backLeftDoor.setImageResource(R.drawable.back_door_left);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backLeftDoor.setImageResource(R.drawable.back_door_left);
+                            break;
+                        case "Jeep":
+                            backLeftDoor.setImageResource(R.drawable.jeep_back_left_door);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backLeftDoor.setImageResource(R.drawable.family_back_left_door);
+                            break;
+                    }
                     damageReport.setBackLeftDoor(false);
                 }
             }
@@ -190,10 +405,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isFrontWindShield()) {
-                    windShield.setImageResource(R.drawable.wind_sheild_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            windShield.setImageResource(R.drawable.wind_sheild_red);
+                            break;
+                        case "Jeep":
+                            windShield.setImageResource(R.drawable.jeep_wind_sheild_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            windShield.setImageResource(R.drawable.family_wind_sheild_red);
+                            break;
+                    }
                     damageReport.setFrontWindShield(true);
                 } else if (damageReport.isFrontWindShield()) {
-                    windShield.setImageResource(R.drawable.wind_sheild);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            windShield.setImageResource(R.drawable.wind_sheild);
+                            break;
+                        case "Jeep":
+                            windShield.setImageResource(R.drawable.jeep_wind_sheild);
+                            break;
+                        case "Family":
+                        case "Van":
+                            windShield.setImageResource(R.drawable.family_wind_sheild);
+                            break;
+                    }
                     damageReport.setFrontWindShield(false);
                 }
             }
@@ -203,49 +440,122 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isCeiling()) {
-                    frontCeiling.setImageResource(R.drawable.ceiling_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontCeiling.setImageResource(R.drawable.ceiling_red);
+                            break;
+                        case "Jeep":
+                            frontCeiling.setImageResource(R.drawable.jeep_ceiling_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontCeiling.setImageResource(R.drawable.family_ceiling_red);
+                            break;
+                    }
                     damageReport.setCeiling(true);
                 } else if (damageReport.isCeiling()) {
-                    frontCeiling.setImageResource(R.drawable.ceiling);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            frontCeiling.setImageResource(R.drawable.ceiling);
+                            break;
+                        case "Jeep":
+                            frontCeiling.setImageResource(R.drawable.jeep_ceiling);
+                            break;
+                        case "Family":
+                        case "Van":
+                            frontCeiling.setImageResource(R.drawable.family_ceiling);
+                            break;
+                    }
                     damageReport.setCeiling(false);
                 }
             }
         });
 
-        backCeiling.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!damageReport.isBackCeiling()) {
-                    backCeiling.setImageResource(R.drawable.ceiling_back_red);
-                    damageReport.setBackCeiling(true);
-                } else if (damageReport.isBackCeiling()) {
-                    backCeiling.setImageResource(R.drawable.ceiling_back);
-                    damageReport.setBackCeiling(false);
-                }
-            }
-        });
 
-        backWindShield.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!damageReport.isBackWindShield()) {
-                    backWindShield.setImageResource(R.drawable.back_wind_shield_red);
-                    damageReport.setBackWindShield(true);
-                } else if (damageReport.isBackWindShield()) {
-                    backWindShield.setImageResource(R.drawable.back_wind_shield);
-                    damageReport.setBackWindShield(false);
+        if (vehicle.getCarType().equals("Saloon")) {
+
+            backCeiling.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!damageReport.isBackCeiling()) {
+                        backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                        damageReport.setBackCeiling(true);
+                    } else if (damageReport.isBackCeiling()) {
+                        backCeiling.setImageResource(R.drawable.ceiling_back);
+                        damageReport.setBackCeiling(false);
+                    }
                 }
-            }
-        });
+            });
+
+        }
+
+        if (vehicle.getCarType().equals("Saloon") ||
+                vehicle.getCarType().equals("Jeep") ||
+                vehicle.getCarType().equals("Family")) {
+            backWindShield.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!damageReport.isBackWindShield()) {
+                        switch (vehicle.getCarType()) {
+                            case "Saloon":
+                                backWindShield.setImageResource(R.drawable.back_wind_shield_red);
+                                break;
+                            case "Jeep":
+                                backWindShield.setImageResource(R.drawable.jeep_back_red);
+                                break;
+                            case "Family":
+                                backWindShield.setImageResource(R.drawable.family_back_red);
+                                break;
+                        }
+                        damageReport.setBackWindShield(true);
+                    } else if (damageReport.isBackWindShield()) {
+                        switch (vehicle.getCarType()) {
+                            case "Saloon":
+                                backWindShield.setImageResource(R.drawable.back_wind_shield);
+                                break;
+                            case "Jeep":
+                                backWindShield.setImageResource(R.drawable.jeep_back);
+                                break;
+                            case "Family":
+                                backWindShield.setImageResource(R.drawable.family_back);
+                                break;
+                        }
+                        damageReport.setBackWindShield(false);
+                    }
+                }
+            });
+        }
 
         backRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isBackRight()) {
-                    backRight.setImageResource(R.drawable.back_right_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backRight.setImageResource(R.drawable.back_right_red);
+                            break;
+                        case "Jeep":
+                            backRight.setImageResource(R.drawable.jeep_back_right_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backRight.setImageResource(R.drawable.family_back_right_red);
+                            break;
+                    }
                     damageReport.setBackRight(true);
                 } else if (damageReport.isBackRight()) {
-                    backRight.setImageResource(R.drawable.back_right);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backRight.setImageResource(R.drawable.back_right);
+                            break;
+                        case "Jeep":
+                            backRight.setImageResource(R.drawable.jeep_back_right);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backRight.setImageResource(R.drawable.family_back_right);
+                            break;
+                    }
                     damageReport.setBackRight(false);
                 }
             }
@@ -255,10 +565,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isBackLeft()) {
-                    backLeft.setImageResource(R.drawable.back_left_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backLeft.setImageResource(R.drawable.back_left_red);
+                            break;
+                        case "Jeep":
+                            backLeft.setImageResource(R.drawable.jeep_back_left_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backLeft.setImageResource(R.drawable.family_back_left_red);
+                            break;
+                    }
                     damageReport.setBackLeft(true);
                 } else if (damageReport.isBackLeft()) {
-                    backLeft.setImageResource(R.drawable.back_left);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backLeft.setImageResource(R.drawable.back_left);
+                            break;
+                        case "Jeep":
+                            backLeft.setImageResource(R.drawable.jeep_back_left);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backLeft.setImageResource(R.drawable.family_back_left);
+                            break;
+                    }
                     damageReport.setBackLeft(false);
                 }
             }
@@ -268,10 +600,32 @@ public class VehicleSetUpDamageReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!damageReport.isBack()) {
-                    backCar.setImageResource(R.drawable.back_red);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backCar.setImageResource(R.drawable.back_red);
+                            break;
+                        case "Jeep":
+                            backCar.setImageResource(R.drawable.jeep_back_red);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backCar.setImageResource(R.drawable.family_back_red);
+                            break;
+                    }
                     damageReport.setBack(true);
                 } else if (damageReport.isBack()) {
-                    backCar.setImageResource(R.drawable.back);
+                    switch (vehicle.getCarType()) {
+                        case "Saloon":
+                            backCar.setImageResource(R.drawable.back);
+                            break;
+                        case "Jeep":
+                            backCar.setImageResource(R.drawable.jeep_back);
+                            break;
+                        case "Family":
+                        case "Van":
+                            backCar.setImageResource(R.drawable.family_back);
+                            break;
+                    }
                     damageReport.setBack(false);
                 }
             }
@@ -299,6 +653,5 @@ public class VehicleSetUpDamageReport extends Fragment {
         FRAGMENT = "vehicleSetUpDamageReport";
 //        Toast.makeText(getContext(), vehicle.getPhotoLeftSide() + " ", Toast.LENGTH_SHORT).show();
     }
-
 
 }

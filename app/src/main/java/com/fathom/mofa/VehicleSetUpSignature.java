@@ -202,6 +202,8 @@ public class VehicleSetUpSignature extends Fragment {
     }
 
     private void uploadDamageReportOfVehicle() {
+        damageReport.setCarType(vehicle.getCarType());
+        // Should set damageReportName
         db.collection("Damage Reports")
                 .document().set(damageReport);
 
