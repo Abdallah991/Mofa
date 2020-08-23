@@ -287,16 +287,30 @@
                         app:fontFamily="@font/roboto_regular" />
                 </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="1000dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ViewFlipper
+                    android:id="@+id/vehicleRecordDetailsViewFlipper"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginEnd="400dp"
+                    android:layout_height="wrap_content">
+                    <include
+                        android:id="@+id/vehicleRecordDetailsSaloon"
+                        layout="@layout/damage_report" />
 
                     <include
-                        layout="@layout/damage_report"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                        android:id="@+id/vehicleRecordDetailsJeep"
+                        layout="@layout/damage_report_jeep" />
+                    <include
+                        android:id="@+id/vehicleRecordDetailsFamily"
+                        layout="@layout/damage_report_family" />
+                    <include
+                        android:id="@+id/vehicleRecordDetailsVan"
+                        layout="@layout/damage_report_van" />
+                </ViewFlipper>
+            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

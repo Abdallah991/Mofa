@@ -50,126 +50,6 @@
                 layout="@layout/damage_report_van" />
         </ViewFlipper>
     </LinearLayout>
-<!--    <ImageView-->
-<!--        android:id="@+id/frontRight"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/front_right"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline36"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline46"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline34"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline9" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/frontLeft"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/front_left"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline36"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline35"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline45"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline9" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/front"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/front"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline10"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline8" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/frontLeftDoor"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/front_left_door"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline18"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline49"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline50" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/frontRightDoor"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/front_right_door"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline18"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline48"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline50" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/backLeftDoor"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back_door_left"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline19"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline45"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/frontLeftDoor" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/backRightDoor"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back_door_right"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline19"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline46"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/frontRightDoor" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/backLeft"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back_left"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline20"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline45"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline44" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/backRight"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back_right"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline20"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline46"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline55" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/back"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="1dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline53"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline56" />-->
-
-
     <Button
         android:id="@+id/nextVehicleDamage"
         android:layout_width="wrap_content"
@@ -237,41 +117,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline27"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/windShield"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/wind_sheild"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline52"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline51" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/ceiling"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/ceiling"-->
-<!--        android:elevation="3dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline54"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/front" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/backCeiling"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="3dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/ceiling_back"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline55"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ceiling" />-->
-
     <LinearLayout
         android:id="@+id/linkRegistrationToDamage"
         android:layout_width="0dp"
@@ -337,17 +182,6 @@
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toStartOf="@+id/guideline30"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
-
-<!--    <ImageView-->
-<!--        android:id="@+id/windShieldBack"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@drawable/back_wind_shield"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/guideline56"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline21"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline31"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline55" />-->
 
     <TextView
         android:id="@+id/textView2"

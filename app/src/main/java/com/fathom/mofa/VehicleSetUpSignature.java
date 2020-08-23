@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,9 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.type.Date;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRegistration.carPhotos;
@@ -139,6 +140,7 @@ public class VehicleSetUpSignature extends Fragment {
                 uploadVehicleInfo();
                 uploadDamageReportOfVehicle();
                 uploadRentalInfoOfVehicle();
+                uploadNotification();
                 uploadVehicleLeftSide();
                 uploadVehicleRightSide();
                 uploadVehicleFrontSide();
@@ -186,6 +188,17 @@ public class VehicleSetUpSignature extends Fragment {
 
             }
         });
+    }
+
+    private void uploadNotification() {
+        NotificationDataModel notification = new NotificationDataModel();
+        notification.setNotificationContent(vehicle.getManufacturer()+" "+ vehicle.getModel()+" "+vehicle.getMake()+" has been added");
+        Date date = new Date();
+        notification.setNotificationDate(date);
+        notification.setNotificationType("Set Up");
+        db.collection("Notifications")
+                .document().set(notification);
+
     }
 
     private void uploadVehicleInfo() {

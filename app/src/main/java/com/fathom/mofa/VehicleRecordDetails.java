@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
@@ -69,6 +71,8 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView backLeft;
     private ImageView backRight;
     private ImageView back;
+    // view flipper
+    private ViewFlipper mViewFlipper;
     private TextView provider;
     private TextView providerPhoneNumber;
     private TextView leaseFrom;
@@ -84,6 +88,7 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView fourthDot;
     private ProgressDialog progressDialog;
     private static CarPhotosDataModel carPhotosRecordDetail = new CarPhotosDataModel();
+    private static DamageReportDataModel damageReport = new DamageReportDataModel();
     private int index = 0;
 
 
@@ -126,23 +131,81 @@ public class VehicleRecordDetails extends Fragment {
         thirdDot = view.findViewById(R.id.thirdImageRecord);
         fourthDot = view.findViewById(R.id.fourthImageRecord);
         // Vehicle Damage report
-        front = view.findViewById(R.id.frontConfirmation);
-        frontRight = view.findViewById(R.id.frontRightConfirmation);
-        frontLeft = view.findViewById(R.id.frontLeftConfirmation);
-        frontWindShield = view.findViewById(R.id.windShieldConfirmation);
-        frontRightDoor = view.findViewById(R.id.frontRightDoorConfirmation);
-        frontLeftDoor = view.findViewById(R.id.frontLeftDoorConfirmation);
-        frontCeiling = view.findViewById(R.id.ceilingConfirmation);
-        backCeiling = view.findViewById(R.id.backCeilingConfirmation);
-        backLeftDoor = view.findViewById(R.id.backLeftDoorConfirmation);
-        backRightDoor = view.findViewById(R.id.backRightDoorConfirmation);
-        backWindShield = view.findViewById(R.id.windShieldBackConfirmation);
-        back = view.findViewById(R.id.backConfirmation);
-        backRight = view.findViewById(R.id.backRightConfirmation);
-        backLeft = view.findViewById(R.id.backLeftConfirmation);
+        mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
+        switch (vehicleRecordDashboard.getCarType()) {
+            case "Saloon":
+                mViewFlipper.setDisplayedChild(0);
+                front = view.findViewById(R.id.frontConfirmation);
+                frontRight = view.findViewById(R.id.frontRightConfirmation);
+                frontLeft = view.findViewById(R.id.frontLeftConfirmation);
+                frontWindShield = view.findViewById(R.id.windShieldConfirmation);
+                frontRightDoor = view.findViewById(R.id.frontRightDoorConfirmation);
+                frontLeftDoor = view.findViewById(R.id.frontLeftDoorConfirmation);
+                frontCeiling = view.findViewById(R.id.ceilingConfirmation);
+                backCeiling = view.findViewById(R.id.backCeilingConfirmation);
+                backLeftDoor = view.findViewById(R.id.backLeftDoorConfirmation);
+                backRightDoor = view.findViewById(R.id.backRightDoorConfirmation);
+                backWindShield = view.findViewById(R.id.windShieldBackConfirmation);
+                back = view.findViewById(R.id.backConfirmation);
+                backRight = view.findViewById(R.id.backRightConfirmation);
+                backLeft = view.findViewById(R.id.backLeftConfirmation);
+                break;
+            case "Jeep":
+                mViewFlipper.setDisplayedChild(1);
+                front = view.findViewById(R.id.jeepFront);
+                frontLeft = view.findViewById(R.id.jeepFrontLeft);
+                frontRight= view.findViewById(R.id.jeepFrontRight);
+                frontLeftDoor = view.findViewById(R.id.jeepFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.jeepFrontRightDoor);
+                frontWindShield = view.findViewById(R.id.jeepWindShield);
+                frontCeiling = view.findViewById(R.id.jeepCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.jeepBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.jeepBackLeftDoor);
+                backWindShield = view.findViewById(R.id.jeepBackWindShield);
+                backLeft = view.findViewById(R.id.jeepBackLeft);
+                backRight = view.findViewById(R.id.jeepBackRight);
+                back= view.findViewById(R.id.jeepBack);
+                break;
+            case "Family":
+                mViewFlipper.setDisplayedChild(2);
+                front = view.findViewById(R.id.familyFront);
+                frontLeft = view.findViewById(R.id.familyFrontLeft);
+                frontRight = view.findViewById(R.id.familyFrontRight);
+                frontLeftDoor = view.findViewById(R.id.familyFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.familyFrontRightDoor);
+                frontWindShield = view.findViewById(R.id.familyWindShield);
+                frontCeiling = view.findViewById(R.id.familyCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.familyBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.familyBackLeftDoor);
+                backWindShield = view.findViewById(R.id.jeepBackWindShield);
+                backLeft = view.findViewById(R.id.familyBackLeft);
+                backRight = view.findViewById(R.id.familyBackRight);
+                back = view.findViewById(R.id.familyBack);
+                break;
+            case "Van":
+                mViewFlipper.setDisplayedChild(3);
+                front = view.findViewById(R.id.vanFront);
+                frontLeft = view.findViewById(R.id.vanFrontLeft);
+                frontRight = view.findViewById(R.id.vanFrontRight);
+                frontLeftDoor = view.findViewById(R.id.vanFrontLeftDoor);
+                frontRightDoor = view.findViewById(R.id.vanFrontRightDoor);
+                frontWindShield = view.findViewById(R.id.vanWindShield);
+                frontCeiling = view.findViewById(R.id.vanCeiling);
+//                backCeiling = view.findViewById(R.id.jeepBackCeiling);
+                backRightDoor = view.findViewById(R.id.vanBackRightDoor);
+                backLeftDoor = view.findViewById(R.id.vanBackLeftDoor);
+//                backWindShield = view.findViewById(R.id.vanBackWindShield);
+                backLeft = view.findViewById(R.id.vanBackLeft);
+                backRight = view.findViewById(R.id.vanBackRight);
+                back = view.findViewById(R.id.vanBack);
+                break;
+        }
+
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Downloading...");
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -181,7 +244,7 @@ public class VehicleRecordDetails extends Fragment {
 
 
     private void getDamageReport() {
-       if (vehicleRecordDashboard.isCarHasDamage()) {
+
             db.collection("Damage Reports").whereEqualTo("damageReportName",vehicleRecordDashboard.getDamageReport())
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -191,52 +254,203 @@ public class VehicleRecordDetails extends Fragment {
 //                                    Log.d(TAG, document.getId() + " => " + document.getData());
                                     DamageReportDataModel damageReport = document.toObject(DamageReportDataModel.class);
                                     Log.d("WEIRD", damageReport.getCarId());
+                                    Toast.makeText(getContext(), damageReport.getCarId(), Toast.LENGTH_SHORT).show();
                                     if (damageReport.isBack()) {
-                                        back.setImageResource(R.drawable.back_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                back.setImageResource(R.drawable.back_red);
+                                                break;
+                                            case "Jeep":
+                                                back.setImageResource(R.drawable.jeep_back_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                back.setImageResource(R.drawable.family_back_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isBackRight()) {
-                                        backRight.setImageResource(R.drawable.back_right_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                backRight.setImageResource(R.drawable.back_right_red);
+                                                break;
+                                            case "Jeep":
+                                                backRight.setImageResource(R.drawable.jeep_back_right_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                backRight.setImageResource(R.drawable.family_back_right_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isBackLeft()) {
-                                        backLeft.setImageResource(R.drawable.back_left_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                backLeft.setImageResource(R.drawable.back_left_red);
+                                                break;
+                                            case "Jeep":
+                                                backLeft.setImageResource(R.drawable.jeep_back_left_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                backLeft.setImageResource(R.drawable.family_back_left_red);
+                                                break;
+                                        }
                                     }
+
                                     if (damageReport.isBackWindShield()) {
-                                        backWindShield.setImageResource(R.drawable.back_wind_shield_red);
+                                        if (vehicleRecordDashboard.getCarType().equals("Saloon") ||
+                                                vehicleRecordDashboard.getCarType().equals("Jeep") ||
+                                                vehicleRecordDashboard.getCarType().equals("Family")) {
+                                            switch (vehicleRecordDashboard.getCarType()) {
+                                                case "Saloon":
+                                                    backWindShield.setImageResource(R.drawable.back_wind_shield_red);
+                                                    break;
+                                                case "Jeep":
+                                                    backWindShield.setImageResource(R.drawable.jeep_back_red);
+                                                    break;
+                                                case "Family":
+                                                    backWindShield.setImageResource(R.drawable.family_back_red);
+                                                    break;
+                                            }
+                                        }
                                     }
+
                                     if (damageReport.isBackLeftDoor()) {
-                                        backLeftDoor.setImageResource(R.drawable.back_door_left_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                backLeftDoor.setImageResource(R.drawable.back_door_left_red);
+                                                break;
+                                            case "Jeep":
+                                                backLeftDoor.setImageResource(R.drawable.jeep_back_left_door_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                backLeftDoor.setImageResource(R.drawable.family_back_left_door_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isBackRightDoor()) {
-                                        backRightDoor.setImageResource(R.drawable.back_door_right_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                backRightDoor.setImageResource(R.drawable.back_door_right_red);
+                                                break;
+                                            case "Jeep":
+                                                backRightDoor.setImageResource(R.drawable.jeep_back_right_door_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                backRightDoor.setImageResource(R.drawable.family_back_right_door_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isPassengerDoor()) {
-                                        frontRightDoor.setImageResource(R.drawable.front_right_door_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontRightDoor.setImageResource(R.drawable.front_right_door_red);
+                                                break;
+                                            case "Jeep":
+                                                frontRightDoor.setImageResource(R.drawable.jeep_front_right_door_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontRightDoor.setImageResource(R.drawable.family_front_right_door_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isDriverDoor()) {
-                                        frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
+                                                break;
+                                            case "Jeep":
+                                                frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontLeftDoor.setImageResource(R.drawable.family_front_left_door_red);
+                                                break;
+                                        }
                                     }
-                                    if (damageReport.isBackCeiling()) {
-                                        backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                                    if (vehicleRecordDashboard.getCarType().equals("Saloon")) {
+                                        if (damageReport.isBackCeiling()) {
+                                            backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                                        }
                                     }
                                     if (damageReport.isCeiling()) {
-                                        frontCeiling.setImageResource(R.drawable.ceiling_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontCeiling.setImageResource(R.drawable.ceiling_red);
+                                                break;
+                                            case "Jeep":
+                                                frontCeiling.setImageResource(R.drawable.jeep_ceiling_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontCeiling.setImageResource(R.drawable.family_ceiling_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isFrontWindShield()) {
-                                        frontWindShield.setImageResource(R.drawable.wind_sheild_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontWindShield.setImageResource(R.drawable.wind_sheild_red);
+                                                break;
+                                            case "Jeep":
+                                                frontWindShield.setImageResource(R.drawable.jeep_wind_sheild_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontWindShield.setImageResource(R.drawable.family_wind_sheild_red);
+                                                break;
+                                        }
 
                                     }
                                     if (damageReport.isFrontRight()) {
-                                        frontRight.setImageResource(R.drawable.front_right_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontRight.setImageResource(R.drawable.front_right_red);
+                                                break;
+                                            case "Jeep":
+                                                frontRight.setImageResource(R.drawable.jeep_front_right_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontRight.setImageResource(R.drawable.family_front_right_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isFrontLeft()) {
-                                        frontLeft.setImageResource(R.drawable.front_left_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                frontLeftDoor.setImageResource(R.drawable.front_left_red);
+                                                break;
+                                            case "Jeep":
+                                                frontLeftDoor.setImageResource(R.drawable.jeep_front_left_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                frontLeftDoor.setImageResource(R.drawable.family_front_left_red);
+                                                break;
+                                        }
                                     }
                                     if (damageReport.isFront()) {
-                                        front.setImageResource(R.drawable.front_red);
+                                        switch (vehicleRecordDashboard.getCarType()) {
+                                            case "Saloon":
+                                                front.setImageResource(R.drawable.front_red);
+                                                break;
+                                            case "Jeep":
+                                                front.setImageResource(R.drawable.jeep_front_red);
+                                                break;
+                                            case "Family":
+                                            case "Van":
+                                                front.setImageResource(R.drawable.family_front_red);
+                                                break;
+                                        }
 
                                     }
 
-
+//                                    damageReportReview(damageReport);
 
                                 }
                             } else {
@@ -249,7 +463,7 @@ public class VehicleRecordDetails extends Fragment {
 
             Log.d(TAG, " Loading the data is DONE");
         }
-    }
+    
 
     private void getRentalInfo() {
         db.collection("Rental Information").document(vehicleRecordDashboard.getPlateNumber())
@@ -370,6 +584,205 @@ public class VehicleRecordDetails extends Fragment {
                 fourthDot.setImageResource(R.drawable.red_dot);
                 vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoBackSide());
                 break;
+
+        }
+
+    }
+
+    private void damageReportReview(DamageReportDataModel damageReport) {
+
+        if (damageReport.isBack()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    back.setImageResource(R.drawable.back_red);
+                    break;
+                case "Jeep":
+                    back.setImageResource(R.drawable.jeep_back_red);
+                    break;
+                case "Family":
+                case "Van":
+                    back.setImageResource(R.drawable.family_back_red);
+                    break;
+            }
+        }
+        if (damageReport.isBackRight()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    backRight.setImageResource(R.drawable.back_right_red);
+                    break;
+                case "Jeep":
+                    backRight.setImageResource(R.drawable.jeep_back_right_red);
+                    break;
+                case "Family":
+                case "Van":
+                    backRight.setImageResource(R.drawable.family_back_right_red);
+                    break;
+            }
+        }
+        if (damageReport.isBackLeft()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    backLeft.setImageResource(R.drawable.back_left_red);
+                    break;
+                case "Jeep":
+                    backLeft.setImageResource(R.drawable.jeep_back_left_red);
+                    break;
+                case "Family":
+                case "Van":
+                    backLeft.setImageResource(R.drawable.family_back_left_red);
+                    break;
+            }
+        }
+
+        if (damageReport.isBackWindShield()) {
+            if (vehicleRecordDashboard.getCarType().equals("Saloon") ||
+                    vehicleRecordDashboard.getCarType().equals("Jeep") ||
+                    vehicleRecordDashboard.getCarType().equals("Family")) {
+                switch (vehicleRecordDashboard.getCarType()) {
+                    case "Saloon":
+                        backWindShield.setImageResource(R.drawable.back_wind_shield_red);
+                        break;
+                    case "Jeep":
+                        backWindShield.setImageResource(R.drawable.jeep_back_red);
+                        break;
+                    case "Family":
+                        backWindShield.setImageResource(R.drawable.family_back_red);
+                        break;
+                }
+            }
+        }
+
+        if (damageReport.isBackLeftDoor()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    backLeftDoor.setImageResource(R.drawable.back_door_left_red);
+                    break;
+                case "Jeep":
+                    backLeftDoor.setImageResource(R.drawable.jeep_back_left_door_red);
+                    break;
+                case "Family":
+                case "Van":
+                    backLeftDoor.setImageResource(R.drawable.family_back_left_door_red);
+                    break;
+            }
+        }
+        if (damageReport.isBackRightDoor()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    backRightDoor.setImageResource(R.drawable.back_door_right_red);
+                    break;
+                case "Jeep":
+                    backRightDoor.setImageResource(R.drawable.jeep_back_right_door_red);
+                    break;
+                case "Family":
+                case "Van":
+                    backRightDoor.setImageResource(R.drawable.family_back_right_door_red);
+                    break;
+            }
+        }
+        if (damageReport.isPassengerDoor()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontRightDoor.setImageResource(R.drawable.front_right_door_red);
+                    break;
+                case "Jeep":
+                    frontRightDoor.setImageResource(R.drawable.jeep_front_right_door_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontRightDoor.setImageResource(R.drawable.family_front_right_door_red);
+                    break;
+            }
+        }
+        if (damageReport.isDriverDoor()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
+                    break;
+                case "Jeep":
+                    frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontLeftDoor.setImageResource(R.drawable.family_front_left_door_red);
+                    break;
+            }
+        }
+        if (vehicleRecordDashboard.getCarType().equals("Saloon")) {
+            if (damageReport.isBackCeiling()) {
+                backCeiling.setImageResource(R.drawable.ceiling_back_red);
+            }
+        }
+        if (damageReport.isCeiling()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontCeiling.setImageResource(R.drawable.ceiling_red);
+                    break;
+                case "Jeep":
+                    frontCeiling.setImageResource(R.drawable.jeep_ceiling_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontCeiling.setImageResource(R.drawable.family_ceiling_red);
+                    break;
+            }
+        }
+        if (damageReport.isFrontWindShield()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontWindShield.setImageResource(R.drawable.wind_sheild_red);
+                    break;
+                case "Jeep":
+                    frontWindShield.setImageResource(R.drawable.jeep_wind_sheild_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontWindShield.setImageResource(R.drawable.family_wind_sheild_red);
+                    break;
+            }
+
+        }
+        if (damageReport.isFrontRight()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontRight.setImageResource(R.drawable.front_right_red);
+                    break;
+                case "Jeep":
+                    frontRight.setImageResource(R.drawable.jeep_front_right_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontRight.setImageResource(R.drawable.family_front_right_red);
+                    break;
+            }
+        }
+        if (damageReport.isFrontLeft()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    frontLeftDoor.setImageResource(R.drawable.front_left_red);
+                    break;
+                case "Jeep":
+                    frontLeftDoor.setImageResource(R.drawable.jeep_front_left_red);
+                    break;
+                case "Family":
+                case "Van":
+                    frontLeftDoor.setImageResource(R.drawable.family_front_left_red);
+                    break;
+            }
+        }
+        if (damageReport.isFront()) {
+            switch (vehicleRecordDashboard.getCarType()) {
+                case "Saloon":
+                    front.setImageResource(R.drawable.front_red);
+                    break;
+                case "Jeep":
+                    front.setImageResource(R.drawable.jeep_front_red);
+                    break;
+                case "Family":
+                case "Van":
+                    front.setImageResource(R.drawable.family_front_red);
+                    break;
+            }
 
         }
 

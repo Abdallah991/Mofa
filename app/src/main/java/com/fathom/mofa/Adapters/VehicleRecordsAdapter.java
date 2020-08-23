@@ -31,6 +31,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
     private NavController mNavController;
     // The navigation action Id constant
     private int actionId;
+    public String vehicleType;
     // Injecting the View Model
     private VehicleRecordViewModel mModel;
     SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");

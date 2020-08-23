@@ -162,7 +162,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/color"
+                        android:text="@string/model"
                         app:fontFamily="@font/roboto_light"
                         android:textSize="20sp"
                         android:textColor="@color/black"/>

@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +33,7 @@ import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
+import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
 /**
@@ -162,9 +165,11 @@ public class VehicleRecordSignature extends Fragment {
             @Override
             public void onClick(View v) {
 
+                mDate = new Date();
                 updateVehicleStatus();
                 uploadVehicleRecord();
                 uploadDamageReport();
+                uploadNotifications();
                 uploadVehicleLeftSide();
                 uploadVehicleRightSide();
                 uploadVehicleFrontSide();
@@ -176,7 +181,6 @@ public class VehicleRecordSignature extends Fragment {
 
             }
         });
-        mDate = new Date();
     }
 
     @Override
@@ -217,6 +221,41 @@ public class VehicleRecordSignature extends Fragment {
         vehicleRecord.setName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         db.collection("VehicleRecords")
                 .document().set(vehicleRecord);
+
+    }
+    private void uploadNotifications() {
+        NotificationDataModel notification = new NotificationDataModel();
+        Date date = new Date();
+        switch (vehicleRecord.getCarTransaction()) {
+            case "MTD":
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been taken out");
+                notification.setNotificationDate(date);
+                notification.setNotificationType("Handover");
+                break;
+            case "DTM":
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been returned");
+                notification.setNotificationDate(date);
+                notification.setNotificationType("Retrieval");
+                break;
+            case "MTR":
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been released");
+                notification.setNotificationDate(date);
+                notification.setNotificationType("Release");
+                break;
+
+
+        }
+        db.collection("Notifications")
+                .document().set(notification);
+
+        if (vehicleRecord.isCarHasDamage()) {
+            notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been damaged");
+            notification.setNotificationDate(date);
+            notification.setNotificationType("Damage");
+
+            db.collection("Notifications")
+                    .document().set(notification);
+        }
 
     }
 

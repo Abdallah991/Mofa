@@ -80,7 +80,7 @@ public class VehicleDashboard extends Fragment {
         nextButton = view.findViewById(R.id.nextButtonVehicles);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Downloading...");
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 

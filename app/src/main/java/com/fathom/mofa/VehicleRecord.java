@@ -127,7 +127,7 @@ public class VehicleRecord extends Fragment {
         next = view.findViewById(R.id.nextVehicleRecord);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Downloading...");
         vehicleAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, vehicleNames);
         driverAdapter = new ArrayAdapter<String>(getContext(),
@@ -486,7 +486,10 @@ public class VehicleRecord extends Fragment {
         vehicleInRecord.setModel(vehicleDashboard.getModel());
         vehicleInRecord.setPlateNumber(vehicleDashboard.getPlateNumber());
         vehicleInRecord.setColorOfCar(vehicleDashboard.getColorOfCar());
+        vehicleInRecord.setCarType(vehicleDashboard.getCarType());
         vehicleRecord.setVehicleName(vehicleDashboard.getCarName());
+        vehicleRecord.setCarType(vehicleDashboard.getCarType());
+
 
         Toast.makeText(getContext(), vehicleInRecord.getCarName(), Toast.LENGTH_SHORT).show();
     }
