@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.fathom.mofa.DataModels.DriverDataModel;
 import com.fathom.mofa.ServicesAndRepos.DriverRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fathom.mofa.ServicesAndRepos.DriverRepository.DRIVER_TAG;
@@ -46,6 +47,16 @@ public class DriverViewModel extends ViewModel {
 
     public LiveData<List<DriverDataModel>> getDrivers() {
         return mDrivers;
+    }
+
+    public void addDriver(DriverDataModel  driver) {
+        ArrayList<DriverDataModel> drivers = new ArrayList<>();
+
+        drivers.addAll(mDrivers.getValue());
+        drivers.add(driver);
+
+        mDrivers.setValue(drivers);
+
     }
 
 }

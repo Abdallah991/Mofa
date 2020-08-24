@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.fathom.mofa.ServicesAndRepos.NotificationRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fathom.mofa.ServicesAndRepos.NotificationRepository.NOTIFICATION_TAG;
@@ -34,5 +35,15 @@ public class NotificationViewModel extends ViewModel {
 
     public LiveData<List<NotificationDataModel>> getNotifications() {
         return mNotifications;
+    }
+
+    public void addNotification(NotificationDataModel  notificationDataModel) {
+        ArrayList<NotificationDataModel> notifications = new ArrayList<>();
+
+        notifications.addAll(mNotifications.getValue());
+        notifications.add(notificationDataModel);
+
+        mNotifications.setValue(notifications);
+
     }
 }

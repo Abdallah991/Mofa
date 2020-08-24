@@ -138,7 +138,7 @@ public class Dashboard extends Fragment {
         dateFrom.setShowSoftInputOnFocus(false);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Downloading...");
         // loading spinner Arrays
         sortingBys = getResources().getStringArray(R.array.sort);
         types = getResources().getStringArray(R.array.types);

@@ -429,9 +429,7 @@ public class VehicleRecord extends Fragment {
                         String selectedItemText = (String) parent.getItemAtPosition(position);
 
                         if (position > 0) {
-//                            Toast.makeText(getContext(), selectedItemText, Toast.LENGTH_SHORT).show();
                             vehicleRecord.setReleasePersonName(selectedItemText);
-                            // Notify the selected item text
                         }
                     }
 
@@ -491,7 +489,6 @@ public class VehicleRecord extends Fragment {
         vehicleRecord.setCarType(vehicleDashboard.getCarType());
 
 
-        Toast.makeText(getContext(), vehicleInRecord.getCarName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

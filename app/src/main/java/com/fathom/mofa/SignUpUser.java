@@ -1,10 +1,13 @@
 package com.fathom.mofa;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import android.util.Log;
@@ -15,7 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
+import static com.fathom.mofa.VehicleRecord.vehicleRecord;
+
 import com.fathom.mofa.DataModels.UserDataModel;
+import com.fathom.mofa.ViewModels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.List;
 
 
 public class SignUpUser extends Fragment {
@@ -36,8 +45,10 @@ public class SignUpUser extends Fragment {
     private EditText userType;
     private Button register;
     private UserDataModel user = new UserDataModel();
+    private UserViewModel model;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ProgressDialog progressDialog;
     private final String TAG = "SIGN UP";
     public static final String USER = "USER";
 
@@ -74,6 +85,18 @@ public class SignUpUser extends Fragment {
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Uploading...");
+
+        model = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
+        model.initUsers();
+        model.getUsers().observe(getViewLifecycleOwner(), new Observer<List<UserDataModel>>() {
+            @Override
+            public void onChanged(List<UserDataModel> users) {
+
+            }
+        });
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +107,7 @@ public class SignUpUser extends Fragment {
                         && isPasswordValid(password.getText().toString())) {
                     SignUp();
                     uploadUser();
+                    progressDialog.show();
                 } else
                 {
                     Toast.makeText(getContext(), "Email And/or password are invalid",
@@ -175,7 +199,13 @@ public class SignUpUser extends Fragment {
         db.collection("Users")
                 .document(user.getEmail()).set(user);
         Log.d(TAG, "uploading user done.");
+        addUserToViewModel();
 
+    }
+
+    private void addUserToViewModel() {
+        model.addUser(user);
+        progressDialog.dismiss();
     }
 
 }

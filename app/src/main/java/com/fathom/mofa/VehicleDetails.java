@@ -108,7 +108,7 @@ public class VehicleDetails extends Fragment {
         vehicleDetailImage = view.findViewById(R.id.vehicleDetailsImage);
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Downloading...");
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 

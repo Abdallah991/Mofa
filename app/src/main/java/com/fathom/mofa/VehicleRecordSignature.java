@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import android.util.Log;
@@ -19,6 +21,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.fathom.mofa.DataModels.NotificationDataModel;
+import com.fathom.mofa.DataModels.VehicleRecordDataModel;
+import com.fathom.mofa.ViewModels.NotificationViewModel;
+import com.fathom.mofa.ViewModels.VehicleRecordViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +33,8 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
@@ -50,6 +57,8 @@ public class VehicleRecordSignature extends Fragment {
     private LinearLayout signatureLayout;
     private int signatureSelector;
     private Button done;
+    private VehicleRecordViewModel model;
+    private NotificationViewModel mNotificationViewModel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
     private StorageReference storageRef;
@@ -104,6 +113,23 @@ public class VehicleRecordSignature extends Fragment {
         // adding the signature functionality to the signatureLayout
         signatureLayout.addView(mSig, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        model = new ViewModelProvider(requireActivity()).get(VehicleRecordViewModel.class);
+        model.initVehicleRecords();
+        model.getVehicleRecords().observe(getViewLifecycleOwner(), new Observer<List<VehicleRecordDataModel>>() {
+            @Override
+            public void onChanged(List<VehicleRecordDataModel> vehicleDataModels) {
+
+            }
+        });
+
+        mNotificationViewModel = new ViewModelProvider(requireActivity()).get(NotificationViewModel.class);
+        mNotificationViewModel.initNotifications();
+        mNotificationViewModel.getNotifications().observe(getViewLifecycleOwner(), new Observer<List<NotificationDataModel>>() {
+            @Override
+            public void onChanged(List<NotificationDataModel> notificationDataModels) {
+
+            }
+        });
         // Filling Missing Information
 
 
@@ -174,6 +200,7 @@ public class VehicleRecordSignature extends Fragment {
                 uploadVehicleRightSide();
                 uploadVehicleFrontSide();
                 uploadVehicleBackSide();
+                addVehicleRecordToViewModel();
 
 
 
@@ -247,6 +274,7 @@ public class VehicleRecordSignature extends Fragment {
         }
         db.collection("Notifications")
                 .document().set(notification);
+        addNotificationToDataModel(notification);
 
         if (vehicleRecord.isCarHasDamage()) {
             notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been damaged");
@@ -255,12 +283,17 @@ public class VehicleRecordSignature extends Fragment {
 
             db.collection("Notifications")
                     .document().set(notification);
+//            addNotificationToDataModel(notification);
+
+        } else {
+            progressDialog.dismiss();
         }
 
     }
 
     private void uploadDamageReport() {
         damageReportRecord.setDamageReportName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
+        damageReportRecord.setCarType(vehicleInRecord.getCarType());
         db.collection("Damage Reports")
                 .document().set(damageReportRecord);
 
@@ -288,6 +321,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User right image uploaded.");
                     progressDialog.dismiss();
+
                 }
             });
         }
@@ -316,6 +350,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User left image uploaded.");
                     progressDialog.dismiss();
+
                 }
             });
         }
@@ -373,10 +408,18 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User back image uploaded.");
                     progressDialog.dismiss();
+
                 }
             });
         }
-        progressDialog.dismiss();
+    }
+
+    private void addVehicleRecordToViewModel() {
+        model.addVehicleRecord(vehicleRecord);
+    }
+
+    private void addNotificationToDataModel(NotificationDataModel notification) {
+        mNotificationViewModel.addNotification(notification);
 
     }
 }

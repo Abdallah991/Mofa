@@ -36,11 +36,33 @@
         <item name="android:textColor">#00000000</item>
     </style>
 
-    <style name="DrawerItemStyle">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:paddingTop">20dp</item>
-        <item name="listPreferredItemHeight">100dp</item>
+<!--    <style name="DrawerItemStyle">-->
+<!--        <item name="android:fontFamily">@font/roboto_medium</item>-->
+<!--        <item name="android:textColor">@color/colorPrimaryDark</item>-->
+<!--        <item name="android:textSize">10sp</item>-->
+<!--        <item name="android:listPreferredItemHeightLarge">200dp</item>-->
+<!--        <item name="listPreferredItemHeight">100dp</item>-->
+<!--    </style>-->
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">20sp</item><!-- text size in menu-->
+        <!-- item size in menu-->
+        <item name="android:listPreferredItemHeightSmall">100dp</item>
+        <item name="listPreferredItemHeightSmall">100dp</item>
+        <!-- item padding left in menu-->
+        <item name="android:listPreferredItemPaddingLeft">25dp</item>
+        <item name="listPreferredItemPaddingLeft">25dp</item>
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">25dp</item>
+        <item name="listPreferredItemPaddingRight">25dp</item>
+    </style>
+
+    <style name="AppNavigationViewItemTextAppearance" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">

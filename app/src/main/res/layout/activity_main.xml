@@ -34,7 +34,7 @@
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,22 +48,161 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         app:itemTextColor="@color/colorPrimaryDark"
-        style="@style/DrawerItemStyle"
-        app:itemHorizontalPadding="25dp"
-        app:itemTextAppearance="@style/DrawerItemStyle"
+        android:theme="@style/NavigationDrawerStyle"
         app:headerLayout="@layout/drawer_header"
-        android:background="@color/colorBackground"
-        app:menu="@menu/drawer_menu"
+        android:background="@color/menuBackground"
         app:itemIconTint="@color/colorPrimaryDark">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="220dp">
+
+                <LinearLayout
+                android:id="@+id/dashboardMenu"
+                android:layout_width="170dp"
+                android:layout_height="100dp"
+                android:weightSum="7"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_weight="0.03"
+                    android:background="@color/appGrey2"
+                    android:gravity=""/>
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="4.4"
+                    android:src="@drawable/dashboard_menu_icon"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.5"
+                    android:gravity="center"
+                    android:text="@string/dashboard"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/roboto_light"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_weight="0.03"
+                    android:background="@color/appGrey2"
+                    android:gravity=""/>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vehicleRecordMenu"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:weightSum="7"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:gravity=""/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="4.4"
+                        android:src="@drawable/vehicle_record_menu_icon"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.5"
+                        android:gravity="center"
+                        android:text="@string/vehicle_record"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_light"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:background="@color/appGrey2"
+                        android:gravity=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/driverSetUpMenu"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:weightSum="7"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:gravity=""/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="4.4"
+                        android:src="@drawable/driver_set_up_menu_icon"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.5"
+                        android:gravity="center"
+                        android:text="@string/driver_set_up"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_light"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:background="@color/appGrey2"
+                        android:gravity=""/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/vehicleSetUpMenu"
+                    android:layout_width="170dp"
+                    android:layout_height="100dp"
+                    android:weightSum="7"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:gravity=""/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="4.4"
+                        android:src="@drawable/vehicle_set_up_menu_icon"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.5"
+                        android:text="@string/vehicle_set_up"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        app:fontFamily="@font/roboto_light"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_weight="0.03"
+                        android:background="@color/appGrey2"
+                        android:gravity=""/>
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,22 +213,21 @@
                 android:weightSum="2"
                 >
                 <Button
-                    android:id="@+id/arabic"
-                    android:layout_width="75dp"
+                    android:id="@+id/changeLanguage"
+                    android:layout_width="85dp"
+                    android:layout_marginBottom="30dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBackground"
-                    android:layout_marginBottom="90dp"
                     android:text="@string/arabic"
                     style="?android:attr/borderlessButtonStyle"
                     android:textAllCaps="false"
+                    android:gravity="bottom"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="12sp"/>
                 <Button
                     android:id="@+id/logOut"
-                    android:layout_width="75dp"
+                    android:layout_width="85dp"
+                    android:layout_marginBottom="30dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorBackground"
-                    android:layout_marginBottom="90dp"
                     android:text="@string/logout"
                     style="?android:attr/borderlessButtonStyle"
                     android:textAllCaps="false"

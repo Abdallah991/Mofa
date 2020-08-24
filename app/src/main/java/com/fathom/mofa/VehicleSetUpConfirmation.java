@@ -127,7 +127,7 @@ public class VehicleSetUpConfirmation extends Fragment {
         editDamageReport = view.findViewById(R.id.damageReportEdit);
 
         // Date Formatter
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         String registrationStartDate = formatter.format(vehicle.getRegistrationStart());
         String registrationEndDate = formatter.format(vehicle.getRegistrationEnd());
         String leaseFromDate = formatter.format(rentalInfo.getLeaseFrom());

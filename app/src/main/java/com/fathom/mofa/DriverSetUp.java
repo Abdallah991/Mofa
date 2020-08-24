@@ -16,6 +16,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -30,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.DriverDataModel;
+import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -43,6 +46,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -78,6 +82,7 @@ public class DriverSetUp extends Fragment {
     private String frontLicenseName;
     private String backLicenseName;
     private DriverDataModel driver = new DriverDataModel();
+    private DriverViewModel model;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
     private StorageReference storageRef;
@@ -126,6 +131,15 @@ public class DriverSetUp extends Fragment {
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
+        model = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
+        model.initDrivers();
+        model.getDrivers().observe(getViewLifecycleOwner(), new Observer<List<DriverDataModel>>() {
+            @Override
+            public void onChanged(List<DriverDataModel> drivers) {
+
+            }
+        });
 
         issueDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,8 +225,7 @@ public class DriverSetUp extends Fragment {
                         (!issueDateValue.toString().isEmpty()) && (!expiryDateValue.toString().isEmpty()) &&
                         (!frontLicenseName.isEmpty()) &&  (!backLicenseName.isEmpty())
                 ) {
-
-
+                    progressDialog.show();
                     uploadDriver();
                     uploadFrontDriverLicense();
                     uploadBackDriverLicense();
@@ -271,14 +284,12 @@ public class DriverSetUp extends Fragment {
                                 frontLicense.setImageBitmap(selectedImage);
                                 frontLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                 frontLicenseName = selectedImage.toString();
-                                Toast.makeText(getContext(), frontLicenseName, Toast.LENGTH_SHORT).show();
                                 break;
 
                             case "backLicense":
                                 backLicense.setImageBitmap(selectedImage);
                                 backLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                 backLicenseName = selectedImage.toString();
-                                Toast.makeText(getContext(), backLicenseName, Toast.LENGTH_SHORT).show();
                                 break;
 
                         }
@@ -352,6 +363,7 @@ public class DriverSetUp extends Fragment {
 
         db.collection("Drivers")
                 .document(driver.getDriverID()).set(driver);
+        addDriverToViewModel();
 
     }
 
@@ -411,5 +423,8 @@ public class DriverSetUp extends Fragment {
     }
 
 
+    private void addDriverToViewModel() {
+        model.addDriver(driver);
+    }
 
 }

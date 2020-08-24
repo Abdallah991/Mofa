@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.ServicesAndRepos.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fathom.mofa.ServicesAndRepos.UserRepository.USER_TAG;
@@ -45,5 +46,15 @@ public class UserViewModel extends ViewModel {
 
     public LiveData<List<UserDataModel>> getUsers() {
         return mUsers;
+    }
+
+    public void addUser(UserDataModel  user) {
+        ArrayList<UserDataModel> USERS = new ArrayList<>();
+
+        USERS.addAll(mUsers.getValue());
+        USERS.add(user);
+
+        mUsers.setValue(USERS);
+
     }
 }

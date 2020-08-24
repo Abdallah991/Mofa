@@ -27,7 +27,7 @@
 
     <LinearLayout
         android:id="@+id/scrollInfoLayout"
-        android:layout_width="500dp"
+        android:layout_width="550dp"
         android:layout_height="400dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
@@ -53,7 +53,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.6"
+                        android:layout_weight="2.9"
                         android:text="@string/vehicle_information"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
@@ -64,9 +64,10 @@
                         android:id="@+id/vehicleInformationEdit"
                         android:layout_width="70dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="-40dp"
                         android:layout_marginTop="-10dp"
+                        android:layout_marginEnd="-30dp"
                         android:background="@color/colorBackground"
+                        android:elevation="10dp"
                         android:padding="1dp"
                         android:text="@string/edit"
                         android:textColor="@color/colorPrimary"
@@ -203,7 +204,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.8"
+                        android:layout_weight="2.2"
                         android:text="@string/registration"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
@@ -293,7 +294,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.0"
+                        android:layout_weight="2.3"
                         android:text="@string/damage_report"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
@@ -348,7 +349,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2.5"
+                        android:layout_weight="2.8"
                         android:text="@string/rental_information"
                         android:textAllCaps="true"
                         android:textColor="@color/black"

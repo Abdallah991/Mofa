@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -22,7 +24,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.fathom.mofa.DataModels.NotificationDataModel;
+import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
+import com.fathom.mofa.ViewModels.NotificationViewModel;
+import com.fathom.mofa.ViewModels.VehicleViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,6 +37,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
+import java.util.List;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRegistration.carPhotos;
@@ -54,6 +60,8 @@ public class VehicleSetUpSignature extends Fragment {
     private LinearLayout signatureLayout;
     private int signatureSelector;
     private Button done;
+    private VehicleViewModel model;
+    private NotificationViewModel mNotificationViewModel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
     private StorageReference storageRef;
@@ -105,7 +113,23 @@ public class VehicleSetUpSignature extends Fragment {
         // adding the signature functionality to the signatureLayout
         signatureLayout.addView(mSig, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        model = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
+        model.initVehicles();
+        model.getVehicles().observe(getViewLifecycleOwner(), new Observer<List<VehicleDataModel>>() {
+            @Override
+            public void onChanged(List<VehicleDataModel> vehicleDataModels) {
 
+            }
+        });
+
+        mNotificationViewModel = new ViewModelProvider(requireActivity()).get(NotificationViewModel.class);
+        mNotificationViewModel.initNotifications();
+        mNotificationViewModel.getNotifications().observe(getViewLifecycleOwner(), new Observer<List<NotificationDataModel>>() {
+            @Override
+            public void onChanged(List<NotificationDataModel> notificationDataModels) {
+
+            }
+        });
         // filling up some data for Vehicle Object
         vehicle.setRentalInfo(vehicle.getPlateNumber());
         vehicle.setCarName(vehicle.getManufacturer()+ " "+vehicle.getModel()+ " "+vehicle.getPlateNumber());
@@ -145,6 +169,7 @@ public class VehicleSetUpSignature extends Fragment {
                 uploadVehicleRightSide();
                 uploadVehicleFrontSide();
                 uploadVehicleBackSide();
+                updateVehicleToViewModel();
 
 
 
@@ -198,6 +223,7 @@ public class VehicleSetUpSignature extends Fragment {
         notification.setNotificationType("Set Up");
         db.collection("Notifications")
                 .document().set(notification);
+        addNotificationToDataModel(notification);
 
     }
 
@@ -340,6 +366,18 @@ public class VehicleSetUpSignature extends Fragment {
         super.onResume();
         FRAGMENT = "vehicleSetUpSignature";
     }
+
+    private void updateVehicleToViewModel() {
+
+        model.addVehicle(vehicle);
+    }
+
+    private void addNotificationToDataModel(NotificationDataModel notification) {
+        mNotificationViewModel.addNotification(notification);
+
+    }
+
+
 
 
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fathom.mofa.ServicesAndRepos.VehicleRepository.VEHICLE_TAG;
@@ -45,6 +46,16 @@ public class VehicleViewModel extends ViewModel {
 
     public LiveData<List<VehicleDataModel>> getVehicles() {
         return mVehicles;
+    }
+
+    public void addVehicle(VehicleDataModel  vehicle) {
+        ArrayList<VehicleDataModel> vehicles = new ArrayList<>();
+
+        vehicles.addAll(mVehicles.getValue());
+        vehicles.add(vehicle);
+
+        mVehicles.setValue(vehicles);
+
     }
 
 }

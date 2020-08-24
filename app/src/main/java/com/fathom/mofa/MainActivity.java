@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -27,8 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavController navController;
     private NavigationView navigationView;
     private Button logOut;
+    private Button changeLanguage;
     private ImageView signUp;
     private ImageView notification;
+    private LinearLayout dashboardMenuItem;
+    private LinearLayout vehicleRecordMenuItem;
+    private LinearLayout driverSetupMenuItem;
+    private LinearLayout vehicleSetupMenuItem;
     private int actionNavigateToNotification = R.id.action_home_to_notifications;
     private int actionNavigateToSignUp = R.id.action_home_to_signUpUser;
     private int actionNavigateToHomeFromSignUp = R.id.action_signUpUser_to_home;
@@ -75,7 +81,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         signUp = toolbar.findViewById(R.id.signUpUserIcon);
         notification = toolbar.findViewById(R.id.notificationIcon);
         drawerLayout = findViewById(R.id.drawerLayout);
+        logOut = findViewById(R.id.logOut);
+        changeLanguage = findViewById(R.id.changeLanguage);
+        drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
+        vehicleRecordMenuItem = findViewById(R.id.vehicleRecordMenu);
+        dashboardMenuItem = findViewById(R.id.dashboardMenu);
+        driverSetupMenuItem = findViewById(R.id.driverSetUpMenu);
+        vehicleSetupMenuItem = findViewById(R.id.vehicleSetUpMenu);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         LayoutInflater inflater = getLayoutInflater();
@@ -278,6 +291,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
+        dashboardMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.dashboard);
+                drawerLayout.closeDrawers();
+
+            }
+        });
+
+        vehicleRecordMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.vehicleDashboard);
+                drawerLayout.closeDrawers();
+
+            }
+        });
+
+        driverSetupMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.driverSetUp);
+                drawerLayout.closeDrawers();
+
+            }
+        });
+
+        vehicleSetupMenuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.vehicleSetUp);
+                drawerLayout.closeDrawers();
+
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        changeLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         setupNavigation();
@@ -334,31 +397,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // when an menu item is selected from menu, close the drawer
         menuItem.setChecked(true);
         drawerLayout.closeDrawers();
-
-        int id = menuItem.getItemId();
-
-        switch (id) {
-
-            case R.id.dashboard:
-                navController.navigate(R.id.dashboard);
-                break;
-
-            case R.id.vehicleRecord:
-                navController.navigate(R.id.vehicleRecord);
-                break;
-
-            case R.id.driverSetUp:
-                navController.navigate(R.id.driverSetUp);
-                break;
-
-            case R.id.vehicleSetUp:
-                navController.navigate(R.id.vehicleSetUp);
-                break;
-
-
-        }
-
-
         menuItem.setChecked(true);
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
