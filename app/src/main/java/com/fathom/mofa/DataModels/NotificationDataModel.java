@@ -1,5 +1,6 @@
 package com.fathom.mofa.DataModels;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class NotificationDataModel {
@@ -31,4 +32,12 @@ public class NotificationDataModel {
     public void setNotificationType(String notificationType) {
         this.notificationType = notificationType;
     }
+
+    // per year of make field
+    public static Comparator<NotificationDataModel> dateComparator = new Comparator<NotificationDataModel>() {
+        @Override
+        public int compare(NotificationDataModel jc1, NotificationDataModel jc2) {
+            return (int) (jc1.getNotificationDate().compareTo(jc2.getNotificationDate()));
+        }
+    };
 }

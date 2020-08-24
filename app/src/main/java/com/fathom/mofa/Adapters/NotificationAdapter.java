@@ -14,6 +14,7 @@ import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.fathom.mofa.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationRecordHolder> {
@@ -71,6 +72,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public int getItemCount() {
         return notification.size();
+    }
+
+    public void sortByDate(ArrayList<NotificationDataModel> notifications) {
+
+        notification = notifications;
+        notifyDataSetChanged();
     }
 
     public class NotificationRecordHolder extends RecyclerView.ViewHolder {
