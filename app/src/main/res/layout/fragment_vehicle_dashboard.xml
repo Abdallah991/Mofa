@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="800dp"
+    android:layout_height="match_parent"
     tools:context=".VehicleDashboard">
 
     <TextView
@@ -148,7 +148,7 @@
         android:id="@+id/numberOfRecordsVehicles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vehicles"
+        android:text="@string/vehicle"
         android:textAllCaps="false"
         android:textColor="@color/appGrey"
         android:textSize="16sp"
@@ -156,69 +156,6 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline95"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <TextView
-        android:id="@+id/numberOfPagesVehicles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1/2"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toTopOf="@+id/guideline95"
-        app:layout_constraintEnd_toStartOf="@+id/guideline96"
-        app:layout_constraintStart_toStartOf="@+id/guideline96"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <TextView
-        android:id="@+id/backTextVehicles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back"
-        android:textAllCaps="false"
-        android:textColor="@color/appGrey"
-        android:textSize="16sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toTopOf="@+id/guideline95"
-        app:layout_constraintEnd_toStartOf="@+id/guideline97"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <TextView
-        android:id="@+id/nextTextVehicles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@color/appGrey"
-        android:textSize="16sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toTopOf="@+id/guideline95"
-        app:layout_constraintStart_toStartOf="@+id/guideline98"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <Button
-        android:id="@+id/backButtonVehicles"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:elevation="0dp"
-        android:background="@drawable/left_arrow"
-        app:layout_constraintBottom_toTopOf="@+id/guideline95"
-        app:layout_constraintEnd_toStartOf="@+id/backText"
-        app:layout_constraintStart_toStartOf="@+id/guideline100"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <Button
-        android:id="@+id/nextButtonVehicles"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:background="@drawable/right_arrow"
-        android:elevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline95"
-        app:layout_constraintEnd_toStartOf="@+id/guideline102"
-        app:layout_constraintStart_toStartOf="@+id/guideline99"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
@@ -238,21 +175,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.32" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline95"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93" />
+        app:layout_constraintGuide_percent="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -336,6 +273,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="-0.02" />
+        app:layout_constraintGuide_percent="-0.016601562" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
         android:hint="@string/plate_number"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:layout_marginStart="10dp"
@@ -38,6 +38,7 @@
             android:id="@+id/plateNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,7 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
-        android:hint="Manufacturer"
+        android:hint="@string/manufacturer"
         android:inputType="text"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -116,7 +117,7 @@
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
         android:hint="@string/make"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:theme="@style/TextLabel"
@@ -129,7 +130,7 @@
             android:id="@+id/make"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner

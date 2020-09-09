@@ -14,7 +14,7 @@
         android:src="@drawable/front_right"
         app:layout_constraintBottom_toTopOf="@+id/guideline36"
         app:layout_constraintEnd_toStartOf="@+id/guideline46"
-        app:layout_constraintStart_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toStartOf="@+id/guideline21"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <ImageView
@@ -39,6 +39,50 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="@+id/guideline31"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <ImageView
+        android:id="@+id/frontLeftTire"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tire"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline123"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <ImageView
+        android:id="@+id/frontRightTire"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tire"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline124"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <ImageView
+        android:id="@+id/backRightTire"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tire"
+        app:layout_constraintBottom_toTopOf="@+id/guideline126"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline124"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+
+    <ImageView
+        android:id="@+id/backLeftTire"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tire"
+        app:layout_constraintBottom_toTopOf="@+id/guideline126"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline123"
+        app:layout_constraintTop_toTopOf="@+id/guideline19" />
 
     <ImageView
         android:id="@+id/frontLeftDoorConfirmation"
@@ -154,7 +198,7 @@
         android:layout_height="0dp"
         android:elevation="3dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ceiling_back"
+        android:src="@drawable/back"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="@+id/guideline31"
@@ -210,11 +254,18 @@
         app:layout_constraintGuide_percent="0.12" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline123"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline30"
@@ -228,14 +279,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.628" />
+        app:layout_constraintGuide_percent="0.624" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline48"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.655" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
@@ -306,6 +357,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline124"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline32"
@@ -427,11 +485,18 @@
         app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline125"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.61" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_begin="400dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline53"
@@ -439,6 +504,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline126"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

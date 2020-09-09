@@ -24,11 +24,11 @@
     <string name="login">Login</string>
     <string name="vehicle_information">VEHICLE INFORMATION</string>
     <string name="vehicle_information_small">Vehicle Information</string>
-    <string name="plate_number">Plate Number</string>
+    <string name="plate_number">Plate number</string>
     <string name="model">Model</string>
     <string name="color">Color</string>
-    <string name="make">Make</string>
-    <string name="car_type">Car Type</string>
+    <string name="make">Make year</string>
+    <string name="car_type">Car type</string>
     <string name="next">Next</string>
     <string name="registration">Registration</string>
     <string name="damage_report">Damage Report</string>
@@ -66,7 +66,7 @@
     <string name="retrieve">Retrieve</string>
     <string name="release">Release</string>
     <string name="vehicle_utilities">Vehicle Utilities</string>
-    <string name="milage">Milage</string>
+    <string name="milage">Mileage</string>
     <string name="fuel_available">Fuel Available</string>
     <string name="car_items">Car Items</string>
     <string name="jack">Jack</string>
@@ -105,6 +105,9 @@
     <string name="date_from_filter">Date from:</string>
     <string name="date_to_filter">Date to:</string>
     <string name="confirm">Confirm</string>
+    <string name="signature">Signature</string>
+    <string name="records">Records</string>
+    <string name="vehicle">Vehicle</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -177,5 +180,11 @@
         <item>Busy</item>
         <item>Returned</item>
         <item>Released</item>
+    </string-array>
+
+    <string-array name="userType">
+        <item>User Type</item>
+        <item>Operator</item>
+        <item>Admin</item>
     </string-array>
 </resources>

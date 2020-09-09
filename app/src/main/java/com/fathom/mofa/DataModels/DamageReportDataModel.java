@@ -16,6 +16,10 @@ public class DamageReportDataModel {
     private boolean backLeft;
     private boolean back;
     private boolean backWindShield;
+    private boolean frontRightTire;
+    private boolean frontLeftTire;
+    private boolean backRightTire;
+    private boolean backLeftTire;
     private String carId;
     // This can have Two values
     //1- PlateNumber+Car Transaction (for Set up and Release)
@@ -50,9 +54,14 @@ public class DamageReportDataModel {
         this.backLeft = false;
         this.back = false;
         this.backWindShield = false;
+        this.frontLeftTire= false;
+        this.frontRightTire= false;
+        this.backRightTire= false;
+        this.backLeftTire= false;
     }
 
-    public DamageReportDataModel(boolean front, boolean frontRight, boolean frontLeft, boolean driverDoor, boolean passengerDoor, boolean frontWindShield, boolean backLeftDoor, boolean backRightDoor, boolean ceiling, boolean backCeiling, boolean backRight, boolean backLeft, boolean back, boolean backWindShield) {
+    public DamageReportDataModel(boolean front, boolean frontRight, boolean frontLeft, boolean driverDoor, boolean passengerDoor, boolean frontWindShield, boolean backLeftDoor, boolean backRightDoor, boolean ceiling, boolean backCeiling, boolean backRight, boolean backLeft, boolean back, boolean backWindShield,
+                                 boolean backRightTire,  boolean backLeftTire, boolean frontLeftTire, boolean frontRightTire) {
         this.front = front;
         this.frontRight = frontRight;
         this.frontLeft = frontLeft;
@@ -67,6 +76,10 @@ public class DamageReportDataModel {
         this.backLeft = backLeft;
         this.back = back;
         this.backWindShield = backWindShield;
+        this.backRightTire = backRightTire;
+        this.backLeftTire = backLeftTire;
+        this.frontRightTire = frontRightTire;
+        this.frontLeftTire = frontLeftTire;
     }
 
     public boolean isFront() {
@@ -212,5 +225,37 @@ public class DamageReportDataModel {
 
     public void setCarType(String carType) {
         this.carType = carType;
+    }
+
+    public boolean isFrontRightTire() {
+        return frontRightTire;
+    }
+
+    public void setFrontRightTire(boolean frontRightTire) {
+        this.frontRightTire = frontRightTire;
+    }
+
+    public boolean isFrontLeftTire() {
+        return frontLeftTire;
+    }
+
+    public void setFrontLeftTire(boolean frontLeftTire) {
+        this.frontLeftTire = frontLeftTire;
+    }
+
+    public boolean isBackRightTire() {
+        return backRightTire;
+    }
+
+    public void setBackRightTire(boolean backRightTire) {
+        this.backRightTire = backRightTire;
+    }
+
+    public boolean isBackLeftTire() {
+        return backLeftTire;
+    }
+
+    public void setBackLeftTire(boolean backLeftTire) {
+        this.backLeftTire = backLeftTire;
     }
 }

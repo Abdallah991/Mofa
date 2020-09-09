@@ -3,6 +3,7 @@ package com.fathom.mofa;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -10,14 +11,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import static com.fathom.mofa.MainActivity.FRAGMENT;
+import static com.fathom.mofa.MainActivity.showIcon;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
 
 import com.fathom.mofa.DataModels.UserDataModel;
@@ -42,7 +49,7 @@ public class SignUpUser extends Fragment {
     private EditText email;
     private EditText password;
     private EditText phoneNumber;
-    private EditText userType;
+    private Spinner userType;
     private Button register;
     private UserDataModel user = new UserDataModel();
     private UserViewModel model;
@@ -53,13 +60,9 @@ public class SignUpUser extends Fragment {
     public static final String USER = "USER";
 
 
-
-
-
     public SignUpUser() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -82,11 +85,39 @@ public class SignUpUser extends Fragment {
         register = view.findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
 
-
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+
+        // setting up user types spinner
+        String[] userTypes = getResources().getStringArray(R.array.userType);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, userTypes) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(getResources().getColor(R.color.appGrey));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                }
+                return view;
+            }
+        };
+        typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        userType.setAdapter(typeAdapter);
 
         model = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         model.initUsers();
@@ -104,12 +135,13 @@ public class SignUpUser extends Fragment {
                 // You can store data in shared Preferences her
 
                 if (isEmailValid(email.getText().toString())
-                        && isPasswordValid(password.getText().toString())) {
+                        && isPasswordValid(password.getText().toString())
+                        && isUserTypeValid()) {
+                    progressDialog.show();
                     SignUp();
                     uploadUser();
-                    progressDialog.show();
-                } else
-                {
+                    showIcon();
+                } else {
                     Toast.makeText(getContext(), "Email And/or password are invalid",
                             Toast.LENGTH_SHORT).show();
 
@@ -117,7 +149,6 @@ public class SignUpUser extends Fragment {
 
             }
         });
-
 
 
     }
@@ -135,9 +166,8 @@ public class SignUpUser extends Fragment {
             user.setEmail(email);
             user.setFirstName(firstName.getText().toString());
             user.setLastName(lastName.getText().toString());
-            user.setPassword(password.getText().toString());
-            user.setUserType(userType.getText().toString());
             user.setPhoneNumber(phoneNumber.getText().toString());
+
         }
 
         return email.contains("@");
@@ -145,12 +175,24 @@ public class SignUpUser extends Fragment {
 
     private boolean isPasswordValid(String password) {
 
-        if (password.length() >6) {
+        if (password.length() > 6) {
             Log.d(TAG, "password is valid.");
             user.setPassword(password);
         }
         return password.length() > 6;
     }
+
+    private boolean isUserTypeValid() {
+        if (!userType.getSelectedItem().toString().equals("User Type")) {
+            user.setUserType(userType.getSelectedItem().toString());
+            return true;
+
+        } else {
+            Toast.makeText(getContext(), "Select User Type", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     private void SignUp() {
 
         String username = email.getText().toString();
@@ -158,7 +200,7 @@ public class SignUpUser extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
 
         mAuth.createUserWithEmailAndPassword(username, userPassword)
-                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -175,8 +217,8 @@ public class SignUpUser extends Fragment {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
                                                 navController.navigate(R.id.action_signUpUser_to_home);
-                                                Toast.makeText(getContext(), "You can Login now",
-                                                        Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
+
 
                                             }
                                         }
@@ -186,6 +228,7 @@ public class SignUpUser extends Fragment {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
 
                         // ...
@@ -205,7 +248,6 @@ public class SignUpUser extends Fragment {
 
     private void addUserToViewModel() {
         model.addUser(user);
-        progressDialog.dismiss();
     }
 
 }

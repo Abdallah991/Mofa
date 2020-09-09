@@ -119,6 +119,8 @@ public class VehicleSetUp extends Fragment {
             @Override
             public void onClick(View v) {
                if (getCarInfo()) {
+                String type = typeTextView.getSelectedItem().toString();
+                vehicle.setCarType(type);
                 mNavController.navigate(actionNavigateToVehicleSetUpRegistration);
                }
             }

@@ -75,9 +75,6 @@ public class VehicleDashboard extends Fragment {
         searchVehicles = view.findViewById(R.id.searchVehicle);
         searchButton = view.findViewById(R.id.searchVehicles);
         numberOfVehicles = view.findViewById(R.id.numberOfRecordsVehicles);
-        numberOfPages = view.findViewById(R.id.numberOfPagesVehicles);
-        backButton = view.findViewById(R.id.backButtonVehicles);
-        nextButton = view.findViewById(R.id.nextButtonVehicles);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");

@@ -87,6 +87,10 @@
 
     </style>
 
+    <style name="DatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
 
     </style>

@@ -40,6 +40,12 @@
         <action
             android:id="@+id/action_dashboard_to_vehicleRecordDetails"
             app:destination="@id/vehicleRecordDetails" />
+        <action
+            android:id="@+id/action_dashboard_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_dashboard_to_signUpUser"
+            app:destination="@id/signUpUser" />
     </fragment>
     <fragment
         android:id="@+id/driverSetUp"
@@ -262,6 +268,12 @@
         <action
             android:id="@+id/action_vehicleDashboard_to_vehicleDetails"
             app:destination="@id/vehicleDetails" />
+        <action
+            android:id="@+id/action_vehicleDashboard_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleDashboard_to_signUpUser"
+            app:destination="@id/signUpUser" />
     </fragment>
     <fragment
         android:id="@+id/vehicleDetails"
@@ -271,10 +283,23 @@
         <action
             android:id="@+id/action_vehicleDetails_to_vehicleRecord2"
             app:destination="@id/vehicleRecord" />
+        <action
+            android:id="@+id/action_vehicleDetails_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleDetails_to_signUpUser"
+            app:destination="@id/signUpUser" />
     </fragment>
     <fragment
         android:id="@+id/vehicleRecordDetails"
         android:name="com.fathom.mofa.VehicleRecordDetails"
         android:label="fragment_vehicle_record_details"
-        tools:layout="@layout/fragment_vehicle_record_details" />
+        tools:layout="@layout/fragment_vehicle_record_details" >
+        <action
+            android:id="@+id/action_vehicleRecordDetails_to_notifications"
+            app:destination="@id/notifications" />
+        <action
+            android:id="@+id/action_vehicleRecordDetails_to_signUpUser"
+            app:destination="@id/signUpUser" />
+    </fragment>
 </navigation>

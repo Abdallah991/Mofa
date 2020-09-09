@@ -17,13 +17,14 @@
         app:fontFamily="@font/roboto_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline77" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="20dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
         app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline76">
@@ -31,7 +32,7 @@
         <ViewFlipper
             android:id="@+id/vehicleRecordViewFlipper"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <include
                 android:id="@+id/vehicleRecordSaloon"
@@ -40,9 +41,11 @@
             <include
                 android:id="@+id/vehicleRecordJeep"
                 layout="@layout/damage_report_jeep" />
+
             <include
                 android:id="@+id/vehicleRecordFamily"
                 layout="@layout/damage_report_family" />
+
             <include
                 android:id="@+id/vehicleRecordVan"
                 layout="@layout/damage_report_van" />
@@ -105,7 +108,7 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline75"
         app:layout_constraintStart_toStartOf="@+id/guideline79"
-        app:layout_constraintTop_toTopOf="@+id/guideline18" />
+        app:layout_constraintTop_toTopOf="@+id/guideline148" />
 
     <TextView
         android:id="@+id/handoverText"
@@ -129,7 +132,7 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline75"
         app:layout_constraintStart_toStartOf="@+id/guideline57"
-        app:layout_constraintTop_toTopOf="@+id/guideline18" />
+        app:layout_constraintTop_toTopOf="@+id/guideline148" />
 
     <TextView
         android:id="@+id/retrievalText"
@@ -428,7 +431,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.07" />
+        app:layout_constraintGuide_percent="0.04" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline77"
@@ -471,6 +474,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline148"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline147"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"

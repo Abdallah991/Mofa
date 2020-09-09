@@ -17,13 +17,13 @@
         app:fontFamily="@font/roboto_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline88" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/signatureSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Signature"
+        android:text="@string/signature"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="33sp"

@@ -3,6 +3,7 @@ package com.fathom.mofa;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private FirebaseAuth mAuth;
+    private ProgressDialog progressDialog;
     private final String TAG = "SIGN IN";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -40,15 +42,22 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
 
-        // REMOVE Later
-        Intent intent = new Intent(getApplicationContext(),
-                MainActivity.class);
-        startActivity(intent);
-        finish();
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setTitle("Loading...");
+
+        // if the user logged in, sign them up
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            Intent intent = new Intent(getApplicationContext(),
+                    MainActivity.class);
+            startActivity(intent);
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+               progressDialog.show();
                signIn();
 
            }
@@ -83,12 +92,15 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(),
                                     MainActivity.class);
                             startActivity(intent);
+                            progressDialog.dismiss();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
                         }
 
                     }

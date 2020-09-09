@@ -461,14 +461,15 @@ public class Dashboard extends Fragment {
         providers = new ArrayList<>();
         for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
 
-            if (providers.isEmpty())
-                providers.add(vehicleRecord.getRentalInfo());
+            if (providers.isEmpty()) {
+//                providers.add(vehicleRecord.getRentalInfo());
 
             for (String value : providers) {
                 if (!value.equals(vehicleRecord.getRentalInfo())) {
                     providers.add(vehicleRecord.getRentalInfo());
 
                 }
+            }
             }
         }
 

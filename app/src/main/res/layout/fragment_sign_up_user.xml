@@ -115,29 +115,19 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
+        android:id="@+id/userType"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/user_type"
-        android:inputType="text"
-        android:textColor="@color/black"
+        android:layout_height="0dp"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/appGrey"
         android:textSize="24sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:theme="@style/TextLabel"
+        app:fontFamily="@font/roboto_medium"
         app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline14" >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/userType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintEnd_toStartOf="@+id/guideline121"
+        app:layout_constraintStart_toStartOf="@+id/guideline120"
+        app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
@@ -188,11 +178,25 @@
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline120"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.31" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline121"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.69" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"

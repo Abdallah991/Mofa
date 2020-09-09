@@ -28,7 +28,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
+import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -91,6 +93,8 @@ public class VehicleRegistration extends Fragment {
         final DatePickerDialog[] picker = new DatePickerDialog[1];
 
 
+        registrationStart.setInputType(0);
+        registrationEnd.setInputType(0);
 
         registrationStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +104,7 @@ public class VehicleRegistration extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -127,7 +131,7 @@ public class VehicleRegistration extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -235,8 +239,8 @@ public class VehicleRegistration extends Fragment {
                     startActivityForResult(takePicture, 0);
 
                 } else if (options[item].equals("Choose from Gallery")) {
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto , 1);
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto,1);
 
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
@@ -297,27 +301,34 @@ public class VehicleRegistration extends Fragment {
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
                                 Log.d("GET IMAGE", "the picture path is: "+ picturePath);
+                                Bitmap bitmap = null;
+                                try {
+                                  bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
                                 switch (selector) {
                                     case "vehicleRightSide":
-                                        vehicleRightSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleRightSide.setImageURI(selectedImage);
                                         vehicle.setPhotoRightSide(vehicle.getPlateNumber()+"right");
-                                        carPhotos.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotos.setPhotoRightSide(bitmap);
                                         break;
                                     case "vehicleLeftSide":
-                                        vehicleLeftSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleLeftSide.setImageURI(selectedImage);
                                         vehicle.setPhotoLeftSide(vehicle.getPlateNumber()+"left");
-                                        carPhotos.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotos.setPhotoLeftSide(bitmap);
                                         break;
                                     case "vehicleFrontSide":
-                                        vehicleFrontSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleFrontSide.setImageURI(selectedImage);
                                         vehicle.setPhotoFrontSide(vehicle.getPlateNumber()+"front");
-                                        carPhotos.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotos.setPhotoFrontSide(bitmap);
                                         break;
                                     case "vehicleBackSide":
-                                        vehicleBackSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleBackSide.setImageURI(selectedImage);
                                         vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
-                                        carPhotos.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
+
+                                        carPhotos.setPhotoBackSide(bitmap);
                                         break;
 
                                 }

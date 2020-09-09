@@ -21,7 +21,29 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="start"
+        android:hint="@string/registration_type"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:theme="@style/TextLabel"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline10">
+
+        <AutoCompleteTextView
+            android:id="@+id/registrationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/registrationStartTextInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_light"
@@ -38,6 +60,7 @@
 
         <AutoCompleteTextView
             android:id="@+id/registrationStart"
+            android:drawableEnd="@drawable/date_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
@@ -60,33 +83,14 @@
         app:layout_constraintTop_toTopOf="@+id/guideline17">
 
         <AutoCompleteTextView
+            android:drawableEnd="@drawable/date_icon"
             android:id="@+id/registrationEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="start"
-        android:hint="@string/registration_type"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:theme="@style/TextLabel"
-        app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline22"
-        app:layout_constraintTop_toTopOf="@+id/guideline10">
 
-        <AutoCompleteTextView
-            android:id="@+id/registrationType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button

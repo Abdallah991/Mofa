@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Button logOut;
     private Button changeLanguage;
-    private ImageView signUp;
-    private ImageView notification;
+    private static ImageView signUp;
+    private static ImageView notification;
     private LinearLayout dashboardMenuItem;
     private LinearLayout vehicleRecordMenuItem;
     private LinearLayout driverSetupMenuItem;
@@ -64,6 +64,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int actionNavigateToNotificationFromVehicleSetUpSignature = R.id.action_vehicleSetUpSignature_to_notifications;
     private int actionNavigateToSignUpFromVehicleRecordSignature = R.id.action_vehicleRecordSignature_to_signUpUser;
     private int actionNavigateToNotificationFromVehicleRecordSignature = R.id.action_vehicleRecordSignature_to_notifications;
+    private int actionNavigateToNotificationFromVehicleDashboard = R.id.action_vehicleDashboard_to_notifications;
+    private int actionNavigateToSignUpFromVehicleDashboard = R.id.action_vehicleDashboard_to_signUpUser;
+    private int actionNavigateToNotificationFromVehicleDetails = R.id.action_vehicleDetails_to_notifications;
+    private int actionNavigateToSignUpFromVehicleDetails = R.id.action_vehicleDetails_to_signUpUser;
+    private int actionNavigateToNotificationFromDashboard = R.id.action_dashboard_to_notifications;
+    private int actionNavigateToSignUpFromDashboard = R.id.action_dashboard_to_signUpUser;
+    private int actionNavigateToNotificationFromRecordDetails = R.id.action_vehicleRecordDetails_to_notifications;
+    private int actionNavigateToSignUpFromRecordDetails= R.id.action_vehicleRecordDetails_to_signUpUser;
 
 
 
@@ -187,10 +195,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         notification.setImageResource(R.drawable.home_icon);
                         signUp.setVisibility(View.GONE);
                         break;
-
-
-
-
+                    case "vehicleDashboard":
+                        navController.navigate(actionNavigateToNotificationFromVehicleDashboard);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "vehicleDetails":
+                        navController.navigate(actionNavigateToNotificationFromVehicleDetails);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "dashboard":
+                        navController.navigate(actionNavigateToNotificationFromDashboard);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
+                    case "RecordDetails":
+                        navController.navigate(actionNavigateToNotificationFromRecordDetails);
+                        notification.setImageResource(R.drawable.home_icon);
+                        signUp.setVisibility(View.GONE);
+                        break;
                 }
 
             }
@@ -280,8 +304,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         signUp.setImageResource(R.drawable.home_icon);
                         notification.setVisibility(View.GONE);
                         break;
-
-
+                    case "vehicleDashboard":
+                        navController.navigate(actionNavigateToSignUpFromVehicleDashboard);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "vehicleDetails":
+                        navController.navigate(actionNavigateToSignUpFromVehicleDetails);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "dashboard":
+                        navController.navigate(actionNavigateToSignUpFromDashboard);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
+                    case "RecordDetails":
+                        navController.navigate(actionNavigateToSignUpFromRecordDetails);
+                        signUp.setImageResource(R.drawable.home_icon);
+                        notification.setVisibility(View.GONE);
+                        break;
                 }
 
             }
@@ -413,6 +455,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         signUp.setVisibility(View.GONE);
         notification.setVisibility(View.GONE);
 
+    }
+
+    public static void showIcon() {
+        signUp.setVisibility(View.VISIBLE);
+        notification.setVisibility(View.VISIBLE);
     }
 
 

@@ -44,6 +44,10 @@ public class VehicleSetUpDamageReport extends Fragment {
     private ImageView backRight;
     private ImageView backLeft;
     private ImageView backCar;
+    private ImageView frontRightTire;
+    private ImageView frontLeftTire;
+    private ImageView backRightTire;
+    private ImageView backLeftTire;
     private ViewFlipper mViewFlipper;
     public static DamageReportDataModel damageReport;
     private NavController navController;
@@ -85,6 +89,10 @@ public class VehicleSetUpDamageReport extends Fragment {
                 backLeft = view.findViewById(R.id.backLeftConfirmation);
                 backRight = view.findViewById(R.id.backRightConfirmation);
                 backCar = view.findViewById(R.id.backConfirmation);
+                backRightTire = view.findViewById(R.id.backRightTire);
+                backLeftTire = view.findViewById(R.id.backLeftTire);
+                frontRightTire = view.findViewById(R.id.frontRightTire);
+                frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
                 mViewFlipper.setDisplayedChild(1);
@@ -102,6 +110,10 @@ public class VehicleSetUpDamageReport extends Fragment {
                 backLeft = view.findViewById(R.id.jeepBackLeft);
                 backRight = view.findViewById(R.id.jeepBackRight);
                 backCar = view.findViewById(R.id.jeepBack);
+                backRightTire = view.findViewById(R.id.jeepBackRightTire);
+                backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
+                frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
                 mViewFlipper.setDisplayedChild(2);
@@ -119,6 +131,10 @@ public class VehicleSetUpDamageReport extends Fragment {
                 backLeft = view.findViewById(R.id.familyBackLeft);
                 backRight = view.findViewById(R.id.familyBackRight);
                 backCar = view.findViewById(R.id.familyBack);
+                backRightTire = view.findViewById(R.id.familyBackRightTire);
+                backLeftTire = view.findViewById(R.id.familyBackLeftTire);
+                frontRightTire = view.findViewById(R.id.familyFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
                 mViewFlipper.setDisplayedChild(3);
@@ -136,6 +152,10 @@ public class VehicleSetUpDamageReport extends Fragment {
                 backLeft = view.findViewById(R.id.vanBackLeft);
                 backRight = view.findViewById(R.id.vanBackRight);
                 backCar = view.findViewById(R.id.vanBack);
+                backRightTire = view.findViewById(R.id.vanBackRightTire);
+                backLeftTire = view.findViewById(R.id.vanBackLeftTire);
+                frontRightTire = view.findViewById(R.id.vanFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
                 break;
         }
 
@@ -478,10 +498,10 @@ public class VehicleSetUpDamageReport extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (!damageReport.isBackCeiling()) {
-                        backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                        backCeiling.setImageResource(R.drawable.back_red);
                         damageReport.setBackCeiling(true);
                     } else if (damageReport.isBackCeiling()) {
-                        backCeiling.setImageResource(R.drawable.ceiling_back);
+                        backCeiling.setImageResource(R.drawable.back);
                         damageReport.setBackCeiling(false);
                     }
                 }
@@ -627,6 +647,61 @@ public class VehicleSetUpDamageReport extends Fragment {
                             break;
                     }
                     damageReport.setBack(false);
+                }
+            }
+        });
+
+        frontRightTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReport.isFrontRightTire()) {
+                    frontRightTire.setImageResource(R.drawable.tire_red);
+                    damageReport.setFrontRightTire(true);
+
+                } else if (damageReport.isFrontRightTire()) {
+                    frontRightTire.setImageResource(R.drawable.tire);
+                    damageReport.setFrontRightTire(false);
+                }
+            }
+        });
+
+        frontLeftTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReport.isFrontLeftTire()) {
+                    frontLeftTire.setImageResource(R.drawable.tire_red);
+                    damageReport.setFrontLeftTire(true);
+
+                } else if (damageReport.isFrontLeftTire()) {
+                    frontLeftTire.setImageResource(R.drawable.tire);
+                    damageReport.setFrontLeftTire(false);
+                }
+            }
+        });
+
+        backLeftTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReport.isBackLeftTire()) {
+                    backLeftTire.setImageResource(R.drawable.tire_red);
+                    damageReport.setBackLeftTire(true);
+
+                } else if (damageReport.isBackLeftTire()) {
+                    backLeftTire.setImageResource(R.drawable.tire);
+                    damageReport.setBackLeftTire(false);
+                }
+            }
+        });
+        backRightTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReport.isBackRightTire()) {
+                    backRightTire.setImageResource(R.drawable.tire_red);
+                    damageReport.setBackRightTire(true);
+
+                } else if (damageReport.isBackRightTire()) {
+                    backRightTire.setImageResource(R.drawable.tire);
+                    damageReport.setBackRightTire(false);
                 }
             }
         });

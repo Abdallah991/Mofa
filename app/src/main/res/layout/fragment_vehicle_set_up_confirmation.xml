@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline40">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/confirmationTitle"
@@ -314,14 +314,12 @@
                         android:textSize="17sp" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="1000dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="400dp">
+                    android:orientation="vertical">
                     <ViewFlipper
                         android:id="@+id/vehicleConfirmationViewFlipper"
-                        android:layout_width="match_parent"
-                        android:layout_marginEnd="400dp"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
                         <include
                             android:id="@+id/vehicleConfirmationSaloon"
@@ -500,7 +498,7 @@
     <LinearLayout
         android:id="@+id/photoGalleryLayout"
         android:layout_width="500dp"
-        android:layout_height="400dp"
+        android:layout_height="600dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/guideline30"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
@@ -509,7 +507,7 @@
         <ImageView
             android:id="@+id/vehicleImagesHandover"
             android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_height="400dp"
             android:layout_gravity="center"
             android:src="@drawable/vehicle_left_side" />
         <LinearLayout
@@ -879,7 +877,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67" />
+        app:layout_constraintGuide_percent="0.71" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

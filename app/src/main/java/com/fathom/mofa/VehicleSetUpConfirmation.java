@@ -74,6 +74,10 @@ public class VehicleSetUpConfirmation extends Fragment {
     private ImageView backWindShieldConfirmation;
     private ImageView backRightConfirmation;
     private ImageView backLeftConfirmation;
+    private ImageView frontRightTire;
+    private ImageView frontLeftTire;
+    private ImageView backRightTire;
+    private ImageView backLeftTire;
     // view Flipper
     private ViewFlipper mViewFlipper;
     // Navigation Actions
@@ -116,9 +120,9 @@ public class VehicleSetUpConfirmation extends Fragment {
         registrationEnd = view.findViewById(R.id.registrationEndValue);
         provider = view.findViewById(R.id.providerValue);
         leaseFrom = view.findViewById(R.id.leaseFromValue);
-        leaseTo= view.findViewById(R.id.leaseToValue);
-        providerPhoneNumber= view.findViewById(R.id.providerPhoneValue);
-        additionalNotes= view.findViewById(R.id.additionalNotes);
+        leaseTo = view.findViewById(R.id.leaseToValue);
+        providerPhoneNumber = view.findViewById(R.id.providerPhoneValue);
+        additionalNotes = view.findViewById(R.id.additionalNotes);
         next = view.findViewById(R.id.nextVehicleConfirmation);
         back = view.findViewById(R.id.backVehicleConfirmation);
         editVehicleInformation = view.findViewById(R.id.vehicleInformationEdit);
@@ -152,6 +156,10 @@ public class VehicleSetUpConfirmation extends Fragment {
                 frontRightConfirmation = view.findViewById(R.id.frontRightConfirmation);
                 frontLeftConfirmation = view.findViewById(R.id.frontLeftConfirmation);
                 frontConfirmation = view.findViewById(R.id.frontConfirmation);
+                backRightTire = view.findViewById(R.id.backRightTire);
+                backLeftTire = view.findViewById(R.id.backLeftTire);
+                frontRightTire = view.findViewById(R.id.frontRightTire);
+                frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
                 mViewFlipper.setDisplayedChild(1);
@@ -169,6 +177,10 @@ public class VehicleSetUpConfirmation extends Fragment {
                 backLeftConfirmation = view.findViewById(R.id.jeepBackLeft);
                 backRightConfirmation = view.findViewById(R.id.jeepBackRight);
                 backConfirmation = view.findViewById(R.id.jeepBack);
+                backRightTire = view.findViewById(R.id.jeepBackRightTire);
+                backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
+                frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
                 mViewFlipper.setDisplayedChild(2);
@@ -186,6 +198,10 @@ public class VehicleSetUpConfirmation extends Fragment {
                 backLeftConfirmation = view.findViewById(R.id.familyBackLeft);
                 backRightConfirmation = view.findViewById(R.id.familyBackRight);
                 backConfirmation = view.findViewById(R.id.familyBack);
+                backRightTire = view.findViewById(R.id.familyBackRightTire);
+                backLeftTire = view.findViewById(R.id.familyBackLeftTire);
+                frontRightTire = view.findViewById(R.id.familyFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
                 mViewFlipper.setDisplayedChild(3);
@@ -203,9 +219,12 @@ public class VehicleSetUpConfirmation extends Fragment {
                 backLeftConfirmation = view.findViewById(R.id.vanBackLeft);
                 backRightConfirmation = view.findViewById(R.id.vanBackRight);
                 backConfirmation = view.findViewById(R.id.vanBack);
+                backRightTire = view.findViewById(R.id.vanBackRightTire);
+                backLeftTire = view.findViewById(R.id.vanBackLeftTire);
+                frontRightTire = view.findViewById(R.id.vanFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
                 break;
         }
-
 
 
         // setting the values of the car
@@ -233,7 +252,7 @@ public class VehicleSetUpConfirmation extends Fragment {
             @Override
             public void onClick(View v) {
                 if (index == 3) {
-                    index =0;
+                    index = 0;
                 } else {
                     index++;
                 }
@@ -318,7 +337,7 @@ public class VehicleSetUpConfirmation extends Fragment {
     }
 
     private void damageReportReview() {
-        if(damageReport.isBack()){
+        if (damageReport.isBack()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     backConfirmation.setImageResource(R.drawable.back_red);
@@ -332,7 +351,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isBackRight()){
+        if (damageReport.isBackRight()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     backRightConfirmation.setImageResource(R.drawable.back_right_red);
@@ -346,7 +365,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isBackLeft()){
+        if (damageReport.isBackLeft()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     backLeftConfirmation.setImageResource(R.drawable.back_left_red);
@@ -361,7 +380,7 @@ public class VehicleSetUpConfirmation extends Fragment {
             }
         }
 
-        if(damageReport.isBackWindShield()){
+        if (damageReport.isBackWindShield()) {
             if (vehicle.getCarType().equals("Saloon") ||
                     vehicle.getCarType().equals("Jeep") ||
                     vehicle.getCarType().equals("Family")) {
@@ -379,7 +398,7 @@ public class VehicleSetUpConfirmation extends Fragment {
             }
         }
 
-        if(damageReport.isBackLeftDoor()){
+        if (damageReport.isBackLeftDoor()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     backLeftDoorConfirmation.setImageResource(R.drawable.back_door_left_red);
@@ -393,7 +412,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isBackRightDoor()){
+        if (damageReport.isBackRightDoor()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     backRightDoorConfirmation.setImageResource(R.drawable.back_door_right_red);
@@ -407,7 +426,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isPassengerDoor()){
+        if (damageReport.isPassengerDoor()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontRightDoorConfirmation.setImageResource(R.drawable.front_right_door_red);
@@ -421,7 +440,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isDriverDoor()){
+        if (damageReport.isDriverDoor()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontLeftDoorConfirmation.setImageResource(R.drawable.front_left_door_red);
@@ -440,7 +459,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                 backCeilingConfirmation.setImageResource(R.drawable.ceiling_back_red);
             }
         }
-        if(damageReport.isCeiling()){
+        if (damageReport.isCeiling()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontCeilingConfirmation.setImageResource(R.drawable.ceiling_red);
@@ -454,7 +473,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isFrontWindShield()){
+        if (damageReport.isFrontWindShield()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontWindshieldConfirmation.setImageResource(R.drawable.wind_sheild_red);
@@ -469,7 +488,7 @@ public class VehicleSetUpConfirmation extends Fragment {
             }
 
         }
-        if(damageReport.isFrontRight()){
+        if (damageReport.isFrontRight()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontRightConfirmation.setImageResource(R.drawable.front_right_red);
@@ -483,7 +502,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isFrontLeft()){
+        if (damageReport.isFrontLeft()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontLeftConfirmation.setImageResource(R.drawable.front_left_red);
@@ -497,7 +516,7 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
         }
-        if(damageReport.isFront()){
+        if (damageReport.isFront()) {
             switch (vehicle.getCarType()) {
                 case "Saloon":
                     frontConfirmation.setImageResource(R.drawable.front_red);
@@ -511,6 +530,22 @@ public class VehicleSetUpConfirmation extends Fragment {
                     break;
             }
 
+        }
+
+
+        if (damageReport.isFrontRightTire()) {
+            frontRightTire.setImageResource(R.drawable.tire_red);
+
+        }
+        if (damageReport.isFrontLeftTire()) {
+            frontLeftTire.setImageResource(R.drawable.tire_red);
+        }
+        if (damageReport.isBackLeftTire()) {
+            backLeftTire.setImageResource(R.drawable.tire_red);
+        }
+
+        if (damageReport.isBackRightTire()) {
+            backRightTire.setImageResource(R.drawable.tire_red);
         }
 
 

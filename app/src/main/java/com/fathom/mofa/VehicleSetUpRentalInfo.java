@@ -78,6 +78,8 @@ public class VehicleSetUpRentalInfo extends Fragment {
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
 
+        leaseStart.setInputType(0);
+        leaseEnd.setInputType(0);
         leaseStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +88,7 @@ public class VehicleSetUpRentalInfo extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -113,7 +115,7 @@ public class VehicleSetUpRentalInfo extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
