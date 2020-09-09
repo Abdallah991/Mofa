@@ -108,6 +108,8 @@
     <string name="signature">Signature</string>
     <string name="records">Records</string>
     <string name="vehicle">Vehicle</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

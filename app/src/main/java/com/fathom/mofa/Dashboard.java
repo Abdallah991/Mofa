@@ -297,7 +297,8 @@ public class Dashboard extends Fragment {
             public void run() {
                 mVehiclesRecycler.setAdapter(mVehicleRecordAdapter);
                 mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                numberOfRecords.setText(mVehicleRecords.size() + " Records");
+                String record = getResources().getString(R.string.records);
+                numberOfRecords.setText(mVehicleRecords.size() +" "+ record);
                 filteredVehicleRecords = new ArrayList<>();
                 sorter = new VehicleRecordSorter(mVehicleRecords);
                 filteredVehicleRecords = sorter.getSortedJobCandidateByModel();

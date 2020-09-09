@@ -141,6 +141,8 @@ public class DriverSetUp extends Fragment {
             }
         });
 
+        issueDate.setInputType(0);
+        expiryDate.setInputType(0);
         issueDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +151,7 @@ public class DriverSetUp extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(),R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -177,7 +179,7 @@ public class DriverSetUp extends Fragment {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(),R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -317,13 +319,13 @@ public class DriverSetUp extends Fragment {
 
                                 switch (selector) {
                                     case "frontLicense":
-                                        frontLicense.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        frontLicense.setImageURI(selectedImage);
                                         frontLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                         frontLicenseName = selectedImage.toString();
 
                                         break;
                                     case "backLicense":
-                                        backLicense.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        backLicense.setImageURI(selectedImage);
                                         backLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                         backLicenseName = selectedImage.toString();                                        break;
                                 }

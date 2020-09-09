@@ -62,7 +62,10 @@ public class HandoverConfirmation extends Fragment {
     private ImageView backLeft;
     private ImageView backRight;
     private ImageView back;
-
+    private ImageView frontRightTire;
+    private ImageView frontLeftTire;
+    private ImageView backRightTire;
+    private ImageView backLeftTire;
     private TextView carHasDamage;
     private TextView carIsUseable;
     private Button editVehicleRecord;
@@ -130,6 +133,10 @@ public class HandoverConfirmation extends Fragment {
                 back = view.findViewById(R.id.backConfirmation);
                 backRight = view.findViewById(R.id.backRightConfirmation);
                 backLeft = view.findViewById(R.id.backLeftConfirmation);
+                backRightTire = view.findViewById(R.id.backRightTire);
+                backLeftTire = view.findViewById(R.id.backLeftTire);
+                frontRightTire = view.findViewById(R.id.frontRightTire);
+                frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
                 mViewFlipper.setDisplayedChild(1);
@@ -147,6 +154,10 @@ public class HandoverConfirmation extends Fragment {
                 backLeft = view.findViewById(R.id.jeepBackLeft);
                 backRight = view.findViewById(R.id.jeepBackRight);
                 back= view.findViewById(R.id.jeepBack);
+                backRightTire = view.findViewById(R.id.jeepBackRightTire);
+                backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
+                frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
                 mViewFlipper.setDisplayedChild(2);
@@ -164,6 +175,10 @@ public class HandoverConfirmation extends Fragment {
                 backLeft = view.findViewById(R.id.familyBackLeft);
                 backRight = view.findViewById(R.id.familyBackRight);
                 back = view.findViewById(R.id.familyBack);
+                backRightTire = view.findViewById(R.id.familyBackRightTire);
+                backLeftTire = view.findViewById(R.id.familyBackLeftTire);
+                frontRightTire = view.findViewById(R.id.familyFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
                 mViewFlipper.setDisplayedChild(3);
@@ -181,6 +196,10 @@ public class HandoverConfirmation extends Fragment {
                 backLeft = view.findViewById(R.id.vanBackLeft);
                 backRight = view.findViewById(R.id.vanBackRight);
                 back = view.findViewById(R.id.vanBack);
+                backRightTire = view.findViewById(R.id.vanBackRightTire);
+                backLeftTire = view.findViewById(R.id.vanBackLeftTire);
+                frontRightTire = view.findViewById(R.id.vanFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
                 break;
         }
 
@@ -391,7 +410,7 @@ public class HandoverConfirmation extends Fragment {
         }
         if (vehicleInRecord.getCarType().equals("Saloon")) {
             if (damageReportRecord.isBackCeiling()) {
-                backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                backCeiling.setImageResource(R.drawable.back_red);
             }
         }
         if (damageReportRecord.isCeiling()) {
@@ -467,7 +486,20 @@ public class HandoverConfirmation extends Fragment {
 
         }
 
+        if (damageReportRecord.isFrontRightTire()) {
+            frontRightTire.setImageResource(R.drawable.tire_red);
 
+        }
+        if (damageReportRecord.isFrontLeftTire()) {
+            frontLeftTire.setImageResource(R.drawable.tire_red);
+        }
+        if (damageReportRecord.isBackLeftTire()) {
+            backLeftTire.setImageResource(R.drawable.tire_red);
+        }
+
+        if (damageReportRecord.isBackRightTire()) {
+            backRightTire.setImageResource(R.drawable.tire_red);
+        }
 
 
 
@@ -513,15 +545,15 @@ public class HandoverConfirmation extends Fragment {
 
     private void vehicleStatus() {
         if(vehicleRecord.isCarHasDamage()) {
-            carHasDamage.setText("Yes");
+            carHasDamage.setText(R.string.yes);
         }else {
-            carHasDamage.setText("No");
+            carHasDamage.setText(R.string.no);
 
         }
         if(vehicleRecord.isCarIsUseable()) {
-            carIsUseable.setText("Yes");
+            carIsUseable.setText(R.string.yes);
         }else {
-            carIsUseable.setText("No");
+            carIsUseable.setText(R.string.yes);
 
         }
     }

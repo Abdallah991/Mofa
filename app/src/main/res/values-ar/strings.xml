@@ -1,0 +1,190 @@
+<resources>
+    <string name="app_name">Mofa</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout">الخروج</string>
+    <string name="vehicle_record">ملف المركبات</string>
+    <string name="dashboard">السجل</string>
+    <string name="driver_set_up">تسجيل السائق</string>
+    <string name="vehicle_set_up">تسجيل المركبة</string>
+    <string name="arabic">English</string>
+    <string name="notifications">التنبيهات</string>
+    <string name="vehicle_dashboard">سجل المركبات</string>
+    <string name="vehicle_record_details">تفاصيل سجل المركبة</string>
+    <string name="sign_up">تسجيل المستخدم</string>
+    <string name="sign_up_user">تسجيل المستخدم</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">اسم العائلة</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمه السر</string>
+    <string name="user_type">نوع المستخدم</string>
+    <string name="phone_number">رقم التلفون</string>
+    <string name="register">تسجيل</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="vehicle_information">معلومات المركبة</string>
+    <string name="vehicle_information_small">معلومات المركبة</string>
+    <string name="plate_number">رقم لوحة السيارة</string>
+    <string name="model">النوع</string>
+    <string name="color">اللون</string>
+    <string name="make">سنة التصنيع</string>
+    <string name="car_type">نوع المركبة</string>
+    <string name="next">التالي</string>
+    <string name="registration">التسجيل</string>
+    <string name="damage_report">تقرير الاضرار</string>
+    <string name="confirmation">التأكيد</string>
+    <string name="registration_end">تاريخ نهاية التسجيل</string>
+    <string name="registration_start">تاريخ بدء التسجيل</string>
+    <string name="registration_type">نوع التسجيل</string>
+    <string name="rental_information">معلومات شركة التأجير</string>
+    <string name="provider">اسم الشركة</string>
+    <string name="provider_phone_number">رقم التلفون</string>
+    <string name="edit">تعديل</string>
+    <string name="manufacturer">المصنع</string>
+    <string name="type">نوع</string>
+    <string name="additional_notes">معلومات أخرى</string>
+    <string name="lease_from">تأجير من</string>
+    <string name="lease_to">تأجير إلى</string>
+    <string name="additional_notes_here">ادخل اي معلومات اخرى هنا</string>
+    <string name="done">إنتهاء العملية</string>
+    <string name="rental_company_signature">توقيع شركة التأجير</string>
+    <string name="ministry_signature">توقيع الوزارة </string>
+    <string name="sign_here">وقع هنا</string>
+    <string name="clear">مسح</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="driver_id">البطاقة السكانية</string>
+    <string name="address_line_1">عنوان١</string>
+    <string name="address_line_2">عنوان٢</string>
+    <string name="nationality">الجنسية</string>
+    <string name="issue_date">تاريخ الاصدار</string>
+    <string name="expiry_date">تاريخ الانتهاء</string>
+    <string name="car_utilities">مرافق المركبة</string>
+    <string name="accident_report">تقرير الحادث</string>
+    <string name="handover">تسليم</string>
+    <string name="retrieval">استرجاع</string>
+    <string name="retrieve">استرجاع</string>
+    <string name="release">إزالة</string>
+    <string name="vehicle_utilities">مرافق المركبة</string>
+    <string name="milage">عدد المركبة</string>
+    <string name="fuel_available">الوقود المتوفر</string>
+    <string name="car_items">مرافق السيارة</string>
+    <string name="jack">Jack</string>
+    <string name="tools">Tools</string>
+    <string name="spare_tire">Spare tire</string>
+    <string name="c_lighter">C. Lighter</string>
+    <string name="floor_mat">Floor mat</string>
+    <string name="car_has_damage">السيارة فيها ضرر</string>
+    <string name="car_is_useable">السيارة ممكن استخدامها</string>
+    <string name="managed_by">المستخدم</string>
+    <string name="driver">السائق</string>
+    <string name="operation">عملية</string>
+    <string name="vehicle_name">اسم المركبة</string>
+    <string name="wheel_cap">Wheel cap</string>
+    <string name="search_vehicles">بحث المركبات</string>
+    <string name="back">خلف</string>
+    <string name="driver_name">اسم السائق</string>
+    <string name="car">السيارة</string>
+    <string name="date">التاريخ</string>
+    <string name="status">الحالة</string>
+    <string name="vehicle_details">تفاصيل المركبة</string>
+    <string name="search_records">بحث السجل</string>
+    <string name="honda_accord">Honda Accord</string>
+    <string name="vehicle_history">سجل المركبة</string>
+    <string name="vehicle_information2">معلومات المركبة</string>
+    <string name="saloon">صالون</string>
+    <string name="company">الشركة</string>
+    <string name="car_details">معلومات المركبة</string>
+    <string name="car_status">حالة السيارة</string>
+    <string name="notes">ملاحظات</string>
+    <string name="sort_by">فرز باستخدام:</string>
+    <string name="filtered_search">بحث مفصل</string>
+    <string name="type_filter">النوع:</string>
+    <string name="provider_filter">شركة التأجير:</string>
+    <string name="status_filter">الحالة:</string>
+    <string name="date_from_filter">تاريخ من:</string>
+    <string name="date_to_filter">تاريخ الى:</string>
+    <string name="confirm">تأكيد</string>
+    <string name="signature">توقيع</string>
+    <string name="records">سجل</string>
+    <string name="vehicle">مركبة</string>
+    <string-array name="manufacturers">
+        <item>BMW</item>
+        <item>Toyota</item>
+        <item>Nissan</item>
+        <item>Audi</item>
+        <item>Volkswagen</item>
+        <item>Ford</item>
+        <item>Dodge</item>
+        <item>Chevrolet</item>
+        <item>Jeep</item>
+        <item>Cadillac</item>
+        <item>Honda</item>
+        <item>Lexus</item>
+        <item>Infiniti</item>
+        <item>Mitsubishi</item>
+        <item>Mazda</item>
+        <item>Hyundai</item>
+        <item>Kia</item>
+    </string-array>
+    <string-array name="make">
+        <item>٢٠١٠</item>
+        <item>٢٠١١</item>
+        <item>٢٠١٢</item>
+        <item>٢٠١٣</item>
+        <item>٢٠١٤</item>
+        <item>٢٠١٥</item>
+        <item>٢٠١٦</item>
+        <item>٢٠١٧</item>
+        <item>٢٠١٨</item>
+        <item>٢٠١٩</item>
+        <item>٢٠٢٠</item>
+        <item>٢٠٢١</item>
+        <item>٢٠٢٢</item>
+    </string-array>
+    <string-array name="color">
+        <item>ازرق</item>
+        <item>ابيض</item>
+        <item>اسود</item>
+        <item>احمر</item>
+        <item>ماروني</item>
+        <item>بني</item>
+        <item>فضي</item>
+        <item>رصاصي</item>
+        <item>اخضر</item>
+        <item>كحلي</item>
+        <item>ازرق الفاتح</item>
+        <item>اصفر</item>
+    </string-array>
+    <string-array name="type">
+        <item>نوع المركبة</item>
+        <item>صالون</item>
+        <item>شاحنة صغيرة</item>
+        <item>جيب</item>
+        <item>مركبة عائلية</item>
+    </string-array>
+    <string-array name="sort">
+        <item>اسم المركبة</item>
+        <item>اسم السائق</item>
+        <item>الحالة</item>
+        <item>شركة التأجير</item>
+        <item>سنة الصنع</item>
+    </string-array>
+    <string-array name="types">
+        <item>صالون</item>
+        <item>جيب</item>
+        <item>مركبة عائلية</item>
+        <item>شاحنة صغيرة</item>
+    </string-array>
+    <string-array name="statuses">
+        <item>مشغولة</item>
+        <item>مسترجعة</item>
+        <item>مطلقة</item>
+    </string-array>
+
+    <string-array name="userType">
+        <item>نوع المستخدم</item>
+        <item>مستخدم</item>
+        <item>مشرف</item>
+    </string-array>
+</resources>

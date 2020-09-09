@@ -57,6 +57,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/driverID"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -144,7 +145,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/driverPhoneNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -165,6 +167,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/issueDate"
+            android:drawableEnd="@drawable/date_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -185,6 +188,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/expiryDate"
+            android:drawableEnd="@drawable/date_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>

@@ -149,7 +149,8 @@ public class VehicleDashboard extends Fragment {
             public void run() {
                 mVehiclesRecycler.setAdapter(mVehiclesAdapter);
                 mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                numberOfVehicles.setText(mVehicles.size()+" Vehicles");
+                String vehicle = getResources().getString(R.string.vehicle);
+                numberOfVehicles.setText(mVehicles.size()+" "+vehicle);
                 progressDialog.dismiss();
             }
 

@@ -29,6 +29,7 @@ import android.widget.ViewFlipper;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -64,6 +65,10 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView backRight;
     private ImageView backLeft;
     private ImageView back;
+    private ImageView frontRightTire;
+    private ImageView frontLeftTire;
+    private ImageView backRightTire;
+    private ImageView backLeftTire;
     private Button next;
     private Button backButton;
     // Damage Report
@@ -117,6 +122,10 @@ public class VehicleAccidentReport extends Fragment {
                 frontRight = view.findViewById(R.id.frontRightConfirmation);
                 frontLeft = view.findViewById(R.id.frontLeftConfirmation);
                 front = view.findViewById(R.id.frontConfirmation);
+                backRightTire = view.findViewById(R.id.backRightTire);
+                backLeftTire = view.findViewById(R.id.backLeftTire);
+                frontRightTire = view.findViewById(R.id.frontRightTire);
+                frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
                 mViewFlipper.setDisplayedChild(1);
@@ -134,6 +143,10 @@ public class VehicleAccidentReport extends Fragment {
                 backLeft = view.findViewById(R.id.jeepBackLeft);
                 backRight = view.findViewById(R.id.jeepBackRight);
                 back = view.findViewById(R.id.jeepBack);
+                backRightTire = view.findViewById(R.id.jeepBackRightTire);
+                backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
+                frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
                 mViewFlipper.setDisplayedChild(2);
@@ -151,6 +164,10 @@ public class VehicleAccidentReport extends Fragment {
                 backLeft = view.findViewById(R.id.familyBackLeft);
                 backRight = view.findViewById(R.id.familyBackRight);
                 back = view.findViewById(R.id.familyBack);
+                backRightTire = view.findViewById(R.id.familyBackRightTire);
+                backLeftTire = view.findViewById(R.id.familyBackLeftTire);
+                frontRightTire = view.findViewById(R.id.familyFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
                 mViewFlipper.setDisplayedChild(3);
@@ -168,6 +185,10 @@ public class VehicleAccidentReport extends Fragment {
                 backLeft = view.findViewById(R.id.vanBackLeft);
                 backRight = view.findViewById(R.id.vanBackRight);
                 back = view.findViewById(R.id.vanBack);
+                backRightTire = view.findViewById(R.id.vanBackRightTire);
+                backLeftTire = view.findViewById(R.id.vanBackLeftTire);
+                frontRightTire = view.findViewById(R.id.vanFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
                 break;
         }
         vehicleRightSide = view.findViewById(R.id.vehicleRightSideAR);
@@ -542,10 +563,10 @@ public class VehicleAccidentReport extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (!damageReportRecord.isBackCeiling()) {
-                        ceilingBack.setImageResource(R.drawable.ceiling_back_red);
+                        ceilingBack.setImageResource(R.drawable.back_red);
                         damageReportRecord.setBackCeiling(true);
                     } else if (damageReportRecord.isBackCeiling()) {
-                        ceilingBack.setImageResource(R.drawable.ceiling_back);
+                        ceilingBack.setImageResource(R.drawable.back);
                         damageReportRecord.setBackCeiling(false);
                     }
                 }
@@ -690,6 +711,60 @@ public class VehicleAccidentReport extends Fragment {
                             break;
                     }
                     damageReportRecord.setBack(false);
+                }
+            }
+        });
+        frontRightTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReportRecord.isFrontRightTire()) {
+                    frontRightTire.setImageResource(R.drawable.tire_red);
+                    damageReportRecord.setFrontRightTire(true);
+
+                } else if (damageReportRecord.isFrontRightTire()) {
+                    frontRightTire.setImageResource(R.drawable.tire);
+                    damageReportRecord.setFrontRightTire(false);
+                }
+            }
+        });
+
+        frontLeftTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReportRecord.isFrontLeftTire()) {
+                    frontLeftTire.setImageResource(R.drawable.tire_red);
+                    damageReportRecord.setFrontLeftTire(true);
+
+                } else if (damageReportRecord.isFrontLeftTire()) {
+                    frontLeftTire.setImageResource(R.drawable.tire);
+                    damageReportRecord.setFrontLeftTire(false);
+                }
+            }
+        });
+
+        backLeftTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReportRecord.isBackLeftTire()) {
+                    backLeftTire.setImageResource(R.drawable.tire_red);
+                    damageReportRecord.setBackLeftTire(true);
+
+                } else if (damageReportRecord.isBackLeftTire()) {
+                    backLeftTire.setImageResource(R.drawable.tire);
+                    damageReportRecord.setBackLeftTire(false);
+                }
+            }
+        });
+        backRightTire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!damageReportRecord.isBackRightTire()) {
+                    backRightTire.setImageResource(R.drawable.tire_red);
+                    damageReportRecord.setBackRightTire(true);
+
+                } else if (damageReportRecord.isBackRightTire()) {
+                    backRightTire.setImageResource(R.drawable.tire);
+                    damageReportRecord.setBackRightTire(false);
                 }
             }
         });
@@ -842,6 +917,12 @@ public class VehicleAccidentReport extends Fragment {
                             Log.d("GET IMAGE", "the cursor is:" + cursor);
                             if (cursor != null) {
                                 cursor.moveToFirst();
+                                Bitmap bitmap = null;
+                                try {
+                                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
@@ -849,24 +930,24 @@ public class VehicleAccidentReport extends Fragment {
 
                                 switch (selector) {
                                     case "vehicleRightSide":
-                                        vehicleRightSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleRightSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoRightSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "right");
-                                        carPhotosRecord.setPhotoRightSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotosRecord.setPhotoRightSide(bitmap);
                                         break;
                                     case "vehicleLeftSide":
-                                        vehicleLeftSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleLeftSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoLeftSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "left");
-                                        carPhotosRecord.setPhotoLeftSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotosRecord.setPhotoLeftSide(bitmap);
                                         break;
                                     case "vehicleFrontSide":
-                                        vehicleFrontSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleFrontSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoFrontSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "front");
-                                        carPhotosRecord.setPhotoFrontSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotosRecord.setPhotoFrontSide(bitmap);
                                         break;
                                     case "vehicleBackSide":
-                                        vehicleBackSide.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                        vehicleBackSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "back");
-                                        carPhotosRecord.setPhotoBackSide(BitmapFactory.decodeFile(picturePath));
+                                        carPhotosRecord.setPhotoBackSide(bitmap);
                                         break;
 
                                 }

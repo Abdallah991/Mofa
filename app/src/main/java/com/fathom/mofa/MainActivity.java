@@ -9,7 +9,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +27,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.fathom.mofa.DataModels.UserDataModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Locale;
+
+import static com.fathom.mofa.LoginActivity.USER;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -35,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayout vehicleRecordMenuItem;
     private LinearLayout driverSetupMenuItem;
     private LinearLayout vehicleSetupMenuItem;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private boolean isAdmin;
+    private String TAG = "HOME";
     private int actionNavigateToNotification = R.id.action_home_to_notifications;
     private int actionNavigateToSignUp = R.id.action_home_to_signUpUser;
     private int actionNavigateToHomeFromSignUp = R.id.action_signUpUser_to_home;
@@ -104,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ViewGroup viewRoot = (ViewGroup) inflater.inflate(R.layout.drawer_header,null);
 
 
+        signUp.setVisibility(View.INVISIBLE);
+
         for (int i = 0; i < toolbar.getChildCount(); i++) {
             if(toolbar.getChildAt(i) instanceof ImageButton){
                 toolbar.getChildAt(i).setScaleX(0.75f);
@@ -125,7 +150,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case "signUpUser":
                         navController.navigate(actionNavigateToHomeFromNotification);
                         notification.setImageResource(R.drawable.notification_icon);
-                        signUp.setVisibility(View.VISIBLE);
+                        if(isAdmin){
+                            signUp.setVisibility(View.VISIBLE);
+                        }
                         break;
 
                     case "vehicleSetUp":
@@ -372,7 +399,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(),
+                        LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -380,12 +411,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(changeLanguage.getText().toString().equals("Arabic")) {
+                    setApplicationLocale("ar");
+                    SharedPreferences userPrefs = getSharedPreferences(USER, 0);
+                    userPrefs.edit().putString("Lang", "Arabic").apply();
+                    Intent intent = new Intent(getApplicationContext(),
+                            SplashActivity.class);
+                    startActivity(intent);
+                    finish();
+
+
+                }
+
+                if(changeLanguage.getText().toString().equals("English")) {
+                    setApplicationLocale("en");
+                    SharedPreferences userPrefs = getSharedPreferences(USER, 0);
+                    userPrefs.edit().putString("Lang", "English").apply();
+                    Intent intent = new Intent(getApplicationContext(),
+                            SplashActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+
 
             }
         });
 
 
         setupNavigation();
+
+        getUserInfo();
+
 
     }
 
@@ -409,12 +466,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onSupportNavigateUp() {
         // reference the navigation controller when you want to navigate up
-        navController.popBackStack(R.id.home, false);
-        signUp.setVisibility(View.VISIBLE);
-        notification.setVisibility(View.VISIBLE);
-        signUp.setImageResource(R.drawable.admin_icon);
-        notification.setImageResource(R.drawable.notification_icon);
+//        navController.popBackStack(R.id.home, false);
+//        signUp.setVisibility(View.VISIBLE);
+//        notification.setVisibility(View.VISIBLE);
+//        signUp.setImageResource(R.drawable.admin_icon);
+//        notification.setImageResource(R.drawable.notification_icon);
 
+        drawerLayout.openDrawer(GravityCompat.START);
         return NavigationUI.navigateUp(navController, drawerLayout);
     }
 
@@ -426,9 +484,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            signUp.setVisibility(View.VISIBLE);
+            if(isAdmin) {
+                signUp.setVisibility(View.VISIBLE);
+                signUp.setImageResource(R.drawable.admin_icon);
+            }
             notification.setVisibility(View.VISIBLE);
-            signUp.setImageResource(R.drawable.admin_icon);
             notification.setImageResource(R.drawable.notification_icon);
         }
     }
@@ -462,7 +522,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         notification.setVisibility(View.VISIBLE);
     }
 
+    private void getUserInfo() {
+
+        SharedPreferences pref = getSharedPreferences(USER, 0); // 0 - for private mode
+        String email = pref.getString("Email", "");
+
+        db.collection("Users").document(email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                UserDataModel user = document.toObject(UserDataModel.class);
+                                if (user.getUserType().equals("Admin")){
+                                    isAdmin = true;
+                                    signUp.setVisibility(View.VISIBLE);
+
+                                } else
+                                {
+                                    signUp.setVisibility(View.INVISIBLE);
+                                    isAdmin = false;
+                                }
+
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
 
 
+                });
 
+        Log.d(TAG, " Loading the data is DONE");
+
+    }
+
+    private void setApplicationLocale(String locale) {
+        Resources resources = getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        Configuration config = resources.getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLocale(new Locale(locale.toLowerCase()));
+        } else {
+            config.locale = new Locale(locale.toLowerCase());
+        }
+        resources.updateConfiguration(config, dm);
+    }
 }
+
+
+
+
+
