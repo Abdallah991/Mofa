@@ -81,7 +81,7 @@ public class Dashboard extends Fragment {
     private ImageView cancelButton;
     private Button confirmFilter;
     private Spinner typeSpinner;
-    private Spinner providerSpinner;
+//    private Spinner providerSpinner;
     private Spinner statusSpinner;
     private TextInputEditText dateFrom;
     private TextInputEditText dateTo;
@@ -95,7 +95,7 @@ public class Dashboard extends Fragment {
     private ArrayList<String> providers;
     private String[] statuses;
     private ArrayAdapter<String> typeAdapter;
-    private ArrayAdapter<String> providerAdapter;
+//    private ArrayAdapter<String> providerAdapter;
     private ArrayAdapter<String> statusAdapter;
 
 
@@ -128,20 +128,20 @@ public class Dashboard extends Fragment {
         cancelButton = dialog.findViewById(R.id.cancelFilter);
         confirmFilter = dialog.findViewById(R.id.confirmFilter);
         typeSpinner = dialog.findViewById(R.id.typeSpinner);
-        providerSpinner = dialog.findViewById(R.id.providerSpinner);
+//        providerSpinner = dialog.findViewById(R.id.providerSpinner);
         statusSpinner = dialog.findViewById(R.id.statusSpinner);
         dateFrom = dialog.findViewById(R.id.dateFromFilter);
         dateTo = dialog.findViewById(R.id.dateToFilter);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
 
-        dateTo.setShowSoftInputOnFocus(false);
-        dateFrom.setShowSoftInputOnFocus(false);
+        dateTo.setInputType(0);
+        dateFrom.setInputType(0);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
         // loading spinner Arrays
         sortingBys = getResources().getStringArray(R.array.sort);
-        types = getResources().getStringArray(R.array.types);
+        types = getResources().getStringArray(R.array.type);
         statuses = getResources().getStringArray(R.array.statuses);
 
         sortAdapter = new ArrayAdapter<String>(getContext(),
@@ -209,7 +209,7 @@ public class Dashboard extends Fragment {
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
                 dateFromValue = null;
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -237,7 +237,7 @@ public class Dashboard extends Fragment {
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
                 dateToValue = null;
-                picker[0] = new DatePickerDialog(getContext(),
+                picker[0] = new DatePickerDialog(getContext(), R.style.DatePickerDialog,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -459,31 +459,35 @@ public class Dashboard extends Fragment {
 
     private void loadSpinnerArrays() {
 
-        providers = new ArrayList<>();
-        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
-
-            if (providers.isEmpty()) {
+//        providers = new ArrayList<>();
+//        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
+//
+//            if (providers.isEmpty()) {
 //                providers.add(vehicleRecord.getRentalInfo());
-
-            for (String value : providers) {
-                if (!value.equals(vehicleRecord.getRentalInfo())) {
-                    providers.add(vehicleRecord.getRentalInfo());
-
-                }
-            }
-            }
-        }
-
-        providerAdapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, providers);
+//            }
+//            else {
+//
+//
+//            for (String value : providers) {
+//                if (!value.equals(vehicleRecord.getRentalInfo())) {
+//                    providers.add(vehicleRecord.getRentalInfo());
+//                }
+//
+//                }
+//            }
+//
+//        }
+//
+//        providerAdapter = new ArrayAdapter<String>(getContext(),
+//                android.R.layout.simple_list_item_1, providers);
         typeAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, types);
         statusAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, statuses);
-        providerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        providerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        providerSpinner.setAdapter(providerAdapter);
+//        providerSpinner.setAdapter(providerAdapter);
         typeSpinner.setAdapter(typeAdapter);
         statusSpinner.setAdapter(statusAdapter);
 
@@ -491,14 +495,13 @@ public class Dashboard extends Fragment {
 
     private void filteredSearch() {
 
-        provider = providerSpinner.getSelectedItem().toString();
         status = statusSpinner.getSelectedItem().toString();
         vehicleType = typeSpinner.getSelectedItem().toString();
-        Toast.makeText(getContext(), provider+status+vehicleType, Toast.LENGTH_SHORT).show();
+        // Toast message
+//        Toast.makeText(getContext(), status+vehicleType, Toast.LENGTH_SHORT).show();
         filteredVehicleRecords = new ArrayList<>();
         for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
-            if (vehicleRecord.getRentalInfo().contains(provider)&&
-                    vehicleRecord.getStatus().equals(status) &&
+            if (vehicleRecord.getStatus().equals(status) &&
                     vehicleRecord.getCarType().equals(vehicleType) &&
                     vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue))
             {

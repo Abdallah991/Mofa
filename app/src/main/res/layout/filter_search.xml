@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="400dp"
-    android:layout_height="600dp"
+    android:layout_height="500dp"
     android:orientation="vertical"
     android:background="@color/popUpBackground">
 
@@ -47,7 +47,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1.5"
             android:text="@string/type_filter"
             android:textColor="@color/appGrey"
@@ -68,28 +67,7 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:background="@color/popUpBackground">
-
-        <TextView
-            android:id="@+id/providerFilter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1.5"
-            android:text="@string/provider_filter"
-            android:textColor="@color/appGrey"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto_light" />
-
-        <Spinner
-            android:id="@+id/providerSpinner"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="3.5"
-            android:elevation="0dp"
-            android:gravity="center" />
-    </LinearLayout>
+        android:background="@color/popUpBackground"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,7 +81,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1.5"
             android:text="@string/status_filter"
             android:textColor="@color/appGrey"
@@ -130,8 +107,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1.5"
+            android:layout_marginTop="20dp"
             android:text="@string/date_from_filter"
             android:textColor="@color/appGrey"
             android:textSize="16sp"
@@ -147,6 +124,7 @@
             android:inputType="text"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:layout_marginEnd="10dp"
             android:theme="@style/TextLabelNoUnderline"
             app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -158,6 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:drawableEnd="@drawable/date_icon"
                 android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:windowSoftInputMode="stateHidden"/>
@@ -195,6 +174,7 @@
             android:inputType="text"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:layout_marginEnd="10dp"
             android:theme="@style/TextLabelNoUnderline"
             app:layout_constraintBottom_toTopOf="@+id/guideline25"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -204,6 +184,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateToFilter"
                 android:layout_width="match_parent"
+                android:drawableEnd="@drawable/date_icon"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:fontFamily="@font/roboto_light"

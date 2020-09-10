@@ -98,7 +98,7 @@
     <string name="car_status">Car status</string>
     <string name="notes">Notes</string>
     <string name="sort_by">Sort by:</string>
-    <string name="filtered_search">filtered Search</string>
+    <string name="filtered_search">Filtered Search</string>
     <string name="type_filter">Type:</string>
     <string name="provider_filter">Provider:</string>
     <string name="status_filter">Status:</string>
@@ -179,6 +179,7 @@
         <item>Van</item>
     </string-array>
     <string-array name="statuses">
+        <item>Vehicle status</item>
         <item>Busy</item>
         <item>Returned</item>
         <item>Released</item>

@@ -108,6 +108,8 @@
     <string name="signature">توقيع</string>
     <string name="records">سجل</string>
     <string name="vehicle">مركبة</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -177,6 +179,7 @@
         <item>شاحنة صغيرة</item>
     </string-array>
     <string-array name="statuses">
+        <item>حالة المركبة</item>
         <item>مشغولة</item>
         <item>مسترجعة</item>
         <item>مطلقة</item>
