@@ -47,6 +47,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -222,10 +223,10 @@ public class DriverSetUp extends Fragment {
             public void onClick(View v) {
                 checkFields();
                 if ((!driverNameText.isEmpty()) && (!driverIDText.isEmpty()) &&
-                (!addressLine1Text.isEmpty()) && (!addressLine2Text.isEmpty()) &&
+//                (!addressLine1Text.isEmpty()) && (!addressLine2Text.isEmpty()) &&
                         (!nationalityText.isEmpty()) && (!phoneNumberText.isEmpty()) &&
                         (!issueDateValue.toString().isEmpty()) && (!expiryDateValue.toString().isEmpty()) &&
-                        (!frontLicenseName.isEmpty()) &&  (!backLicenseName.isEmpty())
+                        (frontLicenseName != null) &&  (backLicenseName != null)
                 ) {
                     progressDialog.show();
                     uploadDriver();
@@ -244,6 +245,7 @@ public class DriverSetUp extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "driverSetUp";
+
     }
 
 
@@ -342,8 +344,8 @@ public class DriverSetUp extends Fragment {
     private void checkFields () {
         driverNameText = driverName.getText().toString();
         driverIDText = driverID.getText().toString();
-        addressLine1Text = addressLine1.getText().toString();
-        addressLine2Text = addressLine2.getText().toString();
+        addressLine1Text = Objects.requireNonNull(addressLine1.getText()).toString();
+        addressLine2Text = Objects.requireNonNull(addressLine2.getText()).toString();
         nationalityText = nationality.getText().toString();
         phoneNumberText = phoneNumber.getText().toString();
         driverNameText = driverName.getText().toString();
