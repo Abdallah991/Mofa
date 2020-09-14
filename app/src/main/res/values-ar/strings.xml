@@ -108,6 +108,7 @@
     <string name="signature">توقيع</string>
     <string name="records">سجل</string>
     <string name="vehicle">مركبة</string>
+    <string name="chassis">رقم الشاصي</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string-array name="manufacturers">
@@ -161,9 +162,9 @@
     <string-array name="type">
         <item>نوع المركبة</item>
         <item>صالون</item>
-        <item>شاحنة صغيرة</item>
         <item>جيب</item>
         <item>مركبة عائلية</item>
+        <item>شاحنة صغيرة</item>
     </string-array>
     <string-array name="sort">
         <item>اسم المركبة</item>

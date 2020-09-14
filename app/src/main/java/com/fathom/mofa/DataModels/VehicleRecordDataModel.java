@@ -9,6 +9,7 @@ public class VehicleRecordDataModel {
     private String driverName;
     private String vehicleName;
     private String plateNumber;
+    private String chassisNumber;
     // These photos will have value only when the car has damage
     private String photoLeftSide;
     private String photoRightSide;
@@ -82,6 +83,14 @@ public class VehicleRecordDataModel {
 
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
+    }
+
+    public String getChassisNumber() {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
     }
 
     public String getPhotoLeftSide() {

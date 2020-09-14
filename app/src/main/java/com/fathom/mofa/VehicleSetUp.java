@@ -34,6 +34,7 @@ public class VehicleSetUp extends Fragment {
     private Spinner typeTextView;
     private AutoCompleteTextView makeTextView;
     private TextInputEditText plateNumberEditText;
+    private TextInputEditText chassisNumber;
     private TextInputEditText modelEditText;
     private Button next;
     private int actionNavigateToVehicleSetUpRegistration = R.id.action_vehicleSetUp_to_vehicleRegistration;
@@ -105,6 +106,7 @@ public class VehicleSetUp extends Fragment {
         typeTextView = view.findViewById(R.id.carType);
         makeTextView = view.findViewById(R.id.make);
         plateNumberEditText = view.findViewById(R.id.plateNumber);
+        chassisNumber = view.findViewById(R.id.chassisNumber);
         modelEditText = view.findViewById(R.id.model);
         next = view.findViewById(R.id.nextVehicleInformation);
 
@@ -119,8 +121,8 @@ public class VehicleSetUp extends Fragment {
             @Override
             public void onClick(View v) {
                if (getCarInfo()) {
-                String type = typeTextView.getSelectedItem().toString();
-                vehicle.setCarType(type);
+//                String type = typeTextView.getSelectedItem().toString();
+//                vehicle.setCarType(type);
                 mNavController.navigate(actionNavigateToVehicleSetUpRegistration);
                }
             }
@@ -136,18 +138,21 @@ public class VehicleSetUp extends Fragment {
 
     private boolean getCarInfo() {
         String plateNumber = plateNumberEditText.getText().toString();
+        String chassis = chassisNumber.getText().toString();
         String model = modelEditText.getText().toString();
         String manufacturer = manufactureTextView.getText().toString();
         String color = colorTextView.getText().toString();
         String type = typeTextView.getSelectedItem().toString();
         String make = makeTextView.getText().toString();
 
-        if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
+        if ((!plateNumber.isEmpty()) && (!chassis.isEmpty())&&
+                (!model.isEmpty()) &&
                 (!manufacturer.isEmpty())&& (!color.isEmpty())&&
-                (!type.equals("Car type") )
+                (!type.equals("Car type"))
                 && (!make.isEmpty()))  {
 
             vehicle.setPlateNumber(plateNumber);
+            vehicle.setChassisNumber(chassis);
             vehicle.setModel(model);
             vehicle.setManufacturer(manufacturer);
             vehicle.setColorOfCar(color);
@@ -156,9 +161,13 @@ public class VehicleSetUp extends Fragment {
             return true;
         }
         else {
-            if ((!plateNumber.isEmpty())&& (!model.isEmpty())&&
+            // MultiLanguage support
+            String[] carTypes = getResources().getStringArray(R.array.type);
+
+            if ((!plateNumber.isEmpty())&& (!chassis.isEmpty())&&
+                    (!model.isEmpty())&&
                     (!manufacturer.isEmpty())&& (!color.isEmpty())
-                    && (!make.isEmpty())&& (type.equals("Car type"))) {
+                    && (!make.isEmpty())&& (type.equals(carTypes[0]))) {
                 Toast.makeText(getContext(), "You didn't select the car type" , Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();

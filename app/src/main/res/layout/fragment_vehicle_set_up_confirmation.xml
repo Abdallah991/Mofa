@@ -94,6 +94,26 @@
                     app:fontFamily="@font/roboto_light"
                     android:layout_marginTop="10dp"/>
                 <TextView
+                    android:id="@+id/vinConfirmation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chassis"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/vinValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="879334"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
+                <TextView
                     android:id="@+id/manufacturerConfirmation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

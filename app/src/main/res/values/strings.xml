@@ -110,6 +110,7 @@
     <string name="vehicle">Vehicle</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="chassis">VIN</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -161,9 +162,9 @@
     <string-array name="type">
         <item>Car type</item>
         <item>Saloon</item>
-        <item>Van</item>
         <item>Jeep</item>
         <item>Family</item>
+        <item>Van</item>
     </string-array>
     <string-array name="sort">
         <item>Car</item>

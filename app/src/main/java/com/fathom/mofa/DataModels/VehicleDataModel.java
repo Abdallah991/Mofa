@@ -6,6 +6,7 @@ import java.util.Date;
 public class VehicleDataModel {
 
     private String plateNumber;
+    private String chassisNumber;
     private String carName;
     private String manufacturer;
     private String model;
@@ -216,5 +217,13 @@ public class VehicleDataModel {
 
     public void setRentalInfoContent(String rentalInfoContent) {
         this.rentalInfoContent = rentalInfoContent;
+    }
+
+    public String getChassisNumber() {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
     }
 }
