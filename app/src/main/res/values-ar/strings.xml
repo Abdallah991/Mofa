@@ -109,6 +109,7 @@
     <string name="records">سجل</string>
     <string name="vehicle">مركبة</string>
     <string name="chassis">رقم الشاصي</string>
+    <string name="motor_size">حجم المحرك</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string-array name="manufacturers">

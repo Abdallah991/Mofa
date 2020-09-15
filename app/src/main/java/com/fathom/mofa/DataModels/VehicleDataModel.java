@@ -7,6 +7,7 @@ public class VehicleDataModel {
 
     private String plateNumber;
     private String chassisNumber;
+    private String motorSize;
     private String carName;
     private String manufacturer;
     private String model;
@@ -225,5 +226,13 @@ public class VehicleDataModel {
 
     public void setChassisNumber(String chassisNumber) {
         this.chassisNumber = chassisNumber;
+    }
+
+    public String getMotorSize() {
+        return motorSize;
+    }
+
+    public void setMotorSize(String motorSize) {
+        this.motorSize = motorSize;
     }
 }

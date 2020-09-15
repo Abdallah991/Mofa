@@ -25,6 +25,28 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
+        android:hint="@string/motor_size"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:theme="@style/TextLabel"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
+
+        <AutoCompleteTextView
+            android:id="@+id/motorSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="start"
         android:hint="@string/registration_type"
         android:inputType="text"
         android:textColor="@color/black"

@@ -41,6 +41,7 @@ public class VehicleSetUpConfirmation extends Fragment {
     private ImageView fourthCircle;
     private TextView plateNumber;
     private TextView vin;
+    private TextView motorSize;
     private TextView manufacturer;
     private TextView model;
     private TextView make;
@@ -115,6 +116,7 @@ public class VehicleSetUpConfirmation extends Fragment {
         fourthCircle = view.findViewById(R.id.fourthImageHandover);
         plateNumber = view.findViewById(R.id.plateNumberValue);
         vin = view.findViewById(R.id.vinValue);
+        motorSize = view.findViewById(R.id.motorSizeValue);
         manufacturer = view.findViewById(R.id.manufacturerValue);
         make = view.findViewById(R.id.makeValue);
         model = view.findViewById(R.id.modelValue);
@@ -241,6 +243,7 @@ public class VehicleSetUpConfirmation extends Fragment {
         // setting the values of the car
         plateNumber.setText(vehicle.getPlateNumber());
         vin.setText(vehicle.getChassisNumber());
+        motorSize.setText(vehicle.getMotorSize());
         manufacturer.setText(vehicle.getManufacturer());
         model.setText(vehicle.getModel());
         color.setText(vehicle.getColorOfCar());

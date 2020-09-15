@@ -86,6 +86,12 @@ public class VehicleAccidentReport extends Fragment {
 
     private int actionToRecordConfirmation = R.id.action_vehicleAccidentReport_to_handoverConfirmation;
 
+    // MultiLanguage
+    public static String SALOON;
+    public static String JEEP;
+    public static String FAMILY;
+    public static String VAN;
+
 
     public VehicleAccidentReport() {
         // Required empty public constructor
@@ -107,6 +113,7 @@ public class VehicleAccidentReport extends Fragment {
         mViewFlipper = view.findViewById(R.id.vehicleRecordViewFlipper);
         switch (vehicleInRecord.getCarType()) {
             case "Saloon":
+            case "صالون":
                 mViewFlipper.setDisplayedChild(0);
                 back = view.findViewById(R.id.backConfirmation);
                 backRight = view.findViewById(R.id.backRightConfirmation);
@@ -128,6 +135,7 @@ public class VehicleAccidentReport extends Fragment {
                 frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
+            case "جيب":
                 mViewFlipper.setDisplayedChild(1);
                 front = view.findViewById(R.id.jeepFront);
                 frontLeft = view.findViewById(R.id.jeepFrontLeft);
@@ -149,6 +157,7 @@ public class VehicleAccidentReport extends Fragment {
                 frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
+            case "مركبة عائلية":
                 mViewFlipper.setDisplayedChild(2);
                 front = view.findViewById(R.id.familyFront);
                 frontLeft = view.findViewById(R.id.familyFrontLeft);
@@ -170,6 +179,7 @@ public class VehicleAccidentReport extends Fragment {
                 frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
+            case "شاحنة صغيرة":
                 mViewFlipper.setDisplayedChild(3);
                 front = view.findViewById(R.id.vanFront);
                 frontLeft = view.findViewById(R.id.vanFrontLeft);
@@ -200,6 +210,14 @@ public class VehicleAccidentReport extends Fragment {
         backButton = view.findViewById(R.id.backAccidentReport);
         next = view.findViewById(R.id.nextAccidentReport);
 
+        // Language handling
+        mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+
+        String[] carTypes = getResources().getStringArray(R.array.types);
+        SALOON = carTypes[0];
+        JEEP = carTypes[1];
+        FAMILY = carTypes[2];
+        VAN = carTypes[3];
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -248,13 +266,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isFront()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             front.setImageResource(R.drawable.front_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             front.setImageResource(R.drawable.jeep_front_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             front.setImageResource(R.drawable.family_front_red);
                             break;
                     }
@@ -262,13 +284,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isFront()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             front.setImageResource(R.drawable.front);
                             break;
                         case "Jeep":
+                        case "جيب":
                             front.setImageResource(R.drawable.jeep_front);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             front.setImageResource(R.drawable.family_front);
                             break;
                     }
@@ -283,13 +309,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isFrontRight()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontRight.setImageResource(R.drawable.front_right_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontRight.setImageResource(R.drawable.jeep_front_right_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontRight.setImageResource(R.drawable.family_front_right_red);
                             break;
                     }
@@ -297,13 +327,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isFrontRight()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontRight.setImageResource(R.drawable.front_right);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontRight.setImageResource(R.drawable.jeep_front_right);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontRight.setImageResource(R.drawable.family_front_right);
                             break;
                     }
@@ -318,13 +352,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isFrontLeft()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontLeft.setImageResource(R.drawable.front_left_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontLeft.setImageResource(R.drawable.jeep_front_left_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontLeft.setImageResource(R.drawable.family_front_left_red);
                             break;
                     }
@@ -332,13 +370,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isFrontLeft()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontLeft.setImageResource(R.drawable.front_left);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontLeft.setImageResource(R.drawable.jeep_front_left);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontLeft.setImageResource(R.drawable.family_front_left);
                             break;
                     }
@@ -353,13 +395,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isPassengerDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontRightDoor.setImageResource(R.drawable.front_right_door_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontRightDoor.setImageResource(R.drawable.jeep_front_right_door_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontRightDoor.setImageResource(R.drawable.family_front_right_door_red);
                             break;
                     }
@@ -367,13 +413,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isPassengerDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontRightDoor.setImageResource(R.drawable.front_right_door);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontRightDoor.setImageResource(R.drawable.jeep_front_right_door);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontRightDoor.setImageResource(R.drawable.family_front_right_door);
                             break;
                     }
@@ -388,13 +438,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isDriverDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontLeftDoor.setImageResource(R.drawable.front_left_door_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontLeftDoor.setImageResource(R.drawable.family_front_left_door_red);
                             break;
                     }
@@ -402,13 +456,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isDriverDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontLeftDoor.setImageResource(R.drawable.front_left_door);
                             break;
                         case "Jeep":
+                        case "جيب":
                             frontLeftDoor.setImageResource(R.drawable.jeep_front_left_door);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             frontLeftDoor.setImageResource(R.drawable.family_front_left_door);
                             break;
                     }
@@ -423,13 +481,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isBackRightDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backRightDoor.setImageResource(R.drawable.back_door_right_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backRightDoor.setImageResource(R.drawable.jeep_back_right_door_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backRightDoor.setImageResource(R.drawable.family_back_right_door_red);
                             break;
                     }
@@ -437,13 +499,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isBackRightDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backRightDoor.setImageResource(R.drawable.back_door_right);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backRightDoor.setImageResource(R.drawable.jeep_back_right_door);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backRightDoor.setImageResource(R.drawable.family_back_right_door);
                             break;
                     }
@@ -458,13 +524,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isBackLeftDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backLeftDoor.setImageResource(R.drawable.back_door_left_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backLeftDoor.setImageResource(R.drawable.jeep_back_left_door_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backLeftDoor.setImageResource(R.drawable.family_back_left_door_red);
                             break;
                     }
@@ -472,13 +542,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isBackLeftDoor()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backLeftDoor.setImageResource(R.drawable.back_door_left);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backLeftDoor.setImageResource(R.drawable.jeep_back_left_door);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backLeftDoor.setImageResource(R.drawable.family_back_left_door);
                             break;
                     }
@@ -493,13 +567,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isFrontWindShield()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             windshield.setImageResource(R.drawable.wind_sheild_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             windshield.setImageResource(R.drawable.jeep_wind_sheild_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             windshield.setImageResource(R.drawable.family_wind_sheild_red);
                             break;
                     }
@@ -507,13 +585,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isFrontWindShield()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             windshield.setImageResource(R.drawable.wind_sheild);
                             break;
                         case "Jeep":
+                        case "جيب":
                             windshield.setImageResource(R.drawable.jeep_wind_sheild);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             windshield.setImageResource(R.drawable.family_wind_sheild);
                             break;
                     }
@@ -529,13 +611,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isCeiling()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             ceilingFront.setImageResource(R.drawable.ceiling_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             ceilingFront.setImageResource(R.drawable.jeep_ceiling_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             ceilingFront.setImageResource(R.drawable.family_ceiling_red);
                             break;
                     }
@@ -543,13 +629,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isCeiling()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             ceilingFront.setImageResource(R.drawable.ceiling);
                             break;
                         case "Jeep":
+                        case "جيب":
                             ceilingFront.setImageResource(R.drawable.jeep_ceiling);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             ceilingFront.setImageResource(R.drawable.family_ceiling);
                             break;
                     }
@@ -558,7 +648,7 @@ public class VehicleAccidentReport extends Fragment {
             }
         });
 
-        if (vehicleInRecord.getCarType().equals("Saloon")) {
+        if (vehicleInRecord.getCarType().equals(SALOON)) {
             ceilingBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -573,21 +663,24 @@ public class VehicleAccidentReport extends Fragment {
             });
         }
 
-        if (vehicleInRecord.getCarType().equals("Saloon") ||
-                vehicleInRecord.getCarType().equals("Jeep") ||
-                vehicleInRecord.getCarType().equals("Family")) {
+        if (vehicleInRecord.getCarType().equals(SALOON) ||
+                vehicleInRecord.getCarType().equals(JEEP) ||
+                vehicleInRecord.getCarType().equals(FAMILY)) {
             backWindShield.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!damageReportRecord.isBackWindShield()) {
                         switch (vehicleInRecord.getCarType()) {
                             case "Saloon":
+                            case "صالون":
                                 backWindShield.setImageResource(R.drawable.back_wind_shield_red);
                                 break;
                             case "Jeep":
+                            case "جيب":
                                 backWindShield.setImageResource(R.drawable.jeep_back_red);
                                 break;
                             case "Family":
+                            case "مركبة عائلية":
                                 backWindShield.setImageResource(R.drawable.family_back_red);
                                 break;
                         }
@@ -595,12 +688,15 @@ public class VehicleAccidentReport extends Fragment {
                     } else if (damageReportRecord.isBackWindShield()) {
                         switch (vehicleInRecord.getCarType()) {
                             case "Saloon":
+                            case "صالون":
                                 backWindShield.setImageResource(R.drawable.back_wind_shield);
                                 break;
                             case "Jeep":
+                            case "جيب":
                                 backWindShield.setImageResource(R.drawable.jeep_back);
                                 break;
                             case "Family":
+                            case "مركبة عائلية":
                                 backWindShield.setImageResource(R.drawable.family_back);
                                 break;
                         }
@@ -616,13 +712,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isBackRight()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backRight.setImageResource(R.drawable.back_right_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backRight.setImageResource(R.drawable.jeep_back_right_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backRight.setImageResource(R.drawable.family_back_right_red);
                             break;
                     }
@@ -630,13 +730,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isBackRight()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backRight.setImageResource(R.drawable.back_right);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backRight.setImageResource(R.drawable.jeep_back_right);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backRight.setImageResource(R.drawable.family_back_right);
                             break;
                     }
@@ -651,13 +755,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isBackLeft()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backLeft.setImageResource(R.drawable.back_left_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backLeft.setImageResource(R.drawable.jeep_back_left_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backLeft.setImageResource(R.drawable.family_back_left_red);
                             break;
                     }
@@ -665,13 +773,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isBackLeft()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             backLeft.setImageResource(R.drawable.back_left);
                             break;
                         case "Jeep":
+                        case "جيب":
                             backLeft.setImageResource(R.drawable.jeep_back_left);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             backLeft.setImageResource(R.drawable.family_back_left);
                             break;
                     }
@@ -686,13 +798,17 @@ public class VehicleAccidentReport extends Fragment {
                 if (!damageReportRecord.isBack()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             back.setImageResource(R.drawable.back_red);
                             break;
                         case "Jeep":
+                        case "جيب":
                             back.setImageResource(R.drawable.jeep_back_red);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             back.setImageResource(R.drawable.family_back_red);
                             break;
                     }
@@ -700,13 +816,17 @@ public class VehicleAccidentReport extends Fragment {
                 } else if (damageReportRecord.isBack()) {
                     switch (vehicleInRecord.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             back.setImageResource(R.drawable.back);
                             break;
                         case "Jeep":
+                        case "جيب":
                             back.setImageResource(R.drawable.jeep_back);
                             break;
                         case "Family":
                         case "Van":
+                        case "مركبة عائلية":
+                        case "شاحنة صغيرة":
                             back.setImageResource(R.drawable.family_back);
                             break;
                     }

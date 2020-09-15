@@ -50,6 +50,7 @@ public class VehicleRegistration extends Fragment {
     public static CarPhotosDataModel carPhotos = new CarPhotosDataModel();
     private NavController mNavController;
     private AutoCompleteTextView registrationType;
+    private AutoCompleteTextView engineSize;
     private AutoCompleteTextView registrationStart;
     private AutoCompleteTextView registrationEnd;
     private ImageView vehicleLeftSide;
@@ -80,6 +81,7 @@ public class VehicleRegistration extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         registrationType = view.findViewById(R.id.registrationType);
+        engineSize = view.findViewById(R.id.motorSize);
         registrationStart = view.findViewById(R.id.registrationStart);
         registrationEnd = view.findViewById(R.id.registrationEnd);
         vehicleLeftSide = view.findViewById(R.id.vehicleLeftSide);
@@ -345,6 +347,7 @@ public class VehicleRegistration extends Fragment {
     private boolean getCarInfo() {
 
         String registration = registrationType.getText().toString();
+        String motorSize = engineSize.getText().toString();
         String startR = registrationStart.getText().toString();
         String endR = registrationEnd.getText().toString();
         String leftSide = vehicle.getPhotoLeftSide();
@@ -358,6 +361,7 @@ public class VehicleRegistration extends Fragment {
                 (backSide != null))  {
 
             vehicle.setRegistrationType(registration);
+            vehicle.setMotorSize(motorSize);
             vehicle.setRegistrationStart(start);
             vehicle.setRegistrationEnd(end);
             vehicle.setPhotoLeftSide(leftSide);

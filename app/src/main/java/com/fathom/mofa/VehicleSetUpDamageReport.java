@@ -1,33 +1,22 @@
 package com.fathom.mofa;
-
-import android.content.res.Resources;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-
 import com.fathom.mofa.DataModels.DamageReportDataModel;
-import com.google.android.material.navigation.NavigationView;
-
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class VehicleSetUpDamageReport extends Fragment {
 
     private Button next;

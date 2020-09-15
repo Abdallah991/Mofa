@@ -19,19 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-        <Spinner
-            android:id="@+id/managedBy"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:spinnerMode="dropdown"
-            app:fontFamily="@font/roboto_medium"
-            android:textColor="@color/appGrey"
-            android:textSize="24sp"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            app:layout_constraintBottom_toTopOf="@+id/guideline11"
-            app:layout_constraintEnd_toStartOf="@+id/guideline16"
-            app:layout_constraintStart_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="@+id/guideline10"/>
+
+    <TextView
+        android:id="@+id/managedBy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:fontFamily="@font/roboto_medium"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
         <Spinner
             android:id="@+id/driverName"

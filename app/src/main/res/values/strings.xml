@@ -111,6 +111,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="chassis">VIN</string>
+    <string name="motor_size">Engine size</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
