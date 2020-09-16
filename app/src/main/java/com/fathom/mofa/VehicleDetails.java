@@ -1,6 +1,7 @@
 package com.fathom.mofa;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.RentalInfoDataModel;
@@ -33,6 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.SimpleDateFormat;
 
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
+import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 
 
@@ -49,6 +53,7 @@ public class VehicleDetails extends Fragment {
     private LinearLayout vehicleInfoLayout;
     private ImageView rentalInfoCollapse;
     private LinearLayout rentalInfoLayout;
+    private LinearLayout registrationStartLayout;
     private TextView plateNumber;
     private TextView manufacturer;
     private TextView model;
@@ -91,6 +96,7 @@ public class VehicleDetails extends Fragment {
         vehicleName = view.findViewById(R.id.carNameTitle);
         vehicleInfoCollapse = view.findViewById(R.id.vehicleInformationToggle);
         vehicleInfoLayout = view.findViewById(R.id.vehicleInformationCollapse);
+        registrationStartLayout = view.findViewById(R.id.registrationStartLayout);
         rentalInfoCollapse = view.findViewById(R.id.rentalInfoToggle);
         rentalInfoLayout = view.findViewById(R.id.rentalInfoCollapse);
         plateNumber = view.findViewById(R.id.plateNumberDetail);
@@ -124,6 +130,9 @@ public class VehicleDetails extends Fragment {
         String registrationEnds = formatter.format(vehicleDashboard.getRegistrationEnd());
         registrationStart.setText(registrationStarts);
         registrationEnd.setText(registrationEnds);
+
+//        registrationStart.setGravity(Gravity.END);
+//        registrationEnd.setGravity(Gravity.END);
 
         switch (vehicleDashboard.getStatus()) {
             case "Busy":
@@ -191,6 +200,10 @@ public class VehicleDetails extends Fragment {
             }
         });
 
+        SharedPreferences userPrefs = getActivity().getSharedPreferences(USER, 0);
+        String lang = userPrefs.getString("Lang","");
+        Toast.makeText(getContext(), lang, Toast.LENGTH_SHORT).show();
+
         getRentalInfo();
         getVehicleImages();
 
@@ -254,5 +267,6 @@ public class VehicleDetails extends Fragment {
 
     private void setVehicleImages(){
         vehicleDetailImage.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+//        Toast.makeText(getContext(), carPhotosRecord.getPhotoLeftSide().toString()+"",Toast.LENGTH_SHORT).show();
     }
 }

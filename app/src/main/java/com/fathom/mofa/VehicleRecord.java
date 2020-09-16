@@ -324,7 +324,8 @@ public class VehicleRecord extends Fragment {
             public void run() {
                 if (mDrivers.isEmpty()) {
                     mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
-                    driverNames.add("Driver Name");
+                    String spinnerManagerBy = getResources().getString(R.string.driver);
+                    driverNames.add(spinnerManagerBy);
                     for (DriverDataModel driver : mDrivers) {
                         driverNames.add(driver.getDriverName());
                     }
@@ -401,6 +402,7 @@ public class VehicleRecord extends Fragment {
                         userNames.add(user.getFirstName()+" "+user.getLastName());
                         if (user.getEmail().equals(email)) {
                             userName.setText(user.getFirstName()+" "+user.getLastName());
+                            vehicleRecord.setReleasePersonName(user.getFirstName()+" "+user.getLastName());
                         }
                     }
                 }
@@ -485,7 +487,7 @@ public class VehicleRecord extends Fragment {
         String transaction = vehicleRecord.getCarTransaction();
         vehicleRecord.setPlateNumber(vehicleInRecord.getPlateNumber());
 
-        if ((user != null ) &&
+        if ((user!=null) &&
                 (driver != null ) && (transaction != null )) {
             return true;
         } else {

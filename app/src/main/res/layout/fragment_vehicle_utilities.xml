@@ -44,31 +44,51 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <SeekBar
-        android:id="@+id/fuelLevel"
-        android:layout_width="0dp"
-        android:layout_height="6dp"
-        android:elevation="1dp"
-        android:max="100"
-        android:progress="25"
-        android:thumbTint="@color/colorPrimary"
-        android:progressDrawable="@drawable/seekbar_style"
-        android:thumb="@drawable/custom_thumb"
-        app:layout_constraintBottom_toTopOf="@+id/guideline11"
-        app:layout_constraintEnd_toStartOf="@+id/guideline63"
-        app:layout_constraintStart_toStartOf="@+id/guideline69" />
-
-    <ImageView
-        android:id="@+id/fuelImage"
+    <LinearLayout
+        android:id="@+id/fuelMeterUtilities"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/fuel_measure"
-        android:elevation="0.1dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/guideline64"
-        app:layout_constraintEnd_toStartOf="@+id/guideline58"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline17"
+        app:layout_constraintEnd_toEndOf="@+id/guideline58"
+        app:layout_constraintStart_toEndOf="@+id/guideline62"
+        app:layout_constraintTop_toTopOf="@+id/guideline10">
+        <ViewFlipper
+            android:id="@+id/vehicleUtilitiesViewFlipper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/vehicleSetUpSaloon"
+            layout="@layout/fuel_meter" />
+        </ViewFlipper>
+
+    </LinearLayout>
+
+<!--    <SeekBar-->
+<!--        android:id="@+id/fuelLevel"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="6dp"-->
+<!--        android:elevation="1dp"-->
+<!--        android:max="100"-->
+<!--        android:progress="25"-->
+<!--        android:thumbTint="@color/colorPrimary"-->
+<!--        android:progressDrawable="@drawable/seekbar_style"-->
+<!--        android:thumb="@drawable/custom_thumb"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/guideline11"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/guideline63"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/guideline69" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/fuelImage"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:background="@drawable/fuel_measure"-->
+<!--        android:elevation="0.1dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/guideline64"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/guideline58"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/guideline2"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/guideline10" />-->
 
     <TextView
         android:id="@+id/fuelText"
@@ -80,8 +100,7 @@
         android:textSize="16sp"
         app:fontFamily="@font/roboto_light"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="@+id/guideline62"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintStart_toStartOf="@+id/guideline62"/>
 
     <TextView
         android:id="@+id/carItemsText"
@@ -573,7 +592,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.36" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"

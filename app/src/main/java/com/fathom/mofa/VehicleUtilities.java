@@ -1,5 +1,6 @@
 package com.fathom.mofa;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
 
@@ -30,6 +34,8 @@ public class VehicleUtilities extends Fragment {
     private NavController mNavController;
     private TextInputEditText milage;
     private SeekBar fuelLevel;
+    private LinearLayout fuelView;
+    private ViewFlipper viewFlipper;
     private ImageView jack;
     private ImageView tools;
     private ImageView spareTire;
@@ -61,7 +67,9 @@ public class VehicleUtilities extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fuelLevel = view.findViewById(R.id.fuelLevel);
+        fuelLevel = view.findViewById(R.id.fuelLevelConfirmation);
+        fuelView = view.findViewById(R.id.fuelMeterUtilities);
+        viewFlipper = view.findViewById(R.id.vehicleUtilitiesViewFlipper);
         milage = view.findViewById(R.id.milage);
         jack = view.findViewById(R.id.jackImage);
         tools = view.findViewById(R.id.toolsImage);
@@ -165,6 +173,16 @@ public class VehicleUtilities extends Fragment {
 
             }
         });
+
+        viewFlipper.setDisplayedChild(0);
+
+        SharedPreferences userPrefs = getActivity().getSharedPreferences(USER, 0);
+        String lang = userPrefs.getString("Lang","");
+        if(lang.equals("Arabic")) {
+            viewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+//            fuelView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+//            fuelImage.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
