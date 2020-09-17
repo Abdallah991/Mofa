@@ -61,6 +61,7 @@
                     android:id="@+id/notificationTiming"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:gravity="start"
                     android:layout_weight="1"
                     android:text="May 5th 2020 5:30 am "
                     android:textColor="@color/appGrey"

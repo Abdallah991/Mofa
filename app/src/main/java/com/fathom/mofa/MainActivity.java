@@ -526,7 +526,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void getUserInfo() {
 
-        SharedPreferences pref = getSharedPreferences(USER, 0); // 0 - for private mode
+        final SharedPreferences pref = getSharedPreferences(USER, 0); // 0 - for private mode
         String email = pref.getString("Email", "");
 
         db.collection("Users").document(email)
@@ -538,6 +538,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 UserDataModel user = document.toObject(UserDataModel.class);
+                                String userName = user.getFirstName()+ " "+ user.getLastName();
+                                pref.edit().putString("userName", userName).apply();
+
                                 if (user.getUserType().equals("Admin")){
                                     isAdmin = true;
                                     signUp.setVisibility(View.VISIBLE);

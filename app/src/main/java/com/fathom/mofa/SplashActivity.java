@@ -19,6 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private Handler myHandler;
     private static int SPLASH_TIME_OUT = 2000;
+    public static String Language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,13 @@ public class SplashActivity extends AppCompatActivity {
         if (lang.isEmpty()) {
             setApplicationLocale("ar");
             userPrefs.edit().putString("Lang", "Arabic").apply();
+            Language = "Arabic";
         } else if (lang.equals("Arabic")) {
             setApplicationLocale("ar");
+            Language = "Arabic";
         } else {
             setApplicationLocale("en");
+            Language = "English";
         }
 
         // showing the Splash screen for two seconds then going to on boarding activity

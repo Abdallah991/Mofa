@@ -2,6 +2,7 @@ package com.fathom.mofa;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -35,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
@@ -251,21 +253,32 @@ public class VehicleRecordSignature extends Fragment {
 
     }
     private void uploadNotifications() {
+        SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
+        String name = pref.getString("userName", "");
+        String takenOut = getResources().getString(R.string.been_taken);
+        String returnedBy = getResources().getString(R.string.returned_by);
+        String releasedBy = getResources().getString(R.string.released_by);
+        String authorized = getResources().getString(R.string.authorized);
+        String damagedBy = getResources().getString(R.string.damaged_by);
+
         NotificationDataModel notification = new NotificationDataModel();
         Date date = new Date();
         switch (vehicleRecord.getCarTransaction()) {
             case "MTD":
-                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been taken out");
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" "
+                        + takenOut+" "+vehicleRecord.getDriverName() +" "+ authorized+" "+vehicleRecord.getReleasePersonName());
                 notification.setNotificationDate(date);
                 notification.setNotificationType("Handover");
                 break;
             case "DTM":
-                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been returned");
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" "
+                + returnedBy +" "+ vehicleRecord.getDriverName()+" "+authorized+" "+ vehicleRecord.getReleasePersonName());
                 notification.setNotificationDate(date);
                 notification.setNotificationType("Retrieval");
                 break;
             case "MTR":
-                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been released");
+                notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" "
+                        + releasedBy+" "+vehicleRecord.getDriverName() +" "+ authorized+" "+vehicleRecord.getReleasePersonName());
                 notification.setNotificationDate(date);
                 notification.setNotificationType("Release");
                 break;
@@ -277,7 +290,8 @@ public class VehicleRecordSignature extends Fragment {
         addNotificationToDataModel(notification);
 
         if (vehicleRecord.isCarHasDamage()) {
-            notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" has been damaged");
+            notification.setNotificationContent(vehicleInRecord.getManufacturer()+" "+ vehicleInRecord.getModel()+" "+vehicleInRecord.getMake()+" "
+                    + damagedBy+" "+vehicleRecord.getDriverName() +" "+ authorized+" "+vehicleRecord.getReleasePersonName());
             notification.setNotificationDate(date);
             notification.setNotificationType("Damage");
 

@@ -112,6 +112,12 @@
     <string name="no">No</string>
     <string name="chassis">VIN</string>
     <string name="motor_size">Engine size</string>
+    <string name="been_added"> has been added by </string>
+    <string name="been_taken"> has been taken out by </string>
+    <string name="authorized"> and authorized by </string>
+    <string name="returned_by"> has been returned by </string>
+    <string name="released_by"> has been released by </string>
+    <string name="damaged_by"> has been damaged with driver </string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

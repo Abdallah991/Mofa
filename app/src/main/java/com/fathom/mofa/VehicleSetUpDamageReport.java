@@ -161,13 +161,15 @@ public class VehicleSetUpDamageReport extends Fragment {
         }
 
         // Language handling
-        mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
+
+        mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         String[] carTypes = getResources().getStringArray(R.array.types);
         SALOON = carTypes[0];
         JEEP = carTypes[1];
         FAMILY = carTypes[2];
         VAN = carTypes[3];
+
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         damageReport = new DamageReportDataModel();
@@ -377,9 +379,11 @@ public class VehicleSetUpDamageReport extends Fragment {
                             break;
                     }
                     damageReport.setDriverDoor(true);
+
                 } else if (damageReport.isDriverDoor()) {
                     switch (vehicle.getCarType()) {
                         case "Saloon":
+                        case "صالون":
                             frontLeftDoor.setImageResource(R.drawable.front_left_door);
                             break;
                         case "Jeep":

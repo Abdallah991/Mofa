@@ -112,6 +112,12 @@
     <string name="motor_size">حجم المحرك</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="been_added"> تم إضافتها من قبل </string>
+    <string name="been_taken"> تم أخذها من قبل </string>
+    <string name="authorized"> بتصريح </string>
+    <string name="returned_by"> تم ارجاعها من قبل </string>
+    <string name="released_by"> تم اسراحها من قبل </string>
+    <string name="damaged_by"> تضررت مع السائق </string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

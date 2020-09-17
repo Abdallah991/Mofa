@@ -34,7 +34,7 @@ public class VehicleUtilities extends Fragment {
     private NavController mNavController;
     private TextInputEditText milage;
     private SeekBar fuelLevel;
-    private LinearLayout fuelView;
+    private LinearLayout fuelMeterUtilities;
     private ViewFlipper viewFlipper;
     private ImageView jack;
     private ImageView tools;
@@ -68,7 +68,7 @@ public class VehicleUtilities extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         fuelLevel = view.findViewById(R.id.fuelLevelConfirmation);
-        fuelView = view.findViewById(R.id.fuelMeterUtilities);
+        fuelMeterUtilities = view.findViewById(R.id.fuelMeterUtilities);
         viewFlipper = view.findViewById(R.id.vehicleUtilitiesViewFlipper);
         milage = view.findViewById(R.id.milage);
         jack = view.findViewById(R.id.jackImage);
@@ -174,12 +174,19 @@ public class VehicleUtilities extends Fragment {
             }
         });
 
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//        );
+//        params.setMargins(100, 0, 100, 0);
+////        fuelMeterUtilities.setLayoutParams(params);
         viewFlipper.setDisplayedChild(0);
 
         SharedPreferences userPrefs = getActivity().getSharedPreferences(USER, 0);
         String lang = userPrefs.getString("Lang","");
         if(lang.equals("Arabic")) {
             viewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+//            viewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 //            fuelView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 //            fuelImage.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }

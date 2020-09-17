@@ -202,7 +202,7 @@ public class VehicleDetails extends Fragment {
 
         SharedPreferences userPrefs = getActivity().getSharedPreferences(USER, 0);
         String lang = userPrefs.getString("Lang","");
-        Toast.makeText(getContext(), lang, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), lang, Toast.LENGTH_SHORT).show();
 
         getRentalInfo();
         getVehicleImages();

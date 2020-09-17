@@ -2,6 +2,7 @@ package com.fathom.mofa;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -39,6 +40,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Date;
 import java.util.List;
 
+import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRegistration.carPhotos;
 import static com.fathom.mofa.VehicleSetUp.vehicle;
@@ -216,8 +218,11 @@ public class VehicleSetUpSignature extends Fragment {
     }
 
     private void uploadNotification() {
+         SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
+        String name = pref.getString("userName", "");
+        String added = getResources().getString(R.string.been_added);
         NotificationDataModel notification = new NotificationDataModel();
-        notification.setNotificationContent(vehicle.getManufacturer()+" "+ vehicle.getModel()+" "+vehicle.getMake()+" has been added");
+        notification.setNotificationContent(vehicle.getManufacturer()+" "+ vehicle.getModel()+" "+vehicle.getMake()+" "+ added+" "+name);
         Date date = new Date();
         notification.setNotificationDate(date);
         notification.setNotificationType("Set Up");

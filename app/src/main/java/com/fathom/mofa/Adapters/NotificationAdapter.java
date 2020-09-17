@@ -1,7 +1,9 @@
 package com.fathom.mofa.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
+import static com.fathom.mofa.LoginActivity.USER;
+import static com.fathom.mofa.SplashActivity.Language;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationRecordHolder> {
     private String TAG = "Notification Adapter";
@@ -65,6 +70,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 break;
 
         }
+
+        if(Language.equals("English")) {
+            holder.notificationTime.setGravity(Gravity.START);
+            holder.notificationContent.setGravity(Gravity.END);
+        } else {
+            holder.notificationTime.setGravity(Gravity.END);
+            holder.notificationContent.setGravity(Gravity.START);
+        }
+
 
 
     }
