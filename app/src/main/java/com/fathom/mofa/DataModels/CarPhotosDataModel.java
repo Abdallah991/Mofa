@@ -8,6 +8,9 @@ public class CarPhotosDataModel {
     private Bitmap photoRightSide;
     private Bitmap photoFrontSide;
     private Bitmap photoBackSide;
+    private Bitmap vehicleFrontInterior;
+    private Bitmap vehicleBackInterior;
+    private Bitmap vehicleTrunk;
 
     public Bitmap getPhotoLeftSide() {
         return photoLeftSide;
@@ -39,5 +42,29 @@ public class CarPhotosDataModel {
 
     public void setPhotoBackSide(Bitmap photoBackSide) {
         this.photoBackSide = photoBackSide;
+    }
+
+    public Bitmap getVehicleFrontInterior() {
+        return vehicleFrontInterior;
+    }
+
+    public void setVehicleFrontInterior(Bitmap vehicleFrontInterior) {
+        this.vehicleFrontInterior = vehicleFrontInterior;
+    }
+
+    public Bitmap getVehicleBackInterior() {
+        return vehicleBackInterior;
+    }
+
+    public void setVehicleBackInterior(Bitmap vehicleBackInterior) {
+        this.vehicleBackInterior = vehicleBackInterior;
+    }
+
+    public Bitmap getVehicleTrunk() {
+        return vehicleTrunk;
+    }
+
+    public void setVehicleTrunk(Bitmap vehicleTrunk) {
+        this.vehicleTrunk = vehicleTrunk;
     }
 }

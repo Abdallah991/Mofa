@@ -39,6 +39,9 @@ public class VehicleSetUpConfirmation extends Fragment {
     private ImageView secondCircle;
     private ImageView thirdCircle;
     private ImageView fourthCircle;
+    private ImageView fifthCircle;
+    private ImageView sixthCircle;
+    private ImageView seventhCircle;
     private TextView plateNumber;
     private TextView vin;
     private TextView motorSize;
@@ -114,6 +117,9 @@ public class VehicleSetUpConfirmation extends Fragment {
         secondCircle = view.findViewById(R.id.secondImageHandover);
         thirdCircle = view.findViewById(R.id.thirdImageHandover);
         fourthCircle = view.findViewById(R.id.fourthImageHandover);
+        fifthCircle = view.findViewById(R.id.fifthImageHandover);
+        sixthCircle = view.findViewById(R.id.sixthImageHandover);
+        seventhCircle = view.findViewById(R.id.seventhImageHandover);
         plateNumber = view.findViewById(R.id.plateNumberValue);
         vin = view.findViewById(R.id.vinValue);
         motorSize = view.findViewById(R.id.motorSizeValue);
@@ -266,14 +272,14 @@ public class VehicleSetUpConfirmation extends Fragment {
         vehicleImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (index == 3) {
+                if (index == 6) {
                     index = 0;
                 } else {
                     index++;
                 }
                 switch (index) {
                     case 0:
-                        fourthCircle.setImageResource(R.drawable.grey_dot);
+                        seventhCircle.setImageResource(R.drawable.grey_dot);
                         firstCircle.setImageResource(R.drawable.red_dot);
                         vehicleImage.setImageBitmap(carPhotos.getPhotoLeftSide());
                         break;
@@ -292,6 +298,22 @@ public class VehicleSetUpConfirmation extends Fragment {
                         fourthCircle.setImageResource(R.drawable.red_dot);
                         vehicleImage.setImageBitmap(carPhotos.getPhotoBackSide());
                         break;
+                    case 4:
+                        fourthCircle.setImageResource(R.drawable.grey_dot);
+                        fifthCircle.setImageResource(R.drawable.red_dot);
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleFrontInterior());
+                        break;
+                    case 5:
+                        fifthCircle.setImageResource(R.drawable.grey_dot);
+                        sixthCircle.setImageResource(R.drawable.red_dot);
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleBackInterior());
+                        break;
+                    case 6:
+                        sixthCircle.setImageResource(R.drawable.grey_dot);
+                        seventhCircle.setImageResource(R.drawable.red_dot);
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleTrunk());
+                        break;
+
 
                 }
             }

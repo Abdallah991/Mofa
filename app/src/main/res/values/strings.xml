@@ -118,6 +118,8 @@
     <string name="returned_by"> has been returned by </string>
     <string name="released_by"> has been released by </string>
     <string name="damaged_by"> has been damaged with driver </string>
+    <string name="interior">Interior</string>
+    <string name="exterior">Exterior</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

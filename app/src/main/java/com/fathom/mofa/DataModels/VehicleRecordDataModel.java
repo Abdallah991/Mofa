@@ -16,6 +16,9 @@ public class VehicleRecordDataModel {
     private String photoRightSide;
     private String photoFrontSide;
     private String photoBackSide;
+    private String vehicleFrontInterior;
+    private String vehicleBackInterior;
+    private String vehicleTrunk;
     private String notes;
     private String model;
     private String make;
@@ -276,6 +279,30 @@ public class VehicleRecordDataModel {
 
     public void setRentalInfo(String rentalInfo) {
         this.rentalInfo = rentalInfo;
+    }
+
+    public String getVehicleFrontInterior() {
+        return vehicleFrontInterior;
+    }
+
+    public void setVehicleFrontInterior(String vehicleFrontInterior) {
+        this.vehicleFrontInterior = vehicleFrontInterior;
+    }
+
+    public String getVehicleBackInterior() {
+        return vehicleBackInterior;
+    }
+
+    public void setVehicleBackInterior(String vehicleBackInterior) {
+        this.vehicleBackInterior = vehicleBackInterior;
+    }
+
+    public String getVehicleTrunk() {
+        return vehicleTrunk;
+    }
+
+    public void setVehicleTrunk(String vehicleTrunk) {
+        this.vehicleTrunk = vehicleTrunk;
     }
 
     public String getCompanyReleaseSignature() {

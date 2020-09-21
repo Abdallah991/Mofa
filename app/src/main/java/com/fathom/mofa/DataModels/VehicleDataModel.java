@@ -25,6 +25,9 @@ public class VehicleDataModel {
     private String photoRightSide;
     private String photoFrontSide;
     private String photoBackSide;
+    private String vehicleFrontInterior;
+    private String vehicleBackInterior;
+    private String vehicleTrunk;
     private Date registrationStart;
     private Date registrationEnd;
     private String notes;
@@ -234,5 +237,29 @@ public class VehicleDataModel {
 
     public void setMotorSize(String motorSize) {
         this.motorSize = motorSize;
+    }
+
+    public String getVehicleFrontInterior() {
+        return vehicleFrontInterior;
+    }
+
+    public void setVehicleFrontInterior(String vehicleFrontInterior) {
+        this.vehicleFrontInterior = vehicleFrontInterior;
+    }
+
+    public String getVehicleBackInterior() {
+        return vehicleBackInterior;
+    }
+
+    public void setVehicleBackInterior(String vehicleBackInterior) {
+        this.vehicleBackInterior = vehicleBackInterior;
+    }
+
+    public String getVehicleTrunk() {
+        return vehicleTrunk;
+    }
+
+    public void setVehicleTrunk(String vehicleTrunk) {
+        this.vehicleTrunk = vehicleTrunk;
     }
 }

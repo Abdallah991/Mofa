@@ -118,6 +118,8 @@
     <string name="returned_by"> تم ارجاعها من قبل </string>
     <string name="released_by"> تم اسراحها من قبل </string>
     <string name="damaged_by"> تضررت مع السائق </string>
+    <string name="interior">داخل المركبة</string>
+    <string name="exterior">خارج المركبة</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

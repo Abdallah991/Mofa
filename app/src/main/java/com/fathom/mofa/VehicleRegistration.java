@@ -57,8 +57,13 @@ public class VehicleRegistration extends Fragment {
     private ImageView vehicleRightSide;
     private ImageView vehicleFrontSide;
     private ImageView vehicleBackSide;
+    private ImageView vehicleFrontInterior;
+    private ImageView vehicleBackInterior;
+    private ImageView vehicleTrunk;
     private Button next;
     private Button back;
+    private Button interior;
+    private Button exterior;
     private String selector;
     private Date start;
     private Date end;
@@ -88,8 +93,13 @@ public class VehicleRegistration extends Fragment {
         vehicleRightSide = view.findViewById(R.id.vehicleRightSide);
         vehicleFrontSide = view.findViewById(R.id.vehicleFrontSide);
         vehicleBackSide = view.findViewById(R.id.vehicleBackSide);
+        vehicleFrontInterior = view.findViewById(R.id.vehicleFrontInterior);
+        vehicleBackInterior = view.findViewById(R.id.vehicleBackInterior);
+        vehicleTrunk = view.findViewById(R.id.vehicleTrunk);
         next = view.findViewById(R.id.nextVehicleRegistration);
         back = view.findViewById(R.id.backVehicleRegistration);
+        interior = view.findViewById(R.id.interiorVehicleRegistration);
+        exterior = view.findViewById(R.id.exteriorVehicleRegistration);
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         final DatePickerDialog[] picker = new DatePickerDialog[1];
@@ -152,6 +162,10 @@ public class VehicleRegistration extends Fragment {
             }
         });
 
+        vehicleFrontInterior.setVisibility(View.GONE);
+        vehicleBackInterior.setVisibility(View.GONE);
+        vehicleTrunk.setVisibility(View.GONE);
+
         vehicleLeftSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,6 +205,80 @@ public class VehicleRegistration extends Fragment {
 
                 selectImage(getContext());
                 selector= "vehicleBackSide";
+
+
+            }
+        });
+        vehicleFrontInterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector= "vehicleFrontInterior";
+
+
+            }
+        });
+        vehicleBackInterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector= "vehicleBackInterior";
+
+
+            }
+        });
+        vehicleTrunk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector= "vehicleTrunk";
+
+
+            }
+        });
+
+
+        interior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    vehicleRightSide.setVisibility(View.GONE);
+                    vehicleLeftSide.setVisibility(View.GONE);
+                    vehicleFrontSide.setVisibility(View.GONE);
+                    vehicleBackSide.setVisibility(View.GONE);
+                    vehicleFrontInterior.setVisibility(View.VISIBLE);
+                    vehicleBackInterior.setVisibility(View.VISIBLE);
+                    vehicleTrunk.setVisibility(View.VISIBLE);
+                    interior.setBackground(getResources().getDrawable(R.drawable.button_shadow));
+                    interior.setTextColor(getResources().getColor(R.color.colorBackground));
+                    exterior.setBackground(getResources().getDrawable(R.drawable.button_shadow_white));
+                    exterior.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+
+
+
+            }
+        });
+
+        exterior.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                    vehicleRightSide.setVisibility(View.VISIBLE);
+                    vehicleLeftSide.setVisibility(View.VISIBLE);
+                    vehicleFrontSide.setVisibility(View.VISIBLE);
+                    vehicleBackSide.setVisibility(View.VISIBLE);
+                    vehicleFrontInterior.setVisibility(View.GONE);
+                    vehicleBackInterior.setVisibility(View.GONE);
+                    vehicleTrunk.setVisibility(View.GONE);
+                    exterior.setBackground(getResources().getDrawable(R.drawable.button_shadow));
+                    exterior.setTextColor(getResources().getColor(R.color.colorBackground));
+                    interior.setBackground(getResources().getDrawable(R.drawable.button_shadow_white));
+                    interior.setTextColor(getResources().getColor(R.color.colorPrimary));
+
 
 
             }
@@ -280,6 +368,21 @@ public class VehicleRegistration extends Fragment {
                                 vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
                                 carPhotos.setPhotoBackSide(selectedImage);
                                 break;
+                            case "vehicleFrontInterior":
+                                vehicleFrontInterior.setImageBitmap(selectedImage);
+                                vehicle.setVehicleFrontInterior(vehicle.getPlateNumber()+"frontInterior");
+                                carPhotos.setVehicleFrontInterior(selectedImage);
+                                break;
+                            case "vehicleBackInterior":
+                                vehicleBackInterior.setImageBitmap(selectedImage);
+                                vehicle.setVehicleBackInterior(vehicle.getPlateNumber()+"backInterior");
+                                carPhotos.setVehicleBackInterior(selectedImage);
+                                break;
+                            case "vehicleTrunk":
+                                vehicleTrunk.setImageBitmap(selectedImage);
+                                vehicle.setVehicleTrunk(vehicle.getPlateNumber()+"trunk");
+                                carPhotos.setVehicleTrunk(selectedImage);
+                                break;
 
                         }
                     }
@@ -329,8 +432,22 @@ public class VehicleRegistration extends Fragment {
                                     case "vehicleBackSide":
                                         vehicleBackSide.setImageURI(selectedImage);
                                         vehicle.setPhotoBackSide(vehicle.getPlateNumber()+"back");
-
                                         carPhotos.setPhotoBackSide(bitmap);
+                                        break;
+                                    case "vehicleFrontInterior":
+                                        vehicleFrontInterior.setImageURI(selectedImage);
+                                        vehicle.setVehicleFrontInterior(vehicle.getPlateNumber()+"frontInterior");
+                                        carPhotos.setVehicleFrontInterior(bitmap);
+                                        break;
+                                    case "vehicleBackInterior":
+                                        vehicleBackInterior.setImageURI(selectedImage);
+                                        vehicle.setVehicleBackInterior(vehicle.getPlateNumber()+"backInterior");
+                                        carPhotos.setVehicleBackInterior(bitmap);
+                                        break;
+                                    case "vehicleTrunk":
+                                        vehicleTrunk.setImageURI(selectedImage);
+                                        vehicle.setVehicleTrunk(vehicle.getPlateNumber()+"trunk");
+                                        carPhotos.setVehicleTrunk(bitmap);
                                         break;
 
                                 }
@@ -354,11 +471,16 @@ public class VehicleRegistration extends Fragment {
         String rightSide = vehicle.getPhotoRightSide();
         String frontSide = vehicle.getPhotoFrontSide();
         String backSide = vehicle.getPhotoBackSide();
+        String frontInterior = vehicle.getVehicleFrontInterior();
+        String backInterior  = vehicle.getVehicleBackInterior();
+        String trunk = vehicle.getVehicleTrunk();
 
         if ((!registration.isEmpty())&& (!startR.isEmpty())&&
                 (!endR.isEmpty())&& (leftSide != null)&&
                 (rightSide != null)&& (frontSide != null) &&
-                (backSide != null))  {
+                (backSide != null) && (frontInterior != null)
+                && (backInterior != null)
+                && (trunk != null))  {
 
             vehicle.setRegistrationType(registration);
             vehicle.setMotorSize(motorSize);
@@ -368,12 +490,16 @@ public class VehicleRegistration extends Fragment {
             vehicle.setPhotoRightSide(rightSide);
             vehicle.setPhotoFrontSide(frontSide);
             vehicle.setPhotoBackSide(backSide);
+            vehicle.setVehicleFrontInterior(frontInterior);
+            vehicle.setVehicleBackInterior(backInterior);
+            vehicle.setVehicleTrunk(trunk);
+
+
             return true;
         }
         else {
             Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
             return false;
-
         }
 
     }

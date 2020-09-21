@@ -171,6 +171,9 @@ public class VehicleSetUpSignature extends Fragment {
                 uploadVehicleRightSide();
                 uploadVehicleFrontSide();
                 uploadVehicleBackSide();
+                uploadVehicleFrontInterior();
+                uploadVehicleBackInterior();
+                uploadVehicleTrunk();
                 updateVehicleToViewModel();
 
 
@@ -365,6 +368,90 @@ public class VehicleSetUpSignature extends Fragment {
         });
 
     }
+
+    private void uploadVehicleFrontInterior() {
+        backImageRef = storageRef.child(vehicle.getVehicleFrontInterior());
+//        frontLicense.setDrawingCacheEnabled(true);
+//        frontLicense.buildDrawingCache();
+        Bitmap bitmap = carPhotos.getVehicleFrontInterior();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = backImageRef.putBytes(data);
+        progressDialog.show();
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d(TAG, "User back image failed to upload.");
+                progressDialog.dismiss();
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "User back image uploaded.");
+                progressDialog.dismiss();
+            }
+        });
+
+    }
+    private void uploadVehicleBackInterior() {
+        backImageRef = storageRef.child(vehicle.getVehicleBackInterior());
+//        frontLicense.setDrawingCacheEnabled(true);
+//        frontLicense.buildDrawingCache();
+        Bitmap bitmap = carPhotos.getVehicleBackInterior();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = backImageRef.putBytes(data);
+        progressDialog.show();
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d(TAG, "User back image failed to upload.");
+                progressDialog.dismiss();
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "User back image uploaded.");
+                progressDialog.dismiss();
+            }
+        });
+
+    }
+
+    private void uploadVehicleTrunk() {
+        backImageRef = storageRef.child(vehicle.getVehicleTrunk());
+//        frontLicense.setDrawingCacheEnabled(true);
+//        frontLicense.buildDrawingCache();
+        Bitmap bitmap = carPhotos.getVehicleTrunk();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = backImageRef.putBytes(data);
+        progressDialog.show();
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d(TAG, "User back image failed to upload.");
+                progressDialog.dismiss();
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d(TAG, "User back image uploaded.");
+                progressDialog.dismiss();
+            }
+        });
+
+    }
+
 
     @Override
     public void onResume() {
