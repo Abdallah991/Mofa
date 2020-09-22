@@ -432,68 +432,6 @@ public class VehicleRecord extends Fragment {
             }
         } ,SPLASH_TIME_OUT);
 
-
-//        Handler myHandler;
-//        int SPLASH_TIME_OUT = 2500;
-//        myHandler = new Handler();
-//
-//        Log.d(TAG3, "loading Recycler been called");
-//        progressDialog.show();
-//        // showing the Splash screen for two seconds then going to on boarding activity
-//        myHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (mUsers.isEmpty()) {
-//                    mUsers = (ArrayList<UserDataModel>) mUserViewModel.getUsers().getValue();
-//                    userNames.add("Managed By");
-//                    for (UserDataModel user : mUsers) {
-//                        userNames.add(user.getFirstName()+" "+user.getLastName());
-//                    }
-//                }
-//                userAdapter = new ArrayAdapter<String>(getContext(),
-//                        android.R.layout.simple_list_item_1, userNames) {
-//                    @Override
-//                    public boolean isEnabled(int position) {
-//                        if (position == 0) {
-//                            return false;
-//                        } else {
-//                            return true;
-//                        }
-//                    }
-//
-//                    @Override
-//                    public View getDropDownView(int position, View convertView,
-//                                                ViewGroup parent) {
-//                        View view = super.getDropDownView(position, convertView, parent);
-//                        TextView tv = (TextView) view;
-//                        if (position == 0) {
-//                            // Set the hint text color gray
-//                            tv.setTextColor(getResources().getColor(R.color.appGrey));
-//                        } else {
-//                            tv.setTextColor(getResources().getColor(R.color.black));
-//                        }
-//                        return view;
-//                    }
-//                };
-//                userAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-//                userName.setAdapter(userAdapter);
-//                userName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                    @Override
-//                    public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
-//                        String selectedItemText = (String) parent.getItemAtPosition(position);
-//
-//                        if (position > 0) {
-//                            vehicleRecord.setReleasePersonName(selectedItemText);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onNothingSelected(AdapterView<?> parent) {
-//                    }
-//                });
-//                progressDialog.dismiss();
-//            }
-//        }, SPLASH_TIME_OUT);
     }
 
 

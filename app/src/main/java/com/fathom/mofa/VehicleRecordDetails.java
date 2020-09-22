@@ -75,6 +75,10 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView backLeft;
     private ImageView backRight;
     private ImageView back;
+    private ImageView frontRightTire;
+    private ImageView frontLeftTire;
+    private ImageView backRightTire;
+    private ImageView backLeftTire;
     // view flipper
     private ViewFlipper mViewFlipper;
     private TextView provider;
@@ -90,6 +94,9 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView secondDot;
     private ImageView thirdDot;
     private ImageView fourthDot;
+    private ImageView fifthImageRecord;
+    private ImageView sixthImageRecord;
+    private ImageView seventhImageRecord;
     private SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 
 
@@ -144,6 +151,9 @@ public class VehicleRecordDetails extends Fragment {
         secondDot = view.findViewById(R.id.secondImageRecord);
         thirdDot = view.findViewById(R.id.thirdImageRecord);
         fourthDot = view.findViewById(R.id.fourthImageRecord);
+        fifthImageRecord = view.findViewById(R.id.fifthImageRecord);
+        sixthImageRecord = view.findViewById(R.id.sixthImageRecord);
+        seventhImageRecord = view.findViewById(R.id.seventhImageRecord);
         // Vehicle Damage report
         mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
         switch (vehicleRecordDashboard.getCarType()) {
@@ -164,6 +174,10 @@ public class VehicleRecordDetails extends Fragment {
                 back = view.findViewById(R.id.backConfirmation);
                 backRight = view.findViewById(R.id.backRightConfirmation);
                 backLeft = view.findViewById(R.id.backLeftConfirmation);
+                backRightTire = view.findViewById(R.id.backRightTire);
+                backLeftTire = view.findViewById(R.id.backLeftTire);
+                frontRightTire = view.findViewById(R.id.frontRightTire);
+                frontLeftTire = view.findViewById(R.id.frontLeftTire);
                 break;
             case "Jeep":
             case "جيب":
@@ -182,6 +196,10 @@ public class VehicleRecordDetails extends Fragment {
                 backLeft = view.findViewById(R.id.jeepBackLeft);
                 backRight = view.findViewById(R.id.jeepBackRight);
                 back= view.findViewById(R.id.jeepBack);
+                backRightTire = view.findViewById(R.id.jeepBackRightTire);
+                backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
+                frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
                 break;
             case "Family":
             case "مركبة عائلية":
@@ -200,6 +218,10 @@ public class VehicleRecordDetails extends Fragment {
                 backLeft = view.findViewById(R.id.familyBackLeft);
                 backRight = view.findViewById(R.id.familyBackRight);
                 back = view.findViewById(R.id.familyBack);
+                backRightTire = view.findViewById(R.id.familyBackRightTire);
+                backLeftTire = view.findViewById(R.id.familyBackLeftTire);
+                frontRightTire = view.findViewById(R.id.familyFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
                 break;
             case "Van":
             case "شاحنة صغيرة":
@@ -218,6 +240,10 @@ public class VehicleRecordDetails extends Fragment {
                 backLeft = view.findViewById(R.id.vanBackLeft);
                 backRight = view.findViewById(R.id.vanBackRight);
                 back = view.findViewById(R.id.vanBack);
+                backRightTire = view.findViewById(R.id.vanBackRightTire);
+                backLeftTire = view.findViewById(R.id.vanBackLeftTire);
+                frontRightTire = view.findViewById(R.id.vanFrontRightTire);
+                frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
                 break;
         }
 
@@ -435,7 +461,7 @@ public class VehicleRecordDetails extends Fragment {
                                     }
                                     if (vehicleRecordDashboard.getCarType().equals(SALOON)) {
                                         if (damageReport.isBackCeiling()) {
-                                            backCeiling.setImageResource(R.drawable.ceiling_back_red);
+                                            backCeiling.setImageResource(R.drawable.back_red);
                                         }
                                     }
                                     if (damageReport.isCeiling()) {
@@ -529,6 +555,21 @@ public class VehicleRecordDetails extends Fragment {
                                                 break;
                                         }
 
+                                    }
+
+                                    if (damageReportRecord.isFrontRightTire()) {
+                                        frontRightTire.setImageResource(R.drawable.tire_red);
+
+                                    }
+                                    if (damageReportRecord.isFrontLeftTire()) {
+                                        frontLeftTire.setImageResource(R.drawable.tire_red);
+                                    }
+                                    if (damageReportRecord.isBackLeftTire()) {
+                                        backLeftTire.setImageResource(R.drawable.tire_red);
+                                    }
+
+                                    if (damageReportRecord.isBackRightTire()) {
+                                        backRightTire.setImageResource(R.drawable.tire_red);
                                     }
 
 //                                    damageReportReview(damageReport);
@@ -639,14 +680,14 @@ public class VehicleRecordDetails extends Fragment {
     }
 
     private void vehicleGallery() {
-        if (index == 3) {
+        if (index == 6) {
             index =0;
         } else {
             index++;
         }
         switch (index) {
             case 0:
-                fourthDot.setImageResource(R.drawable.grey_dot);
+                seventhImageRecord.setImageResource(R.drawable.grey_dot);
                 firstDot.setImageResource(R.drawable.red_dot);
                 vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
                 break;
@@ -664,6 +705,21 @@ public class VehicleRecordDetails extends Fragment {
                 thirdDot.setImageResource(R.drawable.grey_dot);
                 fourthDot.setImageResource(R.drawable.red_dot);
                 vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoBackSide());
+                break;
+            case 4:
+                fourthDot.setImageResource(R.drawable.grey_dot);
+                fifthImageRecord.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleFrontInterior());
+                break;
+            case 5:
+                fifthImageRecord.setImageResource(R.drawable.grey_dot);
+                sixthImageRecord.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleBackInterior());
+                break;
+            case 6:
+                sixthImageRecord.setImageResource(R.drawable.grey_dot);
+                seventhImageRecord.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleTrunk());
                 break;
 
         }
