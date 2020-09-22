@@ -68,6 +68,9 @@ public class VehicleRecord extends Fragment {
     private ImageView secondDot;
     private ImageView thirdDot;
     private ImageView fourthDot;
+    private ImageView fifthDot;
+    private ImageView sixthDot;
+    private ImageView seventhDot;
     private Button next;
     private ProgressDialog progressDialog;
     private int actionToVehicleUtilities = R.id.action_vehicleRecord_to_vehicleUtilities;
@@ -126,6 +129,9 @@ public class VehicleRecord extends Fragment {
         secondDot = view.findViewById(R.id.secondImageHandover);
         thirdDot = view.findViewById(R.id.thirdImageHandover);
         fourthDot = view.findViewById(R.id.fourthImageHandover);
+        fifthDot = view.findViewById(R.id.fifthImageHandover);
+        sixthDot= view.findViewById(R.id.sixthImageHandover);
+        seventhDot = view.findViewById(R.id.seventhImageHandover);
         next = view.findViewById(R.id.nextVehicleRecord);
 
         progressDialog = new ProgressDialog(getContext());
@@ -180,14 +186,14 @@ public class VehicleRecord extends Fragment {
         carImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (index == 3) {
+                if (index == 6) {
                     index = 0;
                 } else {
                     index++;
                 }
                 switch (index) {
                     case 0:
-                        fourthDot.setImageResource(R.drawable.grey_dot);
+                        seventhDot.setImageResource(R.drawable.grey_dot);
                         firstDot.setImageResource(R.drawable.red_dot);
                         carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
                         break;
@@ -205,6 +211,21 @@ public class VehicleRecord extends Fragment {
                         thirdDot.setImageResource(R.drawable.grey_dot);
                         fourthDot.setImageResource(R.drawable.red_dot);
                         carImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
+                        break;
+                    case 4:
+                        fourthDot.setImageResource(R.drawable.grey_dot);
+                        fifthDot.setImageResource(R.drawable.red_dot);
+                        carImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
+                        break;
+                    case 5:
+                        fifthDot.setImageResource(R.drawable.grey_dot);
+                        sixthDot.setImageResource(R.drawable.red_dot);
+                        carImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
+                        break;
+                    case 6:
+                        sixthDot.setImageResource(R.drawable.grey_dot);
+                        seventhDot.setImageResource(R.drawable.red_dot);
+                        carImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
                         break;
 
                 }
@@ -508,6 +529,9 @@ public class VehicleRecord extends Fragment {
         vehicleInRecord.setPhotoFrontSide(vehicleDashboard.getPhotoFrontSide());
         vehicleInRecord.setPhotoRightSide(vehicleDashboard.getPhotoRightSide());
         vehicleInRecord.setPhotoLeftSide(vehicleDashboard.getPhotoLeftSide());
+        vehicleInRecord.setVehicleFrontInterior(vehicleDashboard.getVehicleFrontInterior());
+        vehicleInRecord.setVehicleBackInterior(vehicleDashboard.getVehicleBackInterior());
+        vehicleInRecord.setVehicleTrunk(vehicleDashboard.getVehicleTrunk());
         vehicleInRecord.setCarName(vehicleDashboard.getCarName());
         vehicleInRecord.setRegistrationEnd(vehicleDashboard.getRegistrationEnd());
         vehicleInRecord.setRegistrationStart(vehicleDashboard.getRegistrationStart());
@@ -518,6 +542,8 @@ public class VehicleRecord extends Fragment {
         vehicleInRecord.setPlateNumber(vehicleDashboard.getPlateNumber());
         vehicleInRecord.setColorOfCar(vehicleDashboard.getColorOfCar());
         vehicleInRecord.setCarType(vehicleDashboard.getCarType());
+        vehicleInRecord.setChassisNumber(vehicleDashboard.getChassisNumber());
+        vehicleInRecord.setMotorSize(vehicleDashboard.getMotorSize());
         vehicleRecord.setVehicleName(vehicleDashboard.getCarName());
         vehicleRecord.setCarType(vehicleDashboard.getCarType());
         vehicleRecord.setChassisNumber(vehicleDashboard.getChassisNumber());

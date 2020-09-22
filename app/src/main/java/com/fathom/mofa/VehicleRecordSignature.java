@@ -38,7 +38,7 @@ import java.util.List;
 
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
+import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
@@ -68,6 +68,9 @@ public class VehicleRecordSignature extends Fragment {
     private StorageReference backImageRef;
     private StorageReference leftImageRef;
     private StorageReference rightImageRef;
+    private StorageReference frontInteriorImageRef;
+    private StorageReference backInteriorImageRef;
+    private StorageReference trunkImageRef;
     private final String TAG = "VEHICLE RECORD";
     private ProgressDialog progressDialog;
     private Date mDate;
@@ -198,11 +201,17 @@ public class VehicleRecordSignature extends Fragment {
                 uploadVehicleRecord();
                 uploadDamageReport();
                 uploadNotifications();
-                uploadVehicleLeftSide();
-                uploadVehicleRightSide();
-                uploadVehicleFrontSide();
-                uploadVehicleBackSide();
                 addVehicleRecordToViewModel();
+                if(vehicleRecord.isCarHasDamage()) {
+                    uploadVehicleLeftSide();
+                    uploadVehicleRightSide();
+                    uploadVehicleFrontSide();
+                    uploadVehicleBackSide();
+                    uploadVehicleFrontInterior();
+                    uploadVehicleBackInterior();
+                    uploadVehicleTrunk();
+                }
+
 
 
 
@@ -314,7 +323,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleRightSide() {
-        if (vehicleRecord.isCarHasDamage()) {
+
             rightImageRef = storageRef.child(vehicleRecord.getPhotoRightSide());
             Bitmap bitmap = carPhotosRecord.getPhotoRightSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -338,12 +347,12 @@ public class VehicleRecordSignature extends Fragment {
 
                 }
             });
-        }
+
 
     }
 
     private void uploadVehicleLeftSide() {
-        if (vehicleRecord.isCarHasDamage()) {
+
             leftImageRef = storageRef.child(vehicleRecord.getPhotoLeftSide());
             Bitmap bitmap = carPhotosRecord.getPhotoLeftSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -367,13 +376,12 @@ public class VehicleRecordSignature extends Fragment {
 
                 }
             });
-        }
+
 
 
     }
 
     private void uploadVehicleFrontSide() {
-        if (vehicleRecord.isCarHasDamage()) {
             frontImageRef = storageRef.child(vehicleRecord.getPhotoFrontSide());
             Bitmap bitmap = carPhotosRecord.getPhotoFrontSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -396,12 +404,11 @@ public class VehicleRecordSignature extends Fragment {
                     progressDialog.dismiss();
                 }
             });
-        }
+
 
     }
 
     private void uploadVehicleBackSide() {
-        if (vehicleRecord.isCarHasDamage()) {
             backImageRef = storageRef.child(vehicleRecord.getPhotoBackSide());
             Bitmap bitmap = carPhotosRecord.getPhotoBackSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -425,7 +432,86 @@ public class VehicleRecordSignature extends Fragment {
 
                 }
             });
-        }
+
+    }
+    private void uploadVehicleFrontInterior() {
+            frontImageRef = storageRef.child(vehicleRecord.getVehicleFrontInterior());
+            Bitmap bitmap = carPhotosRecord.getVehicleFrontInterior();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            UploadTask uploadTask = frontImageRef.putBytes(data);
+            progressDialog.show();
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d(TAG, "User back image failed to upload.");
+                    progressDialog.dismiss();
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.d(TAG, "User back image uploaded.");
+                    progressDialog.dismiss();
+
+                }
+            });
+
+    }
+    private void uploadVehicleBackInterior() {
+            backInteriorImageRef = storageRef.child(vehicleRecord.getVehicleBackInterior());
+            Bitmap bitmap = carPhotosRecord.getVehicleBackInterior();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            UploadTask uploadTask = backInteriorImageRef.putBytes(data);
+            progressDialog.show();
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d(TAG, "User back image failed to upload.");
+                    progressDialog.dismiss();
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.d(TAG, "User back image uploaded.");
+                    progressDialog.dismiss();
+
+                }
+            });
+
+    }
+    private void uploadVehicleTrunk() {
+
+            trunkImageRef = storageRef.child(vehicleRecord.getVehicleTrunk());
+            Bitmap bitmap = carPhotosRecord.getVehicleTrunk();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+
+            UploadTask uploadTask = trunkImageRef.putBytes(data);
+            progressDialog.show();
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d(TAG, "User back image failed to upload.");
+                    progressDialog.dismiss();
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.d(TAG, "User back image uploaded.");
+                    progressDialog.dismiss();
+
+                }
+            });
+
     }
 
     private void addVehicleRecordToViewModel() {

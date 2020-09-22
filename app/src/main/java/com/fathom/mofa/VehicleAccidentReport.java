@@ -36,6 +36,7 @@ import java.util.Date;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
+import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
@@ -49,6 +50,9 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView vehicleRightSide;
     private ImageView vehicleFrontSide;
     private ImageView vehicleBackSide;
+    private ImageView vehicleFrontInteriorAR;
+    private ImageView vehicleBackInteriorAR;
+    private ImageView vehicleTrunkAR;
     private ImageView carHasDamage;
     private ImageView carIsUseable;
     private ImageView front;
@@ -71,11 +75,10 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView backLeftTire;
     private Button next;
     private Button backButton;
+    private Button interiorVehicleAR;
+    private Button exteriorVehicleAR;
     // Damage Report
     private ViewFlipper mViewFlipper;
-
-    // Photos
-    public static CarPhotosDataModel carPhotosRecord = new CarPhotosDataModel();
     private String selector;
     private SimpleDateFormat formatter;
     private Date mDate;
@@ -205,11 +208,21 @@ public class VehicleAccidentReport extends Fragment {
         vehicleLeftSide = view.findViewById(R.id.vehicleLeftSideAR);
         vehicleFrontSide = view.findViewById(R.id.vehicleFrontSideAR);
         vehicleBackSide = view.findViewById(R.id.vehicleBackSideAR);
+        vehicleFrontInteriorAR = view.findViewById(R.id.vehicleFrontInteriorAR);
+        vehicleBackInteriorAR = view.findViewById(R.id.vehicleBackInteriorAR);
+        vehicleTrunkAR = view.findViewById(R.id.vehicleTrunkAR);
         carHasDamage = view.findViewById(R.id.carHasDamageImage);
         carIsUseable = view.findViewById(R.id.carIsUseableImage);
         backButton = view.findViewById(R.id.backAccidentReport);
         next = view.findViewById(R.id.nextAccidentReport);
+        exteriorVehicleAR = view.findViewById(R.id.exteriorVehicleAR);
+        interiorVehicleAR = view.findViewById(R.id.interiorVehicleAR);
 
+
+        // Interior Images Handeling
+        vehicleFrontInteriorAR.setVisibility(View.GONE);
+        vehicleBackInteriorAR.setVisibility(View.GONE);
+        vehicleTrunkAR.setVisibility(View.GONE);
         // Language handling
         mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
@@ -889,6 +902,7 @@ public class VehicleAccidentReport extends Fragment {
             }
         });
 
+
         vehicleLeftSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -933,6 +947,78 @@ public class VehicleAccidentReport extends Fragment {
             }
         });
 
+        vehicleFrontInteriorAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector = "vehicleFrontInterior";
+
+
+            }
+        });
+
+        vehicleBackInteriorAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector = "vehicleBackInterior";
+
+
+            }
+        });
+
+        vehicleTrunkAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectImage(getContext());
+                selector = "vehicleTrunk";
+
+
+            }
+        });
+
+        interiorVehicleAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                vehicleBackSide.setVisibility(View.GONE);
+                vehicleRightSide.setVisibility(View.GONE);
+                vehicleLeftSide.setVisibility(View.GONE);
+                vehicleFrontSide.setVisibility(View.GONE);
+                vehicleFrontInteriorAR.setVisibility(View.VISIBLE);
+                vehicleBackInteriorAR.setVisibility(View.VISIBLE);
+                vehicleTrunkAR.setVisibility(View.VISIBLE);
+                interiorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow));
+                interiorVehicleAR.setTextColor(getResources().getColor(R.color.colorBackground));
+                exteriorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow_white));
+                exteriorVehicleAR.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            }
+        });
+
+        exteriorVehicleAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                vehicleFrontInteriorAR.setVisibility(View.GONE);
+                vehicleBackInteriorAR.setVisibility(View.GONE);
+                vehicleTrunkAR.setVisibility(View.GONE);
+                vehicleBackSide.setVisibility(View.VISIBLE);
+                vehicleRightSide.setVisibility(View.VISIBLE);
+                vehicleLeftSide.setVisibility(View.VISIBLE);
+                vehicleFrontSide.setVisibility(View.VISIBLE);
+                exteriorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow));
+                exteriorVehicleAR.setTextColor(getResources().getColor(R.color.colorBackground));
+                interiorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow_white));
+                interiorVehicleAR.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+
+            }
+        });
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -959,6 +1045,7 @@ public class VehicleAccidentReport extends Fragment {
         super.onResume();
         FRAGMENT = "vehicleAccidentReport";
         formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//        carPhotosRecord = new CarPhotosDataModel();
         mDate = new Date();
 
     }
@@ -1018,10 +1105,24 @@ public class VehicleAccidentReport extends Fragment {
                                 vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "back");
                                 carPhotosRecord.setPhotoBackSide(selectedImage);
                                 break;
+                            case "vehicleFrontInterior":
+                                vehicleFrontInteriorAR.setImageBitmap(selectedImage);
+                                vehicleRecord.setVehicleFrontInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "frontInterior");
+                                carPhotosRecord.setVehicleFrontInterior(selectedImage);
+                                break;
+                            case "vehicleBackInterior":
+                                vehicleBackInteriorAR.setImageBitmap(selectedImage);
+                                vehicleRecord.setVehicleBackInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "backInterior");
+                                carPhotosRecord.setVehicleBackInterior(selectedImage);
+                                break;
+                            case "vehicleTrunk":
+                                vehicleTrunkAR.setImageBitmap(selectedImage);
+                                vehicleRecord.setVehicleTrunk(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "trunk");
+                                carPhotosRecord.setVehicleTrunk(selectedImage);
+                                break;
 
                         }
                     }
-
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
@@ -1069,15 +1170,33 @@ public class VehicleAccidentReport extends Fragment {
                                         vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "back");
                                         carPhotosRecord.setPhotoBackSide(bitmap);
                                         break;
+                                    case "vehicleFrontInterior":
+                                        vehicleFrontInteriorAR.setImageURI(selectedImage);
+                                        vehicleRecord.setVehicleFrontInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "frontInterior");
+                                        carPhotosRecord.setVehicleFrontInterior(bitmap);
+                                        break;
+                                    case "vehicleBackInterior":
+                                        vehicleBackInteriorAR.setImageURI(selectedImage);
+                                        vehicleRecord.setVehicleBackInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "backInterior");
+                                        carPhotosRecord.setVehicleBackInterior(bitmap);
+                                        break;
+                                    case "vehicleTrunk":
+                                        vehicleTrunkAR.setImageURI(selectedImage);
+                                        vehicleRecord.setVehicleTrunk(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "trunk");
+                                        carPhotosRecord.setVehicleTrunk(bitmap);
+                                        break;
 
                                 }
                                 cursor.close();
+
                             }
                         }
 
                     }
+
                     break;
             }
+
         }
     }
 
@@ -1088,13 +1207,22 @@ public class VehicleAccidentReport extends Fragment {
             String rightSide = vehicleRecord.getPhotoRightSide();
             String frontSide = vehicleRecord.getPhotoFrontSide();
             String backSide = vehicleRecord.getPhotoBackSide();
+            String frontInterior = vehicleRecord.getVehicleFrontInterior();
+            String backInterior = vehicleRecord.getVehicleBackInterior();
+            String trunk = vehicleRecord.getVehicleTrunk();
             if ((leftSide != null) &&
                     (rightSide != null) && (frontSide != null) &&
-                    (backSide != null)) {
+                    (backSide != null)  &&
+                    (frontInterior != null) &&
+                    (backInterior != null) &&
+                    (trunk != null)) {
                 vehicleRecord.setPhotoLeftSide(leftSide);
                 vehicleRecord.setPhotoRightSide(rightSide);
                 vehicleRecord.setPhotoFrontSide(frontSide);
                 vehicleRecord.setPhotoBackSide(backSide);
+                vehicleRecord.setVehicleFrontInterior(frontInterior);
+                vehicleRecord.setVehicleBackInterior(backInterior);
+                vehicleRecord.setVehicleTrunk(trunk);
                 // add this in the end
                 vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber());
                 damageReportRecord.setCarId(vehicleInRecord.getPlateNumber());
@@ -1108,12 +1236,21 @@ public class VehicleAccidentReport extends Fragment {
         if (carUseStatus) {
             vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber());
             damageReportRecord.setCarId(vehicleInRecord.getPlateNumber());
-
-
             return true;
         } else {
             Toast.makeText(getContext(), "Please select if the car is Useable", Toast.LENGTH_SHORT).show();
             return false;
         }
+    }
+
+    private void setVehiclePhotos() {
+        carPhotosRecord.setPhotoRightSide(null);
+        carPhotosRecord.setPhotoLeftSide(null);
+        carPhotosRecord.setPhotoFrontSide(null);
+        carPhotosRecord.setPhotoBackSide(null);
+        carPhotosRecord.setVehicleFrontInterior(null);
+        carPhotosRecord.setVehicleBackInterior(null);
+        carPhotosRecord.setVehicleTrunk(null);
+
     }
 }

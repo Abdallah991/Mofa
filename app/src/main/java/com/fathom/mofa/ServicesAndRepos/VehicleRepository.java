@@ -39,6 +39,9 @@ public class VehicleRepository {
     private StorageReference backImageRef;
     private StorageReference leftImageRef;
     private StorageReference rightImageRef;
+    private StorageReference frontInteriorImageRef;
+    private StorageReference backInteriorImageRef;
+    private StorageReference trunkImageRef;
 
     public static VehicleRepository getInstance() {
         if (instance == null) {
@@ -102,7 +105,7 @@ public class VehicleRepository {
         storageRef = storage.getReference();
         final CarPhotosDataModel mCarPhotos = new CarPhotosDataModel();
 
-        for (int position = 0; position < 4; position++) {
+        for (int position = 0; position < 7; position++) {
 
             switch (position) {
                 case 0:
@@ -169,6 +172,61 @@ public class VehicleRepository {
                         public void onSuccess(byte[] bytes) {
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                             mCarPhotos.setPhotoBackSide(bmp);
+                            Log.d(VEHICLE_TAG, " Loading the Image is DONE");
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Log.d(VEHICLE_TAG, " Loading the Image Failed" + exception.getMessage());
+                            // Handle any errors
+                        }
+                    });
+                    break;
+                case 4:
+                    frontInteriorImageRef = storageRef.child(vehiclePlateNumber + "frontInterior");
+                    frontInteriorImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            mCarPhotos.setVehicleFrontInterior(bmp);
+                            Log.d(VEHICLE_TAG, " Loading the Image is DONE");
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Log.d(VEHICLE_TAG, " Loading the Image Failed" + exception.getMessage());
+                            // Handle any errors
+                        }
+                    });
+                    break;
+
+                case 5:
+                    backInteriorImageRef = storageRef.child(vehiclePlateNumber + "backInterior");
+                    backInteriorImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            mCarPhotos.setVehicleBackInterior(bmp);
+                            Log.d(VEHICLE_TAG, " Loading the Image is DONE");
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Log.d(VEHICLE_TAG, " Loading the Image Failed" + exception.getMessage());
+                            // Handle any errors
+                        }
+                    });
+                    break;
+                case 6:
+                    trunkImageRef = storageRef.child(vehiclePlateNumber + "trunk");
+                    trunkImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            mCarPhotos.setVehicleTrunk(bmp);
                             Log.d(VEHICLE_TAG, " Loading the Image is DONE");
 
                         }

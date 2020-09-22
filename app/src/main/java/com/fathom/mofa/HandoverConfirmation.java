@@ -16,10 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.VehicleAccidentReport.carPhotosRecord;
+import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
@@ -78,6 +79,9 @@ public class HandoverConfirmation extends Fragment {
     private ImageView secondDot;
     private ImageView thirdDot;
     private ImageView fourthDot;
+    private ImageView fifthDot;
+    private ImageView sixthDot;
+    private ImageView seventhDot;
     private AutoCompleteTextView additionalNotes;
     private int index = 0;
     private int actionNavigateToVehicleRecord = R.id.action_handoverConfirmation_to_vehicleRecord;
@@ -234,6 +238,9 @@ public class HandoverConfirmation extends Fragment {
         secondDot = view.findViewById(R.id.secondImageHandover);
         thirdDot = view.findViewById(R.id.thirdImageHandover);
         fourthDot = view.findViewById(R.id.fourthImageHandover);
+        fifthDot = view.findViewById(R.id.fifthImageHandover);
+        sixthDot = view.findViewById(R.id.sixthImageHandover);
+        seventhDot = view.findViewById(R.id.seventhImageHandover);
         additionalNotes = view.findViewById(R.id.additionalNotesRecord);
 
         // Setting Confirmation Values
@@ -244,6 +251,7 @@ public class HandoverConfirmation extends Fragment {
         milage.setText(vehicleRecord.getMilage());
         mSeekBar.setProgress(vehicleRecord.getFuelLevel());
         vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+//        Toast.makeText(getContext(),carPhotosRecord.getPhotoLeftSide().toString(),Toast.LENGTH_SHORT).show();
         vehicleStatus();
         vehicleOperationReview();
         toolsStatusReview();
@@ -628,14 +636,14 @@ public class HandoverConfirmation extends Fragment {
     }
 
     private void vehicleGallery() {
-        if (index == 3) {
+        if (index == 6) {
             index =0;
         } else {
             index++;
         }
         switch (index) {
             case 0:
-                fourthDot.setImageResource(R.drawable.grey_dot);
+                seventhDot.setImageResource(R.drawable.grey_dot);
                 firstDot.setImageResource(R.drawable.red_dot);
                 vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
                 break;
@@ -653,6 +661,21 @@ public class HandoverConfirmation extends Fragment {
                 thirdDot.setImageResource(R.drawable.grey_dot);
                 fourthDot.setImageResource(R.drawable.red_dot);
                 vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
+                break;
+            case 4:
+                fourthDot.setImageResource(R.drawable.grey_dot);
+                fifthDot.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
+                break;
+            case 5:
+                fifthDot.setImageResource(R.drawable.grey_dot);
+                sixthDot.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
+                break;
+            case 6:
+                sixthDot.setImageResource(R.drawable.grey_dot);
+                seventhDot.setImageResource(R.drawable.red_dot);
+                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
                 break;
 
         }

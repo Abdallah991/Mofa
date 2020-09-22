@@ -97,6 +97,40 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="@+id/guideline74"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
+    <ImageView
+        android:id="@+id/vehicleFrontInteriorAR"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/vehicle_left_side"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline70"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <ImageView
+        android:id="@+id/vehicleBackInteriorAR"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/vehicle_right_side"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toStartOf="@+id/guideline23"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline74"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/vehicleTrunkAR"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/vehicle_front_side"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintEnd_toStartOf="@+id/guideline70"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
 
     <ImageView
@@ -180,6 +214,33 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline59"
         app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline75" />
+
+    <Button
+        android:id="@+id/interiorVehicleAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow_white"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/interior"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline74"
+        app:layout_constraintTop_toTopOf="@+id/guideline75" />
+
+    <Button
+        android:id="@+id/exteriorVehicleAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/exterior"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBackground"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline70"
+        app:layout_constraintTop_toTopOf="@+id/guideline75" />
+
 
 
     <ImageView

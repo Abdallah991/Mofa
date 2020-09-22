@@ -499,7 +499,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4" />
+                android:layout_weight="3" />
 
             <ImageView
                 android:id="@+id/firstImageHandover"
@@ -532,11 +532,32 @@
                 android:layout_weight="0.5"
                 android:scaleType="fitCenter"
                 android:src="@drawable/grey_dot" />
+            <ImageView
+                android:id="@+id/fifthImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+            <ImageView
+                android:id="@+id/sixthImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
+            <ImageView
+                android:id="@+id/seventhImageHandover"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="0.5"
+                android:scaleType="fitCenter"
+                android:src="@drawable/grey_dot" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4" />
+                android:layout_weight="3" />
         </LinearLayout>
 
     </LinearLayout>
