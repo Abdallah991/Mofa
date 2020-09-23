@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.ViewModels.NotificationViewModel;
@@ -74,6 +73,7 @@ public class VehicleRecordSignature extends Fragment {
     private final String TAG = "VEHICLE RECORD";
     private ProgressDialog progressDialog;
     private Date mDate;
+    private String uniqueUpload;
     private SimpleDateFormat formatter;
 
     public VehicleRecordSignature() {
@@ -111,6 +111,7 @@ public class VehicleRecordSignature extends Fragment {
         // setting up Progress Dialog and Storage
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+        progressDialog.setCanceledOnTouchOutside(false);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
@@ -197,6 +198,7 @@ public class VehicleRecordSignature extends Fragment {
             public void onClick(View v) {
 
                 mDate = new Date();
+                uniqueUpload = formatter.format(mDate);
                 updateVehicleStatus();
                 uploadVehicleRecord();
                 uploadDamageReport();
@@ -251,12 +253,12 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleRecord() {
-        vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
+        vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber()+uniqueUpload);
         vehicleRecord.setMake(vehicleInRecord.getMake());
         vehicleRecord.setModel(vehicleInRecord.getModel());
         vehicleRecord.setRentalInfo(vehicleInRecord.getRentalInfoContent());
         vehicleRecord.setDate(mDate);
-        vehicleRecord.setName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
+        vehicleRecord.setName(uniqueUpload);
         db.collection("VehicleRecords")
                 .document().set(vehicleRecord);
 
@@ -315,7 +317,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadDamageReport() {
-        damageReportRecord.setDamageReportName(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
+        damageReportRecord.setDamageReportName(vehicleInRecord.getPlateNumber()+uniqueUpload);
         damageReportRecord.setCarType(vehicleInRecord.getCarType());
         db.collection("Damage Reports")
                 .document().set(damageReportRecord);
@@ -324,7 +326,7 @@ public class VehicleRecordSignature extends Fragment {
 
     private void uploadVehicleRightSide() {
 
-            rightImageRef = storageRef.child(vehicleRecord.getPhotoRightSide());
+            rightImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"right");
             Bitmap bitmap = carPhotosRecord.getPhotoRightSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -353,7 +355,7 @@ public class VehicleRecordSignature extends Fragment {
 
     private void uploadVehicleLeftSide() {
 
-            leftImageRef = storageRef.child(vehicleRecord.getPhotoLeftSide());
+            leftImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"left");
             Bitmap bitmap = carPhotosRecord.getPhotoLeftSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -382,7 +384,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleFrontSide() {
-            frontImageRef = storageRef.child(vehicleRecord.getPhotoFrontSide());
+            frontImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"front");
             Bitmap bitmap = carPhotosRecord.getPhotoFrontSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -409,7 +411,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleBackSide() {
-            backImageRef = storageRef.child(vehicleRecord.getPhotoBackSide());
+            backImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"back");
             Bitmap bitmap = carPhotosRecord.getPhotoBackSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -435,7 +437,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
     private void uploadVehicleFrontInterior() {
-            frontImageRef = storageRef.child(vehicleRecord.getVehicleFrontInterior());
+            frontInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"frontInterior");
             Bitmap bitmap = carPhotosRecord.getVehicleFrontInterior();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -461,7 +463,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
     private void uploadVehicleBackInterior() {
-            backInteriorImageRef = storageRef.child(vehicleRecord.getVehicleBackInterior());
+            backInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"backInterior");
             Bitmap bitmap = carPhotosRecord.getVehicleBackInterior();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -488,7 +490,7 @@ public class VehicleRecordSignature extends Fragment {
     }
     private void uploadVehicleTrunk() {
 
-            trunkImageRef = storageRef.child(vehicleRecord.getVehicleTrunk());
+            trunkImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"trunk");
             Bitmap bitmap = carPhotosRecord.getVehicleTrunk();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

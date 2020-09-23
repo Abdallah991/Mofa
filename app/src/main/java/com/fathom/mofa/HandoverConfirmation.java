@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
+
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
@@ -314,6 +316,14 @@ public class HandoverConfirmation extends Fragment {
     public void onResume() {
         FRAGMENT = "RecordConfirmation";
         super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Glide.with(getContext()).clear(vehicleRecordImages);
+
+
     }
 
     private void damageReportReview() {
@@ -645,40 +655,70 @@ public class HandoverConfirmation extends Fragment {
             case 0:
                 seventhDot.setImageResource(R.drawable.grey_dot);
                 firstDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getPhotoLeftSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
                 break;
             case 1:
                 firstDot.setImageResource(R.drawable.grey_dot);
                 secondDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoRightSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getPhotoRightSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoRightSide());
                 break;
             case 2:
                 secondDot.setImageResource(R.drawable.grey_dot);
                 thirdDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoFrontSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getPhotoFrontSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoFrontSide());
                 break;
             case 3:
                 thirdDot.setImageResource(R.drawable.grey_dot);
                 fourthDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getPhotoBackSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
                 break;
             case 4:
                 fourthDot.setImageResource(R.drawable.grey_dot);
                 fifthDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getVehicleFrontInterior())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
                 break;
             case 5:
                 fifthDot.setImageResource(R.drawable.grey_dot);
                 sixthDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getVehicleBackInterior())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
                 break;
             case 6:
                 sixthDot.setImageResource(R.drawable.grey_dot);
                 seventhDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
+                Glide.with(getContext())
+                        .load(carPhotosRecord.getVehicleTrunk())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
                 break;
 
         }
 
     }
+
+
 }

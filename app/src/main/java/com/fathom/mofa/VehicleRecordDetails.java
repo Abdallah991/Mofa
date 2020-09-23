@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.fathom.mofa.DataModels.RentalInfoDataModel;
@@ -259,6 +260,7 @@ public class VehicleRecordDetails extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -298,6 +300,11 @@ public class VehicleRecordDetails extends Fragment {
         super.onResume();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Glide.with(getContext()).clear(vehicleRecordImages);
+    }
 
     private void getDamageReport() {
 
@@ -523,17 +530,17 @@ public class VehicleRecordDetails extends Fragment {
                                         switch (vehicleRecordDashboard.getCarType()) {
                                             case "Saloon":
                                             case "صالون":
-                                                frontLeftDoor.setImageResource(R.drawable.front_left_red);
+                                                frontLeft.setImageResource(R.drawable.front_left_red);
                                                 break;
                                             case "Jeep":
                                             case "جيب":
-                                                frontLeftDoor.setImageResource(R.drawable.jeep_front_left_red);
+                                                frontLeft.setImageResource(R.drawable.jeep_front_left_red);
                                                 break;
                                             case "Family":
                                             case "Van":
                                             case "مركبة عائلية":
                                             case "شاحنة صغيرة":
-                                                frontLeftDoor.setImageResource(R.drawable.family_front_left_red);
+                                                frontLeft.setImageResource(R.drawable.family_front_left_red);
                                                 break;
                                         }
                                     }
@@ -659,7 +666,7 @@ public class VehicleRecordDetails extends Fragment {
         progressDialog.show();
         if (vehicleRecordDashboard.isCarHasDamage()) {
 
-            carPhotosRecordDetail = repo.getImage(vehicleRecordDashboard.getName());
+            carPhotosRecordDetail = repo.getImage(vehicleRecordDashboard.getPlateNumber()+vehicleRecordDashboard.getName());
         }
         else {
             carPhotosRecordDetail = repo.getImage(vehicleRecordDashboard.getPlateNumber());
@@ -670,7 +677,11 @@ public class VehicleRecordDetails extends Fragment {
 //                                    Toast.makeText(getContext(), "Name of left Vehicle Image " + carPhotos.getPhotoLeftSide(), Toast.LENGTH_SHORT).show();
 //                                    Log.d(TAG, carPhotos.getPhotoLeftSide().toString());
                 progressDialog.dismiss();
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getPhotoLeftSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
             }
 
         },SPLASH_TIME_OUT);
@@ -689,37 +700,65 @@ public class VehicleRecordDetails extends Fragment {
             case 0:
                 seventhImageRecord.setImageResource(R.drawable.grey_dot);
                 firstDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getPhotoLeftSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
                 break;
             case 1:
                 firstDot.setImageResource(R.drawable.grey_dot);
                 secondDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoRightSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getPhotoRightSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoRightSide());
                 break;
             case 2:
                 secondDot.setImageResource(R.drawable.grey_dot);
                 thirdDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoFrontSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getPhotoFrontSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoFrontSide());
                 break;
             case 3:
                 thirdDot.setImageResource(R.drawable.grey_dot);
                 fourthDot.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoBackSide());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getPhotoBackSide())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoBackSide());
                 break;
             case 4:
                 fourthDot.setImageResource(R.drawable.grey_dot);
                 fifthImageRecord.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleFrontInterior());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getVehicleFrontInterior())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleFrontInterior());
                 break;
             case 5:
                 fifthImageRecord.setImageResource(R.drawable.grey_dot);
                 sixthImageRecord.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleBackInterior());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getVehicleBackInterior())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleBackInterior());
                 break;
             case 6:
                 sixthImageRecord.setImageResource(R.drawable.grey_dot);
                 seventhImageRecord.setImageResource(R.drawable.red_dot);
-                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleTrunk());
+                Glide.with(getContext())
+                        .load(carPhotosRecordDetail.getVehicleTrunk())
+                        .centerCrop()
+                        .into(vehicleRecordImages);//
+//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleTrunk());
                 break;
 
         }

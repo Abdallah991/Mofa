@@ -119,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                             progressDialog.dismiss();
-                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

@@ -3,7 +3,6 @@ package com.fathom.mofa;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,7 +10,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,21 +22,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.fathom.mofa.DataModels.CarPhotosDataModel;
+import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.fathom.mofa.DataModels.DriverDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.DataModels.VehicleRecordDataModel;
-import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
 import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.fathom.mofa.ViewModels.UserViewModel;
 import com.fathom.mofa.ViewModels.VehicleViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -195,37 +189,65 @@ public class VehicleRecord extends Fragment {
                     case 0:
                         seventhDot.setImageResource(R.drawable.grey_dot);
                         firstDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getPhotoLeftSide())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
                         break;
                     case 1:
                         firstDot.setImageResource(R.drawable.grey_dot);
                         secondDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getPhotoRightSide());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getPhotoRightSide())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getPhotoRightSide());
                         break;
                     case 2:
                         secondDot.setImageResource(R.drawable.grey_dot);
                         thirdDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getPhotoFrontSide());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getPhotoFrontSide())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getPhotoFrontSide());
                         break;
                     case 3:
                         thirdDot.setImageResource(R.drawable.grey_dot);
                         fourthDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getPhotoBackSide())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getPhotoBackSide());
                         break;
                     case 4:
                         fourthDot.setImageResource(R.drawable.grey_dot);
                         fifthDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getVehicleFrontInterior())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getVehicleFrontInterior());
                         break;
                     case 5:
                         fifthDot.setImageResource(R.drawable.grey_dot);
                         sixthDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getVehicleBackInterior())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getVehicleBackInterior());
                         break;
                     case 6:
                         sixthDot.setImageResource(R.drawable.grey_dot);
                         seventhDot.setImageResource(R.drawable.red_dot);
-                        carImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
+                        Glide.with(getContext())
+                                .load(carPhotosRecord.getVehicleTrunk())
+                                .centerCrop()
+                                .into(carImages);//
+//                        carImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
                         break;
 
                 }
@@ -436,7 +458,11 @@ public class VehicleRecord extends Fragment {
 
 
     private void setVehicleImages(){
-        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+        Glide.with(getContext())
+                .load(carPhotosRecord.getPhotoLeftSide())
+                .centerCrop()
+                .into(carImages);//
+//        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
     }
 
     private boolean getVehicleRecordInfo() {

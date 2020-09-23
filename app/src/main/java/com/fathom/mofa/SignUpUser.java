@@ -89,6 +89,7 @@ public class SignUpUser extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         // setting up user types spinner
         String[] userTypes = getResources().getStringArray(R.array.userType);

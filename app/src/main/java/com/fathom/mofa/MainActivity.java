@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,8 +25,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -128,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         signUp.setVisibility(View.INVISIBLE);
+        driverSetupMenuItem.setVisibility(View.INVISIBLE);
+        vehicleSetupMenuItem.setVisibility(View.INVISIBLE);
 
         for (int i = 0; i < toolbar.getChildCount(); i++) {
             if(toolbar.getChildAt(i) instanceof ImageButton){
@@ -541,13 +539,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String userName = user.getFirstName()+ " "+ user.getLastName();
                                 pref.edit().putString("userName", userName).apply();
 
-                                if (user.getUserType().equals("Admin")){
+                                if (user.getUserType().equals("Admin")|| user.getUserType().equals("مشرف")){
                                     isAdmin = true;
                                     signUp.setVisibility(View.VISIBLE);
+                                    driverSetupMenuItem.setVisibility(View.VISIBLE);
+                                    vehicleSetupMenuItem.setVisibility(View.VISIBLE);
 
                                 } else
                                 {
                                     signUp.setVisibility(View.INVISIBLE);
+                                    driverSetupMenuItem.setVisibility(View.INVISIBLE);
+                                    vehicleSetupMenuItem.setVisibility(View.INVISIBLE);
                                     isAdmin = false;
                                 }
 

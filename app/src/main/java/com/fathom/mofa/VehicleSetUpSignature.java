@@ -108,6 +108,7 @@ public class VehicleSetUpSignature extends Fragment {
         // setting up Progress Dialog and Storage
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+        progressDialog.setCanceledOnTouchOutside(false);
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
@@ -267,19 +268,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = rightImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User right image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User right image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -295,19 +296,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = leftImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User left image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User left image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -323,19 +324,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = frontImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User front image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User front image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -351,19 +352,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -379,19 +380,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -406,19 +407,19 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
 
@@ -434,7 +435,7 @@ public class VehicleSetUpSignature extends Fragment {
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-        progressDialog.show();
+//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {

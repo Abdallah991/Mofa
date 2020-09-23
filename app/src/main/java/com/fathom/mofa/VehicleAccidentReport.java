@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
 
@@ -1086,37 +1087,65 @@ public class VehicleAccidentReport extends Fragment {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         switch (selector) {
                             case "vehicleRightSide":
-                                vehicleRightSide.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleRightSide);//
+//                                vehicleRightSide.setImageBitmap(selectedImage);
                                 vehicleRecord.setPhotoRightSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "right");
                                 carPhotosRecord.setPhotoRightSide(selectedImage);
                                 break;
                             case "vehicleLeftSide":
-                                vehicleLeftSide.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleLeftSide);//
+//                                vehicleLeftSide.setImageBitmap(selectedImage);
                                 vehicleRecord.setPhotoLeftSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "left");
                                 carPhotosRecord.setPhotoLeftSide(selectedImage);
                                 break;
                             case "vehicleFrontSide":
-                                vehicleFrontSide.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleFrontSide);//
+//                                vehicleFrontSide.setImageBitmap(selectedImage);
                                 vehicleRecord.setPhotoFrontSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "front");
                                 carPhotosRecord.setPhotoFrontSide(selectedImage);
                                 break;
                             case "vehicleBackSide":
-                                vehicleBackSide.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleBackSide);//
+//                                vehicleBackSide.setImageBitmap(selectedImage);
                                 vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "back");
                                 carPhotosRecord.setPhotoBackSide(selectedImage);
                                 break;
                             case "vehicleFrontInterior":
-                                vehicleFrontInteriorAR.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleFrontInteriorAR);//
+//                                vehicleFrontInteriorAR.setImageBitmap(selectedImage);
                                 vehicleRecord.setVehicleFrontInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "frontInterior");
                                 carPhotosRecord.setVehicleFrontInterior(selectedImage);
                                 break;
                             case "vehicleBackInterior":
-                                vehicleBackInteriorAR.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleBackInteriorAR);//
+//                                vehicleBackInteriorAR.setImageBitmap(selectedImage);
                                 vehicleRecord.setVehicleBackInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "backInterior");
                                 carPhotosRecord.setVehicleBackInterior(selectedImage);
                                 break;
                             case "vehicleTrunk":
-                                vehicleTrunkAR.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(vehicleTrunkAR);//
+//                                vehicleTrunkAR.setImageBitmap(selectedImage);
                                 vehicleRecord.setVehicleTrunk(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "trunk");
                                 carPhotosRecord.setVehicleTrunk(selectedImage);
                                 break;
@@ -1151,37 +1180,65 @@ public class VehicleAccidentReport extends Fragment {
 
                                 switch (selector) {
                                     case "vehicleRightSide":
-                                        vehicleRightSide.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleRightSide);//
+//                                        vehicleRightSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoRightSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "right");
                                         carPhotosRecord.setPhotoRightSide(bitmap);
                                         break;
                                     case "vehicleLeftSide":
-                                        vehicleLeftSide.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleLeftSide);//
+//                                        vehicleLeftSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoLeftSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "left");
                                         carPhotosRecord.setPhotoLeftSide(bitmap);
                                         break;
                                     case "vehicleFrontSide":
-                                        vehicleFrontSide.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleFrontSide);//
+//                                        vehicleFrontSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoFrontSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "front");
                                         carPhotosRecord.setPhotoFrontSide(bitmap);
                                         break;
                                     case "vehicleBackSide":
-                                        vehicleBackSide.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleBackSide);//
+//                                        vehicleBackSide.setImageURI(selectedImage);
                                         vehicleRecord.setPhotoBackSide(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "back");
                                         carPhotosRecord.setPhotoBackSide(bitmap);
                                         break;
                                     case "vehicleFrontInterior":
-                                        vehicleFrontInteriorAR.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleFrontInteriorAR);//
+//                                        vehicleFrontInteriorAR.setImageURI(selectedImage);
                                         vehicleRecord.setVehicleFrontInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "frontInterior");
                                         carPhotosRecord.setVehicleFrontInterior(bitmap);
                                         break;
                                     case "vehicleBackInterior":
-                                        vehicleBackInteriorAR.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleBackInteriorAR);//
+//                                        vehicleBackInteriorAR.setImageURI(selectedImage);
                                         vehicleRecord.setVehicleBackInterior(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "backInterior");
                                         carPhotosRecord.setVehicleBackInterior(bitmap);
                                         break;
                                     case "vehicleTrunk":
-                                        vehicleTrunkAR.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(vehicleTrunkAR);//
+//                                        vehicleTrunkAR.setImageURI(selectedImage);
                                         vehicleRecord.setVehicleTrunk(vehicleInRecord.getPlateNumber() + formatter.format(mDate) + "trunk");
                                         carPhotosRecord.setVehicleTrunk(bitmap);
                                         break;
@@ -1243,14 +1300,5 @@ public class VehicleAccidentReport extends Fragment {
         }
     }
 
-    private void setVehiclePhotos() {
-        carPhotosRecord.setPhotoRightSide(null);
-        carPhotosRecord.setPhotoLeftSide(null);
-        carPhotosRecord.setPhotoFrontSide(null);
-        carPhotosRecord.setPhotoBackSide(null);
-        carPhotosRecord.setVehicleFrontInterior(null);
-        carPhotosRecord.setVehicleBackInterior(null);
-        carPhotosRecord.setVehicleTrunk(null);
 
-    }
 }

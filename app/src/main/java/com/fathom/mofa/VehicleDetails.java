@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.RentalInfoDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
@@ -115,6 +116,7 @@ public class VehicleDetails extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
+        progressDialog.setCanceledOnTouchOutside(false);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -266,7 +268,17 @@ public class VehicleDetails extends Fragment {
     }
 
     private void setVehicleImages(){
-        vehicleDetailImage.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+        Glide.with(getContext())
+                .load(carPhotosRecord.getPhotoLeftSide())
+                .centerCrop()
+                .into(vehicleDetailImage);//
+//        vehicleDetailImage.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
 //        Toast.makeText(getContext(), carPhotosRecord.getPhotoLeftSide().toString()+"",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Glide.with(getContext()).clear(vehicleDetailImage);
     }
 }

@@ -28,6 +28,7 @@
                     android:id="@+id/vehicleSetUpButton"
                     android:src="@drawable/vehicle_setup_home"/>
                 <TextView
+                    android:id="@+id/vehicleSetUpText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vehicle_set_up"
@@ -46,14 +47,14 @@
                     <ImageView
                         android:layout_width="140dp"
                         android:layout_height="140dp"
-                        android:id="@+id/driverSetUpButton"
-                        android:src="@drawable/driver_setup_home" />
+                        android:id="@+id/vehicleRecordButton"
+                        android:src="@drawable/vehicle_record_home" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_light"
-                        android:text="@string/driver_set_up"
+                        android:text="@string/vehicle_record"
                         android:textColor="@color/appGrey"
                         android:textSize="24sp"
                         />
@@ -86,12 +87,13 @@
                     <ImageView
                         android:layout_width="140dp"
                         android:layout_height="140dp"
-                        android:id="@+id/vehicleRecordButton"
-                        android:src="@drawable/vehicle_record_home"/>
+                        android:id="@+id/driverSetUpButton"
+                        android:src="@drawable/driver_setup_home"/>
                     <TextView
+                        android:id="@+id/driverSetUpText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/vehicle_record"
+                        android:text="@string/driver_set_up"
                         android:textSize="24sp"
                         android:fontFamily="@font/roboto_light"
                         android:textColor="@color/appGrey"/>

@@ -31,6 +31,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.DriverDataModel;
 import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -128,6 +129,7 @@ public class DriverSetUp extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
+        progressDialog.setCanceledOnTouchOutside(false);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         storage = FirebaseStorage.getInstance();
@@ -285,13 +287,21 @@ public class DriverSetUp extends Fragment {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         switch (selector) {
                             case "frontLicense":
-                                frontLicense.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(frontLicense);//
+//                                frontLicense.setImageBitmap(selectedImage);
                                 frontLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                 frontLicenseName = selectedImage.toString();
                                 break;
 
                             case "backLicense":
-                                backLicense.setImageBitmap(selectedImage);
+                                Glide.with(getContext())
+                                        .load(selectedImage)
+                                        .centerCrop()
+                                        .into(backLicense);//
+//                                backLicense.setImageBitmap(selectedImage);
                                 backLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                 backLicenseName = selectedImage.toString();
                                 break;
@@ -321,13 +331,21 @@ public class DriverSetUp extends Fragment {
 
                                 switch (selector) {
                                     case "frontLicense":
-                                        frontLicense.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(frontLicense);//
+//                                        frontLicense.setImageURI(selectedImage);
                                         frontLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                         frontLicenseName = selectedImage.toString();
 
                                         break;
                                     case "backLicense":
-                                        backLicense.setImageURI(selectedImage);
+                                        Glide.with(getContext())
+                                                .load(selectedImage)
+                                                .centerCrop()
+                                                .into(backLicense);//
+//                                        backLicense.setImageURI(selectedImage);
                                         backLicense.setScaleType(ImageView.ScaleType.FIT_XY);
                                         backLicenseName = selectedImage.toString();                                        break;
                                 }
