@@ -125,6 +125,8 @@
     <string name="six_digits_or_less">"رقم لوحة المركبة يجب ان يكون ٦ خانات او اقل"</string>
     <string name="nine_digits">"رقم البطاقة الذكية يجب ان يكون ٩ خانات"</string>
     <string name="eight_digits">"رقم التلفون يجب ان يكون ٨ خانات"</string>
+    <string name="car_is_clean">السيارة نظيفة</string>
+
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

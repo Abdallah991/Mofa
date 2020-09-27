@@ -24,6 +24,7 @@ public class VehicleRecordDataModel {
     private String make;
     private String rentalInfo;
     private String carType;
+    private boolean vehicleClean;
     // Vehicle will have these Statuses
     // 1- Busy       -- out with a Driver    --orange
     // 2- Available   -- in Mofa position    --green
@@ -56,6 +57,14 @@ public class VehicleRecordDataModel {
     // identical to damage report name
     private String name;
 
+
+    public boolean isVehicleClean() {
+        return vehicleClean;
+    }
+
+    public void setVehicleClean(boolean vehicleClean) {
+        this.vehicleClean = vehicleClean;
+    }
 
     public String getReleasePersonName() {
         return releasePersonName;

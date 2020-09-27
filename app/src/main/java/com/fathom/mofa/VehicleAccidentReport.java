@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -56,6 +57,8 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView vehicleTrunkAR;
     private ImageView carHasDamage;
     private ImageView carIsUseable;
+    private ImageView carIsClean;
+    private TextView carIsCleanText;
     private ImageView front;
     private ImageView frontRight;
     private ImageView frontLeft;
@@ -87,6 +90,7 @@ public class VehicleAccidentReport extends Fragment {
     // Vehicle state
     private boolean carDamageStatus = false;
     private boolean carUseStatus = false;
+    private boolean carIsCleanStatus = false;
 
     private int actionToRecordConfirmation = R.id.action_vehicleAccidentReport_to_handoverConfirmation;
 
@@ -214,16 +218,20 @@ public class VehicleAccidentReport extends Fragment {
         vehicleTrunkAR = view.findViewById(R.id.vehicleTrunkAR);
         carHasDamage = view.findViewById(R.id.carHasDamageImage);
         carIsUseable = view.findViewById(R.id.carIsUseableImage);
+        carIsClean = view.findViewById(R.id.carIsClean);
+        carIsCleanText = view.findViewById(R.id.carIsCleanText);
         backButton = view.findViewById(R.id.backAccidentReport);
         next = view.findViewById(R.id.nextAccidentReport);
         exteriorVehicleAR = view.findViewById(R.id.exteriorVehicleAR);
         interiorVehicleAR = view.findViewById(R.id.interiorVehicleAR);
 
 
-        // Interior Images Handeling
+        // Interior Images Handling
         vehicleFrontInteriorAR.setVisibility(View.GONE);
         vehicleBackInteriorAR.setVisibility(View.GONE);
         vehicleTrunkAR.setVisibility(View.GONE);
+        carIsClean.setVisibility(View.GONE);
+        carIsCleanText.setVisibility(View.GONE);
         // Language handling
         mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
@@ -260,6 +268,20 @@ public class VehicleAccidentReport extends Fragment {
                     carHasDamage.setImageResource(R.drawable.checked_check_box);
                 }
                 vehicleRecord.setCarHasDamage(carDamageStatus);
+
+            }
+        });
+        carIsClean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (carIsCleanStatus) {
+                    carIsClean.setImageResource(R.drawable.empty_check_box);
+                    carIsCleanStatus = false;
+                } else {
+                    carIsCleanStatus = true;
+                    carIsClean.setImageResource(R.drawable.checked_check_box);
+                }
+                vehicleRecord.setVehicleClean(carIsCleanStatus);
 
             }
         });
@@ -992,6 +1014,8 @@ public class VehicleAccidentReport extends Fragment {
                 vehicleFrontInteriorAR.setVisibility(View.VISIBLE);
                 vehicleBackInteriorAR.setVisibility(View.VISIBLE);
                 vehicleTrunkAR.setVisibility(View.VISIBLE);
+                carIsClean.setVisibility(View.VISIBLE);
+                carIsCleanText.setVisibility(View.VISIBLE);
                 interiorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow));
                 interiorVehicleAR.setTextColor(getResources().getColor(R.color.colorBackground));
                 exteriorVehicleAR.setBackground(getResources().getDrawable(R.drawable.button_shadow_white));
@@ -1007,6 +1031,8 @@ public class VehicleAccidentReport extends Fragment {
                 vehicleFrontInteriorAR.setVisibility(View.GONE);
                 vehicleBackInteriorAR.setVisibility(View.GONE);
                 vehicleTrunkAR.setVisibility(View.GONE);
+                carIsClean.setVisibility(View.GONE);
+                carIsCleanText.setVisibility(View.GONE);
                 vehicleBackSide.setVisibility(View.VISIBLE);
                 vehicleRightSide.setVisibility(View.VISIBLE);
                 vehicleLeftSide.setVisibility(View.VISIBLE);

@@ -36,6 +36,7 @@ public class VehicleDataModel {
     private String mofaRetrievalSignature;
     private Date recordDate;
 
+
     public String getPlateNumber() {
         return plateNumber;
     }
