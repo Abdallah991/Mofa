@@ -137,6 +137,7 @@ public class SignUpUser extends Fragment {
 
                 if (isEmailValid(email.getText().toString())
                         && isPasswordValid(password.getText().toString())
+                        && isPhoneNumberValid(phoneNumber.getText().toString())
                         && isUserTypeValid()) {
                     progressDialog.show();
                     SignUp();
@@ -167,11 +168,21 @@ public class SignUpUser extends Fragment {
             user.setEmail(email);
             user.setFirstName(firstName.getText().toString());
             user.setLastName(lastName.getText().toString());
-            user.setPhoneNumber(phoneNumber.getText().toString());
 
         }
 
         return email.contains("@");
+    }
+
+    private boolean isPhoneNumberValid(String phoneNumber) {
+        if(phoneNumber.length() == 8) {
+            user.setPhoneNumber(phoneNumber);
+            return true;
+        } else {
+            String eightDigits = getResources().getString(R.string.eight_digits);
+            Toast.makeText(getContext(), eightDigits, Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     private boolean isPasswordValid(String password) {

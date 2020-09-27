@@ -120,6 +120,11 @@
     <string name="damaged_by"> تضررت مع السائق </string>
     <string name="interior">داخل المركبة</string>
     <string name="exterior">خارج المركبة</string>
+    <string name="you_didnt_select_car_type">إختار نوع السيارة</string>
+    <string name="fill_missing_feilds">املئ الخانات الفارغة</string>
+    <string name="six_digits_or_less">"رقم لوحة المركبة يجب ان يكون ٦ خانات او اقل"</string>
+    <string name="nine_digits">"رقم البطاقة الذكية يجب ان يكون ٩ خانات"</string>
+    <string name="eight_digits">"رقم التلفون يجب ان يكون ٨ خانات"</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

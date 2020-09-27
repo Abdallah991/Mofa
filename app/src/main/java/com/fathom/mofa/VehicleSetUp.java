@@ -144,36 +144,48 @@ public class VehicleSetUp extends Fragment {
         String color = colorTextView.getText().toString();
         String type = typeTextView.getSelectedItem().toString();
         String make = makeTextView.getText().toString();
+        String[] carTypes = getResources().getStringArray(R.array.type);
+        String selectCarType = getResources().getString(R.string.you_didnt_select_car_type);
+        String fillMissingFields = getResources().getString(R.string.fill_missing_feilds);
+        String sixDigitsOrLess = getResources().getString(R.string.six_digits_or_less);
 
-        if ((!plateNumber.isEmpty()) && (!chassis.isEmpty())&&
-                (!model.isEmpty()) &&
-                (!manufacturer.isEmpty())&& (!color.isEmpty())&&
-                (!type.equals("Car type"))
-                && (!make.isEmpty()))  {
+        if (plateNumber.length() <= 6) {
 
-            vehicle.setPlateNumber(plateNumber);
-            vehicle.setChassisNumber(chassis);
-            vehicle.setModel(model);
-            vehicle.setManufacturer(manufacturer);
-            vehicle.setColorOfCar(color);
-            vehicle.setCarType(type);
-            vehicle.setMake(make);
-            return true;
-        }
-        else {
-            // MultiLanguage support
-            String[] carTypes = getResources().getStringArray(R.array.type);
 
-            if ((!plateNumber.isEmpty())&& (!chassis.isEmpty())&&
-                    (!model.isEmpty())&&
-                    (!manufacturer.isEmpty())&& (!color.isEmpty())
-                    && (!make.isEmpty())&& (type.equals(carTypes[0]))) {
-                Toast.makeText(getContext(), "You didn't select the car type" , Toast.LENGTH_SHORT).show();
+            if ((!plateNumber.isEmpty()) && (!chassis.isEmpty()) &&
+                    (!model.isEmpty()) &&
+                    (!manufacturer.isEmpty()) && (!color.isEmpty()) &&
+                    (!type.equals(carTypes[0]))
+                    && (!make.isEmpty())) {
+
+                vehicle.setPlateNumber(plateNumber);
+                vehicle.setChassisNumber(chassis);
+                vehicle.setModel(model);
+                vehicle.setManufacturer(manufacturer);
+                vehicle.setColorOfCar(color);
+                vehicle.setCarType(type);
+                vehicle.setMake(make);
+                return true;
             } else {
-                Toast.makeText(getContext(), "Please fill the missing fields" , Toast.LENGTH_SHORT).show();
-            }
-            return false;
 
+                if ((!plateNumber.isEmpty()) && (!chassis.isEmpty()) &&
+                        (!model.isEmpty()) &&
+                        (!manufacturer.isEmpty()) && (!color.isEmpty())
+                        && (!make.isEmpty()) && (type.equals(carTypes[0]))) {
+                    Toast.makeText(getContext(), selectCarType, Toast.LENGTH_SHORT).show();
+                    return false;
+
+                } else {
+                    Toast.makeText(getContext(), fillMissingFields, Toast.LENGTH_SHORT).show();
+                }
+                return false;
+
+            }
+
+        } else {
+
+            Toast.makeText(getContext(), sixDigitsOrLess, Toast.LENGTH_SHORT).show();
+            return false;
         }
 
     }

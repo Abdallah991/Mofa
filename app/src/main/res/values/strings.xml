@@ -120,6 +120,11 @@
     <string name="damaged_by"> has been damaged with driver </string>
     <string name="interior">Interior</string>
     <string name="exterior">Exterior</string>
+    <string name="you_didnt_select_car_type">You didn\'t select the car type</string>
+    <string name="fill_missing_feilds">Please fill the missing fields</string>
+    <string name="six_digits_or_less">"The Vehicle plate number should 6 digits or less"</string>
+    <string name="nine_digits">"The CPR number should be 9 digits"</string>
+    <string name="eight_digits">"Phone number must be 8 digits"</string>
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>

@@ -34,14 +34,12 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleRecord;
-import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
 /**

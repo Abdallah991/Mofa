@@ -224,20 +224,34 @@ public class DriverSetUp extends Fragment {
             @Override
             public void onClick(View v) {
                 checkFields();
-                if ((!driverNameText.isEmpty()) && (!driverIDText.isEmpty()) &&
+                String nineDigits = getResources().getString(R.string.nine_digits);
+                String eightDigits = getResources().getString(R.string.eight_digits);
+                String fillMissingFields = getResources().getString(R.string.fill_missing_feilds);
+                if(phoneNumberText.length() == 8) {
+                    if (driverIDText.length() == 9) {
+                        Toast.makeText(getContext(), fillMissingFields +phoneNumberText.length()+ driverIDText.length(), Toast.LENGTH_SHORT).show();
+                        if ((!driverNameText.isEmpty()) && (!driverIDText.isEmpty()) &&
 //                (!addressLine1Text.isEmpty()) && (!addressLine2Text.isEmpty()) &&
-                        (!nationalityText.isEmpty()) && (!phoneNumberText.isEmpty()) &&
-                        (!issueDateValue.toString().isEmpty()) && (!expiryDateValue.toString().isEmpty()) &&
-                        (frontLicenseName != null) &&  (backLicenseName != null)
-                ) {
-                    progressDialog.show();
-                    uploadDriver();
-                    uploadFrontDriverLicense();
-                    uploadBackDriverLicense();
-                    mNavController.navigate(R.id.home);
-                } else
-                {
-                    Toast.makeText(getContext(), "Please fill the text fields and upload the images", Toast.LENGTH_SHORT).show();
+                                (!nationalityText.isEmpty()) && (!phoneNumberText.isEmpty()) &&
+                                (!issueDateValue.toString().isEmpty()) && (!expiryDateValue.toString().isEmpty()) &&
+                                (frontLicenseName != null) && (backLicenseName != null)
+                        ) {
+                            progressDialog.show();
+                            uploadDriver();
+                            uploadFrontDriverLicense();
+                            uploadBackDriverLicense();
+                            mNavController.navigate(R.id.home);
+                        } else {
+                            Toast.makeText(getContext(), fillMissingFields, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+
+                        Toast.makeText(getContext(), nineDigits, Toast.LENGTH_SHORT).show();
+
+                    }
+                } else {
+                    Toast.makeText(getContext(), eightDigits, Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
