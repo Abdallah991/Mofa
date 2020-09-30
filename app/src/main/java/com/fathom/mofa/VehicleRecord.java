@@ -24,11 +24,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.DriverDataModel;
+import com.fathom.mofa.DataModels.RentalInfoDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.fathom.mofa.ViewModels.UserViewModel;
 import com.fathom.mofa.ViewModels.VehicleViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
@@ -46,7 +53,8 @@ public class VehicleRecord extends Fragment {
     private static final String TAG2 = "DRIVERS";
     private static final String TAG3 = "USERS";
     public static VehicleDataModel vehicleInRecord = new VehicleDataModel();
-    public static DriverDataModel driverInRecord = new DriverDataModel();
+//    public static DriverDataModel driverInRecord = new DriverDataModel();
+    private ArrayList<RentalInfoDataModel> rentalInformation = new ArrayList<>();
     private NavController mNavController;
     private TextView vehicleName;
     private TextView userName;
@@ -89,6 +97,9 @@ public class VehicleRecord extends Fragment {
     private boolean handoverStatus =false;
     private boolean retrievalStatus =false;
     private boolean releaseStatus =false;
+
+    // getting Rental Info
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public VehicleRecord() {
         // Required empty public constructor
@@ -350,7 +361,7 @@ public class VehicleRecord extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
 
-        if (!vehicleRecord.getCarTransaction().equals("MTR")) {
+
 
             Log.d(TAG2, "loading Recycler been called");
             progressDialog.show();
@@ -359,11 +370,18 @@ public class VehicleRecord extends Fragment {
                 @Override
                 public void run() {
                     if (mDrivers.isEmpty()) {
-                        mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
-                        String spinnerManagerBy = getResources().getString(R.string.driver);
-                        driverNames.add(spinnerManagerBy);
-                        for (DriverDataModel driver : mDrivers) {
-                            driverNames.add(driver.getDriverName());
+                        if (!vehicleRecord.getCarTransaction().equals("MTR")) {
+                            mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
+                            String spinnerManagerBy = getResources().getString(R.string.driver);
+                            driverNames.add(spinnerManagerBy);
+
+                            for (DriverDataModel driver : mDrivers) {
+                                driverNames.add(driver.getDriverName());
+                            }
+                        }else {
+                            String spinnerRentalCompany = getResources().getString(R.string.renalCompany);
+                            driverNames.add(spinnerRentalCompany);
+                            getRentalInfo();
                         }
                     }
                     driverAdapter = new ArrayAdapter<String>(getContext(),
@@ -401,7 +419,7 @@ public class VehicleRecord extends Fragment {
                             if (position > 0) {
                                 // This code is to get the object of the selected Vehicle
                                 positionOfDriver = position - 1;
-                                driverInRecord = mDrivers.get(positionOfDriver);
+//                                driverInRecord = mDrivers.get(positionOfDriver);
                                 vehicleRecord.setDriverName(selectedItemText);
 
                             }
@@ -414,9 +432,7 @@ public class VehicleRecord extends Fragment {
 //                progressDialog.dismiss();
                 }
             }, SPLASH_TIME_OUT);
-        }else {
-            driverName.setVisibility(View.GONE);
-        }
+
     }
 
     private void initUsers() {
@@ -510,6 +526,30 @@ public class VehicleRecord extends Fragment {
         vehicleRecord.setMotorSize(vehicleDashboard.getMotorSize());
 
 
+    }
+
+    private void getRentalInfo() {
+        db.collection("Rental Information")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("RENTAL INFORMATION", document.getId() + " => " + document.getData());
+                                if (rentalInformation.size() <= task.getResult().size()) {
+                                    RentalInfoDataModel rental = document.toObject(RentalInfoDataModel.class);
+                                    rentalInformation.add(rental);
+                                    driverNames.add(rental.getName());
+
+
+                                }
+                            }
+                        } else {
+                            Log.d("RENTAL INFORMATION", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     @Override

@@ -78,6 +78,7 @@ public class VehicleRecordDetails extends Fragment {
     private TextView leaseFrom;
     private TextView leaseTo;
     private TextView assignedDriver;
+    private TextView driverRecord;
     private TextView status;
     private TextView notes;
     private TextView clean;
@@ -137,6 +138,7 @@ public class VehicleRecordDetails extends Fragment {
         leaseFrom = view.findViewById(R.id.leaseFromRecordValue);
         leaseTo = view.findViewById(R.id.leaseToRecordValue);
         assignedDriver = view.findViewById(R.id.driverRecordValue);
+        driverRecord = view.findViewById(R.id.driverRecord);
         status = view.findViewById(R.id.statusRecordValue);
         notes = view.findViewById(R.id.notesRecordValue);
         backButton = view.findViewById(R.id.backConfirmationRecord);
@@ -264,8 +266,14 @@ public class VehicleRecordDetails extends Fragment {
         model.setText(vehicleRecordDashboard.getModel());
         make.setText(vehicleRecordDashboard.getMake());
         assignedDriver.setText(vehicleRecordDashboard.getDriverName());
+        if(vehicleRecordDashboard.getCarTransaction().equals("MTR")) {
+            driverRecord.setText(R.string.renalCompany);
+        }else {
+            driverRecord.setText(R.string.driver);
+        }
         status.setText(vehicleRecordDashboard.getStatus());
         notes.setText(vehicleRecordDashboard.getNotes());
+        company.setText(vehicleRecordDashboard.getRentalInfo());
         if (vehicleRecordDashboard.isVehicleClean()) {
             clean.setText(R.string.yes);
         }else {

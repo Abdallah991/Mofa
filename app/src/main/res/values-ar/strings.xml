@@ -78,6 +78,7 @@
     <string name="car_is_useable">السيارة ممكن استخدامها</string>
     <string name="managed_by">المستخدم</string>
     <string name="driver">السائق</string>
+    <string name="renalCompany">شركة التأجير</string>
     <string name="operation">عملية</string>
     <string name="vehicle_name">اسم المركبة</string>
     <string name="wheel_cap">Wheel cap</string>

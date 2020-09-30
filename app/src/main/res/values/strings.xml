@@ -78,6 +78,7 @@
     <string name="car_is_useable">Car is useable</string>
     <string name="managed_by">Managed by</string>
     <string name="driver">Driver</string>
+    <string name="renalCompany">Rental Company</string>
     <string name="operation">Operation</string>
     <string name="vehicle_name">Vehicle name</string>
     <string name="wheel_cap">Wheel cap</string>

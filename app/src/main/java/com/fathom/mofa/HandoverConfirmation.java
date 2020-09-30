@@ -34,6 +34,7 @@ public class HandoverConfirmation extends Fragment {
     private TextView vehicleName;
     private TextView managedBy;
     private TextView driverName;
+    private TextView driverTitle;
     private TextView operation;
     private TextView milage;
     private SeekBar mSeekBar;
@@ -113,6 +114,7 @@ public class HandoverConfirmation extends Fragment {
         vehicleName = view.findViewById(R.id.vehicleNameValue);
         managedBy = view.findViewById(R.id.managedByValue);
         driverName = view.findViewById(R.id.driverValue);
+        driverTitle = view.findViewById(R.id.driverTitle);
         operation = view.findViewById(R.id.operationValue);
         milage = view.findViewById(R.id.milageValue);
         mSeekBar = view.findViewById(R.id.fuelLevelConfirmation);
@@ -246,6 +248,11 @@ public class HandoverConfirmation extends Fragment {
         vehicleName.setText(vehicleRecord.getVehicleName());
         managedBy.setText(vehicleRecord.getReleasePersonName());
         driverName.setText(vehicleRecord.getDriverName());
+        if(vehicleRecord.getCarTransaction().equals("MTR")) {
+            driverTitle.setText(R.string.renalCompany);
+        }else {
+            driverTitle.setText(R.string.driver);
+        }
         milage.setText(vehicleRecord.getMilage());
         mSeekBar.setProgress(vehicleRecord.getFuelLevel());
         vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
