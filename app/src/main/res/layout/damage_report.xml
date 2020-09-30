@@ -184,19 +184,21 @@
         android:id="@+id/ceilingConfirmation"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="3dp"
         android:scaleType="fitXY"
         android:src="@drawable/ceiling"
-        android:elevation="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline54"
+        app:layout_constraintBottom_toTopOf="@+id/windShieldBackConfirmation"
         app:layout_constraintEnd_toStartOf="@+id/guideline21"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/frontConfirmation" />
+        app:layout_constraintTop_toBottomOf="@+id/frontConfirmation"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/backCeilingConfirmation"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:elevation="3dp"
+        android:elevation="1dp"
         android:scaleType="fitXY"
         android:src="@drawable/back"
         app:layout_constraintBottom_toTopOf="@+id/guideline55"

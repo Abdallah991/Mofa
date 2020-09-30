@@ -350,68 +350,73 @@ public class VehicleRecord extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
 
-        Log.d(TAG2, "loading Recycler been called");
-        progressDialog.show();
-        // showing the Splash screen for two seconds then going to on boarding activity
-        myHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (mDrivers.isEmpty()) {
-                    mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
-                    String spinnerManagerBy = getResources().getString(R.string.driver);
-                    driverNames.add(spinnerManagerBy);
-                    for (DriverDataModel driver : mDrivers) {
-                        driverNames.add(driver.getDriverName());
-                    }
-                }
-                driverAdapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, driverNames) {
-                    @Override
-                    public boolean isEnabled(int position) {
-                        if (position == 0) {
-                            return false;
-                        } else {
-                            return true;
+        if (!vehicleRecord.getCarTransaction().equals("MTR")) {
+
+            Log.d(TAG2, "loading Recycler been called");
+            progressDialog.show();
+            // showing the Splash screen for two seconds then going to on boarding activity
+            myHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mDrivers.isEmpty()) {
+                        mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
+                        String spinnerManagerBy = getResources().getString(R.string.driver);
+                        driverNames.add(spinnerManagerBy);
+                        for (DriverDataModel driver : mDrivers) {
+                            driverNames.add(driver.getDriverName());
                         }
                     }
-
-                    @Override
-                    public View getDropDownView(int position, View convertView,
-                                                ViewGroup parent) {
-                        View view = super.getDropDownView(position, convertView, parent);
-                        TextView tv = (TextView) view;
-                        if (position == 0) {
-                            // Set the hint text color gray
-                            tv.setTextColor(getResources().getColor(R.color.appGrey));
-                        } else {
-                            tv.setTextColor(getResources().getColor(R.color.black));
+                    driverAdapter = new ArrayAdapter<String>(getContext(),
+                            android.R.layout.simple_list_item_1, driverNames) {
+                        @Override
+                        public boolean isEnabled(int position) {
+                            if (position == 0) {
+                                return false;
+                            } else {
+                                return true;
+                            }
                         }
-                        return view;
-                    }
-                };
-                driverAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-                driverName.setAdapter(driverAdapter);
-                driverName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
-                        String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                        if (position > 0) {
-                            // This code is to get the object of the selected Vehicle
-                            positionOfDriver = position - 1;
-                            driverInRecord = mDrivers.get(positionOfDriver);
-                            vehicleRecord.setDriverName(selectedItemText);
-
+                        @Override
+                        public View getDropDownView(int position, View convertView,
+                                                    ViewGroup parent) {
+                            View view = super.getDropDownView(position, convertView, parent);
+                            TextView tv = (TextView) view;
+                            if (position == 0) {
+                                // Set the hint text color gray
+                                tv.setTextColor(getResources().getColor(R.color.appGrey));
+                            } else {
+                                tv.setTextColor(getResources().getColor(R.color.black));
+                            }
+                            return view;
                         }
-                    }
+                    };
+                    driverAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                    driverName.setAdapter(driverAdapter);
+                    driverName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, final int position, long id) {
+                            String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
+                            if (position > 0) {
+                                // This code is to get the object of the selected Vehicle
+                                positionOfDriver = position - 1;
+                                driverInRecord = mDrivers.get(positionOfDriver);
+                                vehicleRecord.setDriverName(selectedItemText);
+
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
 //                progressDialog.dismiss();
-            }
-        }, SPLASH_TIME_OUT);
+                }
+            }, SPLASH_TIME_OUT);
+        }else {
+            driverName.setVisibility(View.GONE);
+        }
     }
 
     private void initUsers() {

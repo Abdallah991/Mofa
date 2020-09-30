@@ -517,6 +517,26 @@
                     android:textColor="@color/appGrey"
                     android:textSize="24sp"
                     app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/cleanRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/car_is_clean"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+                <TextView
+                    android:id="@+id/cleanRecordValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Yes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
 
                 <TextView
                     android:id="@+id/notesRecord"

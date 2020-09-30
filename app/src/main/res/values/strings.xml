@@ -54,8 +54,8 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="driver_id">Driver ID</string>
-    <string name="address_line_1">Address Line 1</string>
-    <string name="address_line_2">Address Line 2</string>
+    <string name="address_line_1">Area</string>
+    <string name="address_line_2">Address Line</string>
     <string name="nationality">Nationality</string>
     <string name="issue_date">Issue Date</string>
     <string name="expiry_date">Expiry Date</string>

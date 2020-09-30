@@ -535,17 +535,17 @@ public class HandoverConfirmation extends Fragment {
             switch (vehicleInRecord.getCarType()) {
                 case "Saloon":
                 case "صالون":
-                    frontLeftDoor.setImageResource(R.drawable.front_left_red);
+                    frontLeft.setImageResource(R.drawable.front_left_red);
                     break;
                 case "Jeep":
                 case "جيب":
-                    frontLeftDoor.setImageResource(R.drawable.jeep_front_left_red);
+                    frontLeft.setImageResource(R.drawable.jeep_front_left_red);
                     break;
                 case "Family":
                 case "Van":
                 case "مركبة عائلية":
                 case "شاحنة صغيرة":
-                    frontLeftDoor.setImageResource(R.drawable.family_front_left_red);
+                    frontLeft.setImageResource(R.drawable.family_front_left_red);
                     break;
             }
         }

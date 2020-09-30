@@ -54,8 +54,8 @@
     <string name="save">حفظ</string>
     <string name="cancel">إلغاء</string>
     <string name="driver_id">البطاقة السكانية</string>
-    <string name="address_line_1">عنوان١</string>
-    <string name="address_line_2">عنوان٢</string>
+    <string name="address_line_1">المنطقة</string>
+    <string name="address_line_2">العنوان</string>
     <string name="nationality">الجنسية</string>
     <string name="issue_date">تاريخ الاصدار</string>
     <string name="expiry_date">تاريخ الانتهاء</string>

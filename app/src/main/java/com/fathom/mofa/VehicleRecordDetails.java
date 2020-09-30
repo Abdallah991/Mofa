@@ -2,26 +2,20 @@ package com.fathom.mofa;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-
 import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
@@ -34,11 +28,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.text.SimpleDateFormat;
-
 import static com.fathom.mofa.Adapters.VehicleRecordsAdapter.vehicleRecordDashboard;
-import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.damageReportRecord;
 
@@ -89,6 +80,7 @@ public class VehicleRecordDetails extends Fragment {
     private TextView assignedDriver;
     private TextView status;
     private TextView notes;
+    private TextView clean;
     private Button backButton;
     private ImageView vehicleRecordImages;
     private ImageView firstDot;
@@ -134,6 +126,7 @@ public class VehicleRecordDetails extends Fragment {
         model = view.findViewById(R.id.modelRecordValue);
         manufacturer = view.findViewById(R.id.manufacturerRecordValue);
         make = view.findViewById(R.id.makeRecordValue);
+        clean = view.findViewById(R.id.cleanRecordValue);
         color = view.findViewById(R.id.colorRecordValue);
         company = view.findViewById(R.id.companyRecordValue);
         registrationType = view.findViewById(R.id.registrationTypeRecordValue);
@@ -273,6 +266,11 @@ public class VehicleRecordDetails extends Fragment {
         assignedDriver.setText(vehicleRecordDashboard.getDriverName());
         status.setText(vehicleRecordDashboard.getStatus());
         notes.setText(vehicleRecordDashboard.getNotes());
+        if (vehicleRecordDashboard.isVehicleClean()) {
+            clean.setText(R.string.yes);
+        }else {
+            clean.setText(R.string.no);
+        }
         getRentalInfo();
         getVehicleInfo();
         getDamageReport();
