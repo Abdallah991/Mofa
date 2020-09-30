@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -44,9 +45,6 @@ public class Home extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String TAG = "HOME";
     private NavController mNavController;
-
-
-
 
 
     public Home() {
@@ -109,7 +107,7 @@ public class Home extends Fragment {
             }
         });
 
-        getUserInfo();
+
 
 
 
@@ -118,51 +116,28 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        getUserInfo();
         FRAGMENT = "home";
     }
 
     private void getUserInfo() {
 
         final SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
-        String email = pref.getString("Email", "");
+        String userStatus = pref.getString("userStatus", "");
 
-        db.collection("Users").document(email)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                UserDataModel user = document.toObject(UserDataModel.class);
-                                String userName = user.getFirstName()+ " "+ user.getLastName();
-                                pref.edit().putString("userName", userName).apply();
+        if (userStatus.equals("Admin") || userStatus.equals("مشرف")){
+            vehicleSetUp.setVisibility(View.VISIBLE);
+            driverSetUp.setVisibility(View.VISIBLE);
+            driverSetUpText.setVisibility(View.VISIBLE);
+            vehicleSetUpText.setVisibility(View.VISIBLE);
 
-                                if (user.getUserType().equals("Admin") || user.getUserType().equals("مشرف")){
-//                                    isAdmin = true;
-                                    vehicleSetUp.setVisibility(View.VISIBLE);
-                                    driverSetUp.setVisibility(View.VISIBLE);
-                                    driverSetUpText.setVisibility(View.VISIBLE);
-                                    vehicleSetUpText.setVisibility(View.VISIBLE);
-
-                                } else
-                                {
-                                    vehicleSetUp.setVisibility(View.GONE);
-                                    driverSetUp.setVisibility(View.GONE);
-                                    driverSetUpText.setVisibility(View.GONE);
-                                    vehicleSetUpText.setVisibility(View.GONE);
-                                }
-
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-
-
-                });
+        } else
+        {
+            vehicleSetUp.setVisibility(View.GONE);
+            driverSetUp.setVisibility(View.GONE);
+            driverSetUpText.setVisibility(View.GONE);
+            vehicleSetUpText.setVisibility(View.GONE);
+        }
 
         Log.d(TAG, " Loading the data is DONE");
 

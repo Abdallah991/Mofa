@@ -21,9 +21,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import com.fathom.mofa.DataModels.NotificationDataModel;
+import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.ViewModels.NotificationViewModel;
 import com.fathom.mofa.ViewModels.VehicleRecordViewModel;
+import com.fathom.mofa.ViewModels.VehicleViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,9 +39,9 @@ import java.util.List;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
-import static com.fathom.mofa.VehicleRecord.damageReportRecord;
+import static com.fathom.mofa.VehicleDetails.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
-import static com.fathom.mofa.VehicleRecord.vehicleRecord;
+import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 
 
 /**
@@ -57,6 +59,7 @@ public class VehicleRecordSignature extends Fragment {
     private int signatureSelector;
     private Button done;
     private VehicleRecordViewModel model;
+    private VehicleViewModel vehicleModel;
     private NotificationViewModel mNotificationViewModel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
@@ -122,6 +125,15 @@ public class VehicleRecordSignature extends Fragment {
         model.getVehicleRecords().observe(getViewLifecycleOwner(), new Observer<List<VehicleRecordDataModel>>() {
             @Override
             public void onChanged(List<VehicleRecordDataModel> vehicleDataModels) {
+
+            }
+        });
+
+        vehicleModel =  new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
+        vehicleModel.initVehicles();
+        vehicleModel.getVehicles().observe(getViewLifecycleOwner(), new Observer<List<VehicleDataModel>>() {
+            @Override
+            public void onChanged(List<VehicleDataModel> vehicleDataModels) {
 
             }
         });
@@ -235,6 +247,7 @@ public class VehicleRecordSignature extends Fragment {
                 vehicleRecord.setStatus("Busy");
                 break;
             case "DTM":
+            case "RTM":
                 vehicleInRecord.setStatus("Returned");
                 vehicleRecord.setStatus("Returned");
                 break;
@@ -242,11 +255,11 @@ public class VehicleRecordSignature extends Fragment {
                 vehicleInRecord.setStatus("Released");
                 vehicleRecord.setStatus("Released");
                 break;
-
         }
         vehicleInRecord.setDamageReport(vehicleInRecord.getPlateNumber()+formatter.format(mDate));
         db.collection("Vehicles")
                 .document(vehicleInRecord.getPlateNumber()).set(vehicleInRecord);
+        updateVehicleStatusToViewModel();
 
     }
 
@@ -516,6 +529,10 @@ public class VehicleRecordSignature extends Fragment {
 
     private void addVehicleRecordToViewModel() {
         model.addVehicleRecord(vehicleRecord);
+    }
+
+    private void updateVehicleStatusToViewModel() {
+        vehicleModel.updateVehicleStatus(vehicleInRecord);
     }
 
     private void addNotificationToDataModel(NotificationDataModel notification) {

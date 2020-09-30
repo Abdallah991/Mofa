@@ -16,19 +16,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-
 import com.bumptech.glide.Glide;
-
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
-import static com.fathom.mofa.VehicleRecord.damageReportRecord;
+import static com.fathom.mofa.VehicleDetails.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
-import static com.fathom.mofa.VehicleRecord.vehicleRecord;
-import static com.fathom.mofa.VehicleRegistration.carPhotos;
-import static com.fathom.mofa.VehicleSetUp.vehicle;
-import static com.fathom.mofa.VehicleSetUpDamageReport.damageReport;
+import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 
 
 /**
@@ -71,6 +65,7 @@ public class HandoverConfirmation extends Fragment {
     private ImageView backLeftTire;
     private TextView carHasDamage;
     private TextView carIsUseable;
+    private TextView carIsClean;
     private Button editVehicleRecord;
     private Button editVehicleUtilities;
     private Button editVehicleAccidentReport;
@@ -230,6 +225,7 @@ public class HandoverConfirmation extends Fragment {
 
         carHasDamage = view.findViewById(R.id.carHasDamageValue);
         carIsUseable = view.findViewById(R.id.carIsUseableValue);
+        carIsClean = view.findViewById(R.id.carIsCleanValue);
         editVehicleRecord = view.findViewById(R.id.vehicleRecordEdit);
         editVehicleUtilities = view.findViewById(R.id.vehicleUtilitiesEdit);
         editVehicleAccidentReport = view.findViewById(R.id.accidentReportEdit);
@@ -640,9 +636,17 @@ public class HandoverConfirmation extends Fragment {
         if(vehicleRecord.isCarIsUseable()) {
             carIsUseable.setText(R.string.yes);
         }else {
-            carIsUseable.setText(R.string.yes);
+            carIsUseable.setText(R.string.no);
 
         }
+
+        if(vehicleRecord.isVehicleClean()) {
+            carIsClean.setText(R.string.yes);
+        }else {
+            carIsClean.setText(R.string.no);
+
+        }
+
     }
 
     private void vehicleGallery() {

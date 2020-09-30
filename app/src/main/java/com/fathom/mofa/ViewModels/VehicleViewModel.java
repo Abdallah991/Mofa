@@ -58,5 +58,20 @@ public class VehicleViewModel extends ViewModel {
 
     }
 
+    public void updateVehicleStatus(VehicleDataModel  vehicle) {
+        ArrayList<VehicleDataModel> vehicles = new ArrayList<>();
+
+        vehicles.addAll(mVehicles.getValue());
+        for (VehicleDataModel oneVehicle: vehicles) {
+            if (oneVehicle.getPlateNumber().equals(vehicle.getPlateNumber())) {
+                oneVehicle.setStatus(vehicle.getStatus());
+            }
+        }
+//        vehicles.add(vehicle);
+
+        mVehicles.setValue(vehicles);
+
+    }
+
 }
 

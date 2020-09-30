@@ -537,7 +537,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             if (document.exists()) {
                                 UserDataModel user = document.toObject(UserDataModel.class);
                                 String userName = user.getFirstName()+ " "+ user.getLastName();
+                                String userStatus = user.getUserType();
                                 pref.edit().putString("userName", userName).apply();
+                                pref.edit().putString("userStatus", userStatus).apply();
 
                                 if (user.getUserType().equals("Admin")|| user.getUserType().equals("مشرف")){
                                     isAdmin = true;

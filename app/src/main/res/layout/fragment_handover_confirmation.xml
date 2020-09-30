@@ -426,6 +426,26 @@
                     android:textSize="24sp"
                     app:fontFamily="@font/roboto_light"
                     android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/carIsCleanTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/car_is_clean"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="40dp"/>
+                <TextView
+                    android:id="@+id/carIsCleanValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light"
+                    android:layout_marginTop="10dp"/>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout2"
                     android:layout_marginTop="40dp"

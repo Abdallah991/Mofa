@@ -40,7 +40,7 @@ import java.text.SimpleDateFormat;
 import static com.fathom.mofa.Adapters.VehicleRecordsAdapter.vehicleRecordDashboard;
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.VehicleRecord.damageReportRecord;
+import static com.fathom.mofa.VehicleDetails.damageReportRecord;
 
 
 /**

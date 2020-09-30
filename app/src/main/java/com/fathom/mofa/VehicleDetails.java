@@ -24,8 +24,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
+import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.fathom.mofa.DataModels.RentalInfoDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
+import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.ServicesAndRepos.VehicleRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +41,7 @@ import java.text.SimpleDateFormat;
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
+import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 
 
 /**
@@ -74,6 +77,8 @@ public class VehicleDetails extends Fragment {
     private boolean toggleVehicleInfo = true;
     private boolean toggleRentalInfo = false;
     private ProgressDialog progressDialog;
+    public static VehicleRecordDataModel vehicleRecord = new VehicleRecordDataModel();
+    public static DamageReportDataModel damageReportRecord = new DamageReportDataModel();
     private int actionToVehicleRecord = R.id.action_vehicleDetails_to_vehicleRecord2;
     private SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
 
@@ -135,19 +140,38 @@ public class VehicleDetails extends Fragment {
 
 //        registrationStart.setGravity(Gravity.END);
 //        registrationEnd.setGravity(Gravity.END);
+        final SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
+        String userStatus = pref.getString("userStatus", "");
 
         switch (vehicleDashboard.getStatus()) {
             case "Busy":
                 handoverOrRetrieveOrRelease.setText(R.string.retrieve);
-                vehicleHistory.setText(R.string.release);
+                if (userStatus.equals("Admin") || userStatus.equals("مشرف")) {
+                    vehicleHistory.setText(R.string.release);
+                }else {
+                    vehicleHistory.setVisibility(View.GONE);
+                }
+                vehicleRecord.setCarTransaction("DTM");
+                damageReportRecord.setCarTransaction("DTM");
+//                vehicleInRecord.setStatus("Returned");
+//                vehicleRecord.setStatus("Returned");
                 break;
             case "Returned":
                 handoverOrRetrieveOrRelease.setText(R.string.handover);
-                vehicleHistory.setText(R.string.release);
+                if (userStatus.equals("Admin") || userStatus.equals("مشرف")) {
+                    vehicleHistory.setText(R.string.release);
+                }else {
+                    vehicleHistory.setVisibility(View.GONE);
+                }
+                vehicleRecord.setCarTransaction("MTD");
+                damageReportRecord.setCarTransaction("MTD");
                 break;
             case "Released":
                 handoverOrRetrieveOrRelease.setText(R.string.retrieve);
                 vehicleHistory.setVisibility(View.GONE);
+                vehicleRecord.setCarTransaction("RTM");
+                damageReportRecord.setCarTransaction("RTM");
+
                 break;
         }
 
@@ -162,7 +186,9 @@ public class VehicleDetails extends Fragment {
         vehicleHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                vehicleRecord.setCarTransaction("MTR");
+                damageReportRecord.setCarTransaction("MTR");
+                mNavController.navigate(actionToVehicleRecord);
             }
         });
 

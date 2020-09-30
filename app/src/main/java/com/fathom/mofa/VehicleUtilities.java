@@ -23,7 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.VehicleRecord.vehicleRecord;
+import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 
 
 /**

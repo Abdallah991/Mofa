@@ -39,10 +39,9 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
-import static com.fathom.mofa.VehicleRecord.damageReportRecord;
+import static com.fathom.mofa.VehicleDetails.damageReportRecord;
 import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
-import static com.fathom.mofa.VehicleRecord.vehicleRecord;
-import static com.fathom.mofa.VehicleSetUp.vehicle;
+import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 
 
 public class VehicleAccidentReport extends Fragment {

@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +21,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.MainActivity.showIcon;
-import static com.fathom.mofa.VehicleRecord.vehicleRecord;
-
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.ViewModels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;

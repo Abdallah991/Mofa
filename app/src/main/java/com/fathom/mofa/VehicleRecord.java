@@ -23,17 +23,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.fathom.mofa.DataModels.DamageReportDataModel;
 import com.fathom.mofa.DataModels.DriverDataModel;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
-import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.fathom.mofa.ViewModels.UserViewModel;
 import com.fathom.mofa.ViewModels.VehicleViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
+import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
@@ -46,17 +45,12 @@ public class VehicleRecord extends Fragment {
     private static final String TAG = "VEHICLES";
     private static final String TAG2 = "DRIVERS";
     private static final String TAG3 = "USERS";
-    public static VehicleRecordDataModel vehicleRecord = new VehicleRecordDataModel();
-    public static DamageReportDataModel damageReportRecord = new DamageReportDataModel();
     public static VehicleDataModel vehicleInRecord = new VehicleDataModel();
     public static DriverDataModel driverInRecord = new DriverDataModel();
     private NavController mNavController;
     private TextView vehicleName;
     private TextView userName;
     private Spinner driverName;
-    private ImageView handover;
-    private ImageView retrieval;
-    private ImageView release;
     private ImageView carImages;
     private ImageView firstDot;
     private ImageView secondDot;
@@ -115,9 +109,6 @@ public class VehicleRecord extends Fragment {
         vehicleName = view.findViewById(R.id.vehicleName);
         userName = view.findViewById(R.id.managedBy);
         driverName = view.findViewById(R.id.driverName);
-        handover = view.findViewById(R.id.handoverImage);
-        retrieval = view.findViewById(R.id.retrievalImage);
-        release = view.findViewById(R.id.releaseImage);
         carImages = view.findViewById(R.id.vehicleImagesHandover);
         firstDot = view.findViewById(R.id.firstImageHandover);
         secondDot = view.findViewById(R.id.secondImageHandover);
@@ -254,62 +245,62 @@ public class VehicleRecord extends Fragment {
             }
         });
 
-        handover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (handoverStatus) {
-                    handover.setImageResource(R.drawable.empty_check_box);
-                    handoverStatus = false;
-                } else {
-                    handoverStatus = true;
-                    retrievalStatus = false;
-                    releaseStatus = false;
-                    handover.setImageResource(R.drawable.checked_check_box);
-                    retrieval.setImageResource(R.drawable.empty_check_box);
-                    release.setImageResource(R.drawable.empty_check_box);
-                    vehicleRecord.setCarTransaction("MTD");
-                    damageReportRecord.setCarTransaction("MTD");
-                }
-            }
-        });
+//        handover.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (handoverStatus) {
+//                    handover.setImageResource(R.drawable.empty_check_box);
+//                    handoverStatus = false;
+//                } else {
+//                    handoverStatus = true;
+//                    retrievalStatus = false;
+//                    releaseStatus = false;
+//                    handover.setImageResource(R.drawable.checked_check_box);
+//                    retrieval.setImageResource(R.drawable.empty_check_box);
+//                    release.setImageResource(R.drawable.empty_check_box);
+//                    vehicleRecord.setCarTransaction("MTD");
+//                    damageReportRecord.setCarTransaction("MTD");
+//                }
+//            }
+//        });
 
-        retrieval.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (retrievalStatus) {
-                    retrieval.setImageResource(R.drawable.empty_check_box);
-                    retrievalStatus = false;
-                } else {
-                    retrievalStatus = true;
-                    handoverStatus = false;
-                    releaseStatus = false;
-                    retrieval.setImageResource(R.drawable.checked_check_box);
-                    handover.setImageResource(R.drawable.empty_check_box);
-                    release.setImageResource(R.drawable.empty_check_box);
-                    vehicleRecord.setCarTransaction("DTM");
-                    damageReportRecord.setCarTransaction("DTM");
-                }
-            }
-        });
+//        retrieval.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (retrievalStatus) {
+//                    retrieval.setImageResource(R.drawable.empty_check_box);
+//                    retrievalStatus = false;
+//                } else {
+//                    retrievalStatus = true;
+//                    handoverStatus = false;
+//                    releaseStatus = false;
+//                    retrieval.setImageResource(R.drawable.checked_check_box);
+//                    handover.setImageResource(R.drawable.empty_check_box);
+//                    release.setImageResource(R.drawable.empty_check_box);
+//                    vehicleRecord.setCarTransaction("DTM");
+//                    damageReportRecord.setCarTransaction("DTM");
+//                }
+//            }
+//        });
 
-        release.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (releaseStatus) {
-                    release.setImageResource(R.drawable.empty_check_box);
-                    releaseStatus = false;
-                } else {
-                    releaseStatus = true;
-                    handoverStatus = false;
-                    retrievalStatus = false;
-                    release.setImageResource(R.drawable.checked_check_box);
-                    handover.setImageResource(R.drawable.empty_check_box);
-                    retrieval.setImageResource(R.drawable.empty_check_box);
-                    vehicleRecord.setCarTransaction("MTR");
-                    damageReportRecord.setCarTransaction("MTR");
-                }
-            }
-        });
+//        release.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (releaseStatus) {
+//                    release.setImageResource(R.drawable.empty_check_box);
+//                    releaseStatus = false;
+//                } else {
+//                    releaseStatus = true;
+//                    handoverStatus = false;
+//                    retrievalStatus = false;
+//                    release.setImageResource(R.drawable.checked_check_box);
+//                    handover.setImageResource(R.drawable.empty_check_box);
+//                    retrieval.setImageResource(R.drawable.empty_check_box);
+//                    vehicleRecord.setCarTransaction("MTR");
+//                    damageReportRecord.setCarTransaction("MTR");
+//                }
+//            }
+//        });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,24 +314,24 @@ public class VehicleRecord extends Fragment {
 
         setVehicleInfo();
 
-        switch (vehicleDashboard.getStatus()) {
-            case "Busy":
-                retrieval.setImageResource(R.drawable.checked_check_box);
-                vehicleRecord.setCarTransaction("DTM");
-                damageReportRecord.setCarTransaction("DTM");
-                break;
-            case "Returned":
-                handover.setImageResource(R.drawable.checked_check_box);
-                vehicleRecord.setCarTransaction("MTD");
-                damageReportRecord.setCarTransaction("MTD");
-                break;
-            case "Released":
-                release.setImageResource(R.drawable.checked_check_box);
-                vehicleRecord.setCarTransaction("MTR");
-                damageReportRecord.setCarTransaction("MTR");
-
-                break;
-        }
+//        switch (vehicleDashboard.getStatus()) {
+//            case "Busy":
+//                retrieval.setImageResource(R.drawable.checked_check_box);
+//                vehicleRecord.setCarTransaction("DTM");
+//                damageReportRecord.setCarTransaction("DTM");
+//                break;
+//            case "Returned":
+//                handover.setImageResource(R.drawable.checked_check_box);
+//                vehicleRecord.setCarTransaction("MTD");
+//                damageReportRecord.setCarTransaction("MTD");
+//                break;
+//            case "Released":
+//                release.setImageResource(R.drawable.checked_check_box);
+//                vehicleRecord.setCarTransaction("MTR");
+//                damageReportRecord.setCarTransaction("MTR");
+//
+//                break;
+//        }
 
     }
 
