@@ -67,13 +67,11 @@ public class VehicleRecord extends Fragment {
     private ImageView fifthDot;
     private ImageView sixthDot;
     private ImageView seventhDot;
-    private Button next;
     private ProgressDialog progressDialog;
     private int actionToVehicleUtilities = R.id.action_vehicleRecord_to_vehicleUtilities;
     // Vehicle Name
     private ArrayList<VehicleDataModel> mVehicles = new ArrayList<>();
     private int positionOfVehicle;
-    private VehicleViewModel mVehicleViewModel;
     private ArrayList<String> vehicleNames = new ArrayList<>();
     private ArrayAdapter<String> vehicleAdapter;
 
@@ -128,7 +126,7 @@ public class VehicleRecord extends Fragment {
         fifthDot = view.findViewById(R.id.fifthImageHandover);
         sixthDot= view.findViewById(R.id.sixthImageHandover);
         seventhDot = view.findViewById(R.id.seventhImageHandover);
-        next = view.findViewById(R.id.nextVehicleRecord);
+        Button next = view.findViewById(R.id.nextVehicleRecord);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
@@ -141,7 +139,7 @@ public class VehicleRecord extends Fragment {
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
-        mVehicleViewModel = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
+        VehicleViewModel mVehicleViewModel = new ViewModelProvider(requireActivity()).get(VehicleViewModel.class);
         mVehicleViewModel.initVehicles();
         mVehicleViewModel.getVehicles().observe(getViewLifecycleOwner(), new Observer<List<VehicleDataModel>>() {
             @Override
@@ -556,5 +554,30 @@ public class VehicleRecord extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "vehicleRecord";
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        driverName = null;
+        userName = null;
+        vehicleName = null;
+        Glide.with(getContext()).clear(carImages);
+        carImages = null;
+        firstDot = null;
+        secondDot = null;
+        thirdDot = null;
+        fourthDot = null;
+        fifthDot = null;
+        sixthDot = null;
+        seventhDot = null;
+        mVehicles = null;
+        vehicleAdapter = null;
+        vehicleNames = null;
+        driverAdapter = null;
+        mUserViewModel = null;
+        userNames = null;
+        userAdapter = null;
+
     }
 }

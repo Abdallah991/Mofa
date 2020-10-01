@@ -52,26 +52,13 @@ public class VehicleDetails extends Fragment {
     public static CarPhotosDataModel carPhotosRecord = new CarPhotosDataModel();
     private String TAG = "VEHICLE DETAIL";
     private NavController mNavController;
-    private TextView vehicleName;
     private ImageView vehicleInfoCollapse;
     private LinearLayout vehicleInfoLayout;
     private ImageView rentalInfoCollapse;
     private LinearLayout rentalInfoLayout;
-    private LinearLayout registrationStartLayout;
-    private TextView plateNumber;
-    private TextView manufacturer;
-    private TextView model;
-    private TextView color;
-    private TextView make;
-    private TextView carType;
     private TextView registrationCompany;
-    private TextView registrationType;
-    private TextView registrationStart;
-    private TextView registrationEnd;
     private Button editVehicleInfo;
     private Button editRentalInfo;
-    private Button handoverOrRetrieveOrRelease;
-    private Button vehicleHistory;
     private ImageView vehicleDetailImage;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private boolean toggleVehicleInfo = true;
@@ -99,24 +86,24 @@ public class VehicleDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        vehicleName = view.findViewById(R.id.carNameTitle);
+        TextView vehicleName = view.findViewById(R.id.carNameTitle);
         vehicleInfoCollapse = view.findViewById(R.id.vehicleInformationToggle);
         vehicleInfoLayout = view.findViewById(R.id.vehicleInformationCollapse);
-        registrationStartLayout = view.findViewById(R.id.registrationStartLayout);
+        LinearLayout registrationStartLayout = view.findViewById(R.id.registrationStartLayout);
         rentalInfoCollapse = view.findViewById(R.id.rentalInfoToggle);
         rentalInfoLayout = view.findViewById(R.id.rentalInfoCollapse);
-        plateNumber = view.findViewById(R.id.plateNumberDetail);
-        manufacturer = view.findViewById(R.id.manufacturerDetail);
-        model = view.findViewById(R.id.modelDetail);
-        color = view.findViewById(R.id.colorDetail);
-        make = view.findViewById(R.id.makeDetail);
-        carType = view.findViewById(R.id.carTypeDetail);
+        TextView plateNumber = view.findViewById(R.id.plateNumberDetail);
+        TextView manufacturer = view.findViewById(R.id.manufacturerDetail);
+        TextView model = view.findViewById(R.id.modelDetail);
+        TextView color = view.findViewById(R.id.colorDetail);
+        TextView make = view.findViewById(R.id.makeDetail);
+        TextView carType = view.findViewById(R.id.carTypeDetail);
         registrationCompany = view.findViewById(R.id.rentalNameDetail);
-        registrationType = view.findViewById(R.id.registrationTypeDetail);
-        registrationStart = view.findViewById(R.id.registrationStartDetail);
-        registrationEnd = view.findViewById(R.id.registrationEndDetail);
-        handoverOrRetrieveOrRelease = view.findViewById(R.id.handoverOrRetrieval);
-        vehicleHistory = view.findViewById(R.id.vehicleHistory);
+        TextView registrationType = view.findViewById(R.id.registrationTypeDetail);
+        TextView registrationStart = view.findViewById(R.id.registrationStartDetail);
+        TextView registrationEnd = view.findViewById(R.id.registrationEndDetail);
+        Button handoverOrRetrieveOrRelease = view.findViewById(R.id.handoverOrRetrieval);
+        Button vehicleHistory = view.findViewById(R.id.vehicleHistory);
         vehicleDetailImage = view.findViewById(R.id.vehicleDetailsImage);
 
         progressDialog = new ProgressDialog(getContext());
@@ -306,5 +293,15 @@ public class VehicleDetails extends Fragment {
     public void onStop() {
         super.onStop();
         Glide.with(getContext()).clear(vehicleDetailImage);
+        vehicleDetailImage = null;
+        vehicleInfoCollapse = null;
+        vehicleInfoLayout = null;
+        rentalInfoCollapse = null;
+        rentalInfoLayout = null;
+        registrationCompany = null;
+        editVehicleInfo = null;
+        editRentalInfo = null;
+
+
     }
 }

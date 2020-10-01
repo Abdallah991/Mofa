@@ -143,5 +143,16 @@ public class Home extends Fragment {
 
     }
 
-
+    @Override
+    public void onStop() {
+        super.onStop();
+//        driverSetUp.setImageDrawable(null);
+        dashboard = null;
+        driverSetUp = null;
+        vehicleRecord = null;
+        vehicleSetUp = null;
+        driverSetUpText = null;
+        vehicleSetUpText = null;
+//        vehicleRecord.setImageDrawable(null);
+    }
 }

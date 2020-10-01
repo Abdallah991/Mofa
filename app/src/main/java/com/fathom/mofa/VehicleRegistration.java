@@ -520,12 +520,13 @@ public class VehicleRegistration extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-//        Glide.with(getContext()).clear(vehicleBackInterior);
-//        Glide.with(getContext()).clear(vehicleBackInterior);
-//        Glide.with(getContext()).clear(vehicleBackInterior);
-//        Glide.with(getContext()).clear(vehicleBackInterior);
-//        Glide.with(getContext()).clear(vehicleBackInterior);
-//        Glide.with(getContext()).clear(vehicleBackInterior);
+        Glide.with(getContext()).clear(vehicleRightSide);
+        Glide.with(getContext()).clear(vehicleLeftSide);
+        Glide.with(getContext()).clear(vehicleFrontSide);
+        Glide.with(getContext()).clear(vehicleBackSide);
+        Glide.with(getContext()).clear(vehicleFrontInterior);
+        Glide.with(getContext()).clear(vehicleBackInterior);
+        Glide.with(getContext()).clear(vehicleTrunk);
     }
 
     private boolean getCarInfo() {

@@ -35,15 +35,12 @@ public class VehicleUtilities extends Fragment {
     private TextInputEditText milage;
     private SeekBar fuelLevel;
     private LinearLayout fuelMeterUtilities;
-    private ViewFlipper viewFlipper;
     private ImageView jack;
     private ImageView tools;
     private ImageView spareTire;
     private ImageView CLighter;
     private ImageView wheelCap;
     private ImageView floorMat;
-    private Button next;
-    private Button back;
     private boolean jackStatus = false;
     private boolean toolsStatus = false;
     private boolean spareTireStatus = false;
@@ -69,7 +66,7 @@ public class VehicleUtilities extends Fragment {
 
         fuelLevel = view.findViewById(R.id.fuelLevelConfirmation);
         fuelMeterUtilities = view.findViewById(R.id.fuelMeterUtilities);
-        viewFlipper = view.findViewById(R.id.vehicleUtilitiesViewFlipper);
+        ViewFlipper viewFlipper = view.findViewById(R.id.vehicleUtilitiesViewFlipper);
         milage = view.findViewById(R.id.milage);
         jack = view.findViewById(R.id.jackImage);
         tools = view.findViewById(R.id.toolsImage);
@@ -77,8 +74,8 @@ public class VehicleUtilities extends Fragment {
         CLighter = view.findViewById(R.id.lighterImage);
         wheelCap = view.findViewById(R.id.wheelCapImage);
         floorMat = view.findViewById(R.id.floorMatImage);
-        next = view.findViewById(R.id.nextVehicleUtilities);
-        back = view.findViewById(R.id.backVehicleUtilities);
+        Button next = view.findViewById(R.id.nextVehicleUtilities);
+        Button back = view.findViewById(R.id.backVehicleUtilities);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
@@ -229,5 +226,20 @@ public class VehicleUtilities extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "vehicleUtilities";
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        CLighter = null;
+        jack = null;
+        floorMat = null;
+        tools = null;
+        wheelCap= null;
+        spareTire = null;
+        fuelMeterUtilities = null;
+        milage = null;
+        fuelLevel = null;
+
     }
 }

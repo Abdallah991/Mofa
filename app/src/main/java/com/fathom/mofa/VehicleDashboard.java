@@ -49,9 +49,6 @@ public class VehicleDashboard extends Fragment {
     private SearchView searchVehicles;
     private ImageView searchButton;
     private TextView numberOfVehicles;
-    private TextView numberOfPages;
-    private Button backButton;
-    private Button nextButton;
     private ProgressDialog progressDialog;
     private int actionToVehicleDetail = R.id.action_vehicleDashboard_to_vehicleDetails;
 
@@ -149,8 +146,8 @@ public class VehicleDashboard extends Fragment {
             public void run() {
                 mVehiclesRecycler.setAdapter(mVehiclesAdapter);
                 mVehiclesRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-                String vehicle = getResources().getString(R.string.vehicle);
-                numberOfVehicles.setText(mVehicles.size()+" "+vehicle);
+                String vehicle = mVehicles.size()+" "+getResources().getString(R.string.vehicle);
+                numberOfVehicles.setText(vehicle);
                 progressDialog.dismiss();
             }
 
@@ -250,4 +247,17 @@ public class VehicleDashboard extends Fragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        numberOfVehicles = null;
+        searchButton = null;
+        searchVehicles = null;
+        mVehiclesRecycler = null;
+        mVehiclesAdapter = null;
+        mVehicles = null;
+        filteredVehicles = null;
+        mVehicleViewModel = null;
+
+    }
 }

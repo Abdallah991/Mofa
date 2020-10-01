@@ -52,25 +52,13 @@ public class VehicleRecordSignature extends Fragment {
     private NavController mNavController;
     private Button rentalSignature;
     private Button mofaSignature;
-    private Button saveSignature;
-    private Button cancelSignature;
-    private Button clearSignature;
-    private LinearLayout signatureLayout;
     private int signatureSelector;
-    private Button done;
     private VehicleRecordViewModel model;
     private VehicleViewModel vehicleModel;
     private NotificationViewModel mNotificationViewModel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseStorage storage;
     private StorageReference storageRef;
     private StorageReference frontImageRef;
-    private StorageReference backImageRef;
-    private StorageReference leftImageRef;
-    private StorageReference rightImageRef;
-    private StorageReference frontInteriorImageRef;
-    private StorageReference backInteriorImageRef;
-    private StorageReference trunkImageRef;
     private final String TAG = "VEHICLE RECORD";
     private ProgressDialog progressDialog;
     private Date mDate;
@@ -95,16 +83,16 @@ public class VehicleRecordSignature extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rentalSignature = view.findViewById(R.id.rentalSignatureVehicleRecord);
         mofaSignature = view.findViewById(R.id.mofaSignatureVehicleRecord);
-        done = view.findViewById(R.id.doneVehicleRecord);
+        Button done = view.findViewById(R.id.doneVehicleRecord);
         // Dialog components
         final Dialog dialog = new Dialog(getContext());
         final CaptureSignatureView mSig = new CaptureSignatureView(getContext(), null);
         dialog.setContentView(R.layout.signature);
         dialog.setTitle("Signature");
-        saveSignature = dialog.findViewById(R.id.save);
-        cancelSignature = dialog.findViewById(R.id.cancel);
-        clearSignature = dialog.findViewById(R.id.clear);
-        signatureLayout = dialog.findViewById(R.id.signature2);
+        Button saveSignature = dialog.findViewById(R.id.save);
+        Button cancelSignature = dialog.findViewById(R.id.cancel);
+        Button clearSignature = dialog.findViewById(R.id.clear);
+        LinearLayout signatureLayout = dialog.findViewById(R.id.signature2);
 
         formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -113,7 +101,7 @@ public class VehicleRecordSignature extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
         progressDialog.setCanceledOnTouchOutside(false);
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -337,7 +325,7 @@ public class VehicleRecordSignature extends Fragment {
 
     private void uploadVehicleRightSide() {
 
-            rightImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"right");
+        StorageReference rightImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "right");
             Bitmap bitmap = carPhotosRecord.getPhotoRightSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -357,6 +345,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User right image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setPhotoRightSide(null);
 
                 }
             });
@@ -366,7 +355,7 @@ public class VehicleRecordSignature extends Fragment {
 
     private void uploadVehicleLeftSide() {
 
-            leftImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"left");
+        StorageReference leftImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "left");
             Bitmap bitmap = carPhotosRecord.getPhotoLeftSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -386,6 +375,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User left image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setPhotoLeftSide(null);
 
                 }
             });
@@ -415,6 +405,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User front image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setPhotoFrontSide(null);
                 }
             });
 
@@ -422,7 +413,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleBackSide() {
-            backImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"back");
+        StorageReference backImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "back");
             Bitmap bitmap = carPhotosRecord.getPhotoBackSide();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -442,13 +433,14 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User back image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setPhotoBackSide(null);
 
                 }
             });
 
     }
     private void uploadVehicleFrontInterior() {
-            frontInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"frontInterior");
+        StorageReference frontInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "frontInterior");
             Bitmap bitmap = carPhotosRecord.getVehicleFrontInterior();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -468,13 +460,14 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User back image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setVehicleFrontInterior(null);
 
                 }
             });
 
     }
     private void uploadVehicleBackInterior() {
-            backInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"backInterior");
+        StorageReference backInteriorImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "backInterior");
             Bitmap bitmap = carPhotosRecord.getVehicleBackInterior();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -494,6 +487,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User back image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setVehicleBackInterior(null);
 
                 }
             });
@@ -501,7 +495,7 @@ public class VehicleRecordSignature extends Fragment {
     }
     private void uploadVehicleTrunk() {
 
-            trunkImageRef = storageRef.child(vehicleInRecord.getPlateNumber()+uniqueUpload+"trunk");
+        StorageReference trunkImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "trunk");
             Bitmap bitmap = carPhotosRecord.getVehicleTrunk();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -521,6 +515,7 @@ public class VehicleRecordSignature extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Log.d(TAG, "User back image uploaded.");
                     progressDialog.dismiss();
+                    carPhotosRecord.setVehicleTrunk(null);
 
                 }
             });
@@ -537,6 +532,21 @@ public class VehicleRecordSignature extends Fragment {
 
     private void addNotificationToDataModel(NotificationDataModel notification) {
         mNotificationViewModel.addNotification(notification);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        rentalSignature = null;
+        mofaSignature = null;
+        model = null;
+        vehicleModel = null;
+        mNotificationViewModel = null;
+        storageRef = null;
+        frontImageRef = null;
+
 
     }
 }

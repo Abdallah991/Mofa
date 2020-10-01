@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+
+import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;

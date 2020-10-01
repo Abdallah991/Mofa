@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.bumptech.glide.Glide;
+
 import java.text.SimpleDateFormat;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -281,37 +283,59 @@ public class VehicleSetUpConfirmation extends Fragment {
                     case 0:
                         seventhCircle.setImageResource(R.drawable.grey_dot);
                         firstCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getPhotoLeftSide());
+                        Glide.with(getContext())
+                                .load(carPhotos.getPhotoLeftSide())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 1:
                         firstCircle.setImageResource(R.drawable.grey_dot);
                         secondCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getPhotoRightSide());
+                        Glide.with(getContext())
+                                .load(carPhotos.getPhotoRightSide())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 2:
                         secondCircle.setImageResource(R.drawable.grey_dot);
                         thirdCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getPhotoFrontSide());
+                        Glide.with(getContext())
+                                .load(carPhotos.getPhotoFrontSide())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 3:
                         thirdCircle.setImageResource(R.drawable.grey_dot);
                         fourthCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getPhotoBackSide());
+                        Glide.with(getContext())
+                                .load(carPhotos.getPhotoBackSide())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 4:
                         fourthCircle.setImageResource(R.drawable.grey_dot);
                         fifthCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getVehicleFrontInterior());
+                        Glide.with(getContext())
+                                .load(carPhotos.getVehicleFrontInterior())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 5:
                         fifthCircle.setImageResource(R.drawable.grey_dot);
                         sixthCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getVehicleBackInterior());
+                        Glide.with(getContext())
+                                .load(carPhotos.getVehicleBackInterior())
+                                .centerCrop()
+                                .into(vehicleImage);//
                         break;
                     case 6:
                         sixthCircle.setImageResource(R.drawable.grey_dot);
                         seventhCircle.setImageResource(R.drawable.red_dot);
-                        vehicleImage.setImageBitmap(carPhotos.getVehicleTrunk());
+                        Glide.with(getContext())
+                                .load(carPhotos.getVehicleTrunk())
+                                .centerCrop()
+                                .into(vehicleImage);//
+//                        vehicleImage.setImageBitmap(carPhotos.getVehicleTrunk());
                         break;
 
 
@@ -371,6 +395,12 @@ public class VehicleSetUpConfirmation extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "vehicleSetUpConfirmation";
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Glide.with(getContext()).clear(vehicleImage);
     }
 
     private void damageReportReview() {

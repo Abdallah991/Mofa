@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -31,21 +32,13 @@ import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 public class HandoverConfirmation extends Fragment {
 
     private NavController mNavController;
-    private TextView vehicleName;
-    private TextView managedBy;
-    private TextView driverName;
-    private TextView driverTitle;
     private TextView operation;
-    private TextView milage;
-    private SeekBar mSeekBar;
     private ImageView jack;
     private ImageView tools;
     private ImageView spareTire;
     private ImageView CLighter;
     private ImageView wheelCap;
     private ImageView floorMat;
-    // Damage report
-    private ViewFlipper mViewFlipper;
     private ImageView front;
     private ImageView frontRight;
     private ImageView frontLeft;
@@ -67,11 +60,6 @@ public class HandoverConfirmation extends Fragment {
     private TextView carHasDamage;
     private TextView carIsUseable;
     private TextView carIsClean;
-    private Button editVehicleRecord;
-    private Button editVehicleUtilities;
-    private Button editVehicleAccidentReport;
-    private Button next;
-    private Button backButton;
     private ImageView vehicleRecordImages;
     private ImageView firstDot;
     private ImageView secondDot;
@@ -111,20 +99,21 @@ public class HandoverConfirmation extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        vehicleName = view.findViewById(R.id.vehicleNameValue);
-        managedBy = view.findViewById(R.id.managedByValue);
-        driverName = view.findViewById(R.id.driverValue);
-        driverTitle = view.findViewById(R.id.driverTitle);
+        TextView vehicleName = view.findViewById(R.id.vehicleNameValue);
+        TextView managedBy = view.findViewById(R.id.managedByValue);
+        TextView driverName = view.findViewById(R.id.driverValue);
+        TextView driverTitle = view.findViewById(R.id.driverTitle);
         operation = view.findViewById(R.id.operationValue);
-        milage = view.findViewById(R.id.milageValue);
-        mSeekBar = view.findViewById(R.id.fuelLevelConfirmation);
+        TextView milage = view.findViewById(R.id.milageValue);
+        SeekBar mSeekBar = view.findViewById(R.id.fuelLevelConfirmation);
         jack = view.findViewById(R.id.jackConfirmation);
         tools = view.findViewById(R.id.toolsConfirmation);
         spareTire = view.findViewById(R.id.spareTireConfirmation);
         CLighter = view.findViewById(R.id.CLighterConfirmation);
         wheelCap = view.findViewById(R.id.wheelCapConfirmation);
         floorMat = view.findViewById(R.id.floorMatConfirmation);
-        mViewFlipper = view.findViewById(R.id.vehicleRecordConfirmationViewFlipper);
+        // Damage report
+        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordConfirmationViewFlipper);
         switch (vehicleInRecord.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -228,11 +217,11 @@ public class HandoverConfirmation extends Fragment {
         carHasDamage = view.findViewById(R.id.carHasDamageValue);
         carIsUseable = view.findViewById(R.id.carIsUseableValue);
         carIsClean = view.findViewById(R.id.carIsCleanValue);
-        editVehicleRecord = view.findViewById(R.id.vehicleRecordEdit);
-        editVehicleUtilities = view.findViewById(R.id.vehicleUtilitiesEdit);
-        editVehicleAccidentReport = view.findViewById(R.id.accidentReportEdit);
-        next = view.findViewById(R.id.nextConfirmationRecord);
-        backButton = view.findViewById(R.id.backConfirmationRecord);
+        Button editVehicleRecord = view.findViewById(R.id.vehicleRecordEdit);
+        Button editVehicleUtilities = view.findViewById(R.id.vehicleUtilitiesEdit);
+        Button editVehicleAccidentReport = view.findViewById(R.id.accidentReportEdit);
+        Button next = view.findViewById(R.id.nextConfirmationRecord);
+        Button backButton = view.findViewById(R.id.backConfirmationRecord);
         vehicleRecordImages = view.findViewById(R.id.vehicleImagesHandover);
         firstDot = view.findViewById(R.id.firstImageHandover);
         secondDot = view.findViewById(R.id.secondImageHandover);
@@ -325,6 +314,44 @@ public class HandoverConfirmation extends Fragment {
     public void onStop() {
         super.onStop();
         Glide.with(getContext()).clear(vehicleRecordImages);
+        vehicleRecordImages = null;
+        carHasDamage = null;
+        carIsClean = null;
+        carIsUseable = null;
+        front = null;
+        frontLeft = null;
+        frontRight = null;
+        frontWindShield = null;
+        backCeiling = null;
+        frontCeiling = null;
+        frontLeftDoor = null;
+        frontRightDoor = null;
+        backRightDoor = null;
+        backLeftDoor = null;
+        backLeft = null;
+        backRight = null;
+        back = null;
+        backWindShield = null;
+        frontRightTire = null;
+        frontLeftTire = null;
+        backRightTire = null;
+        backLeftTire = null;
+        CLighter = null;
+        jack = null;
+        floorMat = null;
+        tools = null;
+        wheelCap= null;
+        spareTire = null;
+        firstDot = null;
+        secondDot = null;
+        thirdDot = null;
+        fourthDot = null;
+        fifthDot = null;
+        sixthDot = null;
+        seventhDot = null;
+        operation = null;
+        additionalNotes = null;
+
 
 
     }

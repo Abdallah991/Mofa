@@ -3,6 +3,7 @@ package com.fathom.mofa.ServicesAndRepos;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -42,6 +43,7 @@ public class VehicleRepository {
     private StorageReference frontInteriorImageRef;
     private StorageReference backInteriorImageRef;
     private StorageReference trunkImageRef;
+    private CarPhotosDataModel mCarPhotos = new CarPhotosDataModel();
 
     public static VehicleRepository getInstance() {
         if (instance == null) {
@@ -103,7 +105,7 @@ public class VehicleRepository {
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
-        final CarPhotosDataModel mCarPhotos = new CarPhotosDataModel();
+
 
         for (int position = 0; position < 7; position++) {
 

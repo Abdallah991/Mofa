@@ -76,12 +76,8 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
-    private Button next;
-    private Button backButton;
     private Button interiorVehicleAR;
     private Button exteriorVehicleAR;
-    // Damage Report
-    private ViewFlipper mViewFlipper;
     private String selector;
     private SimpleDateFormat formatter;
     private Date mDate;
@@ -94,10 +90,10 @@ public class VehicleAccidentReport extends Fragment {
     private int actionToRecordConfirmation = R.id.action_vehicleAccidentReport_to_handoverConfirmation;
 
     // MultiLanguage
-    public static String SALOON;
-    public static String JEEP;
-    public static String FAMILY;
-    public static String VAN;
+    private String SALOON;
+    private String JEEP;
+    private String FAMILY;
+    private String VAN;
 
 
     public VehicleAccidentReport() {
@@ -117,7 +113,8 @@ public class VehicleAccidentReport extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mViewFlipper = view.findViewById(R.id.vehicleRecordViewFlipper);
+        // Damage Report
+        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordViewFlipper);
         switch (vehicleInRecord.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -219,8 +216,8 @@ public class VehicleAccidentReport extends Fragment {
         carIsUseable = view.findViewById(R.id.carIsUseableImage);
         carIsClean = view.findViewById(R.id.carIsClean);
         carIsCleanText = view.findViewById(R.id.carIsCleanText);
-        backButton = view.findViewById(R.id.backAccidentReport);
-        next = view.findViewById(R.id.nextAccidentReport);
+        Button backButton = view.findViewById(R.id.backAccidentReport);
+        Button next = view.findViewById(R.id.nextAccidentReport);
         exteriorVehicleAR = view.findViewById(R.id.exteriorVehicleAR);
         interiorVehicleAR = view.findViewById(R.id.interiorVehicleAR);
 
@@ -1057,6 +1054,47 @@ public class VehicleAccidentReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (getVehicleRecordInfo()) {
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleRightSide);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleLeftSide);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleFrontSide);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleBackSide);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleBackInteriorAR);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleFrontInteriorAR);
+                    Glide.with(getActivity().getApplicationContext()).clear(vehicleTrunkAR);
+                    carHasDamage = null;
+                    carIsClean = null;
+                    carIsUseable = null;
+                    carIsCleanText = null;
+                    vehicleLeftSide = null;
+                    vehicleRightSide =null;
+                    vehicleFrontSide = null;
+                    vehicleBackSide = null;
+                    vehicleBackInteriorAR = null;
+                    vehicleFrontInteriorAR =null;
+                    vehicleTrunkAR =null;
+                    interiorVehicleAR = null;
+                    exteriorVehicleAR = null;
+                    front = null;
+                    frontLeft = null;
+                    frontRight = null;
+                    windshield = null;
+                    ceilingFront = null;
+                    ceilingBack = null;
+                    frontLeftDoor = null;
+                    frontRightDoor = null;
+                    backRightDoor = null;
+                    backLeftDoor = null;
+                    backLeft = null;
+                    backRight = null;
+                    back = null;
+                    backWindShield = null;
+                    frontRightTire = null;
+                    frontLeftTire = null;
+                    backRightTire = null;
+                    backLeftTire = null;
+//                    front.setImageResource(null);
+//                    Bitmap bitmap = getBitmap();
+//                    getBitmap().recycle();
                     mNavController.navigate(actionToRecordConfirmation);
                 }
             }
@@ -1325,5 +1363,11 @@ public class VehicleAccidentReport extends Fragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
 
+
+
+    }
 }
