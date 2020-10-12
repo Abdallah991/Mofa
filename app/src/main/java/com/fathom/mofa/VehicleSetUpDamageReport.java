@@ -19,8 +19,6 @@ import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 public class VehicleSetUpDamageReport extends Fragment {
 
-    private Button next;
-    private Button back;
     private ImageView frontRight;
     private ImageView frontLeft;
     private ImageView front;
@@ -39,8 +37,6 @@ public class VehicleSetUpDamageReport extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
-    private ViewFlipper mViewFlipper;
-    private LinearLayout vehicleSetUpDamageReportLayout;
     public static DamageReportDataModel damageReport;
     private NavController navController;
     private int actionNavigateToRentalInformation = R.id.action_vehicleSetUpDamageReport_to_vehicleSetUpRentalInfo;
@@ -66,9 +62,9 @@ public class VehicleSetUpDamageReport extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        next = view.findViewById(R.id.nextVehicleDamage);
-        back = view.findViewById(R.id.backVehicleDamage);
-        mViewFlipper = view.findViewById(R.id.vehicleSetupViewFlipper);
+        Button next = view.findViewById(R.id.nextVehicleDamage);
+        Button back = view.findViewById(R.id.backVehicleDamage);
+        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleSetupViewFlipper);
         switch (vehicle.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -842,4 +838,27 @@ public class VehicleSetUpDamageReport extends Fragment {
 //        Toast.makeText(getContext(), vehicle.getPhotoLeftSide() + " ", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        frontRight = null;
+        frontLeft = null;
+        front = null;
+        frontRightDoor = null;
+        frontLeftDoor = null;
+        windShield = null;
+        frontCeiling = null;
+        backCeiling = null;
+        backRightDoor = null;
+        backLeftDoor = null;
+        backWindShield = null;
+        backRight = null;
+        backLeft = null;
+        backCar = null;
+        frontRightTire = null;
+        frontLeftTire = null;
+        backRightTire = null;
+        backLeftTire = null;
+
+    }
 }

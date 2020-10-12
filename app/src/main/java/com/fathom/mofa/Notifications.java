@@ -75,6 +75,15 @@ public class Notifications extends Fragment {
         FRAGMENT = "signUpUser";
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mNotifications = null;
+        mNotificationsRecycler = null;
+        mNotificationsAdapter = null;
+        mNotificationsViewModel = null;
+    }
+
     private void initRecycler() {
 
         Handler myHandler;

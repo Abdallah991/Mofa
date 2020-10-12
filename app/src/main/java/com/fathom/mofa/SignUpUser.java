@@ -46,7 +46,6 @@ public class SignUpUser extends Fragment {
     private EditText password;
     private EditText phoneNumber;
     private Spinner userType;
-    private Button register;
     private UserDataModel user = new UserDataModel();
     private UserViewModel model;
     private FirebaseAuth mAuth;
@@ -78,7 +77,7 @@ public class SignUpUser extends Fragment {
         password = view.findViewById(R.id.password);
         phoneNumber = view.findViewById(R.id.phoneNumber);
         userType = view.findViewById(R.id.userType);
-        register = view.findViewById(R.id.register);
+        Button register = view.findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -155,6 +154,21 @@ public class SignUpUser extends Fragment {
     public void onResume() {
         super.onResume();
         FRAGMENT = "signUpUser";
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        firstName = null;
+        lastName = null;
+        email = null;
+        password = null;
+        phoneNumber = null;
+        userType = null;
+        user = null;
+        model = null;
+
+
     }
 
     private boolean isEmailValid(String email) {

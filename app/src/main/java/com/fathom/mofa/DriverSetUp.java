@@ -71,7 +71,6 @@ public class DriverSetUp extends Fragment {
     private TextInputEditText expiryDate;
     private ImageView frontLicense;
     private ImageView backLicense;
-    private Button done;
     private String selector;
     private String driverNameText;
     private String driverIDText;
@@ -86,10 +85,7 @@ public class DriverSetUp extends Fragment {
     private DriverDataModel driver = new DriverDataModel();
     private DriverViewModel model;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseStorage storage;
     private StorageReference storageRef;
-    private StorageReference frontImageRef;
-    private StorageReference backImageRef;
     private final String TAG = "DRIVER SET UP";
     private ProgressDialog progressDialog;
 
@@ -125,14 +121,14 @@ public class DriverSetUp extends Fragment {
         expiryDate = view.findViewById(R.id.expiryDate);
         frontLicense = view.findViewById(R.id.frontLicense);
         backLicense = view.findViewById(R.id.backLicense);
-        done = view.findViewById(R.id.doneDriverSetUp);
+        Button done = view.findViewById(R.id.doneDriverSetUp);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
         progressDialog.setCanceledOnTouchOutside(false);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
         model = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
@@ -240,6 +236,16 @@ public class DriverSetUp extends Fragment {
                             uploadDriver();
                             uploadFrontDriverLicense();
                             uploadBackDriverLicense();
+                            driverName = null;
+                            driverID = null;
+                            addressLine1 = null;
+                            addressLine2 = null;
+                            nationality = null;
+                            phoneNumber = null;
+                            issueDate = null;
+                            expiryDate = null;
+                            frontLicense = null;
+                            backLicense = null;
                             mNavController.navigate(R.id.home);
                         } else {
                             Toast.makeText(getContext(), fillMissingFields, Toast.LENGTH_SHORT).show();
@@ -404,7 +410,7 @@ public class DriverSetUp extends Fragment {
     }
 
     private void uploadFrontDriverLicense(){
-        frontImageRef = storageRef.child(driverIDText+"front");
+        StorageReference frontImageRef = storageRef.child(driverIDText + "front");
         frontLicense.setDrawingCacheEnabled(true);
         frontLicense.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) frontLicense.getDrawable()).getBitmap();
@@ -432,7 +438,7 @@ public class DriverSetUp extends Fragment {
     }
 
     private void uploadBackDriverLicense(){
-        backImageRef = storageRef.child(driverIDText+"back");
+        StorageReference backImageRef = storageRef.child(driverIDText + "back");
         backLicense.setDrawingCacheEnabled(true);
         backLicense.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) backLicense.getDrawable()).getBitmap();

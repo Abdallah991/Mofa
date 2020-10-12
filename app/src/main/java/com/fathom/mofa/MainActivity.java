@@ -41,16 +41,12 @@ import static com.fathom.mofa.LoginActivity.USER;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavController navController;
     private NavigationView navigationView;
-    private Button logOut;
     private Button changeLanguage;
     private static ImageView signUp;
     private static ImageView notification;
-    private LinearLayout dashboardMenuItem;
-    private LinearLayout vehicleRecordMenuItem;
     private LinearLayout driverSetupMenuItem;
     private LinearLayout vehicleSetupMenuItem;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -105,17 +101,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.app_bar);
+        Toolbar toolbar = findViewById(R.id.app_bar);
 //        View view = findViewById(R.id.app_bar);
         signUp = toolbar.findViewById(R.id.signUpUserIcon);
         notification = toolbar.findViewById(R.id.notificationIcon);
         drawerLayout = findViewById(R.id.drawerLayout);
-        logOut = findViewById(R.id.logOut);
+        Button logOut = findViewById(R.id.logOut);
         changeLanguage = findViewById(R.id.changeLanguage);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.nav_view);
-        vehicleRecordMenuItem = findViewById(R.id.vehicleRecordMenu);
-        dashboardMenuItem = findViewById(R.id.dashboardMenu);
+        LinearLayout vehicleRecordMenuItem = findViewById(R.id.vehicleRecordMenu);
+        LinearLayout dashboardMenuItem = findViewById(R.id.dashboardMenu);
         driverSetupMenuItem = findViewById(R.id.driverSetUpMenu);
         vehicleSetupMenuItem = findViewById(R.id.vehicleSetUpMenu);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);

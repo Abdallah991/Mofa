@@ -61,8 +61,6 @@ public class VehicleRegistration extends Fragment {
     private ImageView vehicleFrontInterior;
     private ImageView vehicleBackInterior;
     private ImageView vehicleTrunk;
-    private Button next;
-    private Button back;
     private Button interior;
     private Button exterior;
     private String selector;
@@ -97,8 +95,8 @@ public class VehicleRegistration extends Fragment {
         vehicleFrontInterior = view.findViewById(R.id.vehicleFrontInterior);
         vehicleBackInterior = view.findViewById(R.id.vehicleBackInterior);
         vehicleTrunk = view.findViewById(R.id.vehicleTrunk);
-        next = view.findViewById(R.id.nextVehicleRegistration);
-        back = view.findViewById(R.id.backVehicleRegistration);
+        Button next = view.findViewById(R.id.nextVehicleRegistration);
+        Button back = view.findViewById(R.id.backVehicleRegistration);
         interior = view.findViewById(R.id.interiorVehicleRegistration);
         exterior = view.findViewById(R.id.exteriorVehicleRegistration);
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -527,6 +525,19 @@ public class VehicleRegistration extends Fragment {
         Glide.with(getContext()).clear(vehicleFrontInterior);
         Glide.with(getContext()).clear(vehicleBackInterior);
         Glide.with(getContext()).clear(vehicleTrunk);
+        vehicleRightSide = null;
+        vehicleLeftSide = null;
+        vehicleFrontSide = null;
+        vehicleBackSide = null;
+        vehicleFrontInterior = null;
+        vehicleBackInterior = null;
+        vehicleTrunk = null;
+        registrationType = null;
+        engineSize = null;
+        registrationStart = null;
+        registrationEnd = null;
+        interior = null;
+        exterior = null;
     }
 
     private boolean getCarInfo() {

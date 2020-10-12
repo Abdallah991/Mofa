@@ -56,21 +56,13 @@ public class VehicleSetUpSignature extends Fragment {
     private NavController mNavController;
     private Button rentalSignature;
     private Button mofaSignature;
-    private Button saveSignature;
-    private Button cancelSignature;
-    private Button clearSignature;
-    private LinearLayout signatureLayout;
     private int signatureSelector;
-    private Button done;
     private VehicleViewModel model;
     private NotificationViewModel mNotificationViewModel;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseStorage storage;
     private StorageReference storageRef;
     private StorageReference frontImageRef;
     private StorageReference backImageRef;
-    private StorageReference leftImageRef;
-    private StorageReference rightImageRef;
     private final String TAG = "VEHICLE SET UP";
     private ProgressDialog progressDialog;
     private VehicleRepository mVehicleRepository;
@@ -94,22 +86,22 @@ public class VehicleSetUpSignature extends Fragment {
 
         rentalSignature = view.findViewById(R.id.rentalSignature);
         mofaSignature = view.findViewById(R.id.mofaSignature);
-        done = view.findViewById(R.id.doneVehicleSetUp);
+        Button done = view.findViewById(R.id.doneVehicleSetUp);
         // Dialog components
         final Dialog dialog = new Dialog(getContext());
         final CaptureSignatureView mSig = new CaptureSignatureView(getContext(), null);
         dialog.setContentView(R.layout.signature);
         dialog.setTitle("Signature");
-        saveSignature = dialog.findViewById(R.id.save);
-        cancelSignature = dialog.findViewById(R.id.cancel);
-        clearSignature = dialog.findViewById(R.id.clear);
-        signatureLayout = dialog.findViewById(R.id.signature2);
+        Button saveSignature = dialog.findViewById(R.id.save);
+        Button cancelSignature = dialog.findViewById(R.id.cancel);
+        Button clearSignature = dialog.findViewById(R.id.clear);
+        LinearLayout signatureLayout = dialog.findViewById(R.id.signature2);
 
         // setting up Progress Dialog and Storage
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
         progressDialog.setCanceledOnTouchOutside(false);
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -259,7 +251,7 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void uploadVehicleRightSide() {
 //        mVehicleRepository.uploadVehicleRightSide(vehicle.getPhotoRightSide(), carPhotos.getPhotoRightSide());
-        rightImageRef = storageRef.child(vehicle.getPhotoRightSide());
+        StorageReference rightImageRef = storageRef.child(vehicle.getPhotoRightSide());
 //        frontLicense.setDrawingCacheEnabled(true);
 //        frontLicense.buildDrawingCache();
         Bitmap bitmap = carPhotos.getPhotoRightSide();
@@ -281,13 +273,15 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User right image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setPhotoRightSide(null);
+
             }
         });
 
     }
 
     private void uploadVehicleLeftSide() {
-        leftImageRef = storageRef.child(vehicle.getPhotoLeftSide());
+        StorageReference leftImageRef = storageRef.child(vehicle.getPhotoLeftSide());
 //        frontLicense.setDrawingCacheEnabled(true);
 //        frontLicense.buildDrawingCache();
         Bitmap bitmap = carPhotos.getPhotoLeftSide();
@@ -309,6 +303,8 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User left image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setPhotoLeftSide(null);
+
             }
         });
 
@@ -337,6 +333,8 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User front image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setPhotoFrontSide(null);
+
             }
         });
 
@@ -365,6 +363,7 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setPhotoBackSide(null);
             }
         });
 
@@ -393,6 +392,7 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setVehicleFrontInterior(null);
             }
         });
 
@@ -420,6 +420,7 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
 //                progressDialog.dismiss();
+                carPhotos.setVehicleBackInterior(null);
             }
         });
 
@@ -448,6 +449,7 @@ public class VehicleSetUpSignature extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
                 progressDialog.dismiss();
+                carPhotos.setVehicleTrunk(null);
             }
         });
 
@@ -467,6 +469,20 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void addNotificationToDataModel(NotificationDataModel notification) {
         mNotificationViewModel.addNotification(notification);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        rentalSignature = null;
+        mofaSignature = null;
+        model = null;
+        mNotificationViewModel = null;
+        storageRef = null;
+        frontImageRef = null;
+        backImageRef = null;
+        mVehicleRepository = null;
 
     }
 

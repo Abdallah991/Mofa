@@ -66,20 +66,14 @@ public class Dashboard extends Fragment {
     private NavController mNavController;
     private VehicleRecordViewModel mVehicleRecordViewModel;
     private SearchView searchVehicleRecords;
-    private ImageView searchButton;
-    private ImageView filterButton;
     private TextView numberOfRecords;
     private int pages;
     private ProgressDialog progressDialog;
-    private int actionToVehicleRecordDetail = R.id.action_dashboard_to_vehicleRecordDetails;
     // Sorting Spinner
     private String[] sortingBys;
     private ArrayAdapter<String> sortAdapter;
     private Spinner sortSpinner;
     private VehicleRecordSorter sorter;
-    // filter dialog
-    private ImageView cancelButton;
-    private Button confirmFilter;
     private Spinner typeSpinner;
 //    private Spinner providerSpinner;
     private Spinner statusSpinner;
@@ -87,16 +81,11 @@ public class Dashboard extends Fragment {
     private TextInputEditText dateTo;
     private Date dateFromValue;
     private Date dateToValue;
-    private String vehicleType;
-    private String status;
     private String provider;
     // spinner Arrays
     private String[] types;
     private ArrayList<String> providers;
     private String[] statuses;
-    private ArrayAdapter<String> typeAdapter;
-//    private ArrayAdapter<String> providerAdapter;
-    private ArrayAdapter<String> statusAdapter;
 
 
     public Dashboard() {
@@ -117,16 +106,17 @@ public class Dashboard extends Fragment {
 
         mVehiclesRecycler = view.findViewById(R.id.vehicleRecordsInDashboard);
         searchVehicleRecords = view.findViewById(R.id.searchVehicleRecord);
-        searchButton = view.findViewById(R.id.searchButton);
-        filterButton = view.findViewById(R.id.filterButton);
+        ImageView searchButton = view.findViewById(R.id.searchButton);
+        ImageView filterButton = view.findViewById(R.id.filterButton);
         numberOfRecords = view.findViewById(R.id.numberOfRecords);
         sortSpinner = view.findViewById(R.id.sortName);
 
         // Filter dialog
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.filter_search);
-        cancelButton = dialog.findViewById(R.id.cancelFilter);
-        confirmFilter = dialog.findViewById(R.id.confirmFilter);
+        // filter dialog
+        ImageView cancelButton = dialog.findViewById(R.id.cancelFilter);
+        Button confirmFilter = dialog.findViewById(R.id.confirmFilter);
         typeSpinner = dialog.findViewById(R.id.typeSpinner);
 //        providerSpinner = dialog.findViewById(R.id.providerSpinner);
         statusSpinner = dialog.findViewById(R.id.statusSpinner);
@@ -290,6 +280,7 @@ public class Dashboard extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
         mVehicleRecords = (ArrayList<VehicleRecordDataModel>) mVehicleRecordViewModel.getVehicleRecords().getValue();
+        int actionToVehicleRecordDetail = R.id.action_dashboard_to_vehicleRecordDetails;
         mVehicleRecordAdapter = new VehicleRecordsAdapter(mVehicleRecords, getContext(), mNavController, actionToVehicleRecordDetail, mVehicleRecordViewModel);
         progressDialog.show();
         myHandler.postDelayed(new Runnable() {
@@ -480,9 +471,10 @@ public class Dashboard extends Fragment {
 //
 //        providerAdapter = new ArrayAdapter<String>(getContext(),
 //                android.R.layout.simple_list_item_1, providers);
-        typeAdapter = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, types);
-        statusAdapter = new ArrayAdapter<String>(getContext(),
+        //    private ArrayAdapter<String> providerAdapter;
+        ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, statuses);
 //        providerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -495,8 +487,8 @@ public class Dashboard extends Fragment {
 
     private void filteredSearch() {
 
-        status = statusSpinner.getSelectedItem().toString();
-        vehicleType = typeSpinner.getSelectedItem().toString();
+        String status = statusSpinner.getSelectedItem().toString();
+        String vehicleType = typeSpinner.getSelectedItem().toString();
         // Toast message
 //        Toast.makeText(getContext(), status+vehicleType, Toast.LENGTH_SHORT).show();
         filteredVehicleRecords = new ArrayList<>();
@@ -519,5 +511,26 @@ public class Dashboard extends Fragment {
     }
 
 
+    @Override
+    public void onStop() {
+        super.onStop();
 
+        mVehicleRecords = null;
+        filteredVehicleRecords = null;
+        mVehiclesRecycler = null;
+        mVehicleRecordAdapter = null;
+        mVehicleRecordViewModel = null;
+        searchVehicleRecords = null;
+        numberOfRecords = null;
+        sortingBys = null;
+        sortAdapter = null;
+        sortSpinner = null;
+        typeSpinner = null;
+        statusSpinner = null;
+        dateFrom = null;
+        dateTo = null;
+        providers = null;
+
+
+    }
 }

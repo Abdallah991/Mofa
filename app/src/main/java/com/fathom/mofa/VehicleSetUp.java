@@ -36,7 +36,6 @@ public class VehicleSetUp extends Fragment {
     private TextInputEditText plateNumberEditText;
     private TextInputEditText chassisNumber;
     private TextInputEditText modelEditText;
-    private Button next;
     private int actionNavigateToVehicleSetUpRegistration = R.id.action_vehicleSetUp_to_vehicleRegistration;
 
 
@@ -108,7 +107,7 @@ public class VehicleSetUp extends Fragment {
         plateNumberEditText = view.findViewById(R.id.plateNumber);
         chassisNumber = view.findViewById(R.id.chassisNumber);
         modelEditText = view.findViewById(R.id.model);
-        next = view.findViewById(R.id.nextVehicleInformation);
+        Button next = view.findViewById(R.id.nextVehicleInformation);
 
         manufactureTextView.setAdapter(manufactureAdapter);
         colorTextView.setAdapter(colorAdapter);
@@ -190,7 +189,15 @@ public class VehicleSetUp extends Fragment {
 
     }
 
-
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        manufactureTextView = null;
+        colorTextView = null;
+        typeTextView = null;
+        makeTextView = null;
+        plateNumberEditText = null;
+        chassisNumber = null;
+        modelEditText = null;
+    }
 }

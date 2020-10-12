@@ -42,14 +42,8 @@ public class VehicleRecordDetails extends Fragment {
     private String TAG = "VEHICLE RECORD DETAIL";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private NavController mNavController;
-    private TextView vehiclePlateNumber;
-    private TextView vin;
-    private TextView engineSize;
-    private TextView model;
     private TextView manufacturer;
-    private TextView make;
     private TextView color;
-    private TextView company;
     private TextView registrationType;
     private TextView registrationStart;
     private TextView registrationEnd;
@@ -71,18 +65,10 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
-    // view flipper
-    private ViewFlipper mViewFlipper;
     private TextView provider;
     private TextView providerPhoneNumber;
     private TextView leaseFrom;
     private TextView leaseTo;
-    private TextView assignedDriver;
-    private TextView driverRecord;
-    private TextView status;
-    private TextView notes;
-    private TextView clean;
-    private Button backButton;
     private ImageView vehicleRecordImages;
     private ImageView firstDot;
     private ImageView secondDot;
@@ -121,15 +107,15 @@ public class VehicleRecordDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        vehiclePlateNumber = view.findViewById(R.id.plateNumberRecordValue);
-        vin = view.findViewById(R.id.chassisNumberRecordValue);
-        engineSize = view.findViewById(R.id.motorSizeRecordValue);
-        model = view.findViewById(R.id.modelRecordValue);
+        TextView vehiclePlateNumber = view.findViewById(R.id.plateNumberRecordValue);
+        TextView vin = view.findViewById(R.id.chassisNumberRecordValue);
+        TextView engineSize = view.findViewById(R.id.motorSizeRecordValue);
+        TextView model = view.findViewById(R.id.modelRecordValue);
         manufacturer = view.findViewById(R.id.manufacturerRecordValue);
-        make = view.findViewById(R.id.makeRecordValue);
-        clean = view.findViewById(R.id.cleanRecordValue);
+        TextView make = view.findViewById(R.id.makeRecordValue);
+        TextView clean = view.findViewById(R.id.cleanRecordValue);
         color = view.findViewById(R.id.colorRecordValue);
-        company = view.findViewById(R.id.companyRecordValue);
+        TextView company = view.findViewById(R.id.companyRecordValue);
         registrationType = view.findViewById(R.id.registrationTypeRecordValue);
         registrationStart = view.findViewById(R.id.registrationStartRecordValue);
         registrationEnd = view.findViewById(R.id.registrationEndRecordValue);
@@ -137,11 +123,11 @@ public class VehicleRecordDetails extends Fragment {
         providerPhoneNumber = view.findViewById(R.id.providerPhoneNumberValue);
         leaseFrom = view.findViewById(R.id.leaseFromRecordValue);
         leaseTo = view.findViewById(R.id.leaseToRecordValue);
-        assignedDriver = view.findViewById(R.id.driverRecordValue);
-        driverRecord = view.findViewById(R.id.driverRecord);
-        status = view.findViewById(R.id.statusRecordValue);
-        notes = view.findViewById(R.id.notesRecordValue);
-        backButton = view.findViewById(R.id.backConfirmationRecord);
+        TextView assignedDriver = view.findViewById(R.id.driverRecordValue);
+        TextView driverRecord = view.findViewById(R.id.driverRecord);
+        TextView status = view.findViewById(R.id.statusRecordValue);
+        TextView notes = view.findViewById(R.id.notesRecordValue);
+        Button backButton = view.findViewById(R.id.backConfirmationRecord);
         vehicleRecordImages = view.findViewById(R.id.vehicleImagesRecord);
         firstDot = view.findViewById(R.id.firstImageRecord);
         secondDot = view.findViewById(R.id.secondImageRecord);
@@ -151,7 +137,8 @@ public class VehicleRecordDetails extends Fragment {
         sixthImageRecord = view.findViewById(R.id.sixthImageRecord);
         seventhImageRecord = view.findViewById(R.id.seventhImageRecord);
         // Vehicle Damage report
-        mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
+        // view flipper
+        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
         switch (vehicleRecordDashboard.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -310,6 +297,41 @@ public class VehicleRecordDetails extends Fragment {
     public void onStop() {
         super.onStop();
         Glide.with(getContext()).clear(vehicleRecordImages);
+        vehicleRecordImages = null;
+        manufacturer = null;
+        color = null;
+        registrationType = null;
+        registrationStart = null;
+        registrationEnd = null;
+        front = null;
+        frontRight = null;
+        frontLeft = null;
+        frontWindShield = null;
+        frontRightDoor = null;
+        frontLeftDoor = null;
+        frontCeiling = null;
+        backCeiling = null;
+        backRightDoor = null;
+        backLeftDoor = null;
+        backWindShield = null;
+        backLeft = null;
+        backRight = null;
+        back = null;
+        frontRightTire = null;
+        frontLeftTire = null;
+        backRightTire = null;
+        backLeftTire = null;
+        provider = null;
+        providerPhoneNumber = null;
+        leaseFrom = null;
+        leaseTo = null;
+        firstDot = null;
+        secondDot = null;
+        thirdDot = null;
+        fourthDot = null;
+        fifthImageRecord = null;
+        sixthImageRecord = null;
+        seventhImageRecord = null;
     }
 
     private void getDamageReport() {

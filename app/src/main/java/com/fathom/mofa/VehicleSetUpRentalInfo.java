@@ -40,10 +40,6 @@ public class VehicleSetUpRentalInfo extends Fragment {
     private TextInputEditText providerPhoneNumber;
     private AutoCompleteTextView leaseStart;
     private AutoCompleteTextView leaseEnd;
-    private TextInputLayout leaseStartTextInput;
-    private TextInputLayout leaseEndTextInput;
-    private Button next;
-    private Button back;
     private Date start;
     private Date end;
     public static RentalInfoDataModel rentalInfo = new RentalInfoDataModel();
@@ -68,12 +64,10 @@ public class VehicleSetUpRentalInfo extends Fragment {
 
         provider = view.findViewById(R.id.provider);
         providerPhoneNumber = view.findViewById(R.id.providerPhoneNumber);
-        leaseStartTextInput = view.findViewById(R.id.leaseStartTextInput);
-        leaseEndTextInput = view.findViewById(R.id.leaseEndTextInput);
         leaseStart = view.findViewById(R.id.leaseStart);
         leaseEnd = view.findViewById(R.id.leaseEnd);
-        next = view.findViewById(R.id.nextVehicleRental);
-        back = view.findViewById(R.id.backVehicleRental);
+        Button next = view.findViewById(R.id.nextVehicleRental);
+        Button back = view.findViewById(R.id.backVehicleRental);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
@@ -159,6 +153,14 @@ public class VehicleSetUpRentalInfo extends Fragment {
         FRAGMENT = "vehicleSetUpRentalInfo";
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        provider = null;
+        providerPhoneNumber = null;
+        leaseStart = null;
+        leaseEnd = null;
+    }
 
     private boolean getCarInfo() {
 
