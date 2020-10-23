@@ -289,6 +289,26 @@ public class VehicleRegistration extends Fragment {
                 if(getCarInfo()) {
 
                     mNavController.navigate(actionNavigateToDamageFromRegistration);
+                    Glide.with(getContext()).clear(vehicleRightSide);
+                    Glide.with(getContext()).clear(vehicleLeftSide);
+                    Glide.with(getContext()).clear(vehicleFrontSide);
+                    Glide.with(getContext()).clear(vehicleBackSide);
+                    Glide.with(getContext()).clear(vehicleFrontInterior);
+                    Glide.with(getContext()).clear(vehicleBackInterior);
+                    Glide.with(getContext()).clear(vehicleTrunk);
+                    vehicleRightSide = null;
+                    vehicleLeftSide = null;
+                    vehicleFrontSide = null;
+                    vehicleBackSide = null;
+                    vehicleFrontInterior = null;
+                    vehicleBackInterior = null;
+                    vehicleTrunk = null;
+                    registrationType = null;
+                    engineSize = null;
+                    registrationStart = null;
+                    registrationEnd = null;
+                    interior = null;
+                    exterior = null;
                 }
 
             }
@@ -430,9 +450,9 @@ public class VehicleRegistration extends Fragment {
                             if (cursor != null) {
                                 cursor.moveToFirst();
 
-                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                                String picturePath = cursor.getString(columnIndex);
-                                Log.d("GET IMAGE", "the picture path is: "+ picturePath);
+//                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                                String picturePath = cursor.getString(columnIndex);
+//                                Log.d("GET IMAGE", "the picture path is: "+ picturePath);
                                 Bitmap bitmap = null;
                                 try {
                                   bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
@@ -518,26 +538,7 @@ public class VehicleRegistration extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        Glide.with(getContext()).clear(vehicleRightSide);
-        Glide.with(getContext()).clear(vehicleLeftSide);
-        Glide.with(getContext()).clear(vehicleFrontSide);
-        Glide.with(getContext()).clear(vehicleBackSide);
-        Glide.with(getContext()).clear(vehicleFrontInterior);
-        Glide.with(getContext()).clear(vehicleBackInterior);
-        Glide.with(getContext()).clear(vehicleTrunk);
-        vehicleRightSide = null;
-        vehicleLeftSide = null;
-        vehicleFrontSide = null;
-        vehicleBackSide = null;
-        vehicleFrontInterior = null;
-        vehicleBackInterior = null;
-        vehicleTrunk = null;
-        registrationType = null;
-        engineSize = null;
-        registrationStart = null;
-        registrationEnd = null;
-        interior = null;
-        exterior = null;
+
     }
 
     private boolean getCarInfo() {

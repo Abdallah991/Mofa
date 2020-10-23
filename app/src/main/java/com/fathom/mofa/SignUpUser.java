@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,7 +23,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
-import static com.fathom.mofa.MainActivity.showIcon;
 import com.fathom.mofa.DataModels.UserDataModel;
 import com.fathom.mofa.ViewModels.UserViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,6 +65,7 @@ public class SignUpUser extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up_user, container, false);
+
     }
 
     @Override
@@ -137,7 +138,7 @@ public class SignUpUser extends Fragment {
                     progressDialog.show();
                     SignUp();
                     uploadUser();
-                    showIcon();
+
                 } else {
                     Toast.makeText(getContext(), "Email And/or password are invalid",
                             Toast.LENGTH_SHORT).show();
@@ -238,7 +239,8 @@ public class SignUpUser extends Fragment {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
-                                                navController.navigate(R.id.action_signUpUser_to_home);
+//                                                navController.navigate(R.id.action_signUpUser_to_home);
+                                                getActivity().onBackPressed();
                                                 progressDialog.dismiss();
 
 
@@ -267,6 +269,8 @@ public class SignUpUser extends Fragment {
         addUserToViewModel();
 
     }
+
+
 
     private void addUserToViewModel() {
         model.addUser(user);

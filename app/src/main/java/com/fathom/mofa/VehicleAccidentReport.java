@@ -1237,9 +1237,9 @@ public class VehicleAccidentReport extends Fragment {
                                     e.printStackTrace();
                                 }
 
-                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                                String picturePath = cursor.getString(columnIndex);
-                                Log.d("GET IMAGE", "the picture path is: " + picturePath);
+//                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                                String picturePath = cursor.getString(columnIndex);
+//                                Log.d("GET IMAGE", "the picture path is: " + picturePath);
 
                                 switch (selector) {
                                     case "vehicleRightSide":

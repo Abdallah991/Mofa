@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavController navController;
     private NavigationView navigationView;
     private Button changeLanguage;
-    private static ImageView signUp;
-    private static ImageView notification;
+    private ImageView signUp;
+    private ImageView notification;
+    public static boolean RegisterClicked = false;
     private LinearLayout driverSetupMenuItem;
     private LinearLayout vehicleSetupMenuItem;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -515,10 +516,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public static void showIcon() {
-        signUp.setVisibility(View.VISIBLE);
-        notification.setVisibility(View.VISIBLE);
-    }
+//    public static void showIcon() {
+//        signUp.setVisibility(View.VISIBLE);
+//        notification.setVisibility(View.VISIBLE);
+//    }
 
     private void getUserInfo() {
 
