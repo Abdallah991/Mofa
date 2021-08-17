@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import com.fathom.mofa.ViewModels.UserViewModel;
 import com.fathom.mofa.ViewModels.VehicleViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -87,9 +89,10 @@ public class VehicleRecord extends Fragment {
     private UserViewModel mUserViewModel;
     private ArrayList<String> userNames = new ArrayList<>();
     private ArrayAdapter<String> userAdapter;
-
+    private EditText destination;
     // Vehicle Images
     private int index = 0;
+    boolean visible;
 
     // Vehicle Transaction
     private boolean handoverStatus =false;
@@ -98,7 +101,7 @@ public class VehicleRecord extends Fragment {
 
     // getting Rental Info
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    String vehicleDestination;
     public VehicleRecord() {
         // Required empty public constructor
     }
@@ -127,6 +130,7 @@ public class VehicleRecord extends Fragment {
         sixthDot= view.findViewById(R.id.sixthImageHandover);
         seventhDot = view.findViewById(R.id.seventhImageHandover);
         Button next = view.findViewById(R.id.nextVehicleRecord);
+        destination = view.findViewById(R.id.destination);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
@@ -134,6 +138,7 @@ public class VehicleRecord extends Fragment {
                 android.R.layout.simple_list_item_1, vehicleNames);
         driverAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, driverNames);
+
         userAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, driverNames);
 
@@ -144,6 +149,7 @@ public class VehicleRecord extends Fragment {
         mVehicleViewModel.getVehicles().observe(getViewLifecycleOwner(), new Observer<List<VehicleDataModel>>() {
             @Override
             public void onChanged(List<VehicleDataModel> vehicleDataModels) {
+
                 Log.d(TAG, vehicleDataModels.size()+" ");
                 vehicleAdapter.notifyDataSetChanged();
             }
@@ -151,23 +157,33 @@ public class VehicleRecord extends Fragment {
 
         mDriverViewModel = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
         mDriverViewModel.initDrivers();
+
+
+
         mDriverViewModel.getDrivers().observe(getViewLifecycleOwner(), new Observer<List<DriverDataModel>>() {
+
             @Override
             public void onChanged(List<DriverDataModel> driverDataModels) {
+
+                //destination.setVisibility(View.VISIBLE);
+
                 Log.d(TAG2, driverDataModels.size()+" ");
                 driverAdapter.notifyDataSetChanged();
             }
         });
-
         mUserViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         mUserViewModel.initUsers();
+
         mUserViewModel.getUsers().observe(getViewLifecycleOwner(), new Observer<List<UserDataModel>>() {
+
             @Override
             public void onChanged(List<UserDataModel> userDataModels) {
+
                 Log.d(TAG3, userDataModels.size()+" ");
                 userAdapter.notifyDataSetChanged();
             }
         });
+
 
 
 
@@ -323,6 +339,7 @@ public class VehicleRecord extends Fragment {
 
         setVehicleInfo();
 
+
 //        switch (vehicleDashboard.getStatus()) {
 //            case "Busy":
 //                retrieval.setImageResource(R.drawable.checked_check_box);
@@ -348,6 +365,7 @@ public class VehicleRecord extends Fragment {
     private void initVehicles() {
 
         vehicleName.setText(vehicleDashboard.getCarName());
+
         setVehicleImages();
 
 
@@ -358,6 +376,7 @@ public class VehicleRecord extends Fragment {
         Handler myHandler;
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
+
 
 
 
@@ -372,11 +391,14 @@ public class VehicleRecord extends Fragment {
                             mDrivers = (ArrayList<DriverDataModel>) mDriverViewModel.getDrivers().getValue();
                             String spinnerManagerBy = getResources().getString(R.string.driver);
                             driverNames.add(spinnerManagerBy);
+                            destination.setVisibility(View.VISIBLE);
+
 
                             for (DriverDataModel driver : mDrivers) {
                                 driverNames.add(driver.getDriverName());
                             }
                         }else {
+                            destination.setVisibility(View.INVISIBLE);
                             String spinnerRentalCompany = getResources().getString(R.string.renalCompany);
                             driverNames.add(spinnerRentalCompany);
                             getRentalInfo();
@@ -421,6 +443,8 @@ public class VehicleRecord extends Fragment {
                                 vehicleRecord.setDriverName(selectedItemText);
 
                             }
+                            vehicleDestination = destination.getText().toString();
+                            vehicleRecord.setDestination(vehicleDestination);
                         }
 
                         @Override
@@ -432,6 +456,7 @@ public class VehicleRecord extends Fragment {
             }, SPLASH_TIME_OUT);
 
     }
+
 
     private void initUsers() {
 
@@ -449,6 +474,7 @@ public class VehicleRecord extends Fragment {
             public void run() {
 
                 if (mUsers.isEmpty()) {
+
                     mUsers = (ArrayList<UserDataModel>) mUserViewModel.getUsers().getValue();
                     userNames.add("Managed By");
                     for (UserDataModel user : mUsers) {
@@ -464,6 +490,7 @@ public class VehicleRecord extends Fragment {
             }
         } ,SPLASH_TIME_OUT);
 
+
     }
 
 
@@ -473,6 +500,7 @@ public class VehicleRecord extends Fragment {
                 .centerCrop()
                 .into(carImages);//
 //        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
+
     }
 
     private boolean getVehicleRecordInfo() {
@@ -522,6 +550,9 @@ public class VehicleRecord extends Fragment {
         vehicleRecord.setCarType(vehicleDashboard.getCarType());
         vehicleRecord.setChassisNumber(vehicleDashboard.getChassisNumber());
         vehicleRecord.setMotorSize(vehicleDashboard.getMotorSize());
+        vehicleRecord.setDestination(vehicleDestination);
+
+
 
 
     }
@@ -578,6 +609,7 @@ public class VehicleRecord extends Fragment {
         mUserViewModel = null;
         userNames = null;
         userAdapter = null;
+        destination = null;
 
     }
 }

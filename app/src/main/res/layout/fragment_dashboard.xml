@@ -74,68 +74,84 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="16"
+        android:weightSum="20"
         app:layout_constraintBottom_toTopOf="@+id/guideline103"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline2">
+
         <TextView
             android:id="@+id/driverNameDashboard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="4"
             android:gravity="center"
             android:text="@string/driver_name"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
+
         <TextView
             android:id="@+id/vehicleModelDashboard"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="2"
             android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             android:text="@string/car"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
+
         <TextView
             android:id="@+id/vehicleMakeDashboard"
-            android:layout_width="0dp"
+            android:layout_width="41dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
             android:gravity="center"
             android:text="@string/make"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
+
         <TextView
             android:id="@+id/rentalInfoDashboard"
-            android:layout_width="0dp"
+            android:layout_width="46dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2.5"
             android:gravity="center"
             android:text="@string/provider"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
+
         <TextView
             android:id="@+id/vehicleRecordDate"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2.5"
             android:gravity="center"
             android:text="@string/date"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
+        <TextView
+            android:id="@+id/vehicleRecordUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2.5"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_regular" />
 
-            <TextView
+        <TextView
                 android:id="@+id/vehicleStatusDashboard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/vehicle_set_up"
+            android:text="@string/vehicle"
             app:fontFamily ="@font/roboto_light"
             android:textColor="@color/black"
             android:textStyle="bold"

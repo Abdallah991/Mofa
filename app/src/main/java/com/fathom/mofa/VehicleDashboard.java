@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -68,10 +67,10 @@ public class VehicleDashboard extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mVehiclesRecycler = view.findViewById(R.id.vehiclesInDashboard);
-        searchVehicles = view.findViewById(R.id.searchVehicle);
-        searchButton = view.findViewById(R.id.searchVehicles);
-        numberOfVehicles = view.findViewById(R.id.numberOfRecordsVehicles);
+        mVehiclesRecycler = view.findViewById(R.id.driverList);
+        searchVehicles = view.findViewById(R.id.searchDriverRecord);
+        searchButton = view.findViewById(R.id.searchDriver);
+        numberOfVehicles = view.findViewById(R.id.numberOfRecordsDrivers);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
@@ -139,7 +138,9 @@ public class VehicleDashboard extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
         mVehicles = (ArrayList<VehicleDataModel>) mVehicleViewModel.getVehicles().getValue();
+
         mVehiclesAdapter = new VehiclesAdapter(mVehicles, getContext(), mNavController, actionToVehicleDetail, mVehicleViewModel);
+        Log.d("help", String.valueOf(mVehicles));
         progressDialog.show();
         myHandler.postDelayed(new Runnable() {
             @Override

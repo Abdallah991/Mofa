@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VehicleDashboard">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DriverRecord">
+
+
+    <Button
+        android:id="@+id/buttonDriverSetUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shadow"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/driver_set_up"
+        android:textAllCaps="false"
+        android:textColor="@color/colorBackground"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline99"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <TextView
         android:id="@+id/vehicleDashboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vehicle_record"
+        android:text="@string/driver_record"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="50sp"
@@ -26,102 +45,89 @@
         android:elevation="10dp"
         android:iconifiedByDefault="false"
         android:queryBackground="@android:color/transparent"
-        android:queryHint="@string/search_vehicles"
+        android:queryHint="@string/search_driver"
         app:fontFamily="@font/roboto_light"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline97"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <ImageView
         android:id="@+id/searchDriver"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="fitXY"
         android:background="@drawable/search_button"
         android:elevation="0dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline104"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDriverSetUp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline98"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
-
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="16"
+        android:weightSum="10"
         app:layout_constraintBottom_toTopOf="@+id/guideline103"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline2">
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="1.0">
+
         <TextView
             android:id="@+id/plateNumberDashboard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="3"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             android:gravity="center"
-            android:text="@string/plate_number"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto_regular" />
-        <TextView
-            android:id="@+id/idDriver"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
-            android:gravity="center"
-            android:text="@string/car"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto_regular" />
-        <TextView
-            android:id="@+id/driverPhone"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
-            android:gravity="center"
-            android:text="@string/make"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto_regular" />
-        <TextView
-            android:id="@+id/rentalInfoVehicles"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
-            android:gravity="center"
-            android:text="@string/provider"
-            android:textSize="16sp"
-            app:fontFamily="@font/roboto_regular" />
-        <TextView
-            android:id="@+id/colorVehicles"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
-            android:gravity="center"
-            android:text="@string/color"
+            android:text="@string/driver_name"
             android:textSize="16sp"
             app:fontFamily="@font/roboto_regular" />
 
         <TextView
-            android:id="@+id/vehicleStatusVehicles"
+            android:id="@+id/idDriver"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
             android:gravity="center"
-            android:layout_weight="3"
-            android:text="@string/status"
+            android:text="@string/driver_id"
             android:textSize="16sp"
-            app:fontFamily="@font/roboto_regular"/>
+            app:fontFamily="@font/roboto_regular" />
+
+        <TextView
+            android:id="@+id/driverPhone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/phone_number"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_regular" />
+
+        <TextView
+            android:id="@+id/rentalInfoVehicles"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="@string/nationality"
+            android:textSize="16sp"
+            app:fontFamily="@font/roboto_regular" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -148,7 +154,7 @@
         android:id="@+id/numberOfRecordsDrivers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vehicle"
+        android:text="@string/driver"
         android:textAllCaps="false"
         android:textColor="@color/appGrey"
         android:textSize="16sp"
@@ -259,7 +265,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.53" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -274,5 +280,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="-0.016601562" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

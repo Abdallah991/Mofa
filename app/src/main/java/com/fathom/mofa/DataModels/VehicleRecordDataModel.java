@@ -56,6 +56,7 @@ public class VehicleRecordDataModel {
     // the name of vehicle record will be a combination of plate number and date which will be
     // identical to damage report name
     private String name;
+    private String destination;
 
 
     public boolean isVehicleClean() {
@@ -78,6 +79,7 @@ public class VehicleRecordDataModel {
         return driverName;
     }
 
+
     public void setDriverName(String driverName) {
         this.driverName = driverName;
     }
@@ -96,6 +98,14 @@ public class VehicleRecordDataModel {
 
     public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getChassisNumber() {
@@ -380,6 +390,13 @@ public class VehicleRecordDataModel {
         @Override
         public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
             return (int) (jc1.getMake().compareTo(jc2.getMake()));
+        }
+    };
+    // per date feild
+    public static Comparator<VehicleRecordDataModel> dateComparator = new Comparator<VehicleRecordDataModel>() {
+        @Override
+        public int compare(VehicleRecordDataModel jc1, VehicleRecordDataModel jc2) {
+            return (int) (jc2.getDate().compareTo(jc1.getDate()));
         }
     };
 

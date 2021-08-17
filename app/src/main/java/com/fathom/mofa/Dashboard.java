@@ -24,29 +24,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fathom.mofa.Adapters.VehicleRecordsAdapter;
-import com.fathom.mofa.Adapters.VehiclesAdapter;
-import com.fathom.mofa.DataModels.DriverDataModel;
-import com.fathom.mofa.DataModels.VehicleDataModel;
 import com.fathom.mofa.DataModels.VehicleRecordDataModel;
-import com.fathom.mofa.ViewModels.DriverViewModel;
 import com.fathom.mofa.ViewModels.VehicleRecordViewModel;
-import com.fathom.mofa.ViewModels.VehicleViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -79,6 +72,7 @@ public class Dashboard extends Fragment {
     private Spinner statusSpinner;
     private TextInputEditText dateFrom;
     private TextInputEditText dateTo;
+    private EditText vehicleNumber;
     private Date dateFromValue;
     private Date dateToValue;
     private String provider;
@@ -96,6 +90,7 @@ public class Dashboard extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
@@ -111,19 +106,20 @@ public class Dashboard extends Fragment {
         numberOfRecords = view.findViewById(R.id.numberOfRecords);
         sortSpinner = view.findViewById(R.id.sortName);
 
+
         // Filter dialog
         final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.filter_search);
         // filter dialog
         ImageView cancelButton = dialog.findViewById(R.id.cancelFilter);
         Button confirmFilter = dialog.findViewById(R.id.confirmFilter);
-        typeSpinner = dialog.findViewById(R.id.typeSpinner);
+        //typeSpinner = dialog.findViewById(R.id.typeSpinner);
 //        providerSpinner = dialog.findViewById(R.id.providerSpinner);
         statusSpinner = dialog.findViewById(R.id.statusSpinner);
         dateFrom = dialog.findViewById(R.id.dateFromFilter);
         dateTo = dialog.findViewById(R.id.dateToFilter);
         final DatePickerDialog[] picker = new DatePickerDialog[1];
-
+        vehicleNumber =  dialog.findViewById(R.id.destination);
         dateTo.setInputType(0);
         dateFrom.setInputType(0);
 
@@ -190,6 +186,8 @@ public class Dashboard extends Fragment {
 
             }
         });
+
+        //Date stuff is here
         dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,6 +278,7 @@ public class Dashboard extends Fragment {
         int SPLASH_TIME_OUT = 2500;
         myHandler = new Handler();
         mVehicleRecords = (ArrayList<VehicleRecordDataModel>) mVehicleRecordViewModel.getVehicleRecords().getValue();
+
         int actionToVehicleRecordDetail = R.id.action_dashboard_to_vehicleRecordDetails;
         mVehicleRecordAdapter = new VehicleRecordsAdapter(mVehicleRecords, getContext(), mNavController, actionToVehicleRecordDetail, mVehicleRecordViewModel);
         progressDialog.show();
@@ -357,11 +356,11 @@ public class Dashboard extends Fragment {
             if (vehicleRecord.getStatus().toLowerCase().contains(searchText.toLowerCase())) {
                 filteredVehicleRecords.add(vehicleRecord);
             }
-
         }
 
         if (!filteredVehicleRecords.isEmpty()) {
             checkIfSearchIsValid();
+            return;
 
         } else {
             mVehicleRecordAdapter.filterDashboard(mVehicleRecords);
@@ -438,6 +437,10 @@ public class Dashboard extends Fragment {
                         filteredVehicleRecords = sorter.getSortedJobCandidateByMake();
                         mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
                         break;
+                    case 5:
+                        filteredVehicleRecords = sorter.getSortedJobCandidateByDate();
+                        mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
+                        break;
                 }
             }
 
@@ -480,25 +483,34 @@ public class Dashboard extends Fragment {
         typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 //        providerSpinner.setAdapter(providerAdapter);
-        typeSpinner.setAdapter(typeAdapter);
+       // typeSpinner.setAdapter(typeAdapter);
         statusSpinner.setAdapter(statusAdapter);
 
     }
-
+//FILTERS STUFF CAN BE DONE HERE
     private void filteredSearch() {
 
         String status = statusSpinner.getSelectedItem().toString();
-        String vehicleType = typeSpinner.getSelectedItem().toString();
+        //String vehicleType = typeSpinner.getSelectedItem().toString();
+        String carNumber = vehicleNumber.getText().toString();
         // Toast message
 //        Toast.makeText(getContext(), status+vehicleType, Toast.LENGTH_SHORT).show();
         filteredVehicleRecords = new ArrayList<>();
         for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
-            if (vehicleRecord.getStatus().equals(status) &&
-                    vehicleRecord.getCarType().equals(vehicleType) &&
-                    vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue))
+
+            if (
+                    vehicleRecord.getStatus().equals(status)
+                    &&
+//                    vehicleRecord.getCarType().equals(vehicleType)
+////                    &&
+//
+                            vehicleRecord.getPlateNumber().equals(carNumber) &&
+                    vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue)
+            )
             {
                 filteredVehicleRecords.add(vehicleRecord);
             }
+            Log.i("getting filters", String.valueOf(filteredVehicleRecords));
 
         }
 
@@ -525,7 +537,8 @@ public class Dashboard extends Fragment {
         sortingBys = null;
         sortAdapter = null;
         sortSpinner = null;
-        typeSpinner = null;
+        vehicleNumber =null;
+       // typeSpinner = null;
         statusSpinner = null;
         dateFrom = null;
         dateTo = null;

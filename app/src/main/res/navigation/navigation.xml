@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_home_to_driverSetUp"
-            app:destination="@id/driverSetUp" />
+            app:destination="@id/fragment_driver_lists" />
         <action
             android:id="@+id/action_home_to_dashboard"
             app:destination="@id/dashboard" />
@@ -302,4 +302,18 @@
             android:id="@+id/action_vehicleRecordDetails_to_signUpUser"
             app:destination="@id/signUpUser" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_driver_lists"
+        android:name="com.fathom.mofa.DriverRecord"
+        android:label="fragment_driver_lists"
+        tools:layout="@layout/fragment_driver_lists" >
+        <action
+            android:id="@+id/action_fragment_driver_lists_to_driverSetUp2"
+            app:destination="@id/driverSetUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_view_drivers"
+        android:name="com.fathom.mofa.Fragment_view_drivers"
+        android:label="fragment_view_drivers"
+        tools:layout="@layout/fragment_view_drivers" />
 </navigation>

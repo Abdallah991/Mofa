@@ -33,23 +33,25 @@
         app:layout_constraintStart_toStartOf="@+id/guideline22"
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
-        <Spinner
-            android:id="@+id/driverName"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:spinnerMode="dropdown"
-            android:layout_gravity="center"
-            app:fontFamily="@font/roboto_medium"
-            android:textColor="@color/appGrey"
-            android:textSize="24sp"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            app:layout_constraintBottom_toTopOf="@+id/guideline18"
-            app:layout_constraintEnd_toStartOf="@+id/guideline16"
-            app:layout_constraintStart_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="@+id/guideline17"/>
 
+    <Spinner
+        android:id="@+id/driverName"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/appGrey"
+        android:textSize="24sp"
+        app:fontFamily="@font/roboto_medium"
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
+    <TextView
             android:id="@+id/vehicleName"
             android:gravity="center"
             android:layout_width="0dp"
@@ -60,7 +62,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline16"
             app:layout_constraintStart_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="@+id/guideline8"/>
+            app:layout_constraintTop_toBottomOf="@+id/guideline8"/>
 
     <LinearLayout
         android:id="@+id/photoGalleryLayout"
@@ -436,7 +438,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.59" />
+        app:layout_constraintGuide_begin="567dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline20"
@@ -472,6 +474,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+
+    <EditText
+        android:id="@+id/destination"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+
+        android:layout_weight="2"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:hint="Destination"
+        android:textSize="24sp"
+        android:visibility="invisible"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline22"
+        app:layout_constraintTop_toBottomOf="@+id/driverName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

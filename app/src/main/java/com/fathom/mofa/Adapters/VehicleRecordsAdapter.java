@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
     public String vehicleType;
     // Injecting the View Model
     private VehicleRecordViewModel mModel;
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy HH:mm");
 
 
     public VehicleRecordsAdapter(ArrayList<VehicleRecordDataModel> records,
@@ -68,8 +69,10 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
         holder.provider.setText(mVehicleRecords.get(position).getRentalInfo());
         Date date = mVehicleRecords.get(position).getDate();
         String dateValue = formatter.format(date);
+        holder.username.setText(mVehicleRecords.get(position).getReleasePersonName());
         holder.date.setText(dateValue);
         holder.status.setText(mVehicleRecords.get(position).getStatus());
+
         switch (mVehicleRecords.get(position).getStatus()) {
             case "Returned":
                 holder.statusColor.setImageResource(R.drawable.green_status);
@@ -112,6 +115,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
         TextView make;
         TextView provider;
         TextView date;
+        TextView username;
         TextView status;
         ImageView statusColor;
 
@@ -125,6 +129,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
             make = itemView.findViewById(R.id.vehicleMakeDashboard);
             provider = itemView.findViewById(R.id.rentalInfoDashboard);
             date = itemView.findViewById(R.id.vehicleRecordDate);
+            username = itemView.findViewById(R.id.vehicleRecordUsername);
             status = itemView.findViewById(R.id.vehicleStatusDashboard);
             statusColor = itemView.findViewById(R.id.statusDashboard);
         }

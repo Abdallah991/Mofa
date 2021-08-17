@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -121,7 +120,7 @@ public class DriverSetUp extends Fragment {
         expiryDate = view.findViewById(R.id.expiryDate);
         frontLicense = view.findViewById(R.id.frontLicense);
         backLicense = view.findViewById(R.id.backLicense);
-        Button done = view.findViewById(R.id.doneDriverSetUp);
+        Button done = view.findViewById(R.id.buttonDriverSetUp);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
