@@ -2,10 +2,13 @@ package com.fathom.mofa;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.fathom.mofa.DataModels.NotificationDataModel;
 import com.fathom.mofa.DataModels.VehicleDataModel;
@@ -32,14 +36,21 @@ import com.fathom.mofa.ViewModels.VehicleViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+import static androidx.core.content.ContextCompat.getSystemService;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleRegistration.carPhotos;
@@ -83,6 +94,7 @@ public class VehicleSetUpSignature extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         rentalSignature = view.findViewById(R.id.rentalSignature);
         mofaSignature = view.findViewById(R.id.mofaSignature);
@@ -229,10 +241,23 @@ public class VehicleSetUpSignature extends Fragment {
     }
 
     private void uploadVehicleInfo() {
-        progressDialog.show();
-        db.collection("Vehicles")
-                .document(vehicle.getPlateNumber()).set(vehicle);
+
+//        if (hasActiveInternetConnection(getContext())) {
+            progressDialog.show();
+            db.collection("Vehicles")
+                    .document(vehicle.getPlateNumber()).set(vehicle);
 //        mVehicleRepository.uploadVehicle(vehicle);
+//        } else {
+//            Toast.makeText(getContext(), "the internet is not available", Toast.LENGTH_SHORT).show();
+//            SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
+//            SharedPreferences.Editor prefsEditor = pref.edit();
+//            Gson gson = new Gson();
+//            String json = gson.toJson(vehicle);
+//            prefsEditor.putString(vehicle.getPlateNumber(), json);
+//            prefsEditor.commit();
+
+
+//        }
     }
 
     private void uploadRentalInfoOfVehicle() {
@@ -486,6 +511,33 @@ public class VehicleSetUpSignature extends Fragment {
 
     }
 
+
+    public static boolean hasActiveInternetConnection(Context context) {
+        if (isNetworkAvailable(context)) {
+            try {
+                HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
+                urlc.setRequestProperty("User-Agent", "Test");
+                urlc.setRequestProperty("Connection", "close");
+                urlc.setConnectTimeout(1500);
+                urlc.connect();
+                return (urlc.getResponseCode() == 200);
+            } catch (IOException e) {
+                Log.e("LOG_TAG", "Error checking internet connection", e);
+            }
+        } else {
+            Log.d("LOG_TAG", "No network available!");
+            Toast.makeText(context, "the internet is not available", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return false;
+    }
+
+    private static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
+    }
 
 
 

@@ -248,15 +248,15 @@ public class DriverSetUp extends Fragment {
                             backLicense = null;
                             mNavController.navigate(R.id.home);
                         } else {
-                            Toast.makeText(getContext(), fillMissingFields, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getContext(), fillMissingFields, Toast.LENGTH_SHORT).show();
                         }
                     } else {
 
-                        Toast.makeText(getContext(), nineDigits, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), nineDigits, Toast.LENGTH_SHORT).show();
 
                     }
                 } else {
-                    Toast.makeText(getContext(), eightDigits, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), eightDigits, Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -555,8 +555,7 @@ public class VehicleRegistration extends Fragment {
         String backInterior  = vehicle.getVehicleBackInterior();
         String trunk = vehicle.getVehicleTrunk();
 
-        if ((!registration.isEmpty())&& (!startR.isEmpty())&&
-                (!endR.isEmpty())&& (leftSide != null)&&
+        if      ((leftSide != null)&&
                 (rightSide != null)&& (frontSide != null) &&
                 (backSide != null) && (frontInterior != null)
                 && (backInterior != null)

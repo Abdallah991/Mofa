@@ -120,8 +120,19 @@ public class VehicleDetails extends Fragment {
         make.setText(vehicleDashboard.getMake());
         carType.setText(vehicleDashboard.getCarType());
         registrationType.setText(vehicleDashboard.getRegistrationType());
-        String registrationStarts = formatter.format(vehicleDashboard.getRegistrationStart());
-        String registrationEnds = formatter.format(vehicleDashboard.getRegistrationEnd());
+        String registrationStarts;
+        // handling if registration dates are not inputted
+        if (vehicleDashboard.getRegistrationStart() != null) {
+            registrationStarts = formatter.format(vehicleDashboard.getRegistrationStart());
+        } else {
+            registrationStarts = "-";
+        }
+        String registrationEnds;
+        if (vehicleDashboard.getRegistrationEnd() != null) {
+            registrationEnds = formatter.format(vehicleDashboard.getRegistrationEnd());
+        }else {
+            registrationEnds = "-";
+        }
         registrationStart.setText(registrationStarts);
         registrationEnd.setText(registrationEnds);
 
