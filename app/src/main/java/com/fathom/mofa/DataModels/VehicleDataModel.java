@@ -1,6 +1,8 @@
 package com.fathom.mofa.DataModels;
 
 
+import android.util.Log;
+
 import java.util.Date;
 
 public class VehicleDataModel {
@@ -35,6 +37,7 @@ public class VehicleDataModel {
     private String companyReleaseSignature;
     private String mofaRetrievalSignature;
     private Date recordDate;
+    private String destination;
 
 
     public String getPlateNumber() {
@@ -45,6 +48,13 @@ public class VehicleDataModel {
         this.plateNumber = plateNumber;
     }
 
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
     public String getModel() {
         return model;
@@ -209,6 +219,7 @@ public class VehicleDataModel {
     }
 
     public Date getRecordDate() {
+        Log.i("getting date", String.valueOf(recordDate));
         return recordDate;
     }
 

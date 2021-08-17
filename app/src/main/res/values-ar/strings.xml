@@ -127,6 +127,11 @@
     <string name="nine_digits">"رقم البطاقة الذكية يجب ان يكون ٩ خانات"</string>
     <string name="eight_digits">"رقم التلفون يجب ان يكون ٨ خانات"</string>
     <string name="car_is_clean">السيارة نظيفة</string>
+    <string name="username">المستخدم</string>
+    <string name="car_number">رقم السياره</string>
+    <string name="destination">وجهة</string>
+    <string name="driver_record">وجهة</string>
+    <string name="search_driver">search Driver</string>
 
     <string-array name="manufacturers">
         <item>BMW</item>
@@ -189,6 +194,7 @@
         <item>الحالة</item>
         <item>شركة التأجير</item>
         <item>سنة الصنع</item>
+        <item>تاريخ</item>
     </string-array>
     <string-array name="types">
         <item>صالون</item>

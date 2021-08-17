@@ -116,10 +116,10 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
 
             // binding the views with the list items
             card = itemView.findViewById(R.id.vehicleCard);
-            vehicleId = itemView.findViewById(R.id.IdVehicle);
-            model = itemView.findViewById(R.id.vehicleModel);
-            make = itemView.findViewById(R.id.vehicleMake);
-            provider = itemView.findViewById(R.id.rentalInfoVehicle);
+            vehicleId = itemView.findViewById(R.id.nameDriver);
+            model = itemView.findViewById(R.id.idDriver);
+            make = itemView.findViewById(R.id.driverPhone);
+            provider = itemView.findViewById(R.id.driverNationality);
             color = itemView.findViewById(R.id.vehicleDate);
             status = itemView.findViewById(R.id.vehicleStatus);
             statusColor = itemView.findViewById(R.id.status);

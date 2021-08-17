@@ -252,6 +252,7 @@ public class VehicleRecordSignature extends Fragment {
     }
 
     private void uploadVehicleRecord() {
+
         vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber()+uniqueUpload);
         vehicleRecord.setMake(vehicleInRecord.getMake());
         vehicleRecord.setModel(vehicleInRecord.getModel());

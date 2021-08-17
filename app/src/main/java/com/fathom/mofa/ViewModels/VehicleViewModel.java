@@ -73,5 +73,6 @@ public class VehicleViewModel extends ViewModel {
 
     }
 
+
 }
 

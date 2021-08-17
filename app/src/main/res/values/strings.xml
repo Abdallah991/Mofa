@@ -127,6 +127,12 @@
     <string name="nine_digits">"The CPR number should be 9 digits"</string>
     <string name="eight_digits">"Phone number must be 8 digits"</string>
     <string name="car_is_clean">Car is clean</string>
+    <string name="username">Username</string>
+    <string name="car_number">Car Number</string>
+    <string name="destination">Destination</string>
+    <string name="driver_record">Driver Record</string>
+    <string name="search_driver">search Driver</string>
+
     <string-array name="manufacturers">
         <item>BMW</item>
         <item>Toyota</item>
@@ -188,6 +194,7 @@
         <item>Status</item>
         <item>Provider</item>
         <item>Make</item>
+        <item>Date</item>
     </string-array>
     <string-array name="types">
         <item>Saloon</item>

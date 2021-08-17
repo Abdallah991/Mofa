@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.fathom.mofa.DataModels.DriverDataModel;
+import com.fathom.mofa.R;
 import com.fathom.mofa.ServicesAndRepos.DriverRepository;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class DriverViewModel extends ViewModel {
         Log.d(DRIVER_TAG, " init in ViewModel called.");
         if (mDrivers != null) {
             Log.d(DRIVER_TAG, "Mutable data is already loaded from the Repo.");
+             boolean setVisible = true;
             return;
         }
 
@@ -43,11 +45,13 @@ public class DriverViewModel extends ViewModel {
 
         mRepository = DriverRepository.getInstance();
         mDrivers = mRepository.getDrivers();
+
     }
 
     public LiveData<List<DriverDataModel>> getDrivers() {
         return mDrivers;
     }
+
 
     public void addDriver(DriverDataModel  driver) {
         ArrayList<DriverDataModel> drivers = new ArrayList<>();
@@ -57,6 +61,8 @@ public class DriverViewModel extends ViewModel {
 
         mDrivers.setValue(drivers);
 
+
     }
+  
 
 }

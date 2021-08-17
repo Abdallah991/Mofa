@@ -20,15 +20,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:background="@color/dashboardBackground"
-            android:weightSum="16">
+            android:orientation="horizontal"
+            android:weightSum="18">
 
             <TextView
                 android:id="@+id/driverNameDashboard"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="Abdallah Allowat"
                 android:textSize="16sp"
@@ -96,11 +96,30 @@
                 android:layout_weight="0.03"
                 android:background="@color/mileStone" />
 
+
             <TextView
                 android:id="@+id/vehicleRecordDate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="5 May 2015"
+                android:textSize="16sp"
+                app:fontFamily="@font/roboto_light" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="0.03"
+                android:background="@color/mileStone" />
+
+            <TextView
+                android:id="@+id/vehicleRecordUsername"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:text="5 May 2015"
                 android:textSize="16sp"
@@ -124,16 +143,16 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.5"
-                android:weightSum="3"
-                android:orientation="horizontal">
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <TextView
                     android:id="@+id/vehicleStatusDashboard"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
                     android:gravity="center"
-                    android:layout_weight="2.5"
                     android:text="Out"
                     android:textSize="16sp"
                     app:fontFamily="@font/roboto_light" />
@@ -142,10 +161,10 @@
                     android:id="@+id/statusDashboard"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="0.5"
-                    android:src="@drawable/red_status"
-                    android:layout_gravity="center" />
+                    android:src="@drawable/red_status" />
             </LinearLayout>
 
 

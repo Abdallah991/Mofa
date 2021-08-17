@@ -35,6 +35,11 @@ public class VehicleRecordSorter {
         Collections.sort(vehicleRecordSorted, VehicleRecordDataModel.modelComparator);
         return vehicleRecordSorted;
     }
+    public ArrayList<VehicleRecordDataModel> getSortedJobCandidateByDate() {
+        Collections.sort(vehicleRecordSorted, VehicleRecordDataModel.dateComparator);
+        return vehicleRecordSorted;
+    }
+
 
 
 }

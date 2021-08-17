@@ -103,7 +103,7 @@ public class Home extends Fragment {
         driverSetUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNavController.navigate(R.id.driverSetUp);
+                mNavController.navigate(R.id.fragment_driver_lists);
             }
         });
 

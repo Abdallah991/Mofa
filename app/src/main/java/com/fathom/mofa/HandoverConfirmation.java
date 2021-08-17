@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -75,6 +76,7 @@ public class HandoverConfirmation extends Fragment {
     private int actionNavigateToVehicleUtilities = R.id.action_handoverConfirmation_to_vehicleUtilities;
     private int actionNavigateToVehicleRecordSignature = R.id.action_handoverConfirmation_to_vehicleRecordSignature;
     private int actionNavigateBack = R.id.action_handoverConfirmation_to_vehicleAccidentReport;
+
 
 
     // MultiLanguage
@@ -243,6 +245,7 @@ public class HandoverConfirmation extends Fragment {
             driverTitle.setText(R.string.driver);
         }
         milage.setText(vehicleRecord.getMilage());
+
         mSeekBar.setProgress(vehicleRecord.getFuelLevel());
         vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
 //        Toast.makeText(getContext(),carPhotosRecord.getPhotoLeftSide().toString(),Toast.LENGTH_SHORT).show();
@@ -351,6 +354,8 @@ public class HandoverConfirmation extends Fragment {
         seventhDot = null;
         operation = null;
         additionalNotes = null;
+
+
 
 
 

@@ -30,7 +30,7 @@ public class UserViewModel extends ViewModel {
         return positionOfItems;
     }
 
-    public void initUsers() {
+    public void initUsers( ) {
 
         Log.d(USER_TAG, " init in ViewModel called.");
         if (mUsers != null) {
