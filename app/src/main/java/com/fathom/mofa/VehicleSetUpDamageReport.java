@@ -38,6 +38,8 @@ public class VehicleSetUpDamageReport extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
+    private ViewFlipper mViewFlipper;
+    private LinearLayout vehicleSetUpDamageReportLayout;
     public static DamageReportDataModel damageReport;
     private NavController navController;
     private int actionNavigateToRentalInformation = R.id.action_vehicleSetUpDamageReport_to_vehicleSetUpRentalInfo;
@@ -838,27 +840,4 @@ public class VehicleSetUpDamageReport extends Fragment {
 //        Toast.makeText(getContext(), vehicle.getPhotoLeftSide() + " ", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        frontRight = null;
-        frontLeft = null;
-        front = null;
-        frontRightDoor = null;
-        frontLeftDoor = null;
-        windShield = null;
-        frontCeiling = null;
-        backCeiling = null;
-        backRightDoor = null;
-        backLeftDoor = null;
-        backWindShield = null;
-        backRight = null;
-        backLeft = null;
-        backCar = null;
-        frontRightTire = null;
-        frontLeftTire = null;
-        backRightTire = null;
-        backLeftTire = null;
-
-    }
 }

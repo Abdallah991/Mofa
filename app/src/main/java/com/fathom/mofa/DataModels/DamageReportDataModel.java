@@ -20,6 +20,10 @@ public class DamageReportDataModel {
     private boolean frontLeftTire;
     private boolean backRightTire;
     private boolean backLeftTire;
+    private boolean frontRightRing;
+    private boolean frontLeftRing;
+    private boolean backRightRing;
+    private boolean backLeftRing;
     private String carId;
     // This can have Two values
     //1- PlateNumber+Car Transaction (for Set up and Release)
@@ -58,10 +62,18 @@ public class DamageReportDataModel {
         this.frontRightTire= false;
         this.backRightTire= false;
         this.backLeftTire= false;
+        this.frontRightRing = false;
+        this.frontLeftRing = false;
+        this.backRightRing = false;
+        this.backLeftRing = false;
+
     }
 
     public DamageReportDataModel(boolean front, boolean frontRight, boolean frontLeft, boolean driverDoor, boolean passengerDoor, boolean frontWindShield, boolean backLeftDoor, boolean backRightDoor, boolean ceiling, boolean backCeiling, boolean backRight, boolean backLeft, boolean back, boolean backWindShield,
-                                 boolean backRightTire,  boolean backLeftTire, boolean frontLeftTire, boolean frontRightTire) {
+                                 boolean backRightTire,  boolean backLeftTire, boolean frontLeftTire, boolean frontRightTire, boolean frontRightRing,
+                                          boolean frontLeftRing,
+                                          boolean backRightRing,
+                                          boolean backLeftRing) {
         this.front = front;
         this.frontRight = frontRight;
         this.frontLeft = frontLeft;
@@ -80,6 +92,10 @@ public class DamageReportDataModel {
         this.backLeftTire = backLeftTire;
         this.frontRightTire = frontRightTire;
         this.frontLeftTire = frontLeftTire;
+        this.frontRightRing = frontRightRing;
+        this.frontLeftRing = frontLeftRing;
+        this.backRightRing = backRightRing;
+        this.backLeftRing = backLeftRing;
     }
 
     public boolean isFront() {
@@ -257,5 +273,37 @@ public class DamageReportDataModel {
 
     public void setBackLeftTire(boolean backLeftTire) {
         this.backLeftTire = backLeftTire;
+    }
+
+    public boolean isFrontRightRing() {
+        return frontRightRing;
+    }
+
+    public void setFrontRightRing(boolean frontRightRing) {
+        this.frontRightRing = frontRightRing;
+    }
+
+    public boolean isFrontLeftRing() {
+        return frontLeftRing;
+    }
+
+    public void setFrontLeftRing(boolean frontLeftRing) {
+        this.frontLeftRing = frontLeftRing;
+    }
+
+    public boolean isBackRightRing() {
+        return backRightRing;
+    }
+
+    public void setBackRightRing(boolean backRightRing) {
+        this.backRightRing = backRightRing;
+    }
+
+    public boolean isBackLeftRing() {
+        return backLeftRing;
+    }
+
+    public void setBackLeftRing(boolean backLeftRing) {
+        this.backLeftRing = backLeftRing;
     }
 }

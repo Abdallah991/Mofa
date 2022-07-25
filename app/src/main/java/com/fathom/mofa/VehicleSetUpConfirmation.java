@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.bumptech.glide.Glide;
-
 import java.text.SimpleDateFormat;
 
 import static com.fathom.mofa.MainActivity.FRAGMENT;
@@ -29,6 +27,7 @@ import static com.fathom.mofa.VehicleSetUpDamageReport.JEEP;
 import static com.fathom.mofa.VehicleSetUpDamageReport.SALOON;
 import static com.fathom.mofa.VehicleSetUpDamageReport.damageReport;
 import static com.fathom.mofa.VehicleSetUpRentalInfo.rentalInfo;
+import com.bumptech.glide.Glide;
 
 
 /**
@@ -45,10 +44,32 @@ public class VehicleSetUpConfirmation extends Fragment {
     private ImageView fifthCircle;
     private ImageView sixthCircle;
     private ImageView seventhCircle;
+    private TextView plateNumber;
+    private TextView vin;
+    private TextView motorSize;
+    private TextView manufacturer;
+    private TextView model;
+    private TextView make;
+    private TextView color;
+    private TextView type;
+    private TextView registrationType;
+    private TextView registrationEnd;
+    private TextView registrationStart;
+    private TextView provider;
+    private TextView leaseFrom;
+    private TextView leaseTo;
+    private TextView providerPhoneNumber;
     private AutoCompleteTextView additionalNotes;
+    private Button next;
+    private Button back;
+    private Button editVehicleInformation;
+    private Button editRegistration;
+    private Button editDamageReport;
+    private Button editRentalInformation;
     private NavController mNavController;
     private int index = 0;
     private int actionToSignature = R.id.action_vehicleSetUpConfirmation_to_vehicleSetUpSignature;
+    private View rootView;
     private ImageView backConfirmation;
     private ImageView frontConfirmation;
     private ImageView frontRightConfirmation;
@@ -67,6 +88,8 @@ public class VehicleSetUpConfirmation extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
+    // view Flipper
+    private ViewFlipper mViewFlipper;
     // Navigation Actions
     private int actionToRentalInfo = R.id.action_vehicleSetUpConfirmation_to_vehicleSetUpRentalInfo;
     private int actionToRegistration = R.id.action_vehicleSetUpConfirmation_to_vehicleRegistration;
@@ -82,7 +105,7 @@ public class VehicleSetUpConfirmation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        rootView = inflater.inflate(R.layout.damage_report, container, false);
+        rootView = inflater.inflate(R.layout.damage_report, container, false);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vehicle_set_up_confirmation, container, false);
     }
@@ -100,28 +123,28 @@ public class VehicleSetUpConfirmation extends Fragment {
         fifthCircle = view.findViewById(R.id.fifthImageHandover);
         sixthCircle = view.findViewById(R.id.sixthImageHandover);
         seventhCircle = view.findViewById(R.id.seventhImageHandover);
-        TextView plateNumber = view.findViewById(R.id.plateNumberValue);
-        TextView vin = view.findViewById(R.id.vinValue);
-        TextView motorSize = view.findViewById(R.id.motorSizeValue);
-        TextView manufacturer = view.findViewById(R.id.manufacturerValue);
-        TextView make = view.findViewById(R.id.makeValue);
-        TextView model = view.findViewById(R.id.modelValue);
-        TextView color = view.findViewById(R.id.colorValue);
-        TextView type = view.findViewById(R.id.typeValue);
-        TextView registrationType = view.findViewById(R.id.registrationTypeValue);
-        TextView registrationStart = view.findViewById(R.id.registrationStartValue);
-        TextView registrationEnd = view.findViewById(R.id.registrationEndValue);
-        TextView provider = view.findViewById(R.id.providerValue);
-        TextView leaseFrom = view.findViewById(R.id.leaseFromValue);
-        TextView leaseTo = view.findViewById(R.id.leaseToValue);
-        TextView providerPhoneNumber = view.findViewById(R.id.providerPhoneValue);
+        plateNumber = view.findViewById(R.id.plateNumberValue);
+        vin = view.findViewById(R.id.vinValue);
+        motorSize = view.findViewById(R.id.motorSizeValue);
+        manufacturer = view.findViewById(R.id.manufacturerValue);
+        make = view.findViewById(R.id.makeValue);
+        model = view.findViewById(R.id.modelValue);
+        color = view.findViewById(R.id.colorValue);
+        type = view.findViewById(R.id.typeValue);
+        registrationType = view.findViewById(R.id.registrationTypeValue);
+        registrationStart = view.findViewById(R.id.registrationStartValue);
+        registrationEnd = view.findViewById(R.id.registrationEndValue);
+        provider = view.findViewById(R.id.providerValue);
+        leaseFrom = view.findViewById(R.id.leaseFromValue);
+        leaseTo = view.findViewById(R.id.leaseToValue);
+        providerPhoneNumber = view.findViewById(R.id.providerPhoneValue);
         additionalNotes = view.findViewById(R.id.additionalNotes);
-        Button next = view.findViewById(R.id.nextVehicleConfirmation);
-        Button back = view.findViewById(R.id.backVehicleConfirmation);
-        Button editVehicleInformation = view.findViewById(R.id.vehicleInformationEdit);
-        Button editRegistration = view.findViewById(R.id.registrationEdit);
-        Button editRentalInformation = view.findViewById(R.id.rentalInfoEdit);
-        Button editDamageReport = view.findViewById(R.id.damageReportEdit);
+        next = view.findViewById(R.id.nextVehicleConfirmation);
+        back = view.findViewById(R.id.backVehicleConfirmation);
+        editVehicleInformation = view.findViewById(R.id.vehicleInformationEdit);
+        editRegistration = view.findViewById(R.id.registrationEdit);
+        editRentalInformation = view.findViewById(R.id.rentalInfoEdit);
+        editDamageReport = view.findViewById(R.id.damageReportEdit);
 
         // Date Formatter
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
@@ -131,8 +154,7 @@ public class VehicleSetUpConfirmation extends Fragment {
         String leaseToDate = formatter.format(rentalInfo.getLeaseTo());
 
         // Damage Report Review Elements
-        // view Flipper
-        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleConfirmationViewFlipper);
+        mViewFlipper = view.findViewById(R.id.vehicleConfirmationViewFlipper);
         switch (vehicle.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -263,59 +285,37 @@ public class VehicleSetUpConfirmation extends Fragment {
                     case 0:
                         seventhCircle.setImageResource(R.drawable.grey_dot);
                         firstCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getPhotoLeftSide())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getPhotoLeftSide());
                         break;
                     case 1:
                         firstCircle.setImageResource(R.drawable.grey_dot);
                         secondCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getPhotoRightSide())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getPhotoRightSide());
                         break;
                     case 2:
                         secondCircle.setImageResource(R.drawable.grey_dot);
                         thirdCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getPhotoFrontSide())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getPhotoFrontSide());
                         break;
                     case 3:
                         thirdCircle.setImageResource(R.drawable.grey_dot);
                         fourthCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getPhotoBackSide())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getPhotoBackSide());
                         break;
                     case 4:
                         fourthCircle.setImageResource(R.drawable.grey_dot);
                         fifthCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getVehicleFrontInterior())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleFrontInterior());
                         break;
                     case 5:
                         fifthCircle.setImageResource(R.drawable.grey_dot);
                         sixthCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getVehicleBackInterior())
-                                .centerCrop()
-                                .into(vehicleImage);//
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleBackInterior());
                         break;
                     case 6:
                         sixthCircle.setImageResource(R.drawable.grey_dot);
                         seventhCircle.setImageResource(R.drawable.red_dot);
-                        Glide.with(getContext())
-                                .load(carPhotos.getVehicleTrunk())
-                                .centerCrop()
-                                .into(vehicleImage);//
-//                        vehicleImage.setImageBitmap(carPhotos.getVehicleTrunk());
+                        vehicleImage.setImageBitmap(carPhotos.getVehicleTrunk());
                         break;
 
 
@@ -678,7 +678,4 @@ public class VehicleSetUpConfirmation extends Fragment {
 
 
     }
-
-
-
 }

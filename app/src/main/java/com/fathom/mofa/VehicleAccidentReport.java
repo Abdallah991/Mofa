@@ -30,6 +30,7 @@ import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
+import com.fathom.mofa.DataModels.VehicleRecordDataModel;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -40,8 +41,9 @@ import static android.app.Activity.RESULT_OK;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleDetails.damageReportRecord;
-import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 import static com.fathom.mofa.VehicleDetails.vehicleRecord;
+import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
+import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 
 public class VehicleAccidentReport extends Fragment {
@@ -77,8 +79,12 @@ public class VehicleAccidentReport extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
+    private Button next;
+    private Button backButton;
     private Button interiorVehicleAR;
     private Button exteriorVehicleAR;
+    // Damage Report
+    private ViewFlipper mViewFlipper;
     private String selector;
     private SimpleDateFormat formatter;
     private Date mDate;
@@ -91,10 +97,10 @@ public class VehicleAccidentReport extends Fragment {
     private int actionToRecordConfirmation = R.id.action_vehicleAccidentReport_to_handoverConfirmation;
 
     // MultiLanguage
-    private String SALOON;
-    private String JEEP;
-    private String FAMILY;
-    private String VAN;
+    public static String SALOON;
+    public static String JEEP;
+    public static String FAMILY;
+    public static String VAN;
 
 
     public VehicleAccidentReport() {
@@ -114,8 +120,7 @@ public class VehicleAccidentReport extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Damage Report
-        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordViewFlipper);
+        mViewFlipper = view.findViewById(R.id.vehicleRecordViewFlipper);
         switch (vehicleInRecord.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -217,8 +222,8 @@ public class VehicleAccidentReport extends Fragment {
         carIsUseable = view.findViewById(R.id.carIsUseableImage);
         carIsClean = view.findViewById(R.id.carIsClean);
         carIsCleanText = view.findViewById(R.id.carIsCleanText);
-        Button backButton = view.findViewById(R.id.backAccidentReport);
-        Button next = view.findViewById(R.id.nextAccidentReport);
+        backButton = view.findViewById(R.id.backAccidentReport);
+        next = view.findViewById(R.id.nextAccidentReport);
         exteriorVehicleAR = view.findViewById(R.id.exteriorVehicleAR);
         interiorVehicleAR = view.findViewById(R.id.interiorVehicleAR);
 
@@ -1060,44 +1065,6 @@ public class VehicleAccidentReport extends Fragment {
             @Override
             public void onClick(View v) {
                 if (getVehicleRecordInfo()) {
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleRightSide);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleLeftSide);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleFrontSide);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleBackSide);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleBackInteriorAR);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleFrontInteriorAR);
-                    Glide.with(getActivity().getApplicationContext()).clear(vehicleTrunkAR);
-                    carHasDamage = null;
-                    carIsClean = null;
-                    carIsUseable = null;
-                    carIsCleanText = null;
-                    vehicleLeftSide = null;
-                    vehicleRightSide =null;
-                    vehicleFrontSide = null;
-                    vehicleBackSide = null;
-                    vehicleBackInteriorAR = null;
-                    vehicleFrontInteriorAR =null;
-                    vehicleTrunkAR =null;
-                    interiorVehicleAR = null;
-                    exteriorVehicleAR = null;
-                    front = null;
-                    frontLeft = null;
-                    frontRight = null;
-                    windshield = null;
-                    ceilingFront = null;
-                    ceilingBack = null;
-                    frontLeftDoor = null;
-                    frontRightDoor = null;
-                    backRightDoor = null;
-                    backLeftDoor = null;
-                    backLeft = null;
-                    backRight = null;
-                    back = null;
-                    backWindShield = null;
-                    frontRightTire = null;
-                    frontLeftTire = null;
-                    backRightTire = null;
-                    backLeftTire = null;
                     mNavController.navigate(actionToRecordConfirmation);
                 }
             }
@@ -1241,9 +1208,9 @@ public class VehicleAccidentReport extends Fragment {
                                     e.printStackTrace();
                                 }
 
-//                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                                String picturePath = cursor.getString(columnIndex);
-//                                Log.d("GET IMAGE", "the picture path is: " + picturePath);
+                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                                String picturePath = cursor.getString(columnIndex);
+                                Log.d("GET IMAGE", "the picture path is: " + picturePath);
 
                                 switch (selector) {
                                     case "vehicleRightSide":
@@ -1368,12 +1335,5 @@ public class VehicleAccidentReport extends Fragment {
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-
-
-
-    }
 }

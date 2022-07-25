@@ -2,20 +2,26 @@ package com.fathom.mofa;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
+
 import com.bumptech.glide.Glide;
 import com.fathom.mofa.DataModels.CarPhotosDataModel;
 import com.fathom.mofa.DataModels.DamageReportDataModel;
@@ -28,10 +34,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.SimpleDateFormat;
+
 import static com.fathom.mofa.Adapters.VehicleRecordsAdapter.vehicleRecordDashboard;
+import static com.fathom.mofa.Adapters.VehiclesAdapter.vehicleDashboard;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.damageReportRecord;
+//import static com.fathom.mofa.VehicleRecord.damageReportRecord;
 
 
 /**
@@ -43,8 +53,14 @@ public class VehicleRecordDetails extends Fragment {
     private String TAG = "VEHICLE RECORD DETAIL";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private NavController mNavController;
+    private TextView vehiclePlateNumber;
+    private TextView vin;
+    private TextView engineSize;
+    private TextView model;
     private TextView manufacturer;
+    private TextView make;
     private TextView color;
+    private TextView company;
     private TextView registrationType;
     private TextView registrationStart;
     private TextView registrationEnd;
@@ -66,6 +82,8 @@ public class VehicleRecordDetails extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
+    // view flipper
+    private ViewFlipper mViewFlipper;
     private TextView provider;
     private TextView providerPhoneNumber;
     private TextView leaseFrom;
@@ -116,10 +134,9 @@ public class VehicleRecordDetails extends Fragment {
         TextView engineSize = view.findViewById(R.id.motorSizeRecordValue);
         TextView model = view.findViewById(R.id.modelRecordValue);
         manufacturer = view.findViewById(R.id.manufacturerRecordValue);
-        TextView make = view.findViewById(R.id.makeRecordValue);
-        TextView clean = view.findViewById(R.id.cleanRecordValue);
+        make = view.findViewById(R.id.makeRecordValue);
         color = view.findViewById(R.id.colorRecordValue);
-        TextView company = view.findViewById(R.id.companyRecordValue);
+        company = view.findViewById(R.id.companyRecordValue);
         registrationType = view.findViewById(R.id.registrationTypeRecordValue);
         registrationStart = view.findViewById(R.id.registrationStartRecordValue);
         registrationEnd = view.findViewById(R.id.registrationEndRecordValue);
@@ -143,8 +160,7 @@ public class VehicleRecordDetails extends Fragment {
         sixthImageRecord = view.findViewById(R.id.sixthImageRecord);
         seventhImageRecord = view.findViewById(R.id.seventhImageRecord);
         // Vehicle Damage report
-        // view flipper
-        ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
+        mViewFlipper = view.findViewById(R.id.vehicleRecordDetailsViewFlipper);
         switch (vehicleRecordDashboard.getCarType()) {
             case "Saloon":
             case "صالون":
@@ -278,12 +294,6 @@ public class VehicleRecordDetails extends Fragment {
         }
         status.setText(vehicleRecordDashboard.getStatus());
         notes.setText(vehicleRecordDashboard.getNotes());
-        company.setText(vehicleRecordDashboard.getRentalInfo());
-        if (vehicleRecordDashboard.isVehicleClean()) {
-            clean.setText(R.string.yes);
-        }else {
-            clean.setText(R.string.no);
-        }
         getRentalInfo();
         getVehicleInfo();
         getDamageReport();
@@ -315,41 +325,6 @@ public class VehicleRecordDetails extends Fragment {
     public void onStop() {
         super.onStop();
         Glide.with(getContext()).clear(vehicleRecordImages);
-        vehicleRecordImages = null;
-        manufacturer = null;
-        color = null;
-        registrationType = null;
-        registrationStart = null;
-        registrationEnd = null;
-        front = null;
-        frontRight = null;
-        frontLeft = null;
-        frontWindShield = null;
-        frontRightDoor = null;
-        frontLeftDoor = null;
-        frontCeiling = null;
-        backCeiling = null;
-        backRightDoor = null;
-        backLeftDoor = null;
-        backWindShield = null;
-        backLeft = null;
-        backRight = null;
-        back = null;
-        frontRightTire = null;
-        frontLeftTire = null;
-        backRightTire = null;
-        backLeftTire = null;
-        provider = null;
-        providerPhoneNumber = null;
-        leaseFrom = null;
-        leaseTo = null;
-        firstDot = null;
-        secondDot = null;
-        thirdDot = null;
-        fourthDot = null;
-        fifthImageRecord = null;
-        sixthImageRecord = null;
-        seventhImageRecord = null;
     }
 
 //    get damage report implementation

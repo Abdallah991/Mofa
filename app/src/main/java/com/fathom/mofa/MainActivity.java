@@ -34,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import java.util.Locale;
 
@@ -117,6 +118,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         driverSetupMenuItem = findViewById(R.id.driverSetUpMenu);
         vehicleSetupMenuItem = findViewById(R.id.vehicleSetUpMenu);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+                .build();
+        db.setFirestoreSettings(settings);
 
         LayoutInflater inflater = getLayoutInflater();
 //        View slider = inflater.from(getApplicationContext()).inflate(R.layout.drawer_header, null);

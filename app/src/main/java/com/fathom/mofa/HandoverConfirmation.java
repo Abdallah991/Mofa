@@ -61,6 +61,12 @@ public class HandoverConfirmation extends Fragment {
     private ImageView frontLeftTire;
     private ImageView backRightTire;
     private ImageView backLeftTire;
+    // Adding the ring
+    private ImageView frontRightRing;
+    private ImageView frontLeftRing;
+    private ImageView backRightRing;
+    private ImageView backLeftRing;
+
     private TextView carHasDamage;
     private TextView carIsUseable;
     private TextView carIsClean;
@@ -147,6 +153,11 @@ public class HandoverConfirmation extends Fragment {
                 backLeftTire = view.findViewById(R.id.backLeftTire);
                 frontRightTire = view.findViewById(R.id.frontRightTire);
                 frontLeftTire = view.findViewById(R.id.frontLeftTire);
+                // TODO:add the ring resource
+                backRightRing = view.findViewById(R.id.backRightRing);
+                backLeftRing = view.findViewById(R.id.backLeftRing);
+                frontRightRing = view.findViewById(R.id.frontRightRing);
+                frontLeftRing = view.findViewById(R.id.frontLeftRing);
                 break;
             case "Jeep":
             case "جيب":
@@ -169,6 +180,11 @@ public class HandoverConfirmation extends Fragment {
                 backLeftTire = view.findViewById(R.id.jeepBackLeftTire);
                 frontRightTire = view.findViewById(R.id.jeepFrontRightTire);
                 frontLeftTire = view.findViewById(R.id.jeepFrontLeftTire);
+                // TODO:add the ring resource
+                backRightRing = view.findViewById(R.id.jeepBackRightRing);
+                backLeftRing = view.findViewById(R.id.jeepBackLeftRing);
+                frontRightRing = view.findViewById(R.id.jeepFrontRightRing);
+                frontLeftRing = view.findViewById(R.id.jeepFrontLeftRing);
                 break;
             case "Family":
             case "مركبة عائلية":
@@ -191,6 +207,12 @@ public class HandoverConfirmation extends Fragment {
                 backLeftTire = view.findViewById(R.id.familyBackLeftTire);
                 frontRightTire = view.findViewById(R.id.familyFrontRightTire);
                 frontLeftTire = view.findViewById(R.id.familyFrontLeftTire);
+                // TODO:add the ring resource
+                backRightRing = view.findViewById(R.id.familyBackRightRing);
+                backLeftRing = view.findViewById(R.id.familyBackLeftRing);
+                frontRightRing = view.findViewById(R.id.familyFrontRightRing);
+                frontLeftRing = view.findViewById(R.id.familyFrontLeftRing);
+
                 break;
             case "Van":
             case "شاحنة صغيرة":
@@ -213,6 +235,12 @@ public class HandoverConfirmation extends Fragment {
                 backLeftTire = view.findViewById(R.id.vanBackLeftTire);
                 frontRightTire = view.findViewById(R.id.vanFrontRightTire);
                 frontLeftTire = view.findViewById(R.id.vanFrontLeftTire);
+                // TODO:add the ring resource
+                backRightRing = view.findViewById(R.id.vanBackRightRing);
+                backLeftRing = view.findViewById(R.id.vanBackLeftRing);
+                frontRightRing = view.findViewById(R.id.vanFrontRightRing);
+                frontLeftRing = view.findViewById(R.id.vanFrontLeftRing);
+
                 break;
         }
 
@@ -643,6 +671,22 @@ public class HandoverConfirmation extends Fragment {
 
         if (damageReportRecord.isBackRightTire()) {
             backRightTire.setImageResource(R.drawable.tire_red);
+        }
+
+        // TODO: fill the resource name
+        if (damageReportRecord.isFrontRightRing()) {
+            frontRightRing.setImageResource(R.drawable.ring_red);
+
+        }
+        if (damageReportRecord.isFrontLeftRing()) {
+            frontLeftRing.setImageResource(R.drawable.ring_red);
+        }
+        if (damageReportRecord.isBackLeftRing()) {
+            backLeftRing.setImageResource(R.drawable.ring_red);
+        }
+
+        if (damageReportRecord.isBackRightRing()) {
+            backRightRing.setImageResource(R.drawable.ring_red);
         }
 
 

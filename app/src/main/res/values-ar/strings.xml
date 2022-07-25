@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mofa</string>
+    <string name="app_name">وزارة الخارجية</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -49,6 +49,7 @@
     <string name="done">إنتهاء العملية</string>
     <string name="rental_company_signature">توقيع شركة التأجير</string>
     <string name="ministry_signature">توقيع الوزارة </string>
+    <string name ="driver_signature">توقيع السائق </string>
     <string name="sign_here">وقع هنا</string>
     <string name="clear">مسح</string>
     <string name="save">حفظ</string>

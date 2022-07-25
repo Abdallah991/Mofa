@@ -37,7 +37,8 @@
             android:id="@+id/plateNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="6"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -46,7 +47,6 @@
         android:fontFamily="@font/roboto_light"
         android:gravity="start"
         android:hint="@string/chassis"
-        android:inputType="number"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:theme="@style/TextLabel"
@@ -59,7 +59,7 @@
             android:id="@+id/chassisNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/model"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+           />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +149,8 @@
             android:id="@+id/make"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="4"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Spinner

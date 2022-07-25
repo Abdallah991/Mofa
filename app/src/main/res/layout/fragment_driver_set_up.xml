@@ -59,7 +59,8 @@
             android:id="@+id/driverID"
             android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxLength="9"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +147,8 @@
             android:id="@+id/driverPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:maxLength="8"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
