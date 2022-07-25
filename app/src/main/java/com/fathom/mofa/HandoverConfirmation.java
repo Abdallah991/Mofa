@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
+
+import static com.fathom.mofa.Adapters.VehicleRecordsAdapter.vehicleRecordDashboard;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.carPhotosRecord;
 import static com.fathom.mofa.VehicleDetails.damageReportRecord;
@@ -32,6 +34,7 @@ import static com.fathom.mofa.VehicleDetails.vehicleRecord;
  */
 public class HandoverConfirmation extends Fragment {
 
+//    variable declaration
     private NavController mNavController;
     private TextView operation;
     private ImageView jack;
@@ -76,6 +79,8 @@ public class HandoverConfirmation extends Fragment {
     private int actionNavigateToVehicleUtilities = R.id.action_handoverConfirmation_to_vehicleUtilities;
     private int actionNavigateToVehicleRecordSignature = R.id.action_handoverConfirmation_to_vehicleRecordSignature;
     private int actionNavigateBack = R.id.action_handoverConfirmation_to_vehicleAccidentReport;
+    private TextView vehicleDestinationConfirmation;
+    private TextView destinationValueConfirmation;
 
 
 
@@ -101,6 +106,7 @@ public class HandoverConfirmation extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//         link variables and images
         TextView vehicleName = view.findViewById(R.id.vehicleNameValue);
         TextView managedBy = view.findViewById(R.id.managedByValue);
         TextView driverName = view.findViewById(R.id.driverValue);
@@ -114,7 +120,10 @@ public class HandoverConfirmation extends Fragment {
         CLighter = view.findViewById(R.id.CLighterConfirmation);
         wheelCap = view.findViewById(R.id.wheelCapConfirmation);
         floorMat = view.findViewById(R.id.floorMatConfirmation);
-        // Damage report
+        vehicleDestinationConfirmation = view.findViewById(R.id.vehicleDestinationConfirmation);
+        destinationValueConfirmation = view.findViewById(R.id.destinationValueConfirmation);
+
+        // Damage report UI linking
         ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleRecordConfirmationViewFlipper);
         switch (vehicleInRecord.getCarType()) {
             case "Saloon":
@@ -239,6 +248,15 @@ public class HandoverConfirmation extends Fragment {
         vehicleName.setText(vehicleRecord.getVehicleName());
         managedBy.setText(vehicleRecord.getReleasePersonName());
         driverName.setText(vehicleRecord.getDriverName());
+
+//       remove visibility if there is no destination
+        if(vehicleInRecord.getDestination() == null ||  vehicleInRecord.getDestination().equals("")) {
+
+            vehicleDestinationConfirmation.setVisibility(View.GONE);
+            destinationValueConfirmation.setVisibility(View.GONE);
+        } else {
+            destinationValueConfirmation.setText(vehicleInRecord.getDestination());
+        }
         if(vehicleRecord.getCarTransaction().equals("MTR")) {
             driverTitle.setText(R.string.renalCompany);
         }else {
@@ -248,12 +266,14 @@ public class HandoverConfirmation extends Fragment {
 
         mSeekBar.setProgress(vehicleRecord.getFuelLevel());
         vehicleRecordImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
-//        Toast.makeText(getContext(),carPhotosRecord.getPhotoLeftSide().toString(),Toast.LENGTH_SHORT).show();
+
         vehicleStatus();
         vehicleOperationReview();
         toolsStatusReview();
         damageReportReview();
 
+//       Click implementation
+//       Gallery click implementation
         vehicleRecordImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,6 +290,7 @@ public class HandoverConfirmation extends Fragment {
             }
         });
 
+//        edit implementation
         editVehicleUtilities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -361,6 +382,7 @@ public class HandoverConfirmation extends Fragment {
 
     }
 
+//    set the damage report values
     private void damageReportReview() {
 
         if (damageReportRecord.isBack()) {
@@ -629,6 +651,7 @@ public class HandoverConfirmation extends Fragment {
 
     }
 
+//    set the value of the tools
     private void toolsStatusReview() {
         if (vehicleRecord.isJackStatus()) {
             jack.setImageResource(R.drawable.checked_check_box);
@@ -651,6 +674,7 @@ public class HandoverConfirmation extends Fragment {
 
     }
 
+//    mission value
     private void vehicleOperationReview() {
         switch (vehicleRecord.getCarTransaction()) {
             case "MTD":
@@ -665,6 +689,7 @@ public class HandoverConfirmation extends Fragment {
         }
     }
 
+//    set physical status of vehicle
     private void vehicleStatus() {
         if(vehicleRecord.isCarHasDamage()) {
             carHasDamage.setText(R.string.yes);
@@ -688,6 +713,7 @@ public class HandoverConfirmation extends Fragment {
 
     }
 
+//    gallery implementation
     private void vehicleGallery() {
         if (index == 6) {
             index =0;

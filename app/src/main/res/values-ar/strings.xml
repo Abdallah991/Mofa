@@ -6,7 +6,7 @@
     <string name="logout">الخروج</string>
     <string name="vehicle_record">ملف المركبات</string>
     <string name="dashboard">السجل</string>
-    <string name="driver_set_up">تسجيل السائق</string>
+    <string name="driver_set_up">السائقين</string>
     <string name="vehicle_set_up">تسجيل المركبة</string>
     <string name="arabic">English</string>
     <string name="notifications">التنبيهات</string>
@@ -130,8 +130,12 @@
     <string name="username">المستخدم</string>
     <string name="car_number">رقم السياره</string>
     <string name="destination">وجهة</string>
-    <string name="driver_record">وجهة</string>
-    <string name="search_driver">search Driver</string>
+    <string name="driver_record">سجل السائقين</string>
+    <string name="search_driver">إبحث عن السائق</string>
+    <string name="edit_driver">تعديل بيانات السائق</string>
+    <string name="delete">مسح</string>
+    <string name="add_driver">إضافة</string>
+
 
     <string-array name="manufacturers">
         <item>BMW</item>

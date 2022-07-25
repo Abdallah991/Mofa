@@ -84,6 +84,7 @@ public class Notifications extends Fragment {
         mNotificationsViewModel = null;
     }
 
+//     initialise recycler
     private void initRecycler() {
 
         Handler myHandler;
@@ -106,6 +107,7 @@ public class Notifications extends Fragment {
 
     }
 
+//    sort notifications
     private void sortNotification() {
         NotificationSorter sorter = new NotificationSorter(mNotifications);
         mNotifications = new ArrayList<>();

@@ -19,6 +19,7 @@ public class NotificationViewModel extends ViewModel {
     private MutableLiveData<List<NotificationDataModel>> mNotifications;
     private NotificationRepository mRepository;
 
+//    initialise the model
     public void initNotifications() {
 
         Log.d(NOTIFICATION_TAG, " init in ViewModel called.");
@@ -33,10 +34,12 @@ public class NotificationViewModel extends ViewModel {
         mNotifications = mRepository.getNotifications();
     }
 
+//    get data in model
     public LiveData<List<NotificationDataModel>> getNotifications() {
         return mNotifications;
     }
 
+//    add notification to the model
     public void addNotification(NotificationDataModel  notificationDataModel) {
         ArrayList<NotificationDataModel> notifications = new ArrayList<>();
 

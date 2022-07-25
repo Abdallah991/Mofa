@@ -498,6 +498,28 @@
                     app:fontFamily="@font/roboto_light" />
 
                 <TextView
+                    android:id="@+id/vehicleDestination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/destination"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
+                    android:id="@+id/destinationValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="destination"
+                    android:textAllCaps="false"
+                    android:textColor="@color/appGrey"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/roboto_light" />
+
+                <TextView
                     android:id="@+id/statusRecord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

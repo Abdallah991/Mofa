@@ -49,36 +49,44 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationRecordHolder holder, int position) {
 
-        holder.notificationContent.setText(notification.get(position).getNotificationContent());
-        Date date = notification.get(position).getNotificationDate();
-        String dateValue = formatter.format(date);
-        holder.notificationTime.setText(dateValue);
-        switch (notification.get(position).getNotificationType()) {
-            case "Handover":
-            case "Release":
-                holder.notificationIcon.setImageResource(R.drawable.handover_notification);
-                break;
-            case "Damage":
-                holder.notificationIcon.setImageResource(R.drawable.damage_notification);
-                break;
-            case "Retrieval":
-            case "Set Up":
-                holder.notificationIcon.setImageResource(R.drawable.return_notification);
-                break;
-            case "Lease":
-                holder.notificationIcon.setImageResource(R.drawable.record_notification);
-                break;
 
+
+        try {
+            holder.notificationContent.setText(notification.get(position).getNotificationContent());
+            Date date = notification.get(position).getNotificationDate();
+            String dateValue = "No Date";
+            if (date != null) {
+                dateValue = formatter.format(date);
+            }
+            holder.notificationTime.setText(dateValue);
+            switch (notification.get(position).getNotificationType()) {
+                case "Handover":
+                case "Release":
+                    holder.notificationIcon.setImageResource(R.drawable.handover_notification);
+                    break;
+                case "Damage":
+                    holder.notificationIcon.setImageResource(R.drawable.damage_notification);
+                    break;
+                case "Retrieval":
+                case "Set Up":
+                    holder.notificationIcon.setImageResource(R.drawable.return_notification);
+                    break;
+                case "Lease":
+                    holder.notificationIcon.setImageResource(R.drawable.record_notification);
+                    break;
+
+            }
+
+            if (Language.equals("English")) {
+                holder.notificationTime.setGravity(Gravity.START);
+                holder.notificationContent.setGravity(Gravity.END);
+            } else {
+                holder.notificationTime.setGravity(Gravity.END);
+                holder.notificationContent.setGravity(Gravity.START);
+            }
+        } catch(NullPointerException e) {
+            System.err.println("Null pointer exception");
         }
-
-        if(Language.equals("English")) {
-            holder.notificationTime.setGravity(Gravity.START);
-            holder.notificationContent.setGravity(Gravity.END);
-        } else {
-            holder.notificationTime.setGravity(Gravity.END);
-            holder.notificationContent.setGravity(Gravity.START);
-        }
-
 
 
     }

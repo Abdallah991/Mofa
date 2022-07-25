@@ -50,6 +50,7 @@ public class DriverRecord extends Fragment {
     private ProgressDialog progressDialog;
     private NavController mNavController;
     private ArrayList<DriverDataModel> filteredDriverRecords = new ArrayList<>();
+    private int actionNavigateToDriverSetUp = R.id.action_fragment_driver_lists_to_driverSetUp2;
 
     public DriverRecord() {
         // Required empty public constructor
@@ -69,6 +70,7 @@ public class DriverRecord extends Fragment {
 
         mDriverRecycler = view.findViewById(R.id.driverList);
         searchDriverRecords = view.findViewById(R.id.searchDriverRecord);
+        Button driverSetUp = view.findViewById(R.id.buttonDriverSetUp);
         ImageView searchButton = view.findViewById(R.id.searchDriver);
         numberOfRecords = view.findViewById(R.id.numberOfRecordsDrivers);
 
@@ -79,7 +81,6 @@ public class DriverRecord extends Fragment {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
         // loading spinner Arrays
-//Progress indicator
 
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
@@ -89,7 +90,6 @@ public class DriverRecord extends Fragment {
             @Override
             public void onChanged(List<DriverDataModel> vehicleDataModels) {
                 Log.d("T", vehicleDataModels.size() + " ");
-                mDriverRecordAdaptor.notifyDataSetChanged();
                 initRecycler();
             }
         });
@@ -107,7 +107,7 @@ public class DriverRecord extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                if (s.isEmpty()) {
+                if (!s.isEmpty()) {
                     mDriverRecordAdaptor.filterDrivers(mDriverRecords);
                 }
 
@@ -125,18 +125,30 @@ public class DriverRecord extends Fragment {
             }
         });
 
+        driverSetUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNavController.navigate(actionNavigateToDriverSetUp);
+            }
+        });
+
 
 //        initRecycler();
     }
+
+
+
     public void onResume() {
         super.onResume();
         FRAGMENT = "DriverRecord";
+        mDriverRecordAdaptor.notifyDataSetChanged();
+
 
     }
     private void initRecycler() {
 
         Handler myHandler;
-        int SPLASH_TIME_OUT = 2500;
+        int SPLASH_TIME_OUT = 5000;
         myHandler = new Handler();
         mDriverRecords = (ArrayList<DriverDataModel>) mDriverRecordViewModel.getDrivers().getValue();
 
@@ -161,12 +173,14 @@ public class DriverRecord extends Fragment {
 
 
 
+//    check if the search valid
     private void checkIfSearchIsValid() {
         {
-            mDriverRecordAdaptor.filterDrivers(mDriverRecords);
-//            Toast.makeText(getContext(), "No Searchable match", Toast.LENGTH_SHORT).show();
+            mDriverRecordAdaptor.filterDrivers(filteredDriverRecords);
         }
     }
+
+//    filter implementation
     private void filter(String searchText) {
         filteredDriverRecords = new ArrayList<>();
 
@@ -212,15 +226,14 @@ public class DriverRecord extends Fragment {
 
 
 
+
+
     @Override
     public void onStop() {
         super.onStop();
-
         mDriverRecords = null;
         mDriverRecycler = null;
         mDriverRecordAdaptor = null;
         mDriverRecordViewModel = null;
         numberOfRecords = null;
-
-
     }}

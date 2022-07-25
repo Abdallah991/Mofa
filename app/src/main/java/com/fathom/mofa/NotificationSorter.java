@@ -13,7 +13,6 @@ public class NotificationSorter {
     }
 
     public ArrayList<NotificationDataModel> getSortedNotificationByDate() {
-        Collections.sort(NotificationSorted, NotificationDataModel.dateComparator);
         return NotificationSorted;
     }
 }

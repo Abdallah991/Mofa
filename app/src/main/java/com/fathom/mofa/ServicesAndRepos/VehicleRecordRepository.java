@@ -24,10 +24,7 @@ public class VehicleRecordRepository {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseStorage storage;
     private StorageReference storageRef;
-    private StorageReference frontImageRef;
-    private StorageReference backImageRef;
-    private StorageReference leftImageRef;
-    private StorageReference rightImageRef;
+
 
     public static VehicleRecordRepository getInstance() {
         if (instance == null) {
@@ -91,86 +88,6 @@ public class VehicleRecordRepository {
         storageRef = storage.getReference();
         final CarPhotosDataModel mCarPhotos = new CarPhotosDataModel();
 
-//        for (int position = 0; position < 4; position++) {
-//
-//            switch (position) {
-//                case 0:
-//                    rightImageRef = storageRef.child(vehiclePlateNumber + "right");
-//                    rightImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//                        @Override
-//                        public void onSuccess(byte[] bytes) {
-//                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                            mCarPhotos.setPhotoRightSide(bmp);
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image is DONE");
-//
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image Failed" + exception.getMessage());
-//                            // Handle any errors
-//                        }
-//                    });
-//                    break;
-//
-//                case 1:
-//                    leftImageRef = storageRef.child(vehiclePlateNumber + "left");
-//                    leftImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//                        @Override
-//                        public void onSuccess(byte[] bytes) {
-//                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                            mCarPhotos.setPhotoLeftSide(bmp);
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image is DONE");
-//
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image Failed" + exception.getMessage());
-//                            // Handle any errors
-//                        }
-//                    });
-//                    break;
-//
-//                case 2:
-//                    frontImageRef = storageRef.child(vehiclePlateNumber + "front");
-//                    frontImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//                        @Override
-//                        public void onSuccess(byte[] bytes) {
-//                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                            mCarPhotos.setPhotoFrontSide(bmp);
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image is DONE");
-//
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image Failed" + exception.getMessage());
-//                            // Handle any errors
-//                        }
-//                    });
-//                    break;
-//
-//                case 3:
-//                    backImageRef = storageRef.child(vehiclePlateNumber + "back");
-//                    backImageRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-//                        @Override
-//                        public void onSuccess(byte[] bytes) {
-//                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                            mCarPhotos.setPhotoBackSide(bmp);
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image is DONE");
-//
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            Log.d(VEHICLE_RECORD_TAG, " Loading the Image Failed" + exception.getMessage());
-//                            // Handle any errors
-//                        }
-//                    });
-//                    break;
-//            }
-//        }
 
         return mCarPhotos;
     }

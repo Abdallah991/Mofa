@@ -6,7 +6,7 @@
     <string name="logout">Logout</string>
     <string name="vehicle_record">Vehicle Record</string>
     <string name="dashboard">Dashboard</string>
-    <string name="driver_set_up">Driver Set Up</string>
+    <string name="driver_set_up">Drivers</string>
     <string name="vehicle_set_up">Vehicle Set Up</string>
     <string name="arabic">Arabic</string>
     <string name="notifications">Notifications</string>
@@ -131,7 +131,11 @@
     <string name="car_number">Car Number</string>
     <string name="destination">Destination</string>
     <string name="driver_record">Driver Record</string>
-    <string name="search_driver">search Driver</string>
+    <string name="search_driver">Search Driver</string>
+    <string name="edit_driver">Edit Driver</string>
+    <string name="delete">Delete</string>
+    <string name="add_driver">Add Driver</string>
+
 
     <string-array name="manufacturers">
         <item>BMW</item>

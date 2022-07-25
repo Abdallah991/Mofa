@@ -46,11 +46,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+//        link the UI
         loginButton = findViewById(R.id.loginButton);
         userName = findViewById(R.id.email);
         password = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
 
+//        initialise progress dialog
         progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setTitle("Loading...");
 
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+//        login click implementation
         loginButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -89,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
        });
     }
 
+//     sign in implementation
     private void signIn() {
 
         String username = userName.getText().toString();

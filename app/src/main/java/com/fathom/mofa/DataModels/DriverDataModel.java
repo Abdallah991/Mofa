@@ -1,5 +1,7 @@
 package com.fathom.mofa.DataModels;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class DriverDataModel {
@@ -15,6 +17,8 @@ public class DriverDataModel {
     private String frontLicense;
     private String backLicense;
     private boolean busy;
+    private Bitmap licenseFront;
+    private Bitmap licenseBack;
 
 
     public String getDriverName() {
@@ -103,5 +107,21 @@ public class DriverDataModel {
 
     public void setBusy(boolean busy) {
         this.busy = busy;
+    }
+
+    public Bitmap getLicenseFront() {
+        return licenseFront;
+    }
+
+    public void setLicenseFront(Bitmap licenseFront) {
+        this.licenseFront = licenseFront;
+    }
+
+    public Bitmap getLicenseBack() {
+        return licenseBack;
+    }
+
+    public void setLicenseBack(Bitmap licenseBack) {
+        this.licenseBack = licenseBack;
     }
 }

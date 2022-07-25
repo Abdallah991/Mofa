@@ -481,14 +481,11 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="44dp"
-
         android:layout_weight="2"
         android:elevation="0dp"
         android:gravity="center"
         android:hint="Destination"
         android:textSize="24sp"
-        android:visibility="invisible"
-
         app:layout_constraintEnd_toStartOf="@+id/guideline16"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline22"

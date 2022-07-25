@@ -59,6 +59,7 @@ import static com.fathom.mofa.MainActivity.FRAGMENT;
  */
 public class DriverSetUp extends Fragment {
 
+//    variable declaration
     private NavController mNavController;
     private TextInputEditText driverName;
     private TextInputEditText driverID;
@@ -110,6 +111,7 @@ public class DriverSetUp extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//         bind the view
         driverName = view.findViewById(R.id.driverName);
         driverID = view.findViewById(R.id.driverID);
         addressLine1 = view.findViewById(R.id.addressLine1);
@@ -122,6 +124,7 @@ public class DriverSetUp extends Fragment {
         backLicense = view.findViewById(R.id.backLicense);
         Button done = view.findViewById(R.id.buttonDriverSetUp);
 
+//         initialize progress dialog and navigation controller
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Uploading...");
         progressDialog.setCanceledOnTouchOutside(false);
@@ -130,6 +133,7 @@ public class DriverSetUp extends Fragment {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+//        get the data from the model
         model = new ViewModelProvider(requireActivity()).get(DriverViewModel.class);
         model.initDrivers();
         model.getDrivers().observe(getViewLifecycleOwner(), new Observer<List<DriverDataModel>>() {
@@ -141,6 +145,7 @@ public class DriverSetUp extends Fragment {
 
         issueDate.setInputType(0);
         expiryDate.setInputType(0);
+//        date click listeners
         issueDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +202,7 @@ public class DriverSetUp extends Fragment {
             }
         });
 
+//        images click listners
         frontLicense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,6 +221,7 @@ public class DriverSetUp extends Fragment {
             }
         });
 
+//        done click listeners
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,7 +276,7 @@ public class DriverSetUp extends Fragment {
 
     }
 
-
+//      select image implementation
     private void selectImage(Context context) {
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
@@ -378,6 +385,7 @@ public class DriverSetUp extends Fragment {
         }
     }
 
+//    get values of fields
     private void checkFields () {
         driverNameText = driverName.getText().toString();
         driverIDText = driverID.getText().toString();
@@ -389,6 +397,7 @@ public class DriverSetUp extends Fragment {
 
     }
 
+//     upload driver to the backend
     private void uploadDriver () {
         driver.setDriverName(driverNameText);
         driver.setDriverID(driverIDText);
@@ -404,15 +413,17 @@ public class DriverSetUp extends Fragment {
 
         db.collection("Drivers")
                 .document(driver.getDriverID()).set(driver);
-        addDriverToViewModel();
+
 
     }
 
+//    upload images implementation
     private void uploadFrontDriverLicense(){
         StorageReference frontImageRef = storageRef.child(driverIDText + "front");
         frontLicense.setDrawingCacheEnabled(true);
         frontLicense.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) frontLicense.getDrawable()).getBitmap();
+        driver.setLicenseFront(bitmap);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -441,11 +452,13 @@ public class DriverSetUp extends Fragment {
         backLicense.setDrawingCacheEnabled(true);
         backLicense.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) backLicense.getDrawable()).getBitmap();
+        driver.setLicenseBack(bitmap);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
         UploadTask uploadTask = backImageRef.putBytes(data);
         progressDialog.show();
+        addDriverToViewModel();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -464,6 +477,7 @@ public class DriverSetUp extends Fragment {
     }
 
 
+//    adding the driver view model with images
     private void addDriverToViewModel() {
         model.addDriver(driver);
     }

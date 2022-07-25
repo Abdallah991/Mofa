@@ -137,6 +137,7 @@ public class VehicleRecordSignature extends Fragment {
         // Filling Missing Information
 
 
+//        click implementation
         rentalSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,6 +252,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
 
+//    upload vehicle record
     private void uploadVehicleRecord() {
 
         vehicleRecord.setDamageReport(vehicleInRecord.getPlateNumber()+uniqueUpload);
@@ -259,10 +261,13 @@ public class VehicleRecordSignature extends Fragment {
         vehicleRecord.setRentalInfo(vehicleInRecord.getRentalInfoContent());
         vehicleRecord.setDate(mDate);
         vehicleRecord.setName(uniqueUpload);
+        vehicleRecord.setDestination(vehicleInRecord.getDestination());
         db.collection("VehicleRecords")
                 .document().set(vehicleRecord);
 
     }
+
+//    upload notificaton
     private void uploadNotifications() {
         SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
         String name = pref.getString("userName", "");
@@ -316,6 +321,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
 
+//    upload damage report
     private void uploadDamageReport() {
         damageReportRecord.setDamageReportName(vehicleInRecord.getPlateNumber()+uniqueUpload);
         damageReportRecord.setCarType(vehicleInRecord.getCarType());
@@ -324,6 +330,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
 
+//    upload vehicle images
     private void uploadVehicleRightSide() {
 
         StorageReference rightImageRef = storageRef.child(vehicleInRecord.getPlateNumber() + uniqueUpload + "right");
@@ -523,6 +530,7 @@ public class VehicleRecordSignature extends Fragment {
 
     }
 
+//    add values to model
     private void addVehicleRecordToViewModel() {
         model.addVehicleRecord(vehicleRecord);
     }

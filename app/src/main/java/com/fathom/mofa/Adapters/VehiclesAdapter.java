@@ -58,6 +58,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
 
     @Override
     public void onBindViewHolder(@NonNull VehicleHolder holder, final int position) {
+//        setting the value of the item
         holder.vehicleId.setText(mVehicles.get(position).getPlateNumber());
         holder.make.setText(mVehicles.get(position).getMake());
         holder.model.setText(mVehicles.get(position).getModel());
@@ -76,6 +77,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
                 break;
         }
 
+//        card click implementation
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +103,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.Vehicl
     }
 
 
+//    tying the UI elements in the item
     public class VehicleHolder extends RecyclerView.ViewHolder{
         CardView card;
         TextView vehicleId;

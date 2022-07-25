@@ -120,6 +120,7 @@ public class Home extends Fragment {
         FRAGMENT = "home";
     }
 
+//    get user information and permissions
     private void getUserInfo() {
 
         final SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode

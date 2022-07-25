@@ -56,7 +56,7 @@ public class VehicleRecordDataModel {
     // the name of vehicle record will be a combination of plate number and date which will be
     // identical to damage report name
     private String name;
-    private String destination;
+    private String destination = null;
 
 
     public boolean isVehicleClean() {
@@ -356,6 +356,9 @@ public class VehicleRecordDataModel {
         this.carType = carType;
     }
 
+
+
+
     // Classes to sort Array list depending on Alphabet order
     // per status field
     public static Comparator<VehicleRecordDataModel> statusComparator = new Comparator<VehicleRecordDataModel>() {
@@ -399,5 +402,7 @@ public class VehicleRecordDataModel {
             return (int) (jc2.getDate().compareTo(jc1.getDate()));
         }
     };
+
+
 
 }

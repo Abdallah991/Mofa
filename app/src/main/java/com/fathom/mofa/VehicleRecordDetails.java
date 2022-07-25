@@ -39,6 +39,7 @@ import static com.fathom.mofa.VehicleDetails.damageReportRecord;
  */
 public class VehicleRecordDetails extends Fragment {
 
+//    declare variables
     private String TAG = "VEHICLE RECORD DETAIL";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private NavController mNavController;
@@ -69,6 +70,8 @@ public class VehicleRecordDetails extends Fragment {
     private TextView providerPhoneNumber;
     private TextView leaseFrom;
     private TextView leaseTo;
+    private TextView vehicleDestination;
+    private TextView destinationValue;
     private ImageView vehicleRecordImages;
     private ImageView firstDot;
     private ImageView secondDot;
@@ -107,6 +110,7 @@ public class VehicleRecordDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        link variables to UI
         TextView vehiclePlateNumber = view.findViewById(R.id.plateNumberRecordValue);
         TextView vin = view.findViewById(R.id.chassisNumberRecordValue);
         TextView engineSize = view.findViewById(R.id.motorSizeRecordValue);
@@ -127,6 +131,8 @@ public class VehicleRecordDetails extends Fragment {
         TextView driverRecord = view.findViewById(R.id.driverRecord);
         TextView status = view.findViewById(R.id.statusRecordValue);
         TextView notes = view.findViewById(R.id.notesRecordValue);
+        vehicleDestination = view.findViewById(R.id.vehicleDestination);
+        destinationValue = view.findViewById(R.id.destinationValue);
         Button backButton = view.findViewById(R.id.backConfirmationRecord);
         vehicleRecordImages = view.findViewById(R.id.vehicleImagesRecord);
         firstDot = view.findViewById(R.id.firstImageRecord);
@@ -239,13 +245,14 @@ public class VehicleRecordDetails extends Fragment {
         FAMILY = carTypes[2];
         VAN = carTypes[3];
 
-
+//        initialise progress dialog and nav controller
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
         progressDialog.setCanceledOnTouchOutside(false);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
+//        set values
         vehiclePlateNumber.setText(vehicleRecordDashboard.getPlateNumber());
         vin.setText(vehicleRecordDashboard.getChassisNumber());
         engineSize.setText(vehicleRecordDashboard.getMotorSize());
@@ -253,6 +260,17 @@ public class VehicleRecordDetails extends Fragment {
         model.setText(vehicleRecordDashboard.getModel());
         make.setText(vehicleRecordDashboard.getMake());
         assignedDriver.setText(vehicleRecordDashboard.getDriverName());
+
+//        remove visibility if there is no destination is set
+        if(vehicleRecordDashboard.getDestination() == null || vehicleRecordDashboard.getDestination().equals("")) {
+
+          vehicleDestination.setVisibility(View.GONE);
+          destinationValue.setVisibility(View.GONE);
+        } else {
+            destinationValue.setText(vehicleRecordDashboard.getDestination());
+        }
+
+
         if(vehicleRecordDashboard.getCarTransaction().equals("MTR")) {
             driverRecord.setText(R.string.renalCompany);
         }else {
@@ -271,13 +289,13 @@ public class VehicleRecordDetails extends Fragment {
         getDamageReport();
         getVehicleImages();
 
+//        click listeners
         vehicleRecordImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vehicleGallery();
             }
         });
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,6 +352,7 @@ public class VehicleRecordDetails extends Fragment {
         seventhImageRecord = null;
     }
 
+//    get damage report implementation
     private void getDamageReport() {
 
             db.collection("Damage Reports").whereEqualTo("damageReportName",vehicleRecordDashboard.getDamageReport())
@@ -607,7 +626,6 @@ public class VehicleRecordDetails extends Fragment {
                                         backRightTire.setImageResource(R.drawable.tire_red);
                                     }
 
-//                                    damageReportReview(damageReport);
 
                                 }
                             } else {
@@ -622,6 +640,7 @@ public class VehicleRecordDetails extends Fragment {
         }
     
 
+//        get rental information
     private void getRentalInfo() {
         db.collection("Rental Information").document(vehicleRecordDashboard.getPlateNumber())
                 .get()
@@ -652,6 +671,7 @@ public class VehicleRecordDetails extends Fragment {
 
     }
 
+//     get vehicle information
     private void getVehicleInfo() {
         db.collection("Vehicles").document(vehicleRecordDashboard.getPlateNumber())
                 .get()
@@ -685,6 +705,7 @@ public class VehicleRecordDetails extends Fragment {
 
     }
 
+//    get vehicle images
     private void getVehicleImages() {
 
         final VehicleRepository repo = new VehicleRepository();
@@ -702,14 +723,12 @@ public class VehicleRecordDetails extends Fragment {
         }
         myHandler.postDelayed(new Runnable() {
             public void run() {
-//                                    Toast.makeText(getContext(), "Name of left Vehicle Image " + carPhotos.getPhotoLeftSide(), Toast.LENGTH_SHORT).show();
-//                                    Log.d(TAG, carPhotos.getPhotoLeftSide().toString());
+
                 progressDialog.dismiss();
                 Glide.with(getContext())
                         .load(carPhotosRecordDetail.getPhotoLeftSide())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
             }
 
         },SPLASH_TIME_OUT);
@@ -718,6 +737,7 @@ public class VehicleRecordDetails extends Fragment {
 
     }
 
+//    vehicle gallery
     private void vehicleGallery() {
         if (index == 6) {
             index =0;
@@ -732,7 +752,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getPhotoLeftSide())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoLeftSide());
                 break;
             case 1:
                 firstDot.setImageResource(R.drawable.grey_dot);
@@ -741,7 +760,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getPhotoRightSide())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoRightSide());
                 break;
             case 2:
                 secondDot.setImageResource(R.drawable.grey_dot);
@@ -750,7 +768,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getPhotoFrontSide())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoFrontSide());
                 break;
             case 3:
                 thirdDot.setImageResource(R.drawable.grey_dot);
@@ -759,7 +776,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getPhotoBackSide())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getPhotoBackSide());
                 break;
             case 4:
                 fourthDot.setImageResource(R.drawable.grey_dot);
@@ -768,7 +784,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getVehicleFrontInterior())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleFrontInterior());
                 break;
             case 5:
                 fifthImageRecord.setImageResource(R.drawable.grey_dot);
@@ -777,7 +792,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getVehicleBackInterior())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleBackInterior());
                 break;
             case 6:
                 sixthImageRecord.setImageResource(R.drawable.grey_dot);
@@ -786,7 +800,6 @@ public class VehicleRecordDetails extends Fragment {
                         .load(carPhotosRecordDetail.getVehicleTrunk())
                         .centerCrop()
                         .into(vehicleRecordImages);//
-//                vehicleRecordImages.setImageBitmap(carPhotosRecordDetail.getVehicleTrunk());
                 break;
 
         }

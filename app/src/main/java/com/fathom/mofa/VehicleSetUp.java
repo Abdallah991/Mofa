@@ -27,6 +27,7 @@ import static com.fathom.mofa.MainActivity.FRAGMENT;
 
 
 public class VehicleSetUp extends Fragment {
+//    declare variables
     private NavController mNavController;
     public static VehicleDataModel vehicle = new VehicleDataModel();
     private AutoCompleteTextView manufactureTextView;
@@ -135,6 +136,7 @@ public class VehicleSetUp extends Fragment {
         FRAGMENT = "vehicleSetUp";
     }
 
+//    get car info implementation
     private boolean getCarInfo() {
         String plateNumber = plateNumberEditText.getText().toString();
         String chassis = chassisNumber.getText().toString();

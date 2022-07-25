@@ -38,6 +38,7 @@ import static com.fathom.mofa.MainActivity.FRAGMENT;
  */
 public class VehicleDashboard extends Fragment {
 
+//    variable declaration
     private String TAG = "Vehicle Dashboard";
     private ArrayList<VehicleDataModel> mVehicles = new ArrayList<>();
     private ArrayList<VehicleDataModel> filteredVehicles = new ArrayList<>();
@@ -67,6 +68,7 @@ public class VehicleDashboard extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        link variables with UI
         mVehiclesRecycler = view.findViewById(R.id.driverList);
         searchVehicles = view.findViewById(R.id.searchDriverRecord);
         searchButton = view.findViewById(R.id.searchDriver);
@@ -112,6 +114,7 @@ public class VehicleDashboard extends Fragment {
             }
         });
 
+//        search implementation
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +162,7 @@ public class VehicleDashboard extends Fragment {
 
     }
 
+//    filter implementation
     private void filter(String searchText) {
         filteredVehicles = new ArrayList<>();
 
@@ -238,6 +242,7 @@ public class VehicleDashboard extends Fragment {
 
     }
 
+//     check if search value exist
     private void checkIfSearchIsValid() {
         if (!filteredVehicles.isEmpty()) {
             mVehiclesAdapter.filterRecycler(filteredVehicles);

@@ -310,10 +310,18 @@
         <action
             android:id="@+id/action_fragment_driver_lists_to_driverSetUp2"
             app:destination="@id/driverSetUp" />
+        <action
+            android:id="@+id/action_fragment_driver_lists_to_editDriver2"
+            app:destination="@id/editDriver2" />
     </fragment>
     <fragment
         android:id="@+id/fragment_view_drivers"
         android:name="com.fathom.mofa.Fragment_view_drivers"
         android:label="fragment_view_drivers"
         tools:layout="@layout/fragment_view_drivers" />
+    <fragment
+        android:id="@+id/editDriver2"
+        android:name="com.fathom.mofa.EditDriver"
+        android:label="fragment_edit_driver"
+        tools:layout="@layout/fragment_edit_driver" />
 </navigation>

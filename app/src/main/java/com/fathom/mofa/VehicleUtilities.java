@@ -24,6 +24,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import static com.fathom.mofa.LoginActivity.USER;
 import static com.fathom.mofa.MainActivity.FRAGMENT;
 import static com.fathom.mofa.VehicleDetails.vehicleRecord;
+import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
 
 
 /**
@@ -31,6 +32,7 @@ import static com.fathom.mofa.VehicleDetails.vehicleRecord;
  */
 public class VehicleUtilities extends Fragment {
 
+//    declare variables
     private NavController mNavController;
     private TextInputEditText milage;
     private SeekBar fuelLevel;
@@ -64,6 +66,7 @@ public class VehicleUtilities extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        set the UI and the values
         fuelLevel = view.findViewById(R.id.fuelLevelConfirmation);
         fuelMeterUtilities = view.findViewById(R.id.fuelMeterUtilities);
         ViewFlipper viewFlipper = view.findViewById(R.id.vehicleUtilitiesViewFlipper);
@@ -77,6 +80,8 @@ public class VehicleUtilities extends Fragment {
         Button next = view.findViewById(R.id.nextVehicleUtilities);
         Button back = view.findViewById(R.id.backVehicleUtilities);
 
+
+//        navigation controller and click implementations
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         jack.setOnClickListener(new View.OnClickListener() {
@@ -171,21 +176,14 @@ public class VehicleUtilities extends Fragment {
             }
         });
 
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT
-//        );
-//        params.setMargins(100, 0, 100, 0);
-////        fuelMeterUtilities.setLayoutParams(params);
+
         viewFlipper.setDisplayedChild(0);
 
         SharedPreferences userPrefs = getActivity().getSharedPreferences(USER, 0);
         String lang = userPrefs.getString("Lang","");
         if(lang.equals("Arabic")) {
             viewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
-//            viewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-//            fuelView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
-//            fuelImage.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
         }
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +204,7 @@ public class VehicleUtilities extends Fragment {
         });
     }
 
+//    get vehicle record
     private boolean getVehicleRecord() {
         String vehicleMilage = milage.getText().toString();
         int fuel = fuelLevel.getProgress();

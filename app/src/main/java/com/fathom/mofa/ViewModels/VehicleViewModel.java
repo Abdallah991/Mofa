@@ -20,16 +20,19 @@ public class VehicleViewModel extends ViewModel {
     private VehicleRepository mRepository;
     private int positionOfItems;
 
+//    select vehicle data
     public void selectVehicle (List Items, int position) {
 
         mVehicles.setValue(Items);
         positionOfItems = position;
     }
 
+//    get position of vehicle
     public int getPositionOfVehicle() {
         return positionOfItems;
     }
 
+//    initialise vehicle values
     public void initVehicles(){
 
         Log.d(VEHICLE_TAG," init in ViewModel called.");
@@ -44,10 +47,12 @@ public class VehicleViewModel extends ViewModel {
         mVehicles = mRepository.getVehicles();
     }
 
+//    get vehicle data
     public LiveData<List<VehicleDataModel>> getVehicles() {
         return mVehicles;
     }
 
+//    add vehicle to the model
     public void addVehicle(VehicleDataModel  vehicle) {
         ArrayList<VehicleDataModel> vehicles = new ArrayList<>();
 
@@ -58,6 +63,7 @@ public class VehicleViewModel extends ViewModel {
 
     }
 
+//    update vehicle status
     public void updateVehicleStatus(VehicleDataModel  vehicle) {
         ArrayList<VehicleDataModel> vehicles = new ArrayList<>();
 

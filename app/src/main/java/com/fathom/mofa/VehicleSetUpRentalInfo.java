@@ -35,6 +35,7 @@ import static com.fathom.mofa.VehicleSetUp.vehicle;
  */
 public class VehicleSetUpRentalInfo extends Fragment {
 
+//    declare class variables
     private NavController mNavController;
     private TextInputEditText provider;
     private TextInputEditText providerPhoneNumber;
@@ -90,7 +91,6 @@ public class VehicleSetUpRentalInfo extends Fragment {
                                 SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
                                 try {
                                     start = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-//                                    Toast.makeText(getContext(), start.toString() +" ", Toast.LENGTH_SHORT).show();
 
                                 } catch (ParseException e) {
                                     e.printStackTrace();
@@ -162,6 +162,7 @@ public class VehicleSetUpRentalInfo extends Fragment {
         leaseEnd = null;
     }
 
+//    set car info
     private boolean getCarInfo() {
 
         String provideName = provider.getText().toString();

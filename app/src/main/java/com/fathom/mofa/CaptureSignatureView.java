@@ -112,15 +112,6 @@ public class CaptureSignatureView extends View {
         invalidate();
     }
 
-    // Get the bytes for
-//    public byte[] getBytes() {
-//        Bitmap b = getBitmap();
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        b.compress(Bitmap.CompressFormat.PNG, 100, baos);
-//        return baos.toByteArray();
-//    }
-
     public Bitmap getBitmap() {
         View v = (View) this.getParent();
         Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);

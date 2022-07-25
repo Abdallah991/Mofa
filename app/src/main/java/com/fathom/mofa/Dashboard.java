@@ -113,8 +113,6 @@ public class Dashboard extends Fragment {
         // filter dialog
         ImageView cancelButton = dialog.findViewById(R.id.cancelFilter);
         Button confirmFilter = dialog.findViewById(R.id.confirmFilter);
-        //typeSpinner = dialog.findViewById(R.id.typeSpinner);
-//        providerSpinner = dialog.findViewById(R.id.providerSpinner);
         statusSpinner = dialog.findViewById(R.id.statusSpinner);
         dateFrom = dialog.findViewById(R.id.dateFromFilter);
         dateTo = dialog.findViewById(R.id.dateToFilter);
@@ -187,7 +185,7 @@ public class Dashboard extends Fragment {
             }
         });
 
-        //Date stuff is here
+        //Date click listeners
         dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,7 +203,6 @@ public class Dashboard extends Fragment {
                                 SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
                                 try {
                                     dateFromValue = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-//                                    Toast.makeText(getContext(), issueDateValue.toString() +" ", Toast.LENGTH_SHORT).show();
 
                                 } catch (ParseException e) {
                                     e.printStackTrace();
@@ -233,7 +230,6 @@ public class Dashboard extends Fragment {
                                 SimpleDateFormat input = new SimpleDateFormat("dd/MM/yy");
                                 try {
                                     dateToValue = input.parse(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-//                                    Toast.makeText(getContext(), issueDateValue.toString() +" ", Toast.LENGTH_SHORT).show();
 
                                 } catch (ParseException e) {
                                     e.printStackTrace();
@@ -272,6 +268,7 @@ public class Dashboard extends Fragment {
 
     }
 
+//    initializing recycler
     private void initRecycler() {
 
         Handler myHandler;
@@ -302,6 +299,7 @@ public class Dashboard extends Fragment {
 
     }
 
+//     filter implementation
     private void filter(String searchText) {
         filteredVehicleRecords = new ArrayList<>();
 
@@ -370,6 +368,8 @@ public class Dashboard extends Fragment {
 
     }
 
+
+//    search result is valid implementation
     private void checkIfSearchIsValid() {
         if (!filteredVehicleRecords.isEmpty()) {
             mVehicleRecordAdapter.filterDashboard(filteredVehicleRecords);
@@ -379,6 +379,7 @@ public class Dashboard extends Fragment {
         }
     }
 
+//    sort implementation
     private void initSorting() {
 
 
@@ -398,12 +399,7 @@ public class Dashboard extends Fragment {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-//                        if (position == 0) {
-//                            // Set the hint text color gray
-//                            tv.setTextColor(getResources().getColor(R.color.appGrey));
-//                        } else {
-//                            tv.setTextColor(getResources().getColor(R.color.black));
-//                        }
+
                 return view;
             }
         };
@@ -448,62 +444,33 @@ public class Dashboard extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-//                progressDialog.dismiss();
+
     }
 
     private void loadSpinnerArrays() {
 
-//        providers = new ArrayList<>();
-//        for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
-//
-//            if (providers.isEmpty()) {
-//                providers.add(vehicleRecord.getRentalInfo());
-//            }
-//            else {
-//
-//
-//            for (String value : providers) {
-//                if (!value.equals(vehicleRecord.getRentalInfo())) {
-//                    providers.add(vehicleRecord.getRentalInfo());
-//                }
-//
-//                }
-//            }
-//
-//        }
-//
-//        providerAdapter = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_list_item_1, providers);
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, types);
-        //    private ArrayAdapter<String> providerAdapter;
         ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, statuses);
-//        providerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         typeAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         statusAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-//        providerSpinner.setAdapter(providerAdapter);
-       // typeSpinner.setAdapter(typeAdapter);
+
         statusSpinner.setAdapter(statusAdapter);
 
     }
-//FILTERS STUFF CAN BE DONE HERE
+
+// filter search implementation
     private void filteredSearch() {
 
         String status = statusSpinner.getSelectedItem().toString();
-        //String vehicleType = typeSpinner.getSelectedItem().toString();
         String carNumber = vehicleNumber.getText().toString();
-        // Toast message
-//        Toast.makeText(getContext(), status+vehicleType, Toast.LENGTH_SHORT).show();
         filteredVehicleRecords = new ArrayList<>();
         for (VehicleRecordDataModel vehicleRecord : mVehicleRecords) {
 
             if (
                     vehicleRecord.getStatus().equals(status)
                     &&
-//                    vehicleRecord.getCarType().equals(vehicleType)
-////                    &&
-//
                             vehicleRecord.getPlateNumber().equals(carNumber) &&
                     vehicleRecord.getDate().after(dateFromValue) && vehicleRecord.getDate().before(dateToValue)
             )

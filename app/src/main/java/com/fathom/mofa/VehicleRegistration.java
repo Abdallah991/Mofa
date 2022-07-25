@@ -48,6 +48,7 @@ import static com.fathom.mofa.VehicleSetUp.vehicle;
  */
 public class VehicleRegistration extends Fragment {
 
+//    variable declaration
     public static CarPhotosDataModel carPhotos = new CarPhotosDataModel();
     private NavController mNavController;
     private AutoCompleteTextView registrationType;
@@ -84,6 +85,7 @@ public class VehicleRegistration extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        link variables to the UI
         registrationType = view.findViewById(R.id.registrationType);
         engineSize = view.findViewById(R.id.motorSize);
         registrationStart = view.findViewById(R.id.registrationStart);
@@ -107,6 +109,7 @@ public class VehicleRegistration extends Fragment {
         registrationStart.setInputType(0);
         registrationEnd.setInputType(0);
 
+//       date click listeners
         registrationStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,10 +164,13 @@ public class VehicleRegistration extends Fragment {
             }
         });
 
+
         vehicleFrontInterior.setVisibility(View.GONE);
         vehicleBackInterior.setVisibility(View.GONE);
         vehicleTrunk.setVisibility(View.GONE);
 
+
+//        images click listeners
         vehicleLeftSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,6 +289,7 @@ public class VehicleRegistration extends Fragment {
             }
         });
 
+//        next click listener
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,6 +339,7 @@ public class VehicleRegistration extends Fragment {
 //        Toast.makeText(getContext(), vehicle.getModel(), Toast.LENGTH_SHORT).show();
     }
 
+//    select image implementation
     private void selectImage(Context context) {
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
@@ -541,6 +549,7 @@ public class VehicleRegistration extends Fragment {
 
     }
 
+//    get car information
     private boolean getCarInfo() {
 
         String registration = registrationType.getText().toString();

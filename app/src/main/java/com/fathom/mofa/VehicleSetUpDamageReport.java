@@ -19,6 +19,7 @@ import static com.fathom.mofa.VehicleSetUp.vehicle;
 
 public class VehicleSetUpDamageReport extends Fragment {
 
+//    declare variables
     private ImageView frontRight;
     private ImageView frontLeft;
     private ImageView front;
@@ -62,6 +63,7 @@ public class VehicleSetUpDamageReport extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//         link UI and set values
         Button next = view.findViewById(R.id.nextVehicleDamage);
         Button back = view.findViewById(R.id.backVehicleDamage);
         ViewFlipper mViewFlipper = view.findViewById(R.id.vehicleSetupViewFlipper);
@@ -157,8 +159,6 @@ public class VehicleSetUpDamageReport extends Fragment {
         }
 
         // Language handling
-
-
         mViewFlipper.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         String[] carTypes = getResources().getStringArray(R.array.types);
         SALOON = carTypes[0];

@@ -36,6 +36,7 @@ import static com.fathom.mofa.VehicleSetUpRentalInfo.rentalInfo;
  */
 public class VehicleSetUpConfirmation extends Fragment {
 
+//    declare variables info
     private ImageView vehicleImage;
     private ImageView firstCircle;
     private ImageView secondCircle;
@@ -90,6 +91,7 @@ public class VehicleSetUpConfirmation extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        link UI and set values
         vehicleImage = view.findViewById(R.id.vehicleImagesHandover);
         firstCircle = view.findViewById(R.id.firstImageHandover);
         secondCircle = view.findViewById(R.id.secondImageHandover);
@@ -248,6 +250,7 @@ public class VehicleSetUpConfirmation extends Fragment {
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
+//        vehicle image click listener
         vehicleImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -320,6 +323,7 @@ public class VehicleSetUpConfirmation extends Fragment {
             }
         });
 
+//        click implementations
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -407,6 +411,7 @@ public class VehicleSetUpConfirmation extends Fragment {
         backLeftTire = null;
     }
 
+//    set damage report
     private void damageReportReview() {
         if (damageReport.isBack()) {
             switch (vehicle.getCarType()) {

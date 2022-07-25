@@ -20,16 +20,19 @@ public class UserViewModel extends ViewModel {
     private UserRepository mRepository;
     private int positionOfItems;
 
+//     select user in model
     public void selectUser(List Items, int position) {
 
         mUsers.setValue(Items);
         positionOfItems = position;
     }
 
+    //     get user position in model
     public int getPositionOfUser() {
         return positionOfItems;
     }
 
+    //    initialise the model
     public void initUsers( ) {
 
         Log.d(USER_TAG, " init in ViewModel called.");
@@ -44,10 +47,12 @@ public class UserViewModel extends ViewModel {
         mUsers = mRepository.getUsers();
     }
 
+//    get data in model
     public LiveData<List<UserDataModel>> getUsers() {
         return mUsers;
     }
 
+//    add user to the model
     public void addUser(UserDataModel  user) {
         ArrayList<UserDataModel> USERS = new ArrayList<>();
 

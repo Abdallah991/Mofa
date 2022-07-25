@@ -49,6 +49,7 @@ import static com.fathom.mofa.VehicleRecord.vehicleInRecord;
  */
 public class VehicleDetails extends Fragment {
 
+//     declare variables
     public static CarPhotosDataModel carPhotosRecord = new CarPhotosDataModel();
     private String TAG = "VEHICLE DETAIL";
     private NavController mNavController;
@@ -86,6 +87,7 @@ public class VehicleDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//         link UI variables
         TextView vehicleName = view.findViewById(R.id.carNameTitle);
         vehicleInfoCollapse = view.findViewById(R.id.vehicleInformationToggle);
         vehicleInfoLayout = view.findViewById(R.id.vehicleInformationCollapse);
@@ -106,12 +108,14 @@ public class VehicleDetails extends Fragment {
         Button vehicleHistory = view.findViewById(R.id.vehicleHistory);
         vehicleDetailImage = view.findViewById(R.id.vehicleDetailsImage);
 
+//         initialise progress dialog and controller
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setTitle("Downloading...");
         progressDialog.setCanceledOnTouchOutside(false);
 
         mNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
+//         set values
         vehicleName.setText(vehicleDashboard.getManufacturer()+ " "+ vehicleDashboard.getModel());
         plateNumber.setText(vehicleDashboard.getPlateNumber());
         manufacturer.setText(vehicleDashboard.getManufacturer());
@@ -125,11 +129,11 @@ public class VehicleDetails extends Fragment {
         registrationStart.setText(registrationStarts);
         registrationEnd.setText(registrationEnds);
 
-//        registrationStart.setGravity(Gravity.END);
-//        registrationEnd.setGravity(Gravity.END);
+
         final SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
         String userStatus = pref.getString("userStatus", "");
 
+//         car status
         switch (vehicleDashboard.getStatus()) {
             case "Busy":
                 handoverOrRetrieveOrRelease.setText(R.string.retrieve);
@@ -140,8 +144,6 @@ public class VehicleDetails extends Fragment {
                 }
                 vehicleRecord.setCarTransaction("DTM");
                 damageReportRecord.setCarTransaction("DTM");
-//                vehicleInRecord.setStatus("Returned");
-//                vehicleRecord.setStatus("Returned");
                 break;
             case "Returned":
                 handoverOrRetrieveOrRelease.setText(R.string.handover);
@@ -162,6 +164,7 @@ public class VehicleDetails extends Fragment {
                 break;
         }
 
+//        click implementation
         handoverOrRetrieveOrRelease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,6 +236,7 @@ public class VehicleDetails extends Fragment {
 
     }
 
+//     get rental company info
     private void getRentalInfo() {
 
         db.collection("Rental Information").document(vehicleDashboard.getPlateNumber())
@@ -260,6 +264,7 @@ public class VehicleDetails extends Fragment {
         Log.d(TAG, " Loading the data is DONE");
     }
 
+//    get vehicle images
     private void getVehicleImages() {
 
         final VehicleRepository repo = new VehicleRepository();
@@ -280,13 +285,12 @@ public class VehicleDetails extends Fragment {
 
     }
 
+//    set vehicle images
     private void setVehicleImages(){
         Glide.with(getContext())
                 .load(carPhotosRecord.getPhotoLeftSide())
                 .centerCrop()
                 .into(vehicleDetailImage);//
-//        vehicleDetailImage.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
-//        Toast.makeText(getContext(), carPhotosRecord.getPhotoLeftSide().toString()+"",Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -63,6 +63,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
 
     @Override
     public void onBindViewHolder(@NonNull VehicleRecordHolder holder, final int position) {
+//        set the value of item
         holder.driverName.setText(mVehicleRecords.get(position).getDriverName());
         holder.model.setText(mVehicleRecords.get(position).getModel());
         holder.make.setText(mVehicleRecords.get(position).getMake());
@@ -85,6 +86,7 @@ public class VehicleRecordsAdapter extends RecyclerView.Adapter<VehicleRecordsAd
                 break;
         }
 
+//        item click implementation
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

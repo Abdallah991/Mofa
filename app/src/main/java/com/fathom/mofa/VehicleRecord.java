@@ -187,12 +187,12 @@ public class VehicleRecord extends Fragment {
 
 
 
-//        if(mVehicles.isEmpty()) {
         initVehicles();
         initDrivers();
         initUsers();
-//        }
 
+
+//        switch gallery
         carImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,75 +263,21 @@ public class VehicleRecord extends Fragment {
                                 .load(carPhotosRecord.getVehicleTrunk())
                                 .centerCrop()
                                 .into(carImages);//
-//                        carImages.setImageBitmap(carPhotosRecord.getVehicleTrunk());
                         break;
 
                 }
             }
         });
 
-//        handover.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (handoverStatus) {
-//                    handover.setImageResource(R.drawable.empty_check_box);
-//                    handoverStatus = false;
-//                } else {
-//                    handoverStatus = true;
-//                    retrievalStatus = false;
-//                    releaseStatus = false;
-//                    handover.setImageResource(R.drawable.checked_check_box);
-//                    retrieval.setImageResource(R.drawable.empty_check_box);
-//                    release.setImageResource(R.drawable.empty_check_box);
-//                    vehicleRecord.setCarTransaction("MTD");
-//                    damageReportRecord.setCarTransaction("MTD");
-//                }
-//            }
-//        });
 
-//        retrieval.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (retrievalStatus) {
-//                    retrieval.setImageResource(R.drawable.empty_check_box);
-//                    retrievalStatus = false;
-//                } else {
-//                    retrievalStatus = true;
-//                    handoverStatus = false;
-//                    releaseStatus = false;
-//                    retrieval.setImageResource(R.drawable.checked_check_box);
-//                    handover.setImageResource(R.drawable.empty_check_box);
-//                    release.setImageResource(R.drawable.empty_check_box);
-//                    vehicleRecord.setCarTransaction("DTM");
-//                    damageReportRecord.setCarTransaction("DTM");
-//                }
-//            }
-//        });
-
-//        release.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (releaseStatus) {
-//                    release.setImageResource(R.drawable.empty_check_box);
-//                    releaseStatus = false;
-//                } else {
-//                    releaseStatus = true;
-//                    handoverStatus = false;
-//                    retrievalStatus = false;
-//                    release.setImageResource(R.drawable.checked_check_box);
-//                    handover.setImageResource(R.drawable.empty_check_box);
-//                    retrieval.setImageResource(R.drawable.empty_check_box);
-//                    vehicleRecord.setCarTransaction("MTR");
-//                    damageReportRecord.setCarTransaction("MTR");
-//                }
-//            }
-//        });
-
+//        next click implementation
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (getVehicleRecordInfo()) {
+                    vehicleDestination = destination.getText().toString();
+                    vehicleInRecord.setDestination(vehicleDestination);
                     mNavController.navigate(actionToVehicleUtilities);
                 }
             }
@@ -340,28 +286,12 @@ public class VehicleRecord extends Fragment {
         setVehicleInfo();
 
 
-//        switch (vehicleDashboard.getStatus()) {
-//            case "Busy":
-//                retrieval.setImageResource(R.drawable.checked_check_box);
-//                vehicleRecord.setCarTransaction("DTM");
-//                damageReportRecord.setCarTransaction("DTM");
-//                break;
-//            case "Returned":
-//                handover.setImageResource(R.drawable.checked_check_box);
-//                vehicleRecord.setCarTransaction("MTD");
-//                damageReportRecord.setCarTransaction("MTD");
-//                break;
-//            case "Released":
-//                release.setImageResource(R.drawable.checked_check_box);
-//                vehicleRecord.setCarTransaction("MTR");
-//                damageReportRecord.setCarTransaction("MTR");
-//
-//                break;
-//        }
+
 
     }
 
 
+//     initialize vehicle
     private void initVehicles() {
 
         vehicleName.setText(vehicleDashboard.getCarName());
@@ -371,6 +301,7 @@ public class VehicleRecord extends Fragment {
 
     }
 
+//    initialise driver
     private void initDrivers() {
 
         Handler myHandler;
@@ -398,7 +329,7 @@ public class VehicleRecord extends Fragment {
                                 driverNames.add(driver.getDriverName());
                             }
                         }else {
-                            destination.setVisibility(View.INVISIBLE);
+                            destination.setVisibility(View.VISIBLE);
                             String spinnerRentalCompany = getResources().getString(R.string.renalCompany);
                             driverNames.add(spinnerRentalCompany);
                             getRentalInfo();
@@ -437,32 +368,28 @@ public class VehicleRecord extends Fragment {
                             String selectedItemText = (String) parent.getItemAtPosition(position);
 
                             if (position > 0) {
-                                // This code is to get the object of the selected Vehicle
                                 positionOfDriver = position - 1;
-//                                driverInRecord = mDrivers.get(positionOfDriver);
                                 vehicleRecord.setDriverName(selectedItemText);
 
                             }
-                            vehicleDestination = destination.getText().toString();
-                            vehicleRecord.setDestination(vehicleDestination);
+
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
                         }
                     });
-//                progressDialog.dismiss();
                 }
             }, SPLASH_TIME_OUT);
 
     }
 
 
+//    initialize users
     private void initUsers() {
 
         SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
         final String email = pref.getString("Email", "");
-//        final String Name = new String[1];
 
         Handler myHandler;
         int SPLASH_TIME_OUT = 2500;
@@ -494,15 +421,16 @@ public class VehicleRecord extends Fragment {
     }
 
 
+//    set vehicle images
     private void setVehicleImages(){
         Glide.with(getContext())
                 .load(carPhotosRecord.getPhotoLeftSide())
                 .centerCrop()
                 .into(carImages);//
-//        carImages.setImageBitmap(carPhotosRecord.getPhotoLeftSide());
 
     }
 
+//    vehicle record info
     private boolean getVehicleRecordInfo() {
 
         String user = vehicleRecord.getReleasePersonName();
@@ -522,6 +450,7 @@ public class VehicleRecord extends Fragment {
 
     }
 
+//     set vehicle info
     private void setVehicleInfo() {
 
         vehicleInRecord.setStatus(vehicleDashboard.getStatus());
@@ -550,13 +479,15 @@ public class VehicleRecord extends Fragment {
         vehicleRecord.setCarType(vehicleDashboard.getCarType());
         vehicleRecord.setChassisNumber(vehicleDashboard.getChassisNumber());
         vehicleRecord.setMotorSize(vehicleDashboard.getMotorSize());
-        vehicleRecord.setDestination(vehicleDestination);
+
+//        vehicleRecord.setDestination(vehicleDestination);
 
 
 
 
     }
 
+//     get the rental
     private void getRentalInfo() {
         db.collection("Rental Information")
                 .get()

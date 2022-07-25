@@ -28,6 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
         myHandler = new Handler();
 
+//        set the saved language
         SharedPreferences userPrefs = getSharedPreferences(USER, 0);
         String lang = userPrefs.getString("Lang","");
         if (lang.isEmpty()) {
@@ -55,6 +56,7 @@ public class SplashActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
     }
 
+//    set application language
     private void setApplicationLocale(String locale) {
         Resources resources = getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();

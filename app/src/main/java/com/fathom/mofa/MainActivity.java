@@ -41,6 +41,7 @@ import static com.fathom.mofa.LoginActivity.USER;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+//    menu, navigation controller and constants.
     private DrawerLayout drawerLayout;
     private NavController navController;
     private NavigationView navigationView;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+//        notification click listener
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+//        signup a user click listener
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -358,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(toolbar);
 
-
+//      menu item click listener
         dashboardMenuItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -407,6 +410,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
+//        change language click listener
         changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -462,14 +466,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+//    physical back click implementation
     @Override
     public boolean onSupportNavigateUp() {
-        // reference the navigation controller when you want to navigate up
-//        navController.popBackStack(R.id.home, false);
-//        signUp.setVisibility(View.VISIBLE);
-//        notification.setVisibility(View.VISIBLE);
-//        signUp.setImageResource(R.drawable.admin_icon);
-//        notification.setImageResource(R.drawable.notification_icon);
 
         drawerLayout.openDrawer(GravityCompat.START);
         return NavigationUI.navigateUp(navController, drawerLayout);
@@ -516,10 +515,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-//    public static void showIcon() {
-//        signUp.setVisibility(View.VISIBLE);
-//        notification.setVisibility(View.VISIBLE);
-//    }
+
+//    get user data
 
     private void getUserInfo() {
 

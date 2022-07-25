@@ -46,6 +46,7 @@ import static com.fathom.mofa.VehicleDetails.vehicleRecord;
 
 public class VehicleAccidentReport extends Fragment {
 
+//     variable declaration
     private NavController mNavController;
     private ImageView vehicleLeftSide;
     private ImageView vehicleRightSide;
@@ -292,6 +293,8 @@ public class VehicleAccidentReport extends Fragment {
         // D: Driver
         // M: Mofa
         // R: Rental Company
+
+//        click implementation
         front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -922,6 +925,7 @@ public class VehicleAccidentReport extends Fragment {
         });
 
 
+//        vehicle images implementation
         vehicleLeftSide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1043,6 +1047,7 @@ public class VehicleAccidentReport extends Fragment {
         });
 
 
+//        back click implementation
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1050,6 +1055,7 @@ public class VehicleAccidentReport extends Fragment {
             }
         });
 
+//        next click implementation
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1092,9 +1098,6 @@ public class VehicleAccidentReport extends Fragment {
                     frontLeftTire = null;
                     backRightTire = null;
                     backLeftTire = null;
-//                    front.setImageResource(null);
-//                    Bitmap bitmap = getBitmap();
-//                    getBitmap().recycle();
                     mNavController.navigate(actionToRecordConfirmation);
                 }
             }
@@ -1109,11 +1112,12 @@ public class VehicleAccidentReport extends Fragment {
         super.onResume();
         FRAGMENT = "vehicleAccidentReport";
         formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        carPhotosRecord = new CarPhotosDataModel();
         mDate = new Date();
 
     }
 
+
+//    select image implementation
     private void selectImage(Context context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
 
@@ -1320,6 +1324,7 @@ public class VehicleAccidentReport extends Fragment {
         }
     }
 
+//    set the values if the exist
     private boolean getVehicleRecordInfo() {
 
         if (carDamageStatus) {

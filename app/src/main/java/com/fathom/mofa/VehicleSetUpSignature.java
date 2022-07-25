@@ -53,6 +53,7 @@ import static com.fathom.mofa.VehicleSetUpRentalInfo.rentalInfo;
  */
 public class VehicleSetUpSignature extends Fragment {
 
+//    declare class variables
     private NavController mNavController;
     private Button rentalSignature;
     private Button mofaSignature;
@@ -84,6 +85,7 @@ public class VehicleSetUpSignature extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//       link UI and set values
         rentalSignature = view.findViewById(R.id.rentalSignature);
         mofaSignature = view.findViewById(R.id.mofaSignature);
         Button done = view.findViewById(R.id.doneVehicleSetUp);
@@ -152,6 +154,7 @@ public class VehicleSetUpSignature extends Fragment {
             }
         });
 
+//       done click implementation
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +216,7 @@ public class VehicleSetUpSignature extends Fragment {
         });
     }
 
+//    upload notification info
     private void uploadNotification() {
          SharedPreferences pref = getActivity().getSharedPreferences(USER, 0); // 0 - for private mode
         String name = pref.getString("userName", "");
@@ -228,11 +232,11 @@ public class VehicleSetUpSignature extends Fragment {
 
     }
 
+
     private void uploadVehicleInfo() {
         progressDialog.show();
         db.collection("Vehicles")
                 .document(vehicle.getPlateNumber()).set(vehicle);
-//        mVehicleRepository.uploadVehicle(vehicle);
     }
 
     private void uploadRentalInfoOfVehicle() {
@@ -250,29 +254,25 @@ public class VehicleSetUpSignature extends Fragment {
     }
 
     private void uploadVehicleRightSide() {
-//        mVehicleRepository.uploadVehicleRightSide(vehicle.getPhotoRightSide(), carPhotos.getPhotoRightSide());
         StorageReference rightImageRef = storageRef.child(vehicle.getPhotoRightSide());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getPhotoRightSide();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = rightImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User right image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User right image uploaded.");
-//                progressDialog.dismiss();
+
                 carPhotos.setPhotoRightSide(null);
 
             }
@@ -280,29 +280,26 @@ public class VehicleSetUpSignature extends Fragment {
 
     }
 
+//    upload images
     private void uploadVehicleLeftSide() {
         StorageReference leftImageRef = storageRef.child(vehicle.getPhotoLeftSide());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getPhotoLeftSide();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = leftImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User left image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User left image uploaded.");
-//                progressDialog.dismiss();
                 carPhotos.setPhotoLeftSide(null);
 
             }
@@ -312,27 +309,23 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void uploadVehicleFrontSide() {
         frontImageRef = storageRef.child(vehicle.getPhotoFrontSide());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getPhotoFrontSide();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = frontImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User front image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User front image uploaded.");
-//                progressDialog.dismiss();
                 carPhotos.setPhotoFrontSide(null);
 
             }
@@ -342,27 +335,23 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void uploadVehicleBackSide() {
         backImageRef = storageRef.child(vehicle.getPhotoBackSide());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getPhotoBackSide();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-//                progressDialog.dismiss();
                 carPhotos.setPhotoBackSide(null);
             }
         });
@@ -371,27 +360,23 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void uploadVehicleFrontInterior() {
         backImageRef = storageRef.child(vehicle.getVehicleFrontInterior());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getVehicleFrontInterior();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-//                progressDialog.dismiss();
                 carPhotos.setVehicleFrontInterior(null);
             }
         });
@@ -399,27 +384,24 @@ public class VehicleSetUpSignature extends Fragment {
     }
     private void uploadVehicleBackInterior() {
         backImageRef = storageRef.child(vehicle.getVehicleBackInterior());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getVehicleBackInterior();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
-//                progressDialog.dismiss();
-                // Handle unsuccessful uploads
+
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Log.d(TAG, "User back image uploaded.");
-//                progressDialog.dismiss();
+
                 carPhotos.setVehicleBackInterior(null);
             }
         });
@@ -428,21 +410,18 @@ public class VehicleSetUpSignature extends Fragment {
 
     private void uploadVehicleTrunk() {
         backImageRef = storageRef.child(vehicle.getVehicleTrunk());
-//        frontLicense.setDrawingCacheEnabled(true);
-//        frontLicense.buildDrawingCache();
+
         Bitmap bitmap = carPhotos.getVehicleTrunk();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = backImageRef.putBytes(data);
-//        progressDialog.show();
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Log.d(TAG, "User back image failed to upload.");
                 progressDialog.dismiss();
-                // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -462,11 +441,13 @@ public class VehicleSetUpSignature extends Fragment {
         FRAGMENT = "vehicleSetUpSignature";
     }
 
+//    update the model
     private void updateVehicleToViewModel() {
 
         model.addVehicle(vehicle);
     }
 
+//    update the model
     private void addNotificationToDataModel(NotificationDataModel notification) {
         mNotificationViewModel.addNotification(notification);
 

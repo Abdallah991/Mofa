@@ -39,6 +39,7 @@ import java.util.List;
 
 public class SignUpUser extends Fragment {
 
+//    declare variables
     private NavController navController;
     private EditText firstName;
     private EditText lastName;
@@ -72,6 +73,7 @@ public class SignUpUser extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//        bing variables with UI
         firstName = view.findViewById(R.id.firstName);
         lastName = view.findViewById(R.id.lastName);
         email = view.findViewById(R.id.email);
@@ -81,6 +83,7 @@ public class SignUpUser extends Fragment {
         Button register = view.findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
 
+//        initialise controller and progress dialog
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         progressDialog = new ProgressDialog(getContext());
@@ -125,6 +128,7 @@ public class SignUpUser extends Fragment {
             }
         });
 
+//        register click implementation
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +176,7 @@ public class SignUpUser extends Fragment {
 
     }
 
+//     email conditions
     private boolean isEmailValid(String email) {
 
         if (email.contains("@")) {
@@ -185,6 +190,7 @@ public class SignUpUser extends Fragment {
         return email.contains("@");
     }
 
+//     phone number conditions
     private boolean isPhoneNumberValid(String phoneNumber) {
         if(phoneNumber.length() == 8) {
             user.setPhoneNumber(phoneNumber);
@@ -196,6 +202,7 @@ public class SignUpUser extends Fragment {
         }
     }
 
+//    password condition
     private boolean isPasswordValid(String password) {
 
         if (password.length() > 6) {
@@ -205,6 +212,7 @@ public class SignUpUser extends Fragment {
         return password.length() > 6;
     }
 
+//     user type condition
     private boolean isUserTypeValid() {
         if (!userType.getSelectedItem().toString().equals("User Type")) {
             user.setUserType(userType.getSelectedItem().toString());
@@ -216,6 +224,7 @@ public class SignUpUser extends Fragment {
         }
     }
 
+//    sign up implementation
     private void SignUp() {
 
         String username = email.getText().toString();
@@ -227,7 +236,7 @@ public class SignUpUser extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign up success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -239,7 +248,6 @@ public class SignUpUser extends Fragment {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Log.d(TAG, "User profile updated.");
-//                                                navController.navigate(R.id.action_signUpUser_to_home);
                                                 getActivity().onBackPressed();
                                                 progressDialog.dismiss();
 
@@ -260,6 +268,7 @@ public class SignUpUser extends Fragment {
                 });
     }
 
+//    upload user to backend
     private void uploadUser() {
         // Create a new user with a first and last name
         Log.d(TAG, "uploading user starting.");
@@ -270,8 +279,7 @@ public class SignUpUser extends Fragment {
 
     }
 
-
-
+//      update user info
     private void addUserToViewModel() {
         model.addUser(user);
     }
